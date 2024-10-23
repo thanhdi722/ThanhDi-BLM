@@ -24,6 +24,7 @@ export interface ProductData {
 }
 export interface Product {
   item: {
+    title: string;
     name: string;
     oldprice: number;
     pricetype1: number;
@@ -99,7 +100,9 @@ const BodyOldAutumn = () => {
       <div className="container">
         <div className="BodyReference-card">
           <h2 className="BodyOldAutumn-title">
-            BẢNG GIÁ TRADE IN LÊN ĐỜI 16 SERIES 18/10/2024
+            {currentProducts.length > 0 && (
+              <div>{currentProducts[0].item.title}</div>
+            )}
           </h2>
 
           <div className="BodyOldAutumn-tab-button">
