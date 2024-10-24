@@ -32,7 +32,7 @@ function CardProduct({ name, price_range }: Omit<Product, "id">) {
         className="product__groupPrice"
         style={{ background: "0", textAlign: "center" }}
       >
-        <span className="product__price">Giá: </span>
+        <span className="product__price">Giá bán: </span>
         <span className="product__priceSpecial">
           {price_range.minimum_price.final_price.value.toLocaleString()}{" "}
           {price_range.minimum_price.final_price.currency}
