@@ -10,9 +10,12 @@ import "./Header.scss";
 import Image from "next/image";
 function page() {
   return (
-    <div className="header-warehouse-discharge">
+    <div
+      className="header-warehouse-discharge"
+      style={{ backgroundColor: "#fefce3" }}
+    >
       <div className="container">
-        <ul className="list-item-click" style={{ marginTop: "20px" }}>
+        <ul className="list-item-click">
           <li className="item-click">
             <Image
               src={iconapple}

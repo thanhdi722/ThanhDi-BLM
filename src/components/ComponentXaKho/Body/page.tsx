@@ -106,7 +106,7 @@ const Section5: React.FC = () => {
 
   const toggleProducts = () => {
     setIsExpanded((prev) => !prev);
-    setVisibleProducts((prev) => (isExpanded ? 10 : data?.length || 0));
+    setVisibleProducts((prev) => (isExpanded ? 15 : data?.length || 0));
   };
 
   if (isLoading) {
@@ -176,7 +176,7 @@ const Section5: React.FC = () => {
                 ))}
               </div>
 
-              {data && data.length > 10 && (
+              {data && data.length > 15 && (
                 <div className="load-more-container">
                   <button onClick={toggleProducts}>
                     {isExpanded ? "Thu gọn" : "Xem thêm"}

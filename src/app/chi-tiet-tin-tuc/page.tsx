@@ -307,6 +307,7 @@ export default function PostDetail() {
     router.push(`/chi-tiet-tin-tuc?page=${newDataParam}`); // Updated to remove activeTab2 from the URL
     setVisibleItems(5);
   };
+  console.log("data check", newsData1);
   return (
     <div className="NewSub-pageNew">
       <div className="container">
@@ -499,7 +500,7 @@ export default function PostDetail() {
                                 src={icUser}
                               />
                             </div>
-                            <span>{post.author.name}</span>
+                            <span>{post?.author?.name}</span>
                             <div>
                               <span>
                                 {new Date(
