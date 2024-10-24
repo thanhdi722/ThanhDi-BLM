@@ -3,23 +3,16 @@ import React from "react";
 import "./CardProduct.css";
 import iconconhang from "../../../../public/ic-shipped.png";
 import Image from "next/image";
-export interface Product {
-  id: number;
+interface ProductItem {
   name: string;
-  url_key: string;
-  image: {
-    url: string;
-  };
-  price_range: {
-    minimum_price: {
-      final_price: {
-        value: number;
-        currency: string;
-      };
-    };
-  };
+  price1: number;
 }
-function CardProduct({ name, price_range }: Omit<Product, "id">) {
+
+interface Product {
+  loaisp: string; // Loại sản phẩm
+  item: ProductItem; // Thông tin sản phẩm
+}
+function CardProduct({ name, price1 }: Omit<ProductItem, "id">) {
   return (
     <div className="CardProductProductWarehouseDischarge">
       <div
@@ -34,8 +27,7 @@ function CardProduct({ name, price_range }: Omit<Product, "id">) {
       >
         <span className="product__price">Giá bán: </span>
         <span className="product__priceSpecial">
-          {price_range.minimum_price.final_price.value.toLocaleString()}{" "}
-          {price_range.minimum_price.final_price.currency}
+          {price1.toLocaleString()} VNĐ
         </span>
       </div>
       <button
