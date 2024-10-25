@@ -73,12 +73,14 @@ function CardProductAccessory() {
   console.log("activeTab:", activeTab); // Log giá trị activeTab
   console.log("filteredProducts:", filteredProducts); // Log sản phẩm đã lọc
   return (
-    <div>
+    <div style={{ padding: "20px 0px", backgroundColor: "#fefce3" }}>
       <div className="container">
         <div className="warehouse-discharge-Section5-Container">
           <div>
             <div style={{ paddingBottom: "10px" }}>
-              <h2 className="title-table-combo-pk">Máy xả kho giảm đến 99%</h2>
+              <h2 className="title-table-combo-pk">
+                Phụ kiện xả kho giảm đến xx%
+              </h2>
             </div>
             <div
               style={{

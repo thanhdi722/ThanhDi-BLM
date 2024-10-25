@@ -144,7 +144,7 @@ const Section5: React.FC = () => {
   return (
     <div className="warehouse-discharge-Section5">
       <div className="container">
-        <div className="promotion">
+        {/* <div className="promotion">
           <div className="promotion-header">
             5 đặc quyền mua hàng tại Bạch Long Mobile
           </div>
@@ -291,7 +291,7 @@ const Section5: React.FC = () => {
               />
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
