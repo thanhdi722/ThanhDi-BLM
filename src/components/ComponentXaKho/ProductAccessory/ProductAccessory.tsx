@@ -140,14 +140,10 @@ function CardProductAccessory() {
                   />
                 ))}
               </div>
-              {displayedProducts.length < filteredByTab.length ? (
+              {displayedProducts.length < filteredByTab.length && (
                 <button onClick={handleSeeMore} className="btn-see-more">
                   Xem thêm
-                </button> // Nút xem thêm
-              ) : (
-                <button onClick={handleSeeLess} className="btn-see-more">
-                  Thu gọn
-                </button> // Nút thu gọn
+                </button>
               )}
             </>
           )}
