@@ -92,16 +92,18 @@ async function fetchProductListDataCuongLuc() {
 }
 
 const Section5: React.FC = () => {
+  // Moved useState hooks to the top level to avoid conditional calls
+  const [activeTab, setActiveTab] = useState<string>("iPhone");
+  const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [visibleProducts, setVisibleProducts] = useState<number>(10);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [visibleCount, setVisibleCount] = useState(10); // Moved here
+
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataCuongLuc", variables.filter.category_uid.eq],
     queryFn: fetchProductListDataCuongLuc,
     staleTime: 300000,
   });
-
-  const [activeTab, setActiveTab] = useState<string>("iPhone");
-  const [filteredData, setFilteredData] = useState<Product[]>([]);
-  const [visibleProducts, setVisibleProducts] = useState<number>(10);
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   useEffect(() => {
     if (activeTab === "All") {
@@ -115,6 +117,7 @@ const Section5: React.FC = () => {
     setVisibleProducts(10);
     setIsExpanded(false);
   }, [activeTab, data]);
+
   useEffect(() => {
     switch (activeTab) {
       case "iPhone":
@@ -127,6 +130,7 @@ const Section5: React.FC = () => {
         variables.filter.category_uid.eq = "MjQ=";
     }
   }, [activeTab]);
+
   const toggleProducts = () => {
     if (isExpanded) {
       setVisibleProducts(10);
@@ -148,11 +152,12 @@ const Section5: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
-  const [visibleCount, setVisibleCount] = useState(10);
+
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
+
   return (
     <div className="OldForNew-Section-strength" id="item-strength">
       <div className="container">

@@ -103,7 +103,7 @@ const Section5: React.FC = () => {
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
+  const [visibleCount, setVisibleCount] = useState(10);
   useEffect(() => {
     if (activeTab === "All") {
       setFilteredData(data || []);
@@ -156,7 +156,7 @@ const Section5: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
-  const [visibleCount, setVisibleCount] = useState(10);
+
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
