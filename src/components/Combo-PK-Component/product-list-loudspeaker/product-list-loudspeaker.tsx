@@ -98,15 +98,25 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
+  const [activeTab, setActiveTab] = useState<string>("Al");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
-
   useEffect(() => {
+    if (activeTab === "All") {
+      setFilteredData(data || []);
+    } else {
+      const filtered = data?.filter(
+        (product) =>
+          product.name.toLowerCase().includes("loa") ||
+          product.name.toLowerCase().includes("tai nghe")
+      );
+      setFilteredData(filtered || []);
+    }
     setVisibleProducts(10);
     setIsExpanded(false);
-  }, [data]);
+  }, [activeTab, data]);
 
   const toggleProducts = () => {
     if (isExpanded) {
@@ -135,10 +145,9 @@ const Section5: React.FC = () => {
   }
 
   const loadMorePosts = () => {
-    setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 10
+    setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
-
   return (
     <div className="OldForNew-Section-loudspeaker" id="item-loudspeaker">
       <div className="container">
