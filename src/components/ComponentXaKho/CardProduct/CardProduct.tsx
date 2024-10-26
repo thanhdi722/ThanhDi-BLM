@@ -30,18 +30,7 @@ function CardProduct({ name, price1 }: Omit<ProductItem, "id">) {
           {price1.toLocaleString()} VNĐ
         </span>
       </div>
-      <button
-        style={{
-          padding: "10px 20px",
-          border: "1px solid red",
-          borderRadius: "5px",
-          display: "flex",
-          justifyContent: "center",
-          margin: "0px auto 20px auto ",
-        }}
-      >
-        Đặt hàng
-      </button>
+      <button className="btn-buy-product">Đặt hàng</button>
     </div>
   );
 }

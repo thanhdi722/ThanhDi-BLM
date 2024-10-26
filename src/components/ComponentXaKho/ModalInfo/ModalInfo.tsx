@@ -11,13 +11,21 @@ import { Button, Divider, notification, Space } from "antd";
 import type { NotificationArgsProps } from "antd";
 
 type NotificationPlacement = NotificationArgsProps["placement"];
-
+interface ProductItem {
+  name: string;
+  price1: number;
+}
 const Context = React.createContext({ name: "Default" });
 interface ModalFormProps {
   visible: boolean; // Kiểu dữ liệu cho visible
   onCancel: () => void; // Kiểu dữ liệu cho onCancel
+  product: ProductItem | null; // Add product prop
 }
-const ModalForm: React.FC<ModalFormProps> = ({ visible, onCancel }) => {
+const ModalForm: React.FC<ModalFormProps> = ({
+  visible,
+  onCancel,
+  product,
+}) => {
   const [api, contextHolder] = notification.useNotification();
 
   const openNotification = (placement: NotificationPlacement) => {
@@ -39,15 +47,20 @@ const ModalForm: React.FC<ModalFormProps> = ({ visible, onCancel }) => {
     setLoading(true);
     // Send form data to Google Sheets
     try {
+      const dataToSend = {
+        ...values,
+        productName: product?.name, // Add productName from product prop
+        price: product?.price1, // Add price from product prop
+      };
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbyk9SIAxTIM--HkPzDuOYbWzplDnLC1n527jwOW4-0m-uHehJtjr_PcH8U1coh-4hs/exec",
+        "https://script.google.com/macros/s/AKfycbyk9SIAxTIM--HkPzDuOYbWzplDnLC1n527jwOW4-0m-uHehJtjr_PcH8U1coh-4hs/exec?sheet=thongkhachhangxakho",
         {
           method: "POST",
           mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify(dataToSend), // Use the new data object
         }
       );
       if (!response.ok) {
@@ -68,13 +81,9 @@ const ModalForm: React.FC<ModalFormProps> = ({ visible, onCancel }) => {
     <>
       <Context.Provider value={contextValue}>
         {contextHolder}
-        <Modal visible={visible} onCancel={onCancel} footer={null}>
+        <Modal visible={visible} onCancel={onCancel} footer={null} centered>
           <h2 className="ModalInfo-title">
-            Bạn không tìm thấy sản phẩm cần định giá? Để lại thông tin để{" "}
-            <strong className="ModalInfo-description-strong">
-              Bạch Long Mobile
-            </strong>{" "}
-            tư vấn thêm bạn nhé
+            Nhập Thông Tin Để Chúng Tôi Liên Hệ Bạn Sớm nhất
           </h2>
           <Form layout="vertical" onFinish={handleOk}>
             <Form.Item
@@ -110,51 +119,6 @@ const ModalForm: React.FC<ModalFormProps> = ({ visible, onCancel }) => {
               </Form.Item>
             </div>
 
-            <Form.Item
-              label="Địa chỉ của bạn"
-              name="address"
-              rules={[{ required: true, message: "Vui lòng nhập số địa chỉ!" }]}
-            >
-              <Input placeholder="Nhập quận/huyện, tỉnh thành" />
-            </Form.Item>
-
-            <Form.Item
-              label="Nhập mẫu máy bạn cần thu"
-              name="model"
-              rules={[{ required: true, message: "Vui lòng nhập tên máy!" }]}
-            >
-              <Input placeholder="Nhập tên máy, loại máy" />
-            </Form.Item>
-
-            <Form.Item
-              label="Mô tả ngắn về tình trạng máy"
-              name="tinhtrangmay"
-              rules={[
-                { required: true, message: "Vui lòng nhập tình trạng máy!" },
-              ]}
-            >
-              <Input placeholder="Mô tả" />
-            </Form.Item>
-
-            <Form.Item
-              label="Sản phẩm cần tư vấn lên đời"
-              name="productName"
-              rules={[
-                { required: true, message: "Vui lòng nhập tên sản phẩm!" },
-              ]}
-            >
-              <Input placeholder="Mô tả" />
-            </Form.Item>
-
-            <Form.Item name="acceptemail" valuePropName="checked">
-              <Checkbox>Đăng ký nhận bản tin khuyến mãi qua email</Checkbox>
-            </Form.Item>
-            <Form.Item
-              name="check"
-              valuePropName="checked"
-              initialValue={true}
-              noStyle
-            ></Form.Item>
             {loading && (
               <Form.Item>
                 <button className="ModalInfo-button">

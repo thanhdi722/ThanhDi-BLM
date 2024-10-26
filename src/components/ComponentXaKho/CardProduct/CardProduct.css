@@ -200,3 +200,16 @@ border: 2px solid #ff4530;
   margin: 4px 0;
 }
 }
+.btn-buy-product{
+    padding: 10px 20px;
+    border: 1px solid red;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin: 0px auto 20px auto;
+    transition: all 0.3s;
+}
+.btn-buy-product:hover{
+  background-color: red;
+  color: #fff;
+}

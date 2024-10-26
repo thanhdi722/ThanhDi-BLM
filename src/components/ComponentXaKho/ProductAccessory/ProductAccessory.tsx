@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CardProduct from "../CardProduct/CardProduct";
 import Image from "next/image";
 import { Spin } from "antd"; // Import Spin from Ant Design
+import ModalForm from "../ModalInfo/ModalInfo"; // Import ModalForm component
 import "./ProductAccessory.scss";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 interface ProductItem {
@@ -19,6 +20,10 @@ function CardProductAccessory() {
   const [activeTab, setActiveTab] = useState<string>(""); // Khởi tạo activeTab rỗng
   const [visibleCount, setVisibleCount] = useState<number>(15); // Số sản phẩm hiển thị
   const [loading, setLoading] = useState<boolean>(false); // State to manage loading
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false); // State to manage modal visibility
+  const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(
+    null
+  ); // State to hold selected product
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,8 +77,20 @@ function CardProductAccessory() {
 
   console.log("activeTab:", activeTab); // Log giá trị activeTab
   console.log("filteredProducts:", filteredProducts); // Log sản phẩm đã lọc
+
+  // Hàm để mở modal
+  const handleOpenModal = (product: ProductItem) => {
+    setSelectedProduct(product); // Set the selected product
+    setIsModalVisible(true);
+  };
+
+  // Hàm để đóng modal
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
-    <div style={{ padding: "20px 0px", backgroundColor: "#fefce3" }}>
+    <div style={{ padding: "20px 0px", backgroundColor: "#D5B487" }}>
       <div className="container">
         <div className="warehouse-discharge-Section5-Container">
           <div>
@@ -133,11 +150,15 @@ function CardProductAccessory() {
             <>
               <div className="warehouse-discharge-Section5-ItemSlider">
                 {displayedProducts.map((product, index) => (
-                  <CardProduct
+                  <div
+                    onClick={() => handleOpenModal(product.item)} // Pass product.item to the modal
                     key={`${product.item.name}-${index}`}
-                    name={product.item.name}
-                    price1={product.item.price1}
-                  />
+                  >
+                    <CardProduct
+                      name={product.item.name}
+                      price1={product.item.price1}
+                    />
+                  </div>
                 ))}
               </div>
               {displayedProducts.length < filteredByTab.length && (
@@ -145,6 +166,11 @@ function CardProductAccessory() {
                   Xem thêm
                 </button>
               )}
+              <ModalForm
+                visible={isModalVisible}
+                onCancel={handleCloseModal}
+                product={selectedProduct}
+              />
             </>
           )}
         </div>

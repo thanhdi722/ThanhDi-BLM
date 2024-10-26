@@ -135,8 +135,7 @@ const AccessoriesList: React.FC = () => {
                     style={{
                       width: "100%",
                       color: activeTab === tab.index ? "#fff" : "#333",
-                      backgroundColor:
-                        activeTab === tab.index ? "#ff7518" : "#fff",
+                      backgroundColor: activeTab === tab.index ? "red" : "#fff",
                       borderRadius: "8px",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
@@ -168,8 +167,7 @@ const AccessoriesList: React.FC = () => {
                     style={{
                       width: "100%",
                       color: activeTab === tab.index ? "#fff" : "#333",
-                      backgroundColor:
-                        activeTab === tab.index ? "#ff7518" : "#fff",
+                      backgroundColor: activeTab === tab.index ? "red" : "#fff",
                       borderRadius: "8px",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
