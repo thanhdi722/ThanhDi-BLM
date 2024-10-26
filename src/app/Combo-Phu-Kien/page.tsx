@@ -27,7 +27,7 @@ export default function HomeCombo() {
         <ComboIPhone16 />
         <ComboIPhone15 />
         <ProductListBuyPhone />
-        <ProductList />
+        {/* <ProductList /> */}
         <ProductListBaoda />
         <ProductListCuongLuc />
         <ProductListSacDuPhong />

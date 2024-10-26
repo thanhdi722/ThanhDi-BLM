@@ -123,7 +123,18 @@ const Section5: React.FC = () => {
       case "IPhone 15 Series":
         variables.filter.category_uid.eq = "MjEx"; // Set for 'Bao da, Ốp lưng'
         break;
-
+      case "IPhone 14 Series":
+        variables.filter.category_uid.eq = "MjEy"; // Set for 'Bao da, Ốp lưng'
+        break;
+      case "IPhone 13 Series":
+        variables.filter.category_uid.eq = "MjEz"; // Set for 'Bao da, Ốp lưng'
+        break;
+      case "IPhone 12 Series":
+        variables.filter.category_uid.eq = "MjE0"; // Set for 'Bao da, Ốp lưng'
+        break;
+      case "IPhone 11 Series":
+        variables.filter.category_uid.eq = "MjE1"; // Set for 'Bao da, Ốp lưng'
+        break;
       default:
         variables.filter.category_uid.eq = "MTg="; // Default to 'All'
     }
@@ -173,7 +184,7 @@ const Section5: React.FC = () => {
                 }`}
                 onClick={() => setActiveTab("IPhone 16 Series")}
               >
-                IPhone 16 Series
+                iPhone 16
               </button>
               <button
                 className={`btn-tab-buyPhone ${
@@ -183,7 +194,47 @@ const Section5: React.FC = () => {
                 }`}
                 onClick={() => setActiveTab("IPhone 15 Series")}
               >
-                IPhone 15 Series
+                iPhone 15
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
+                  activeTab === "IPhone 14 Series"
+                    ? "btn-tab-buyPhone_active"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("IPhone 14 Series")}
+              >
+                iPhone 14
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
+                  activeTab === "IPhone 13 Series"
+                    ? "btn-tab-buyPhone_active"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("IPhone 13 Series")}
+              >
+                iPhone 13
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
+                  activeTab === "IPhone 12 Series"
+                    ? "btn-tab-buyPhone_active"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("IPhone 12 Series")}
+              >
+                iPhone 12
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
+                  activeTab === "IPhone 11 Series"
+                    ? "btn-tab-buyPhone_active"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("IPhone 11 Series")}
+              >
+                iPhone 11
               </button>
               <button
                 className={`btn-tab-buyPhone ${
