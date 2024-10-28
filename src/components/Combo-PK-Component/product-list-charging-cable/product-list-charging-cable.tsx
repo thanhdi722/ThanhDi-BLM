@@ -113,6 +113,7 @@ const Section5: React.FC = () => {
       );
       setFilteredData(filtered || []);
     }
+    setVisibleCount(10);
     setVisibleProducts(10);
     setIsExpanded(false);
   }, [activeTab, data]);
@@ -130,6 +131,8 @@ const Section5: React.FC = () => {
       default:
         variables.filter.category_uid.eq = "Mjc=";
     }
+    setVisibleCount(10);
+    setVisibleProducts(10);
   }, [activeTab]);
   const toggleProducts = () => {
     if (isExpanded) {
