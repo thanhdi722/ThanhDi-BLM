@@ -172,6 +172,14 @@ const Section5: React.FC = () => {
             <div className="tab-button-table-combo-pk">
               <button
                 className={`btn-tab-buyPhone ${
+                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
+                }`}
+                onClick={() => setActiveTab("All")}
+              >
+                Apple
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
                   activeTab === "Cáp sạc" ? "btn-tab-buyPhone_active" : ""
                 }`}
                 onClick={() => setActiveTab("Cáp sạc")}
@@ -193,15 +201,6 @@ const Section5: React.FC = () => {
                 onClick={() => setActiveTab("Bộ sạc")}
               >
                 Bộ sạc
-              </button>
-
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("All")}
-              >
-                Tất cả
               </button>
             </div>
           </div>

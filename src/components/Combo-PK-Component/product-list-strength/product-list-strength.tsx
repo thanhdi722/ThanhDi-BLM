@@ -102,16 +102,7 @@ const Section5: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
 
-  const brands = [
-    "Apple",
-    "Mipow",
-    "UNIQ",
-    "Jcpal",
-    "Pisen",
-    "BAGI",
-    "ZEELOT",
-    "KINGKONG",
-  ];
+  const brands = ["Apple", "Mipow", "UNIQ", "Jcpal", "Pisen", "BAGI", "ZEELOT"];
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataCuongLuc", variables.filter.category_uid.eq],
     queryFn: fetchProductListDataCuongLuc,
@@ -129,12 +120,13 @@ const Section5: React.FC = () => {
       (product) =>
         product?.name.toLowerCase().includes(activeTab.toLowerCase()) || // Include products based on activeTab
         (activeTab === "Apple" &&
-          product?.name.toLowerCase().includes("iphone")) // Check for MagSafe only if Apple is selected
+          product?.name.toLowerCase().includes("iphone")) ||
+        product?.name.toLowerCase().includes("KINGKONG")
     );
     setFilteredData(filtered || []);
-
-    setVisibleProducts(10);
     setIsExpanded(false);
+    setVisibleCount(10);
+    setVisibleProducts(10);
     setSubActiveTab("16"); // Reset subActiveTab when changing main tab
   }, [activeTab, data]);
   console.log("data a2", filteredData);
@@ -143,6 +135,8 @@ const Section5: React.FC = () => {
     const filtered = filteredData.filter((product) =>
       product?.name.toLowerCase().includes(subActiveTab.toLowerCase())
     );
+    setVisibleCount(10);
+    setVisibleProducts(10);
     setFilteredDataSub(filtered || []);
   }, [subActiveTab, filteredData]);
 
@@ -198,23 +192,63 @@ const Section5: React.FC = () => {
               ))}
             </div>
             <div className="tab-button-table-combo-pk">
-              {data &&
-                data.length > 0 && // Check if there is data
-                [
-                  { label: "iPhone 15", value: "15" },
-                  { label: "iPhone 16", value: "16" },
-                  // Add more sub-tabs as needed
-                ].map(({ label, value }) => (
-                  <button
-                    key={value}
-                    className={`btn-tab-buyPhone ${
-                      subActiveTab === value ? "btn-tab-buyPhone_active" : ""
-                    }`}
-                    onClick={() => setSubActiveTab(value)}
-                  >
-                    {label} {/* Display the new label */}
-                  </button>
-                ))}
+              {filteredData &&
+                filteredData.length > 0 && ( // Check if there is data
+                  <>
+                    {filteredData.some((product) =>
+                      product.name.toLowerCase().includes("16")
+                    ) && ( // Check for iPhone 16
+                      <button
+                        key="16"
+                        className={`btn-tab-buyPhone ${
+                          subActiveTab === "16" ? "btn-tab-buyPhone_active" : ""
+                        }`}
+                        onClick={() => setSubActiveTab("16")}
+                      >
+                        iPhone 16
+                      </button>
+                    )}
+                    {filteredData.some((product) =>
+                      product.name.toLowerCase().includes("15")
+                    ) && ( // Check for iPhone 15
+                      <button
+                        key="15"
+                        className={`btn-tab-buyPhone ${
+                          subActiveTab === "15" ? "btn-tab-buyPhone_active" : ""
+                        }`}
+                        onClick={() => setSubActiveTab("15")}
+                      >
+                        iPhone 15
+                      </button>
+                    )}
+                    {filteredData.some((product) =>
+                      product.name.toLowerCase().includes("14")
+                    ) && ( // Check for iPhone 15
+                      <button
+                        key="14"
+                        className={`btn-tab-buyPhone ${
+                          subActiveTab === "14" ? "btn-tab-buyPhone_active" : ""
+                        }`}
+                        onClick={() => setSubActiveTab("14")}
+                      >
+                        iPhone 14
+                      </button>
+                    )}
+                    {filteredData.some((product) =>
+                      product.name.toLowerCase().includes("13")
+                    ) && ( // Check for iPhone 15
+                      <button
+                        key="13"
+                        className={`btn-tab-buyPhone ${
+                          subActiveTab === "13" ? "btn-tab-buyPhone_active" : ""
+                        }`}
+                        onClick={() => setSubActiveTab("13")}
+                      >
+                        iPhone 13
+                      </button>
+                    )}
+                  </>
+                )}
             </div>
           </div>
           {isLoading && (
@@ -227,7 +261,7 @@ const Section5: React.FC = () => {
               <Spin />
             </div>
           )}
-          {data && data.length === 0 && !isLoading ? (
+          {filteredDataSub && filteredDataSub.length === 0 && !isLoading ? (
             <div className="no-products-message">
               <Image
                 src={noProducts}

@@ -357,7 +357,7 @@ const BannerSlide = () => {
                 alt="banner-slide-01"
                 className="icon-itemClick"
               />
-              <p className="item-click-txt">Apple</p>
+              <p className="item-click-txt">Khuyến Mãi</p>
             </li>
             {/* <li className='item-click' onClick={handleClickSamSung}>
 							<Image src={iconSamsung} alt='banner-slide-01' className='icon-itemClick' />

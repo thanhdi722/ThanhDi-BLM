@@ -63,7 +63,6 @@ price_range {
 }
 }
 `;
-
 const variables = {
   filter: {
     category_uid: {
@@ -105,15 +104,7 @@ const SectionBaoDa: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
   // Danh sách các hãng
-  const brands = [
-    "Apple",
-    "Jinya",
-    "Mipow",
-    "UNIQ",
-    "Finewoven",
-    "Spigen",
-    "Silicone",
-  ];
+  const brands = ["Apple", "Jinya", "Mipow", "UNIQ", "Spigen"];
   const [subActiveTab, setSubActiveTab] = useState<string>("16");
   useEffect(() => {
     setSubActiveTab("16");
@@ -124,23 +115,27 @@ const SectionBaoDa: React.FC = () => {
       (product) =>
         product?.name.toLowerCase().includes(activeTab.toLowerCase()) || // Include products based on activeTab
         (activeTab === "Apple" &&
-          product?.name.toLowerCase().includes("magsafe")) // Check for MagSafe only if Apple is selected
+          (product?.name.toLowerCase().includes("magsafe") || // Include "magsafe"
+            product?.name.toLowerCase().includes("silicone") || // Include "Silicone"
+            product?.name.toLowerCase().includes("finewoven"))) // Include "Finewoven"
     );
     setFilteredData(filtered || []);
-
+    setVisibleCount(10);
     setVisibleProducts(10);
     setIsExpanded(false);
     setSubActiveTab("16"); // Ensure subActiveTab is set correctly
   }, [activeTab, data]);
 
   // New useEffect to filter by subActiveTab
-  console.log("dataaaaaaaaaaa", filteredData);
+  console.log("dataaaaaaaaaaa", filteredDataSub);
   useEffect(() => {
     const filtered = filteredData.filter(
       (product) =>
         product?.name.toLowerCase().includes(subActiveTab.toLowerCase()) // Ensure filtering is based on subActiveTab
     );
     setFilteredDataSub(filtered || []);
+    setVisibleCount(10);
+    setVisibleProducts(10);
   }, [subActiveTab, filteredData]); // Add filteredData as a dependency
 
   if (error) {
@@ -179,26 +174,63 @@ const SectionBaoDa: React.FC = () => {
             </div>
 
             <div className="tab-button-table-combo-pk">
-              {data &&
-                data.length > 0 && // Kiểm tra nếu có dữ liệu
-                [
-                  { label: "iPhone 15", value: "15" },
-                  { label: "iPhone 16", value: "16" },
-                  // "iPhone 14",
-                  // "iPhone 13",
-                  // "iPhone 12",
-                  // "iPhone 11",
-                ].map(({ label, value }) => (
-                  <button
-                    key={value}
-                    className={`btn-tab-buyPhone ${
-                      subActiveTab === value ? "btn-tab-buyPhone_active" : ""
-                    }`}
-                    onClick={() => setSubActiveTab(value)}
-                  >
-                    {label} {/* Hiển thị nhãn mới */}
-                  </button>
-                ))}
+              {filteredData &&
+                filteredData.length > 0 && ( // Check if there is data
+                  <>
+                    {filteredData.some((product) =>
+                      product.name.toLowerCase().includes("16")
+                    ) && ( // Check for iPhone 16
+                      <button
+                        key="16"
+                        className={`btn-tab-buyPhone ${
+                          subActiveTab === "16" ? "btn-tab-buyPhone_active" : ""
+                        }`}
+                        onClick={() => setSubActiveTab("16")}
+                      >
+                        iPhone 16
+                      </button>
+                    )}
+                    {filteredData.some((product) =>
+                      product.name.toLowerCase().includes("15")
+                    ) && ( // Check for iPhone 15
+                      <button
+                        key="15"
+                        className={`btn-tab-buyPhone ${
+                          subActiveTab === "15" ? "btn-tab-buyPhone_active" : ""
+                        }`}
+                        onClick={() => setSubActiveTab("15")}
+                      >
+                        iPhone 15
+                      </button>
+                    )}
+                    {filteredData.some((product) =>
+                      product.name.toLowerCase().includes("14")
+                    ) && ( // Check for iPhone 14
+                      <button
+                        key="14"
+                        className={`btn-tab-buyPhone ${
+                          subActiveTab === "14" ? "btn-tab-buyPhone_active" : ""
+                        }`}
+                        onClick={() => setSubActiveTab("14")}
+                      >
+                        iPhone 14
+                      </button>
+                    )}
+                    {filteredData.some((product) =>
+                      product.name.toLowerCase().includes("13")
+                    ) && ( // Check for iPhone 14
+                      <button
+                        key="13"
+                        className={`btn-tab-buyPhone ${
+                          subActiveTab === "14" ? "btn-tab-buyPhone_active" : ""
+                        }`}
+                        onClick={() => setSubActiveTab("13")}
+                      >
+                        iPhone 13
+                      </button>
+                    )}
+                  </>
+                )}
             </div>
           </div>
           {isLoading && (
@@ -234,7 +266,7 @@ const SectionBaoDa: React.FC = () => {
                 ))}
               </div>
 
-              {visibleCount < (data?.length || 0) && ( // Check if more products are available
+              {visibleCount < (filteredDataSub?.length || 0) && ( // Check if more products are available
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>

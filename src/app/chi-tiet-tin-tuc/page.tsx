@@ -365,7 +365,7 @@ export default function PostDetail() {
                       />
                       <div style={{ padding: "10px" }}>
                         <p style={{ paddingBottom: "6px" }}>
-                          {newsData.author.name}
+                          {newsData.author?.name}
                         </p>
                         <p>
                           {newsData.update_time

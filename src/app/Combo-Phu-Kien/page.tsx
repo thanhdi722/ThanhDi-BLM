@@ -41,7 +41,7 @@ export default function HomeCombo() {
         <ProductListSacDuPhong />
         <ProductListCapsac />
         <ProductListLoa />
-        {/* <ProductListLaptop /> */}
+        <ProductListLaptop />
       </div>
     </div>
   );

@@ -68,7 +68,7 @@ price_range {
 const variables = {
   filter: {
     category_uid: {
-      eq: "MTM3",
+      eq: "MTU2",
     },
   },
   pageSize: 200,
@@ -104,16 +104,8 @@ const Section5: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
   useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter(
-        (product) =>
-          product?.name.toLowerCase().includes("loa") ||
-          product?.name.toLowerCase().includes("tai nghe")
-      );
-      setFilteredData(filtered || []);
-    }
+    // Remove filtering logic to show all products
+    setFilteredData(data || []); // Set filteredData to all products
     setVisibleProducts(10);
     setIsExpanded(false);
   }, [activeTab, data]);
@@ -154,7 +146,7 @@ const Section5: React.FC = () => {
         <div className="OldForNew-Section-Container-loudspeaker">
           <div className="header-table-combo-pk">
             <div style={{ paddingBottom: "10px" }}>
-              <h2 className="title-table-combo-pk">Phụ Kiện Loa, Tai nghe</h2>
+              <h2 className="title-table-combo-pk">Phụ Kiện Tai nghe</h2>
             </div>
           </div>{" "}
           {isLoading && (
@@ -189,7 +181,7 @@ const Section5: React.FC = () => {
                   />
                 ))}
               </div>
-              {visibleCount < (data?.length || 0) && ( // Check if more products are available
+              {visibleCount < (filteredData?.length || 0) && ( // Check if more products are available
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>

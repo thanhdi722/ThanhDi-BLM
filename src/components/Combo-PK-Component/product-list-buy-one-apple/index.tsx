@@ -119,7 +119,7 @@ const Section5: React.FC = () => {
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
   return (
-    <div className="OldForNew-Section5">
+    <div className="OldForNew-Section5" id="item-apple">
       <div className="container">
         {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
 
