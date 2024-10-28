@@ -68,7 +68,7 @@ price_range {
 const variablesCategory1 = {
   filter: {
     category_uid: {
-      eq: "NjU=", // First category
+      eq: "NzA=", // First category
     },
   },
   pageSize: 200,
@@ -78,13 +78,21 @@ const variablesCategory1 = {
 const variablesCategory2 = {
   filter: {
     category_uid: {
-      eq: "NjY=", // Second category
+      eq: "NzE=", // Second category
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
-
+const variablesCategory3 = {
+  filter: {
+    category_uid: {
+      eq: "NzM=", // Second category
+    },
+  },
+  pageSize: 200,
+  currentPage: 1,
+};
 async function fetchProductListDataLaptop() {
   const response1 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
@@ -107,15 +115,25 @@ async function fetchProductListDataLaptop() {
       variables: variablesCategory2,
     }),
   });
-
+  const response3 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: variablesCategory3,
+    }),
+  });
   const data1 = await response1.json();
   const data2 = await response2.json();
+  const data3 = await response3.json();
   console.log("data 1", data1);
   // Merge the two sets of data
   const productsCategory1 = data1.data.products.items as Product[];
   const productsCategory2 = data2.data.products.items as Product[];
-
-  return [...productsCategory1, ...productsCategory2];
+  const productsCategory3 = data3.data.products.items as Product[];
+  return [...productsCategory1, ...productsCategory2, ...productsCategory3];
 }
 
 const Section5: React.FC = () => {

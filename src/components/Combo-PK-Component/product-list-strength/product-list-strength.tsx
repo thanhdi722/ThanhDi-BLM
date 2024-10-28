@@ -175,80 +175,76 @@ const Section5: React.FC = () => {
             <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Cường Lực</h2>
             </div>
-            <div className="tab-button-table-combo-pk">
-              {brands.map((brand) => (
-                <button
-                  key={brand}
-                  className={`btn-tab-buyPhone ${
-                    activeTab === brand ? "btn-tab-buyPhone_active" : ""
-                  }`}
-                  onClick={() => {
-                    setActiveTab(brand);
-                    setSubActiveTab("All"); // Reset sub-tab when changing main tab
-                  }}
-                >
-                  {brand}
-                </button>
-              ))}
-            </div>
-            <div className="tab-button-table-combo-pk">
-              {filteredData &&
-                filteredData.length > 0 && ( // Check if there is data
-                  <>
-                    {filteredData.some((product) =>
-                      product.name.toLowerCase().includes("16")
-                    ) && ( // Check for iPhone 16
-                      <button
-                        key="16"
-                        className={`btn-tab-buyPhone ${
-                          subActiveTab === "16" ? "btn-tab-buyPhone_active" : ""
-                        }`}
-                        onClick={() => setSubActiveTab("16")}
-                      >
-                        iPhone 16
-                      </button>
-                    )}
-                    {filteredData.some((product) =>
-                      product.name.toLowerCase().includes("15")
-                    ) && ( // Check for iPhone 15
-                      <button
-                        key="15"
-                        className={`btn-tab-buyPhone ${
-                          subActiveTab === "15" ? "btn-tab-buyPhone_active" : ""
-                        }`}
-                        onClick={() => setSubActiveTab("15")}
-                      >
-                        iPhone 15
-                      </button>
-                    )}
-                    {filteredData.some((product) =>
-                      product.name.toLowerCase().includes("14")
-                    ) && ( // Check for iPhone 15
-                      <button
-                        key="14"
-                        className={`btn-tab-buyPhone ${
-                          subActiveTab === "14" ? "btn-tab-buyPhone_active" : ""
-                        }`}
-                        onClick={() => setSubActiveTab("14")}
-                      >
-                        iPhone 14
-                      </button>
-                    )}
-                    {filteredData.some((product) =>
-                      product.name.toLowerCase().includes("13")
-                    ) && ( // Check for iPhone 15
-                      <button
-                        key="13"
-                        className={`btn-tab-buyPhone ${
-                          subActiveTab === "13" ? "btn-tab-buyPhone_active" : ""
-                        }`}
-                        onClick={() => setSubActiveTab("13")}
-                      >
-                        iPhone 13
-                      </button>
-                    )}
-                  </>
-                )}
+            <div>
+              <div className="tab-button-table-combo-pk">
+                {brands.map((brand) => (
+                  <button
+                    key={brand}
+                    className={`btn-tab-buyPhone ${
+                      activeTab === brand ? "btn-tab-buyPhone_active" : ""
+                    }`}
+                    onClick={() => {
+                      setActiveTab(brand);
+                      setSubActiveTab("All"); // Reset sub-tab when changing main tab
+                    }}
+                  >
+                    {brand}
+                  </button>
+                ))}
+              </div>
+
+              <div className="tab-button-table-combo-pk-sub">
+                {filteredData &&
+                  filteredData.length > 0 && ( // Check if there is data
+                    <>
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("16")
+                      ) && ( // Check for iPhone 16
+                        <button
+                          key="16"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "16"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("16")}
+                        >
+                          iPhone 16
+                        </button>
+                      )}
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("15")
+                      ) && ( // Check for iPhone 15
+                        <button
+                          key="15"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "15"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("15")}
+                        >
+                          iPhone 15
+                        </button>
+                      )}
+                      {filteredData.some((product) =>
+                        product.name.toLowerCase().includes("14")
+                      ) && ( // Check for iPhone 14
+                        <button
+                          key="14"
+                          className={`btn-tab-buyPhone-sub ${
+                            subActiveTab === "14"
+                              ? "btn-tab-buyPhone_active"
+                              : ""
+                          }`}
+                          onClick={() => setSubActiveTab("14")}
+                        >
+                          iPhone 14
+                        </button>
+                      )}
+                    </>
+                  )}
+              </div>
             </div>
           </div>
           {isLoading && (

@@ -4,7 +4,7 @@ import CardProduct from "../CardProduct/CardProduct";
 import Image from "next/image";
 import { Spin } from "antd"; // Import Spin from Ant Design
 import ModalForm from "../ModalInfo/ModalInfo"; // Import ModalForm component
-import "./ProductAccessory.scss";
+import "./ProductIPhone.scss";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 interface ProductItem {
   name: string;
@@ -29,7 +29,7 @@ function CardProductAccessory() {
     const fetchData = async () => {
       setLoading(true); // Set loading to true when fetching data
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxuvoT7Q9AbBQ11hDEHoAnGZ7qjAYvNmzz6s6hou6QT4krSKYZnPOBk_5XsconFLUdCGQ/exec?id=dsspXaKho"
+        "https://script.google.com/macros/s/AKfycbxuvoT7Q9AbBQ11hDEHoAnGZ7qjAYvNmzz6s6hou6QT4krSKYZnPOBk_5XsconFLUdCGQ/exec?id=mayxakho"
       );
       const data = await response.json();
       setFilteredProducts(data);
@@ -39,7 +39,7 @@ function CardProductAccessory() {
       if (data.length > 0) {
         setActiveTab(data[0].loaisp);
       }
-      console.log("data test", data);
+
       return data;
     };
 
@@ -48,7 +48,7 @@ function CardProductAccessory() {
 
   // Lấy danh sách các loại sản phẩm duy nhất và di chuyển "Khác" xuống cuối
   const uniqueLoaisp = Array.from(
-    new Set(filteredProducts?.map((product) => product.loaisp))
+    new Set(filteredProducts.map((product) => product.loaisp))
   ).sort((a, b) => (a === "Khác" ? 1 : 0)); // Đưa "Khác" xuống cuối
 
   // Lọc sản phẩm theo activeTab
@@ -92,7 +92,7 @@ function CardProductAccessory() {
   return (
     <div style={{ padding: "20px 0px", backgroundColor: "#D5B487" }}>
       <div className="container">
-        <div className="warehouse-discharge-Section5-Container">
+        <div className="ProductIPhone-Section5-Container">
           <div>
             <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">
@@ -107,7 +107,7 @@ function CardProductAccessory() {
                 justifyContent: "center",
               }}
             >
-              {uniqueLoaisp?.map(
+              {uniqueLoaisp.map(
                 (
                   loaisp // Tạo nút tab cho mỗi loaisp
                 ) => (
@@ -149,7 +149,7 @@ function CardProductAccessory() {
           ) : (
             <>
               <div className="warehouse-discharge-Section5-ItemSlider">
-                {displayedProducts?.map((product, index) => (
+                {displayedProducts.map((product, index) => (
                   <div
                     onClick={() => handleOpenModal(product.item)} // Pass product.item to the modal
                     key={`${product.item.name}-${index}`}
