@@ -8,7 +8,8 @@ import "./ProductIPhone.scss";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 interface ProductItem {
   name: string;
-  price1: number;
+  price: number;
+  id: string;
 }
 
 interface Product {
@@ -32,15 +33,22 @@ function CardProductAccessory() {
         "https://script.google.com/macros/s/AKfycbxuvoT7Q9AbBQ11hDEHoAnGZ7qjAYvNmzz6s6hou6QT4krSKYZnPOBk_5XsconFLUdCGQ/exec?id=mayxakho"
       );
       const data = await response.json();
-      setFilteredProducts(data);
+
+      // Filter to only include iPhones with IDs starting with "CTX"
+      const filteredIPhones = data.filter(
+        (product: Product) =>
+          product.loaisp === "iPhone" && product?.item?.id.startsWith("CTX")
+      );
+
+      setFilteredProducts(filteredIPhones); // Update state with filtered products
       setLoading(false); // Set loading to false after data is fetched
 
       // Thiết lập activeTab thành loaisp đầu tiên nếu có sản phẩm
-      if (data.length > 0) {
-        setActiveTab(data[0].loaisp);
+      if (filteredIPhones.length > 0) {
+        setActiveTab(filteredIPhones[0].loaisp);
       }
-
-      return data;
+      console.log("Filtered iPhones:", data);
+      return filteredIPhones;
     };
 
     fetchData();
@@ -88,7 +96,7 @@ function CardProductAccessory() {
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };
-
+  console.log("dataasssssssssss", displayedProducts);
   return (
     <div style={{ padding: "20px 0px", backgroundColor: "#D5B487" }}>
       <div className="container">
@@ -99,7 +107,7 @@ function CardProductAccessory() {
                 Phụ kiện xả kho giảm đến xx%
               </h2>
             </div>
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 gap: "10px",
@@ -124,7 +132,7 @@ function CardProductAccessory() {
                   </button>
                 )
               )}
-            </div>
+            </div> */}
           </div>
 
           {loading ? (
@@ -156,7 +164,7 @@ function CardProductAccessory() {
                   >
                     <CardProduct
                       name={product.item.name}
-                      price1={product.item.price1}
+                      price1={product.item.price}
                     />
                   </div>
                 ))}
@@ -166,11 +174,11 @@ function CardProductAccessory() {
                   Xem thêm
                 </button>
               )}
-              <ModalForm
+              {/* <ModalForm
                 visible={isModalVisible}
                 onCancel={handleCloseModal}
                 product={selectedProduct}
-              />
+              /> */}
             </>
           )}
         </div>
