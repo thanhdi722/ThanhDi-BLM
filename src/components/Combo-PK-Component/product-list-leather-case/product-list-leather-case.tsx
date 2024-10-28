@@ -91,71 +91,57 @@ async function fetchProductListDataBaoDa() {
   return data.data.products.items as Product[];
 }
 
-const Section5: React.FC = () => {
+const SectionBaoDa: React.FC = () => {
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataBaoDa", variables.filter.category_uid.eq], // Thêm category_uid vào queryKey
     queryFn: fetchProductListDataBaoDa,
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("IPhone 16 Series");
+  const [activeTab, setActiveTab] = useState<string>("Apple"); // Đặt giá trị mặc định là "All"
   const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [filteredDataSub, setFilteredDataSub] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
+  // Danh sách các hãng
+  const brands = [
+    "Apple",
+    "Jinya",
+    "Mipow",
+    "UNIQ",
+    "Finewoven",
+    "Spigen",
+    "Silicone",
+  ];
+  const [subActiveTab, setSubActiveTab] = useState<string>("16");
   useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
-    }
+    setSubActiveTab("16");
+  }, []);
+
+  useEffect(() => {
+    const filtered = data?.filter(
+      (product) =>
+        product?.name.toLowerCase().includes(activeTab.toLowerCase()) || // Include products based on activeTab
+        (activeTab === "Apple" &&
+          product?.name.toLowerCase().includes("magsafe")) // Check for MagSafe only if Apple is selected
+    );
+    setFilteredData(filtered || []);
+
     setVisibleProducts(10);
     setIsExpanded(false);
+    setSubActiveTab("16"); // Ensure subActiveTab is set correctly
   }, [activeTab, data]);
-  useEffect(() => {
-    switch (activeTab) {
-      case "IPhone 16 Series":
-        variables.filter.category_uid.eq = "MzE0"; // Set for 'Cường Lực'
-        break;
-      case "IPhone 15 Series":
-        variables.filter.category_uid.eq = "MjEx"; // Set for 'Bao da, Ốp lưng'
-        break;
-      // case "IPhone 14 Series":
-      //   variables.filter.category_uid.eq = "MjEy"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 13 Series":
-      //   variables.filter.category_uid.eq = "MjEz"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 12 Series":
-      //   variables.filter.category_uid.eq = "MjE0"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 11 Series":
-      //   variables.filter.category_uid.eq = "MjE1"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      default:
-        variables.filter.category_uid.eq = "MTg="; // Default to 'All'
-    }
-  }, [activeTab]);
-  const toggleProducts = () => {
-    if (isExpanded) {
-      setVisibleProducts(10);
-      setIsExpanded(false);
-    } else {
-      setVisibleProducts(filteredData.length);
-      setIsExpanded(true);
-    }
-  };
 
-  // if (isLoading) {
-  // 	return (
-  // 		<div className='loading container-spin'>
-  // 			<Spin />
-  // 		</div>
-  // 	);
-  // }
+  // New useEffect to filter by subActiveTab
+  console.log("dataaaaaaaaaaa", filteredData);
+  useEffect(() => {
+    const filtered = filteredData.filter(
+      (product) =>
+        product?.name.toLowerCase().includes(subActiveTab.toLowerCase()) // Ensure filtering is based on subActiveTab
+    );
+    setFilteredDataSub(filtered || []);
+  }, [subActiveTab, filteredData]); // Add filteredData as a dependency
 
   if (error) {
     return <div>Error loading data</div>;
@@ -176,74 +162,43 @@ const Section5: React.FC = () => {
               <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>
             </div>
             <div className="tab-button-table-combo-pk">
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "IPhone 16 Series"
-                    ? "btn-tab-buyPhone_active"
-                    : ""
-                }`}
-                onClick={() => setActiveTab("IPhone 16 Series")}
-              >
-                iPhone 16
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "IPhone 15 Series"
-                    ? "btn-tab-buyPhone_active"
-                    : ""
-                }`}
-                onClick={() => setActiveTab("IPhone 15 Series")}
-              >
-                iPhone 15
-              </button>
-              {/* <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "IPhone 14 Series"
-                    ? "btn-tab-buyPhone_active"
-                    : ""
-                }`}
-                onClick={() => setActiveTab("IPhone 14 Series")}
-              >
-                iPhone 14
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "IPhone 13 Series"
-                    ? "btn-tab-buyPhone_active"
-                    : ""
-                }`}
-                onClick={() => setActiveTab("IPhone 13 Series")}
-              >
-                iPhone 13
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "IPhone 12 Series"
-                    ? "btn-tab-buyPhone_active"
-                    : ""
-                }`}
-                onClick={() => setActiveTab("IPhone 12 Series")}
-              >
-                iPhone 12
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "IPhone 11 Series"
-                    ? "btn-tab-buyPhone_active"
-                    : ""
-                }`}
-                onClick={() => setActiveTab("IPhone 11 Series")}
-              >
-                iPhone 11
-              </button> */}
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("All")}
-              >
-                Tất cả
-              </button>
+              {brands.map((brand) => (
+                <button
+                  key={brand}
+                  className={`btn-tab-buyPhone ${
+                    activeTab === brand ? "btn-tab-buyPhone_active" : ""
+                  }`}
+                  onClick={() => {
+                    setActiveTab(brand);
+                    setSubActiveTab("All"); // Reset sub-tab when changing main tab
+                  }}
+                >
+                  {brand}
+                </button>
+              ))}
+            </div>
+
+            <div className="tab-button-table-combo-pk">
+              {data &&
+                data.length > 0 && // Kiểm tra nếu có dữ liệu
+                [
+                  { label: "iPhone 15", value: "15" },
+                  { label: "iPhone 16", value: "16" },
+                  // "iPhone 14",
+                  // "iPhone 13",
+                  // "iPhone 12",
+                  // "iPhone 11",
+                ].map(({ label, value }) => (
+                  <button
+                    key={value}
+                    className={`btn-tab-buyPhone ${
+                      subActiveTab === value ? "btn-tab-buyPhone_active" : ""
+                    }`}
+                    onClick={() => setSubActiveTab(value)}
+                  >
+                    {label} {/* Hiển thị nhãn mới */}
+                  </button>
+                ))}
             </div>
           </div>
           {isLoading && (
@@ -256,7 +211,7 @@ const Section5: React.FC = () => {
               <Spin />
             </div>
           )}
-          {data && data.length === 0 && !isLoading ? (
+          {filteredDataSub && filteredDataSub.length === 0 && !isLoading ? (
             <div className="no-products-message">
               <Image
                 src={noProducts}
@@ -268,7 +223,7 @@ const Section5: React.FC = () => {
           ) : (
             <>
               <div className="OldForNew-Section5-ItemSlider">
-                {data?.slice(0, visibleProducts).map((product) => (
+                {filteredDataSub?.slice(0, visibleProducts).map((product) => (
                   <CardProduct
                     key={product.id}
                     name={product.name}
@@ -292,4 +247,4 @@ const Section5: React.FC = () => {
   );
 };
 
-export default Section5;
+export default SectionBaoDa;

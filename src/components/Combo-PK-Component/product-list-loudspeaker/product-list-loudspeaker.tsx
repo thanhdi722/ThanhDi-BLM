@@ -109,8 +109,8 @@ const Section5: React.FC = () => {
     } else {
       const filtered = data?.filter(
         (product) =>
-          product.name.toLowerCase().includes("loa") ||
-          product.name.toLowerCase().includes("tai nghe")
+          product?.name.toLowerCase().includes("loa") ||
+          product?.name.toLowerCase().includes("tai nghe")
       );
       setFilteredData(filtered || []);
     }

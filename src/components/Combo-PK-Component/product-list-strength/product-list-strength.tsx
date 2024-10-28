@@ -88,48 +88,63 @@ async function fetchProductListDataCuongLuc() {
   });
 
   const data = await response.json();
+
   return data.data.products.items as Product[];
 }
 
 const Section5: React.FC = () => {
   // Moved useState hooks to the top level to avoid conditional calls
-  const [activeTab, setActiveTab] = useState<string>("iPhone");
+
+  const [activeTab, setActiveTab] = useState<string>("Apple"); // Đặt giá trị mặc định là "All"
   const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [filteredDataSub, setFilteredDataSub] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [visibleCount, setVisibleCount] = useState(10); // Moved here
+  const [visibleCount, setVisibleCount] = useState(10);
 
+  const brands = [
+    "Apple",
+    "Mipow",
+    "UNIQ",
+    "Jcpal",
+    "Pisen",
+    "BAGI",
+    "ZEELOT",
+    "KINGKONG",
+  ];
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataCuongLuc", variables.filter.category_uid.eq],
     queryFn: fetchProductListDataCuongLuc,
     staleTime: 300000,
   });
 
-  useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
-    }
-    setVisibleProducts(10);
-    setIsExpanded(false);
-  }, [activeTab, data]);
+  const [subActiveTab, setSubActiveTab] = useState<string>("16"); // Initialize subActiveTab
 
   useEffect(() => {
-    switch (activeTab) {
-      case "iPhone":
-        variables.filter.category_uid.eq = "MTI3";
-        break;
-      case "iPad":
-        variables.filter.category_uid.eq = "MjQy";
-        break;
-      default:
-        variables.filter.category_uid.eq = "MjQ=";
-    }
-  }, [activeTab]);
+    setSubActiveTab("16"); // Set default subActiveTab
+  }, []);
+
+  useEffect(() => {
+    const filtered = data?.filter(
+      (product) =>
+        product?.name.toLowerCase().includes(activeTab.toLowerCase()) || // Include products based on activeTab
+        (activeTab === "Apple" &&
+          product?.name.toLowerCase().includes("iphone")) // Check for MagSafe only if Apple is selected
+    );
+    setFilteredData(filtered || []);
+
+    setVisibleProducts(10);
+    setIsExpanded(false);
+    setSubActiveTab("16"); // Reset subActiveTab when changing main tab
+  }, [activeTab, data]);
+  console.log("data a2", filteredData);
+  // New useEffect to filter by subActiveTab
+  useEffect(() => {
+    const filtered = filteredData.filter((product) =>
+      product?.name.toLowerCase().includes(subActiveTab.toLowerCase())
+    );
+    setFilteredDataSub(filtered || []);
+  }, [subActiveTab, filteredData]);
 
   const toggleProducts = () => {
     if (isExpanded) {
@@ -167,30 +182,39 @@ const Section5: React.FC = () => {
               <h2 className="title-table-combo-pk">Phụ Kiện Cường Lực</h2>
             </div>
             <div className="tab-button-table-combo-pk">
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "iPhone" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("iPhone")}
-              >
-                iPhone
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "iPad" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("iPad")}
-              >
-                iPad
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("All")}
-              >
-                Tất cả
-              </button>
+              {brands.map((brand) => (
+                <button
+                  key={brand}
+                  className={`btn-tab-buyPhone ${
+                    activeTab === brand ? "btn-tab-buyPhone_active" : ""
+                  }`}
+                  onClick={() => {
+                    setActiveTab(brand);
+                    setSubActiveTab("All"); // Reset sub-tab when changing main tab
+                  }}
+                >
+                  {brand}
+                </button>
+              ))}
+            </div>
+            <div className="tab-button-table-combo-pk">
+              {data &&
+                data.length > 0 && // Check if there is data
+                [
+                  { label: "iPhone 15", value: "15" },
+                  { label: "iPhone 16", value: "16" },
+                  // Add more sub-tabs as needed
+                ].map(({ label, value }) => (
+                  <button
+                    key={value}
+                    className={`btn-tab-buyPhone ${
+                      subActiveTab === value ? "btn-tab-buyPhone_active" : ""
+                    }`}
+                    onClick={() => setSubActiveTab(value)}
+                  >
+                    {label} {/* Display the new label */}
+                  </button>
+                ))}
             </div>
           </div>
           {isLoading && (
@@ -215,7 +239,7 @@ const Section5: React.FC = () => {
           ) : (
             <>
               <div className="OldForNew-Section5-ItemSlider">
-                {data?.slice(0, visibleProducts).map((product) => (
+                {filteredDataSub?.slice(0, visibleProducts).map((product) => (
                   <CardProduct
                     key={product.id}
                     name={product.name}
@@ -226,7 +250,7 @@ const Section5: React.FC = () => {
                 ))}
               </div>
 
-              {visibleCount < (data?.length || 0) && ( // Check if more products are available
+              {visibleCount < (filteredDataSub?.length || 0) && ( // Check if more products are available
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>

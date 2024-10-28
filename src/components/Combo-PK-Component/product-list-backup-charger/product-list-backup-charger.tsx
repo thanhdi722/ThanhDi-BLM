@@ -118,9 +118,6 @@ const Section5: React.FC = () => {
   }, [activeTab, data]);
   useEffect(() => {
     switch (activeTab) {
-      case "Samsung":
-        variables.filter.category_uid.eq = "ODE=";
-        break;
       case "Pisen":
         variables.filter.category_uid.eq = "MjMz";
         break;
@@ -175,14 +172,6 @@ const Section5: React.FC = () => {
             <div className="tab-button-table-combo-pk">
               <button
                 className={`btn-tab-buyPhone ${
-                  activeTab === "SamSung" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("Samsung")}
-              >
-                Samsung
-              </button>
-              <button
-                className={`btn-tab-buyPhone ${
                   activeTab === "Pisen" ? "btn-tab-buyPhone_active" : ""
                 }`}
                 onClick={() => setActiveTab("Pisen")}
@@ -204,7 +193,7 @@ const Section5: React.FC = () => {
                 }`}
                 onClick={() => setActiveTab("All")}
               >
-                Tất cả
+                Apple
               </button>
             </div>
           </div>

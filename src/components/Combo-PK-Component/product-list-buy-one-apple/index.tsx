@@ -129,7 +129,12 @@ const Section5: React.FC = () => {
               <h2 className="title-table-combo-pk">Phụ Kiện Mua 1 Tặng 1</h2>
             </div>
             <div
-              style={{ display: "flex", gap: "10px", paddingBottom: "10px" }}
+              style={{
+                display: "flex",
+                gap: "10px",
+                paddingBottom: "10px",
+                justifyContent: "center",
+              }}
             >
               <button
                 className={`btn-tab-buyPhone ${
