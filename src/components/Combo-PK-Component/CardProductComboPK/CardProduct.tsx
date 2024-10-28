@@ -32,7 +32,7 @@ function CardProduct({
         style={{ width: "100%", textDecoration: "none" }}
       >
         <figure className="product__img">
-          <img className="product__img-detail" alt={name} src={image.url} />
+          <img className="product__img-detail" alt={name} src={image?.url} />
         </figure>
         <div className="product__titleCombo" style={{ textDecoration: "none" }}>
           {name}
@@ -43,13 +43,13 @@ function CardProduct({
         >
           {/* <span className="product__price">Giá: </span> */}
           <p className="product__priceSpecial">
-            {price_range.minimum_price.final_price.value.toLocaleString()}{" "}
-            {price_range.minimum_price.final_price.currency}
+            {price_range?.minimum_price?.final_price?.value.toLocaleString()}{" "}
+            {price_range?.minimum_price?.final_price?.currency}
           </p>
           <div style={{ display: "flex", gap: "10px", marginTop: "6px" }}>
             <p className="product__price_gach">
               {(
-                price_range.minimum_price.final_price.value + 300000
+                price_range?.minimum_price?.final_price?.value + 300000
               ).toLocaleString()}{" "}
               VNĐ
             </p>
@@ -57,10 +57,10 @@ function CardProduct({
               <p className="product__price--percent-detail">
                 -&nbsp;
                 {Math.round(
-                  ((price_range.minimum_price.final_price.value +
+                  ((price_range?.minimum_price?.final_price?.value +
                     300000 -
-                    price_range.minimum_price.final_price.value) /
-                    (price_range.minimum_price.final_price.value + 300000)) *
+                    price_range?.minimum_price?.final_price?.value) /
+                    (price_range?.minimum_price?.final_price?.value + 300000)) *
                     100
                 )}
                 %
