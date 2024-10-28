@@ -148,7 +148,7 @@ const ComboIPhone15: React.FC = () => {
       {contextHolder}
       <div className="banner-slide-combo-pk">
         <div className="container">
-          <h1 className="title-combo-15">COMBO PHỤ KIỆN IPHONE 15</h1>
+          <h1 className="title-combo-15">COMBO PHỤ KIỆN IPHONE 15 SERIES</h1>
           {loading && (
             <div
               className="loading container-spin flex items-center justify-center"

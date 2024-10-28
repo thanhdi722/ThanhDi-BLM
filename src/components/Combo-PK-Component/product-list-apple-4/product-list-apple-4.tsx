@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState, useEffect } from "react";
-import "./product-list-leather-case.scss";
+import "./product-list-apple-4.scss";
 import CardProduct from "../CardProductComboPK/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
@@ -63,82 +63,126 @@ price_range {
 }
 }
 `;
-
-const variables = {
+const variablesCategory1 = {
   filter: {
     category_uid: {
-      eq: "MTg=",
+      eq: "NzA=", // First category
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
 
-async function fetchProductListDataBaoDa() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+const variablesCategory2 = {
+  filter: {
+    category_uid: {
+      eq: "NzE=", // Second category
+    },
+  },
+  pageSize: 200,
+  currentPage: 1,
+};
+const variablesCategory3 = {
+  filter: {
+    category_uid: {
+      eq: "NzM=", // Second category
+    },
+  },
+  pageSize: 200,
+  currentPage: 1,
+};
+async function fetchProductListDataLaptop() {
+  const response1 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       query,
-      variables,
+      variables: variablesCategory1,
     }),
   });
 
-  const data = await response.json();
-  console.log("data", data);
-  return data.data.products.items as Product[];
+  const response2 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: variablesCategory2,
+    }),
+  });
+  const response3 = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: variablesCategory3,
+    }),
+  });
+  const data1 = await response1.json();
+  const data2 = await response2.json();
+  const data3 = await response3.json();
+  console.log("data 1", data1);
+  // Merge the two sets of data
+  const productsCategory1 = data1.data.products.items as Product[];
+  const productsCategory2 = data2.data.products.items as Product[];
+  const productsCategory3 = data3.data.products.items as Product[];
+  return [...productsCategory1, ...productsCategory2, ...productsCategory3];
 }
 
 const Section5: React.FC = () => {
   const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataBaoDa", variables.filter.category_uid.eq], // Thêm category_uid vào queryKey
-    queryFn: fetchProductListDataBaoDa,
+    queryKey: ["productListDataLaptop"],
+    queryFn: fetchProductListDataLaptop,
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("IPhone 16 Series");
+  const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
-  useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
-    }
-    setVisibleProducts(10);
-    setIsExpanded(false);
-  }, [activeTab, data]);
-  useEffect(() => {
-    switch (activeTab) {
-      case "IPhone 16 Series":
-        variables.filter.category_uid.eq = "MzE0"; // Set for 'Cường Lực'
-        break;
-      case "IPhone 15 Series":
-        variables.filter.category_uid.eq = "MjEx"; // Set for 'Bao da, Ốp lưng'
-        break;
-      // case "IPhone 14 Series":
-      //   variables.filter.category_uid.eq = "MjEy"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 13 Series":
-      //   variables.filter.category_uid.eq = "MjEz"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 12 Series":
-      //   variables.filter.category_uid.eq = "MjE0"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 11 Series":
-      //   variables.filter.category_uid.eq = "MjE1"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      default:
-        variables.filter.category_uid.eq = "MTg="; // Default to 'All'
-    }
-  }, [activeTab]);
+
+  // useEffect(() => {
+  //   if (activeTab === "All") {
+  //     setFilteredData(data || []);
+  //   } else {
+  //     const filtered = data?.filter((product) =>
+  //       product.name.toLowerCase().includes(activeTab.toLowerCase())
+  //     );
+  //     setFilteredData(filtered || []);
+  //   }
+  //   setVisibleProducts(10);
+  //   setIsExpanded(false);
+  // }, [activeTab, data]);
+  // useEffect(() => {
+  //   switch (activeTab) {
+  //     case "IPhone 16 Series":
+  //       variables.filter.category_uid.eq = "MzE0"; // Set for 'Cường Lực'
+  //       break;
+  //     case "IPhone 15 Series":
+  //       variables.filter.category_uid.eq = "MjEx"; // Set for 'Bao da, Ốp lưng'
+  //       break;
+  //     // case "IPhone 14 Series":
+  //     //   variables.filter.category_uid.eq = "MjEy"; // Set for 'Bao da, Ốp lưng'
+  //     //   break;
+  //     // case "IPhone 13 Series":
+  //     //   variables.filter.category_uid.eq = "MjEz"; // Set for 'Bao da, Ốp lưng'
+  //     //   break;
+  //     // case "IPhone 12 Series":
+  //     //   variables.filter.category_uid.eq = "MjE0"; // Set for 'Bao da, Ốp lưng'
+  //     //   break;
+  //     // case "IPhone 11 Series":
+  //     //   variables.filter.category_uid.eq = "MjE1"; // Set for 'Bao da, Ốp lưng'
+  //     //   break;
+  //     default:
+  //       variables.filter.category_uid.eq = "Njg="; // Default to 'All'
+  //   }
+  // }, [activeTab]);
   const toggleProducts = () => {
     if (isExpanded) {
       setVisibleProducts(10);
@@ -170,13 +214,13 @@ const Section5: React.FC = () => {
       <div className="container">
         {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
 
-        <div className="OldForNew-Section-Container-leather-case">
+        <div className="OldForNew-Section-Container-leather-case-a4">
           <div className="header-table-combo-pk">
             <div style={{ paddingBottom: "10px" }}>
-              <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>
+              <h2 className="title-table-combo-pk">Đồ Chơi Công Nghệ Apple</h2>
             </div>
             <div className="tab-button-table-combo-pk">
-              <button
+              {/* <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "IPhone 16 Series"
                     ? "btn-tab-buyPhone_active"
@@ -185,8 +229,8 @@ const Section5: React.FC = () => {
                 onClick={() => setActiveTab("IPhone 16 Series")}
               >
                 iPhone 16
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "IPhone 15 Series"
                     ? "btn-tab-buyPhone_active"
@@ -195,7 +239,7 @@ const Section5: React.FC = () => {
                 onClick={() => setActiveTab("IPhone 15 Series")}
               >
                 iPhone 15
-              </button>
+              </button> */}
               {/* <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "IPhone 14 Series"
@@ -236,14 +280,14 @@ const Section5: React.FC = () => {
               >
                 iPhone 11
               </button> */}
-              <button
+              {/* <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "All" ? "btn-tab-buyPhone_active" : ""
                 }`}
                 onClick={() => setActiveTab("All")}
               >
                 Tất cả
-              </button>
+              </button> */}
             </div>
           </div>
           {isLoading && (

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState, useEffect } from "react";
-import "./product-list-leather-case.scss";
+import "./product-list-apple-1.scss";
 import CardProduct from "../CardProductComboPK/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
@@ -67,7 +67,7 @@ price_range {
 const variables = {
   filter: {
     category_uid: {
-      eq: "MTg=",
+      eq: "Njg=",
     },
   },
   pageSize: 200,
@@ -87,7 +87,7 @@ async function fetchProductListDataBaoDa() {
   });
 
   const data = await response.json();
-  console.log("data", data);
+  console.log("data a1", data);
   return data.data.products.items as Product[];
 }
 
@@ -98,47 +98,47 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("IPhone 16 Series");
+  const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
-  useEffect(() => {
-    if (activeTab === "All") {
-      setFilteredData(data || []);
-    } else {
-      const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
-      );
-      setFilteredData(filtered || []);
-    }
-    setVisibleProducts(10);
-    setIsExpanded(false);
-  }, [activeTab, data]);
-  useEffect(() => {
-    switch (activeTab) {
-      case "IPhone 16 Series":
-        variables.filter.category_uid.eq = "MzE0"; // Set for 'Cường Lực'
-        break;
-      case "IPhone 15 Series":
-        variables.filter.category_uid.eq = "MjEx"; // Set for 'Bao da, Ốp lưng'
-        break;
-      // case "IPhone 14 Series":
-      //   variables.filter.category_uid.eq = "MjEy"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 13 Series":
-      //   variables.filter.category_uid.eq = "MjEz"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 12 Series":
-      //   variables.filter.category_uid.eq = "MjE0"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      // case "IPhone 11 Series":
-      //   variables.filter.category_uid.eq = "MjE1"; // Set for 'Bao da, Ốp lưng'
-      //   break;
-      default:
-        variables.filter.category_uid.eq = "MTg="; // Default to 'All'
-    }
-  }, [activeTab]);
+  // useEffect(() => {
+  //   if (activeTab === "All") {
+  //     setFilteredData(data || []);
+  //   } else {
+  //     const filtered = data?.filter((product) =>
+  //       product.name.toLowerCase().includes(activeTab.toLowerCase())
+  //     );
+  //     setFilteredData(filtered || []);
+  //   }
+  //   setVisibleProducts(10);
+  //   setIsExpanded(false);
+  // }, [activeTab, data]);
+  // useEffect(() => {
+  //   switch (activeTab) {
+  //     case "IPhone 16 Series":
+  //       variables.filter.category_uid.eq = "MzE0"; // Set for 'Cường Lực'
+  //       break;
+  //     case "IPhone 15 Series":
+  //       variables.filter.category_uid.eq = "MjEx"; // Set for 'Bao da, Ốp lưng'
+  //       break;
+  //     // case "IPhone 14 Series":
+  //     //   variables.filter.category_uid.eq = "MjEy"; // Set for 'Bao da, Ốp lưng'
+  //     //   break;
+  //     // case "IPhone 13 Series":
+  //     //   variables.filter.category_uid.eq = "MjEz"; // Set for 'Bao da, Ốp lưng'
+  //     //   break;
+  //     // case "IPhone 12 Series":
+  //     //   variables.filter.category_uid.eq = "MjE0"; // Set for 'Bao da, Ốp lưng'
+  //     //   break;
+  //     // case "IPhone 11 Series":
+  //     //   variables.filter.category_uid.eq = "MjE1"; // Set for 'Bao da, Ốp lưng'
+  //     //   break;
+  //     default:
+  //       variables.filter.category_uid.eq = "Njg="; // Default to 'All'
+  //   }
+  // }, [activeTab]);
   const toggleProducts = () => {
     if (isExpanded) {
       setVisibleProducts(10);
@@ -170,13 +170,13 @@ const Section5: React.FC = () => {
       <div className="container">
         {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
 
-        <div className="OldForNew-Section-Container-leather-case">
+        <div className="OldForNew-Section-Container-leather-case-a1">
           <div className="header-table-combo-pk">
             <div style={{ paddingBottom: "10px" }}>
-              <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>
+              <h2 className="title-table-combo-pk">Phụ Kiện Bao Da Apple</h2>
             </div>
             <div className="tab-button-table-combo-pk">
-              <button
+              {/* <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "IPhone 16 Series"
                     ? "btn-tab-buyPhone_active"
@@ -185,8 +185,8 @@ const Section5: React.FC = () => {
                 onClick={() => setActiveTab("IPhone 16 Series")}
               >
                 iPhone 16
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "IPhone 15 Series"
                     ? "btn-tab-buyPhone_active"
@@ -195,7 +195,7 @@ const Section5: React.FC = () => {
                 onClick={() => setActiveTab("IPhone 15 Series")}
               >
                 iPhone 15
-              </button>
+              </button> */}
               {/* <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "IPhone 14 Series"
@@ -236,14 +236,14 @@ const Section5: React.FC = () => {
               >
                 iPhone 11
               </button> */}
-              <button
+              {/* <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "All" ? "btn-tab-buyPhone_active" : ""
                 }`}
                 onClick={() => setActiveTab("All")}
               >
                 Tất cả
-              </button>
+              </button> */}
             </div>
           </div>
           {isLoading && (

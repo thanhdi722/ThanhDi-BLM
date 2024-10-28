@@ -18,6 +18,10 @@ import ProductListBuyPhone from "../../components/Combo-PK-Component/product-lis
 // import ProductListBuyIpad from '../components/product-list-buy-one-samsung/index';
 import ComboIPhone16 from "../../components/Combo-PK-Component/ComboIPhone16/ComboIPhone16";
 import ComboIPhone15 from "../../components/Combo-PK-Component/ComboIPhone15/ComboIPhone15";
+import ProductListApple2 from "../../components/Combo-PK-Component//product-list-apple-2/product-list-apple-2";
+import ProductListApple1 from "../../components/Combo-PK-Component/product-list-apple-1/product-list-apple-1";
+import ProductListApple3 from "../../components/Combo-PK-Component/product-list-apple-3/product-list-apple-3";
+import ProductListApple4 from "../../components/Combo-PK-Component/product-list-apple-4/product-list-apple-4";
 export default function HomeCombo() {
   return (
     <div>
@@ -28,12 +32,16 @@ export default function HomeCombo() {
         <ComboIPhone15 />
         <ProductListBuyPhone />
         {/* <ProductList /> */}
+        <ProductListApple1 />
+        <ProductListApple2 />
+        <ProductListApple3 />
+        <ProductListApple4 />
         <ProductListBaoda />
         <ProductListCuongLuc />
         <ProductListSacDuPhong />
         <ProductListCapsac />
         <ProductListLoa />
-        <ProductListLaptop />
+        {/* <ProductListLaptop /> */}
       </div>
     </div>
   );
