@@ -112,7 +112,7 @@ const AccessoriesList: React.FC = () => {
           style={{
             padding: "10px",
             borderRadius: "10px",
-            backgroundColor: "#ff6161",
+            backgroundColor: "#ffe150",
           }}
         >
           <Image
