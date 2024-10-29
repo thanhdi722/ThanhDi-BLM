@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState } from "react";
-import "./ProductOld.scss";
+import "./ProductAndroidNew.scss";
 import CardProduct from "../CardProductComboPK/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
@@ -68,7 +68,7 @@ fragment ProductInterfaceField on ProductInterface {
 const variables1 = {
   filter: {
     category_uid: {
-      eq: "Mzk3",
+      eq: "Mzkx",
     },
   },
   pageSize: 200,
@@ -78,14 +78,22 @@ const variables1 = {
 const variables2 = {
   filter: {
     category_uid: {
-      eq: "Mzk4",
+      eq: "Mzkz",
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
-
-async function fetchProductListData(selectedVariable: any) {
+const variables3 = {
+  filter: {
+    category_uid: {
+      eq: "Mzky",
+    },
+  },
+  pageSize: 200,
+  currentPage: 1,
+};
+async function fetchProductListDataAndroidNew(selectedVariable: any) {
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
@@ -107,11 +115,16 @@ const ProductListIphone: React.FC = () => {
   const [visibleCount, setVisibleCount] = useState(10);
 
   // Use variables1 for Apple and variables2 for Android
-  const selectedVariable = mainTab === "Apple" ? variables1 : variables2;
+  const selectedVariable =
+    mainTab === "Apple"
+      ? variables1
+      : mainTab === "Android"
+      ? variables2
+      : variables3;
 
   const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataIPhoneOld", mainTab],
-    queryFn: () => fetchProductListData(selectedVariable),
+    queryKey: ["productListDataAndroidNew", mainTab],
+    queryFn: () => fetchProductListDataAndroidNew(selectedVariable),
     staleTime: 300000,
   });
 
@@ -141,7 +154,15 @@ const ProductListIphone: React.FC = () => {
                 }`}
                 onClick={() => setMainTab("Apple")}
               >
-                Apple
+                OPPO
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
+                  mainTab === "iPad" ? "btn-tab-buyPhone_active" : ""
+                }`}
+                onClick={() => setMainTab("iPad")}
+              >
+                Samsung
               </button>
               <button
                 className={`btn-tab-buyPhone ${
@@ -149,7 +170,7 @@ const ProductListIphone: React.FC = () => {
                 }`}
                 onClick={() => setMainTab("Android")}
               >
-                Android
+                Xiaomi
               </button>
             </div>
           </div>
