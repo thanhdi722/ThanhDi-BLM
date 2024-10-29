@@ -54,7 +54,7 @@
   -webkit-overflow-scrolling: touch; // Smooth scrolling for iOS
   .product-table {
     display: inline-table; // Allow the table to take only necessary width
-    width: auto; // Set width to auto to prevent it from stretching
+    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #fff;
