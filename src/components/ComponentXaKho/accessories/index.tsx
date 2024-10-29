@@ -11,7 +11,7 @@ import AccessTo210 from "../accessories-halloween/acess-to210/index";
 import Access290 from "../accessories-halloween/acess-290/index";
 import "./product.scss";
 import "swiper/css";
-
+import imagesTitle from "../../../../public/combo-pk/Đồ Chơi Công Nghệ.png";
 const AccessoriesList: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -108,6 +108,11 @@ const AccessoriesList: React.FC = () => {
   return (
     <div className="product-list-warehouse-discharge">
       <div className="container">
+        <Image
+          src={imagesTitle}
+          alt=""
+          style={{ padding: "40px 0px 20px 0px" }}
+        />
         <div className="upgrade-list">
           {/* <div className="women-decor">
             <Image

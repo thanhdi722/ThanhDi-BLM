@@ -5,7 +5,7 @@ import { Spin } from "antd";
 import ModalForm from "../ModalInfo/ModalInfo";
 import "./ProductAccessory.scss";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
-
+import imagesTitle from "../../../../public/combo-pk/Đồ Chơi Công Nghệ.png";
 interface ProductItem {
   name: string;
   price1: number;
@@ -75,6 +75,11 @@ function CardProductAccessory() {
   return (
     <div style={{ padding: "20px 0px", backgroundColor: "#D5B487" }}>
       <div className="container">
+        <Image
+          src={imagesTitle}
+          alt=""
+          style={{ padding: "40px 0px 20px 0px" }}
+        />
         <div className="warehouse-discharge-container-product-table">
           <div>
             {/* <div style={{ paddingBottom: "10px" }}>
