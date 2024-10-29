@@ -168,69 +168,87 @@ const BannerSlide = () => {
           <div className="OldForNew-Section1-imageSliderBanner">
             <Carousel autoplay autoplaySpeed={2000} dots={false} arrows={true}>
               {/* <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/"> */}
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images1}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images2}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images3}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images4}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images5}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images6}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images7}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images8}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images9}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/chu-t/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images1}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/chu-t/chu-t-choi-game/balo-tui-ch-ng-s-c/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images2}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/tai-nghe/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images3}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images4}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/danh-m-c/magic-keyboard/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images5}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images6}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images7}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images8}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images9}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
               {/* </Link> */}
 
               {/* <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/">
@@ -282,41 +300,52 @@ const BannerSlide = () => {
                   />
                 </div>
               </Link> */}
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images9}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images8}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images7}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images6}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images5}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images9}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images8}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images7}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images6}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/apple/danh-m-c/magic-keyboard/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images5}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+
               <div className="OldForNew-Section1-image">
                 <Image
                   src={images4}
@@ -324,27 +353,33 @@ const BannerSlide = () => {
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images3}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images2}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
-              <div className="OldForNew-Section1-image">
-                <Image
-                  src={images1}
-                  alt=""
-                  className="OldForNew-Section1-imageItem"
-                />
-              </div>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/tai-nghe/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images3}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/chu-t/chu-t-choi-game/balo-tui-ch-ng-s-c/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images2}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
+              <Link href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/chu-t/">
+                <div className="OldForNew-Section1-image">
+                  <Image
+                    src={images1}
+                    alt=""
+                    className="OldForNew-Section1-imageItem"
+                  />
+                </div>
+              </Link>
             </Carousel>
           </div>
         </div>
