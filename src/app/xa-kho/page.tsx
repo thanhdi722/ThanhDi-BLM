@@ -5,6 +5,7 @@ import Body from "../../components/ComponentXaKho/Body/page";
 import CardProductAccessory from "../../components/ComponentXaKho/ProductAccessory/ProductAccessory";
 import AccessoriesList from "../../components/ComponentXaKho/accessories/index";
 import ProductIPhone from "../../components/ComponentXaKho/ProductIPhone/ProductIPhone";
+import ProductListIphone from "../../components/ComponentXaKho/ProductOld/ProductOld";
 function page() {
   return (
     <div>
@@ -12,6 +13,7 @@ function page() {
       {/* <Header /> */}
       <Body />
       <ProductIPhone />
+      <ProductListIphone />
       <AccessoriesList />
       <CardProductAccessory />
     </div>

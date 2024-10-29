@@ -1,4 +1,4 @@
-.container-iphone-product {
+.container-iphone-ProductOld {
   background-color: #d5b487;
   .OldForNew-Section-Container-leather-case-a1 {
     margin: auto;
@@ -205,12 +205,12 @@
     }
     .load-more-container {
       button {
-        background-color: #ff2929;
+        background-color: #f47700;
         color: white;
         padding: 10px 20px;
         font-size: 16px;
         font-weight: 600;
-        border-radius: 6px;
+        border-radius: 10px;
       }
       button:hover {
         background-color: #ef373e;
@@ -220,14 +220,16 @@
       background: white;
       width: max-content;
       height: max-content;
-      padding: 8px 16px;
+      padding: 16px 25px;
+      width: 150px;
       border-radius: 10px;
       color: #000;
-      font-weight: 500;
+      font-weight: 600;
       white-space: nowrap;
       @media (max-width: 767px) {
         margin: unset;
-        padding: 10px 10px;
+        padding: 12px 16px;
+        width: 100px;
       }
     }
     .tab-button-table-combo-pk {
@@ -245,39 +247,7 @@
         flex-wrap: nowrap; // Đảm bảo các nút không xuống dòng
       }
     }
-    .tab-button-table-combo-pks {
-      display: flex;
-      gap: 10px;
-      width: auto;
-      justify-content: center;
-      padding-bottom: 10px;
-      overflow-x: auto; // Thêm thuộc tính này để cho phép cuộn ngang
-      overflow-y: hidden; // Ẩn thanh cuộn dọc
-      ::-webkit-scrollbar {
-        display: none; // Ẩn thanh cuộn cho trình duyệt WebKit
-      }
-      @media (max-width: 767px) {
-        flex-wrap: nowrap; // Đảm bảo các nút không xuống dòng
-      }
-      .btn-tab-buyPhone {
-        background: white;
-        width: 150px;
-        height: max-content;
-        padding: 16px 25px;
-        border-radius: 10px;
-        color: #000;
-        font-weight: 600;
-        white-space: nowrap;
-        @media (max-width: 767px) {
-          margin: unset;
-          padding: 10px 10px;
-        }
-      }
-      .btn-tab-buyPhone_active {
-        background: red;
-        color: #fff;
-      }
-    }
+
     .btn-tab-buyPhone_active {
       background: red;
       color: #fff;

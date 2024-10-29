@@ -4,6 +4,7 @@
   height: max-content;
   padding: 15px 15px;
   border-radius: 10px;
+  white-space: nowrap;
   color: #000;
   font-weight: 600;
   @media (max-width: 767px) {
@@ -27,5 +28,24 @@
   &:hover {
     border: 1px solid rgb(255, 82, 82);
     cursor: pointer;
+  }
+}
+.tab-btn-product-accessory {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
+  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto; // Thêm thuộc tính này để cho phép cuộn ngang
+  overflow-y: hidden; // Ẩn thanh cuộn dọc
+  ::-webkit-scrollbar {
+    display: none; // Ẩn thanh cuộn cho trình duyệt WebKit
+  }
+  button {
+    flex-wrap: nowrap;
+  }
+  @media (max-width: 767px) {
+    justify-content: unset;
   }
 }

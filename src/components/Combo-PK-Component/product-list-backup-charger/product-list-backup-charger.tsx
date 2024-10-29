@@ -109,7 +109,7 @@ const Section5: React.FC = () => {
       setFilteredData(data || []);
     } else {
       const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
+        product?.name.toLowerCase().includes(activeTab.toLowerCase())
       );
       setFilteredData(filtered || []);
     }

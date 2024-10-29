@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState } from "react";
-import "./ProductIPhone.scss";
+import "./ProductOld.scss";
 import CardProduct from "../CardProductComboPK/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
@@ -29,98 +29,60 @@ export interface Product {
 
 const query = `
 query getProducts(
-$search: String
-$filter: ProductAttributeFilterInput
-$sort: ProductAttributeSortInput
-$pageSize: Int
-$currentPage: Int
+  $search: String
+  $filter: ProductAttributeFilterInput
+  $sort: ProductAttributeSortInput
+  $pageSize: Int
+  $currentPage: Int
 ) {
-products(
-  search: $search
-  filter: $filter
-  sort: $sort
-  pageSize: $pageSize
-  currentPage: $currentPage
-) {
-  items {
-    ...ProductInterfaceField
-  }
-}
-}
-fragment ProductInterfaceField on ProductInterface {
-id
-name
-url_key
-image {
-  url
-}
-price_range {
-  minimum_price {
-    final_price {
-      value
-      currency
+  products(
+    search: $search
+    filter: $filter
+    sort: $sort
+    pageSize: $pageSize
+    currentPage: $currentPage
+  ) {
+    items {
+      ...ProductInterfaceField
     }
   }
 }
+fragment ProductInterfaceField on ProductInterface {
+  id
+  name
+  url_key
+  image {
+    url
+  }
+  price_range {
+    minimum_price {
+      final_price {
+        value
+        currency
+      }
+    }
+  }
 }
 `;
+
 const variables1 = {
   filter: {
     category_uid: {
-      eq: "Mzg4",
+      eq: "Mzk3",
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
+
 const variables2 = {
   filter: {
     category_uid: {
-      eq: "Mzg5",
+      eq: "Mzk4",
     },
   },
   pageSize: 200,
   currentPage: 1,
-};
-const variables3 = {
-  filter: {
-    category_uid: {
-      eq: "Mzkw",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-const variables4 = {
-  filter: {
-    category_uid: {
-      eq: "Mzkx",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-const variables5 = {
-  filter: {
-    category_uid: {
-      eq: "Mzky",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-const variables6 = {
-  filter: {
-    category_uid: {
-      eq: "Mzkz",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-const variables = {
-  apple: [variables1, variables2, variables3],
-  android: [variables4, variables5, variables6],
 };
 
 async function fetchProductListData(selectedVariable: any) {
@@ -142,24 +104,13 @@ async function fetchProductListData(selectedVariable: any) {
 
 const ProductListIphone: React.FC = () => {
   const [mainTab, setMainTab] = useState("Apple");
-  const [subTab, setSubTab] = useState<string>("iPhone");
   const [visibleCount, setVisibleCount] = useState(10);
 
-  const selectedVariable =
-    mainTab === "Apple"
-      ? subTab === "iPhone"
-        ? variables.apple[0]
-        : subTab === "iPad"
-        ? variables.apple[1]
-        : variables.apple[2]
-      : subTab === "Oppo"
-      ? variables.android[0]
-      : subTab === "Samsung"
-      ? variables.android[1]
-      : variables.android[2];
+  // Use variables1 for Apple and variables2 for Android
+  const selectedVariable = mainTab === "Apple" ? variables1 : variables2;
 
   const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListData", mainTab, subTab],
+    queryKey: ["productListData", mainTab],
     queryFn: () => fetchProductListData(selectedVariable),
     staleTime: 300000,
   });
@@ -173,7 +124,7 @@ const ProductListIphone: React.FC = () => {
   }
 
   return (
-    <div className="container-iphone-product">
+    <div className="container-iphone-ProductOld">
       <div className="container">
         <div
           className="OldForNew-Section-Container-leather-case-a1"
@@ -183,15 +134,12 @@ const ProductListIphone: React.FC = () => {
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện</h2>
             </div> */}
-            <div className="tab-button-table-combo-pks">
+            <div className="tab-button-table-combo-pk">
               <button
                 className={`btn-tab-buyPhone ${
                   mainTab === "Apple" ? "btn-tab-buyPhone_active" : ""
                 }`}
-                onClick={() => {
-                  setMainTab("Apple");
-                  setSubTab("iPhone");
-                }}
+                onClick={() => setMainTab("Apple")}
               >
                 Apple
               </button>
@@ -199,83 +147,21 @@ const ProductListIphone: React.FC = () => {
                 className={`btn-tab-buyPhone ${
                   mainTab === "Android" ? "btn-tab-buyPhone_active" : ""
                 }`}
-                onClick={() => {
-                  setMainTab("Android");
-                  setSubTab("Oppo");
-                }}
+                onClick={() => setMainTab("Android")}
               >
                 Android
               </button>
             </div>
           </div>
-          <div className="tab-button-table-combo-pk">
-            {mainTab === "Apple" && (
-              <>
-                <button
-                  className={`btn-tab-buyPhone ${
-                    subTab === "iPhone" ? "btn-tab-buyPhone_active" : ""
-                  }`}
-                  onClick={() => setSubTab("iPhone")}
-                >
-                  iPhone
-                </button>
-                <button
-                  className={`btn-tab-buyPhone ${
-                    subTab === "iPad" ? "btn-tab-buyPhone_active" : ""
-                  }`}
-                  onClick={() => setSubTab("iPad")}
-                >
-                  iPad
-                </button>
-                <button
-                  className={`btn-tab-buyPhone ${
-                    subTab === "Laptop" ? "btn-tab-buyPhone_active" : ""
-                  }`}
-                  onClick={() => setSubTab("Laptop")}
-                >
-                  Laptop
-                </button>
-              </>
-            )}
-            {mainTab === "Android" && (
-              <>
-                <button
-                  className={`btn-tab-buyPhone ${
-                    subTab === "Oppo" ? "btn-tab-buyPhone_active" : ""
-                  }`}
-                  onClick={() => setSubTab("Oppo")}
-                >
-                  Oppo
-                </button>
-                <button
-                  className={`btn-tab-buyPhone ${
-                    subTab === "Samsung" ? "btn-tab-buyPhone_active" : ""
-                  }`}
-                  onClick={() => setSubTab("Samsung")}
-                >
-                  Samsung
-                </button>
-                <button
-                  className={`btn-tab-buyPhone ${
-                    subTab === "Xiaomi" ? "btn-tab-buyPhone_active" : ""
-                  }`}
-                  onClick={() => setSubTab("Xiaomi")}
-                >
-                  Xiaomi
-                </button>
-              </>
-            )}
-          </div>
-          {isLoading && (
+
+          {isLoading ? (
             <div
               className="loading container-spin flex h-28 items-center justify-center"
               style={{ height: "300px" }}
             >
               <Spin />
             </div>
-          )}
-
-          {data && data.length === 0 && !isLoading ? (
+          ) : data && data.length === 0 ? (
             <div className="no-products-message">
               <Image
                 src={noProducts}

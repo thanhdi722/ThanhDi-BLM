@@ -108,7 +108,7 @@ const Section5: React.FC = () => {
     if (activeTab === "All") {
     } else {
       const filtered = data?.filter((product) =>
-        product.name.toLowerCase().includes(activeTab.toLowerCase())
+        product?.name.toLowerCase().includes(activeTab.toLowerCase())
       );
     }
     setVisibleProducts(10);
@@ -222,11 +222,11 @@ const Section5: React.FC = () => {
               <div className="OldForNew-Section5-ItemSlider">
                 {data?.slice(0, visibleProducts).map((product) => (
                   <CardProduct
-                    key={product.id}
-                    name={product.name}
-                    url_key={product.url_key}
-                    image={product.image}
-                    price_range={product.price_range}
+                    key={product?.id}
+                    name={product?.name}
+                    url_key={product?.url_key}
+                    image={product?.image}
+                    price_range={product?.price_range}
                   />
                 ))}
               </div>

@@ -99,14 +99,7 @@ function CardProductAccessory() {
                 Phụ kiện xả kho giảm đến xx%
               </h2>
             </div>
-            <div
-              style={{
-                display: "flex",
-                gap: "10px",
-                paddingBottom: "10px",
-                justifyContent: "center",
-              }}
-            >
+            <div className="tab-btn-product-accessory">
               {uniqueLoaisp?.map(
                 (
                   loaisp // Tạo nút tab cho mỗi loaisp

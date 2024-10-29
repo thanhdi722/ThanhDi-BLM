@@ -350,15 +350,7 @@ const BannerSlide = () => {
         </div>
 
         <div>
-          <ul className="list-item-click">
-            <li className="item-click" onClick={handleClickApple}>
-              <Image
-                src={iconapple}
-                alt="banner-slide-01"
-                className="icon-itemClick"
-              />
-              <p className="item-click-txt">Khuyến Mãi</p>
-            </li>
+          <ul className="list-item-click-combo-pk">
             {/* <li className='item-click' onClick={handleClickSamSung}>
 							<Image src={iconSamsung} alt='banner-slide-01' className='icon-itemClick' />
 							<p className='item-click-txt'>SamSung</p>
