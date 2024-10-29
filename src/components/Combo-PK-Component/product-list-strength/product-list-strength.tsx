@@ -133,14 +133,17 @@ const Section5: React.FC = () => {
   console.log("data a2", filteredData);
   // New useEffect to filter by subActiveTab
   useEffect(() => {
-    const filtered = filteredData.filter((product) =>
-      product?.name.toLowerCase().includes(subActiveTab.toLowerCase())
+    const filtered = filteredData.filter(
+      (product) =>
+        product?.name.toLowerCase().includes(subActiveTab.toLowerCase()) &&
+        !(
+          subActiveTab === "16" && product?.name.toLowerCase().includes("14916")
+        ) // Loại bỏ các sản phẩm chứa "14916" khi lọc "16"
     );
+    setFilteredDataSub(filtered || []);
     setVisibleCount(10);
     setVisibleProducts(10);
-    setFilteredDataSub(filtered || []);
   }, [subActiveTab, filteredData]);
-
   const toggleProducts = () => {
     if (isExpanded) {
       setVisibleProducts(10);

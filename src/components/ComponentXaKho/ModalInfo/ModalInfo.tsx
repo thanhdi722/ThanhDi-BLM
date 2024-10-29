@@ -1,14 +1,9 @@
 import React, { useMemo, useState } from "react";
-import { Modal, Spin, Form, Input, Checkbox } from "antd";
+import { Modal, Spin, Form, Input, Select, notification } from "antd";
 import "./ModalInfo.scss";
-import {
-  RadiusBottomleftOutlined,
-  RadiusBottomrightOutlined,
-  RadiusUpleftOutlined,
-  RadiusUprightOutlined,
-} from "@ant-design/icons";
-import { Button, Divider, notification, Space } from "antd";
 import type { NotificationArgsProps } from "antd";
+
+const { Option } = Select;
 
 type NotificationPlacement = NotificationArgsProps["placement"];
 interface ProductItem {
@@ -17,9 +12,9 @@ interface ProductItem {
 }
 const Context = React.createContext({ name: "Default" });
 interface ModalFormProps {
-  visible: boolean; // Kiểu dữ liệu cho visible
-  onCancel: () => void; // Kiểu dữ liệu cho onCancel
-  product: ProductItem | null; // Add product prop
+  visible: boolean;
+  onCancel: () => void;
+  product: ProductItem | null;
 }
 const ModalForm: React.FC<ModalFormProps> = ({
   visible,
@@ -27,7 +22,6 @@ const ModalForm: React.FC<ModalFormProps> = ({
   product,
 }) => {
   const [api, contextHolder] = notification.useNotification();
-
   const openNotification = (placement: NotificationPlacement) => {
     api.success({
       message: `Đăng ký thành công`,
@@ -42,15 +36,21 @@ const ModalForm: React.FC<ModalFormProps> = ({
 
   const contextValue = useMemo(() => ({ name: "Ant Design" }), []);
   const [loading, setLoading] = useState(false);
+
+  // Set default store value to the first option
+  const [formData, setFormData] = useState({
+    email: "Apple Center: 83 Trần Phú, P.4, Q.5",
+  });
+
   const handleOk = async (values: any) => {
     console.log("Form data: ", values);
     setLoading(true);
-    // Send form data to Google Sheets
     try {
       const dataToSend = {
         ...values,
-        productName: product?.name, // Add productName from product prop
-        price: product?.price1, // Add price from product prop
+        productName: product?.name,
+        price: product?.price1,
+        email: formData.email,
       };
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbyk9SIAxTIM--HkPzDuOYbWzplDnLC1n527jwOW4-0m-uHehJtjr_PcH8U1coh-4hs/exec?sheet=thongkhachhangxakho",
@@ -60,7 +60,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(dataToSend), // Use the new data object
+          body: JSON.stringify(dataToSend),
         }
       );
       if (!response.ok) {
@@ -108,21 +108,51 @@ const ModalForm: React.FC<ModalFormProps> = ({
               >
                 <Input placeholder="Nhập số điện thoại" />
               </Form.Item>
-
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[{ required: true, message: "Vui lòng nhập email!" }]}
-                style={{ width: "100%" }}
-              >
-                <Input placeholder="Nhập email" />
-              </Form.Item>
             </div>
+
+            {/* Store Dropdown with default selected option */}
+            <Form.Item label="Hệ thống cửa hàng">
+              <Select
+                defaultValue={formData.email}
+                onChange={(value) => setFormData({ ...formData, email: value })}
+              >
+                <Option value="Apple Center: 83 Trần Phú, P.4, Q.5">
+                  Apple Center: 83 Trần Phú, P.4, Q.5
+                </Option>
+                <Option value="Samsung Premium Store: 134 Trần Phú, P.4, Q.5">
+                  Samsung Premium Store: 134 Trần Phú, P.4, Q.5
+                </Option>
+                <Option value="136 Trần Phú, P.4, Q.5">
+                  136 Trần Phú, P.4, Q.5
+                </Option>
+                <Option value="225 Trần Quang Khải, P.Tân Định, Q.1">
+                  225 Trần Quang Khải, P.Tân Định, Q.1
+                </Option>
+                <Option value="251 - 253 Trần Hưng Đạo, P.Cô Giang, Q.1">
+                  251 - 253 Trần Hưng Đạo, P.Cô Giang, Q.1
+                </Option>
+                <Option value="581 Nguyễn Thị Thập, P.Tân Phong, Q.7">
+                  581 Nguyễn Thị Thập, P.Tân Phong, Q.7
+                </Option>
+                <Option value="316 - 318 Ba Tháng Hai, P.12, Q.10">
+                  316 - 318 Ba Tháng Hai, P.12, Q.10
+                </Option>
+                <Option value="480 - 482 Quang Trung, P.10, Gò Vấp">
+                  480 - 482 Quang Trung, P.10, Gò Vấp
+                </Option>
+                <Option value="194 Võ Văn Ngân, P.Bình Thọ, Thủ Đức">
+                  194 Võ Văn Ngân, P.Bình Thọ, Thủ Đức
+                </Option>
+                <Option value="Trung tâm bảo hành: 81 Trần Phú, P.4, Q.5">
+                  Trung tâm bảo hành: 81 Trần Phú, P.4, Q.5
+                </Option>
+              </Select>
+            </Form.Item>
 
             {loading && (
               <Form.Item>
                 <button className="ModalInfo-button">
-                  <span>Đang lấy thồng tin</span>
+                  <span>Đang lấy thông tin</span>
                   <Spin />
                 </button>
               </Form.Item>

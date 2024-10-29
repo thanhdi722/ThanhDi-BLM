@@ -49,3 +49,54 @@
     justify-content: unset;
   }
 }
+.warehouse-discharge-container-product-table {
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+  }
+
+  .product-table th,
+  .product-table td {
+    border: 1px solid #ddd; // Border for each cell
+    padding: 12px 15px;
+    text-align: left;
+  }
+
+  .product-table th {
+    background-color: #f2f2f2; // Light background for header row
+    font-weight: bold;
+  }
+
+  .product-table tr:nth-child(even) {
+    background-color: #f9f9f9; // Alternating row colors for readability
+  }
+
+  .product-table tr:hover {
+    background-color: #f1f1f1; // Highlight row on hover
+    cursor: pointer;
+  }
+
+  // Border styling for entire table
+  .product-table {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .btn-see-more {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff1212;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .btn-see-more:hover {
+    background-color: #ff5858;
+  }
+}
