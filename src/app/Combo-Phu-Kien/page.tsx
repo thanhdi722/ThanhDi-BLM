@@ -30,7 +30,7 @@ export default function HomeCombo() {
         <BannerSlide />
         <ComboIPhone16 />
         <ComboIPhone15 />
-        <ProductListBuyPhone />
+        {/* <ProductListBuyPhone /> */}
         {/* <ProductList /> */}
         {/* <ProductListApple1 />
         <ProductListApple2 />
