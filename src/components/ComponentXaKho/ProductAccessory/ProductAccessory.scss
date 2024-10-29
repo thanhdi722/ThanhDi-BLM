@@ -50,11 +50,17 @@
   }
 }
 .warehouse-discharge-container-product-table {
+  overflow-x: auto; // Enable horizontal scrolling
+  -webkit-overflow-scrolling: touch; // Smooth scrolling for iOS
   .product-table {
-    width: 100%;
+    display: inline-table; // Allow the table to take only necessary width
+    width: auto; // Set width to auto to prevent it from stretching
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   .product-table th,
@@ -62,6 +68,7 @@
     border: 1px solid #ddd; // Border for each cell
     padding: 12px 15px;
     text-align: left;
+    white-space: nowrap;
   }
 
   .product-table th {
