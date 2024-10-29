@@ -87,6 +87,21 @@ function CardProductAccessory() {
             alt=""
             style={{ padding: "0px 0px 20px 0px" }}
           />
+          <div className="tab-btn-product-accessory">
+            {uniqueLoaisp?.map((loaisp) => (
+              <button
+                key={loaisp}
+                className={`btn-tab-warehouse-discharge ${
+                  activeTab === loaisp
+                    ? "btn-tab-warehouse-discharge_active"
+                    : ""
+                }`}
+                onClick={() => handleTabChange(loaisp)}
+              >
+                {`${loaisp}`}
+              </button>
+            ))}
+          </div>
           <div className="warehouse-discharge-container-product-table">
             <div>
               {/* <div style={{ paddingBottom: "10px" }}>
@@ -94,21 +109,6 @@ function CardProductAccessory() {
                 Phụ kiện xả kho giảm đến xx%
               </h2>
             </div> */}
-              <div className="tab-btn-product-accessory">
-                {uniqueLoaisp?.map((loaisp) => (
-                  <button
-                    key={loaisp}
-                    className={`btn-tab-warehouse-discharge ${
-                      activeTab === loaisp
-                        ? "btn-tab-warehouse-discharge_active"
-                        : ""
-                    }`}
-                    onClick={() => handleTabChange(loaisp)}
-                  >
-                    {`${loaisp}`}
-                  </button>
-                ))}
-              </div>
             </div>
 
             {loading ? (
