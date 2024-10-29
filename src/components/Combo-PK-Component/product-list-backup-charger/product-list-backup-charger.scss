@@ -233,7 +233,6 @@
   display: flex;
   gap: 10px;
   width: auto;
-  justify-content: end;
   padding-bottom: 10px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -258,7 +257,8 @@
   }
 }
 .header-table-combo-pk {
-  justify-content: space-between;
+  justify-content: center;
+  padding: 10px 0px;
   display: flex;
   @media (max-width: 1000px) {
     display: block;

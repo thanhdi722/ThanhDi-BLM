@@ -257,7 +257,8 @@
     }
   }
   .header-table-combo-pk {
-    justify-content: space-between;
+    justify-content: center;
+    padding: 10px 0px;
     display: flex;
     @media (max-width: 1000px) {
       display: block;

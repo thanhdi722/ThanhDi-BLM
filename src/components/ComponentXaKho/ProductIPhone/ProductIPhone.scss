@@ -292,7 +292,7 @@
       }
     }
     .header-table-combo-pk {
-      justify-content: center;
+      justify-content: center !important;
       display: flex;
       @media (max-width: 1000px) {
         display: block;

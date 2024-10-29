@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 import CardProduct from "../CardProductComboPK/CardProduct";
+import imagesPK from "../../../../public/combo-pk/Đồ Chơi Công Nghệ.png";
 export interface Product {
   id: number;
   name: string;
@@ -194,10 +195,11 @@ const Section5: React.FC = () => {
   return (
     <div className="OldForNew-Section-laptop" id="item-laptop">
       <div className="container">
+        <Image src={imagesPK} alt="PK" className="images-pk" />
         <div className="OldForNew-Section-Container-laptop">
-          <div style={{ paddingBottom: "10px" }}>
+          {/* <div style={{ paddingBottom: "10px" }}>
             <h2 className="title-table-combo-pk">Đồ Chơi Công Nghệ</h2>
-          </div>{" "}
+          </div>{" "} */}
           {isLoading && (
             <div
               className="loading container-spin flex h-28 items-center justify-center"

@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
+import imagesPK from "../../../../public/combo-pk/bao da pc.png";
 export interface Product {
   id: number;
   name: string;
@@ -149,13 +150,13 @@ const SectionBaoDa: React.FC = () => {
   return (
     <div className="OldForNew-Section-leather-case" id="item-leather-case">
       <div className="container">
-        {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
+        <Image src={imagesPK} alt="PK" className="images-pk" />
 
         <div className="OldForNew-Section-Container-leather-case">
           <div className="header-table-combo-pk">
-            <div style={{ paddingBottom: "10px" }}>
+            {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>
-            </div>
+            </div> */}
             <div>
               <div className="tab-button-table-combo-pk">
                 {brands.map((brand) => (
