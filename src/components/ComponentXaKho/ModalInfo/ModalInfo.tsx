@@ -111,7 +111,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             </div>
 
             {/* Store Dropdown with default selected option */}
-            <Form.Item label="Hệ thống cửa hàng">
+            <Form.Item label="Chọn cửa hàng gần bạn">
               <Select
                 defaultValue={formData.email}
                 onChange={(value) => setFormData({ ...formData, email: value })}
