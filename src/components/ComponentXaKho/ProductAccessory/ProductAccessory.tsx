@@ -5,7 +5,7 @@ import { Spin } from "antd";
 import ModalForm from "../ModalInfo/ModalInfo";
 import "./ProductAccessory.scss";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
-import imagesTitle from "../../../../public/combo-pk/Đồ Chơi Công Nghệ.png";
+import imagesTitle from "../../../../public/warehouse-discharge/pk-no-img.png";
 interface ProductItem {
   name: string;
   price1: number;

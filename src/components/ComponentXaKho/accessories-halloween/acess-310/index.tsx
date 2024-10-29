@@ -312,7 +312,7 @@ const Access310: React.FC = () => {
                     alt={`product-${index}`}
                   />
                 </div>
-                <div className="frame-product">
+                {/* <div className="frame-product">
                   <Image
                     src={FrameProduct}
                     width={500}
@@ -320,7 +320,7 @@ const Access310: React.FC = () => {
                     quality={100}
                     alt="frame-product"
                   />
-                </div>
+                </div> */}
               </div>
               <div className="upgrade-item-content">
                 <h4 className="upgrade-item-content-tt">{product.name}</h4>
