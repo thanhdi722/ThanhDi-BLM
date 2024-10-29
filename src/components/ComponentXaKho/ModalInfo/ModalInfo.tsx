@@ -24,10 +24,10 @@ const ModalForm: React.FC<ModalFormProps> = ({
   const [api, contextHolder] = notification.useNotification();
   const openNotification = (placement: NotificationPlacement) => {
     api.success({
-      message: `Đăng ký thành công`,
+      message: `Đặt hàng thành công`,
       description: (
         <Context.Consumer>
-          {({ name }) => <span>Chúc mừng bạn đã đăng ký thành công</span>}
+          {({ name }) => <span>Chúc mừng bạn đã đặt hàng thành công</span>}
         </Context.Consumer>
       ),
       placement,
@@ -159,7 +159,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
             )}
             {!loading && (
               <Form.Item>
-                <button className="ModalInfo-button">Đăng ký ngay</button>
+                <button className="ModalInfo-button">Đặt ngay</button>
               </Form.Item>
             )}
           </Form>

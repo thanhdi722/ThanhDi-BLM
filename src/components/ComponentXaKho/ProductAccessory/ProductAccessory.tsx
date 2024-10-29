@@ -75,88 +75,113 @@ function CardProductAccessory() {
   return (
     <div style={{ padding: "20px 0px", backgroundColor: "#D5B487" }}>
       <div className="container">
-        <Image
-          src={imagesTitle}
-          alt=""
-          style={{ padding: "40px 0px 20px 0px" }}
-        />
-        <div className="warehouse-discharge-container-product-table">
-          <div>
-            {/* <div style={{ paddingBottom: "10px" }}>
+        <div
+          style={{
+            padding: "10px",
+            backgroundColor: "#fffad4",
+            borderRadius: "10px",
+          }}
+        >
+          <Image
+            src={imagesTitle}
+            alt=""
+            style={{ padding: "0px 0px 20px 0px" }}
+          />
+          <div className="warehouse-discharge-container-product-table">
+            <div>
+              {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">
                 Phụ kiện xả kho giảm đến xx%
               </h2>
             </div> */}
-            <div className="tab-btn-product-accessory">
-              {uniqueLoaisp?.map((loaisp) => (
-                <button
-                  key={loaisp}
-                  className={`btn-tab-warehouse-discharge ${
-                    activeTab === loaisp
-                      ? "btn-tab-warehouse-discharge_active"
-                      : ""
-                  }`}
-                  onClick={() => handleTabChange(loaisp)}
-                >
-                  {`${loaisp}`}
-                </button>
-              ))}
+              <div className="tab-btn-product-accessory">
+                {uniqueLoaisp?.map((loaisp) => (
+                  <button
+                    key={loaisp}
+                    className={`btn-tab-warehouse-discharge ${
+                      activeTab === loaisp
+                        ? "btn-tab-warehouse-discharge_active"
+                        : ""
+                    }`}
+                    onClick={() => handleTabChange(loaisp)}
+                  >
+                    {`${loaisp}`}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {loading ? (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                height: "200px",
-              }}
-            >
-              <Spin size="large" />
-            </div>
-          ) : displayedProducts.length === 0 ? (
-            <div className="no-products-message">
-              <Image
-                src={noProducts}
-                alt="no-products"
-                className="no-products-image"
-              />
-              <span>Không có sản phẩm</span>
-            </div>
-          ) : (
-            <>
-              <table className="product-table">
-                <thead>
-                  <tr>
-                    <th>Tên sản phẩm</th>
-                    <th>Giá</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {displayedProducts?.map((product, index) => (
-                    <tr
-                      key={`${product.item.name}-${index}`}
-                      onClick={() => handleOpenModal(product.item)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <td>{product.item.name}</td>
-                      <td>{product.item.price1.toLocaleString()} đ</td>
+            {loading ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  height: "200px",
+                }}
+              >
+                <Spin size="large" />
+              </div>
+            ) : displayedProducts.length === 0 ? (
+              <div className="no-products-message">
+                <Image
+                  src={noProducts}
+                  alt="no-products"
+                  className="no-products-image"
+                />
+                <span>Không có sản phẩm</span>
+              </div>
+            ) : (
+              <>
+                <table className="product-table">
+                  <thead>
+                    <tr>
+                      <th>Tên sản phẩm</th>
+                      <th>Giá</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              {displayedProducts.length < filteredByTab.length && (
-                <button onClick={handleSeeMore} className="btn-see-more">
-                  Xem thêm
-                </button>
-              )}
-              <ModalForm
-                visible={isModalVisible}
-                onCancel={handleCloseModal}
-                product={selectedProduct}
-              />
-            </>
-          )}
+                  </thead>
+                  <tbody>
+                    {displayedProducts?.map((product, index) => (
+                      <tr
+                        key={`${product.item.name}-${index}`}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <td onClick={() => handleOpenModal(product.item)}>
+                          {product.item.name}
+                        </td>
+                        <td onClick={() => handleOpenModal(product.item)}>
+                          {product.item.price1.toLocaleString()} đ
+                        </td>
+                        <td
+                          style={{
+                            width: "150px",
+                            textAlign: "center",
+                            padding: "5px",
+                          }}
+                        >
+                          <button
+                            onClick={() => handleOpenModal(product.item)}
+                            className="btn-handle-ok"
+                          >
+                            Đặt Ngay
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {displayedProducts.length < filteredByTab.length && (
+                  <button onClick={handleSeeMore} className="btn-see-more">
+                    Xem thêm
+                  </button>
+                )}
+                <ModalForm
+                  visible={isModalVisible}
+                  onCancel={handleCloseModal}
+                  product={selectedProduct}
+                />
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

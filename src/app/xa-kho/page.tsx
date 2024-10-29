@@ -8,12 +8,14 @@ import ProductIPhone from "../../components/ComponentXaKho/ProductIPhone/Product
 import ProductIphoneNew from "../../components/ComponentXaKho/ProductIphoneNew/ProductIphoneNew";
 import ProductListIphone from "../../components/ComponentXaKho/ProductOld/ProductOld";
 import ProductAndroidNew from "../../components/ComponentXaKho/ProductAndroidNew/ProductAndroidNew";
+import BannerSlider from "../../components/ComponentXaKho/banner-slide/index";
 function page() {
   return (
     <div>
       <Banner />
       {/* <Header /> */}
       <Body />
+      <BannerSlider />
       {/* <ProductIPhone /> */}
       <ProductIphoneNew />
       <ProductAndroidNew />

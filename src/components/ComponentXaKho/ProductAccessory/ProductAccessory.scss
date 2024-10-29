@@ -84,7 +84,20 @@
     border-radius: 8px;
     overflow: hidden;
   }
+  .btn-handle-ok {
+    margin-top: 0px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff1212;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
 
+  .btn-handle-ok :hover {
+    background-color: #ff5858;
+  }
   .btn-see-more {
     margin-top: 10px;
     padding: 10px 20px;

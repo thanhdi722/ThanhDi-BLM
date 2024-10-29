@@ -108,13 +108,20 @@ const AccessoriesList: React.FC = () => {
   return (
     <div className="product-list-warehouse-discharge">
       <div className="container">
-        <Image
-          src={imagesTitle}
-          alt=""
-          style={{ padding: "40px 0px 20px 0px" }}
-        />
-        <div className="upgrade-list">
-          {/* <div className="women-decor">
+        <div
+          style={{
+            padding: "10px",
+            borderRadius: "10px",
+            backgroundColor: "#ff6161",
+          }}
+        >
+          <Image
+            src={imagesTitle}
+            alt=""
+            style={{ padding: "0px 0px 10px 0px" }}
+          />
+          <div className="upgrade-list">
+            {/* <div className="women-decor">
             <Image
               src={DecorWomen}
               width={1400}
@@ -126,71 +133,74 @@ const AccessoriesList: React.FC = () => {
             />
           </div> */}
 
-          {isMobile ? (
-            <Swiper spaceBetween={10} slidesPerView={2.8}>
-              {tabs.map((tab) => (
-                <SwiperSlide key={tab.index} style={{ padding: "1.2rem 0" }}>
-                  <button
-                    onClick={() => setActiveTab(tab.index)}
-                    className={
-                      activeTab === tab.index
-                        ? "tab-access active"
-                        : "tab-access"
-                    }
-                    style={{
-                      width: "100%",
-                      color: activeTab === tab.index ? "#fff" : "#333",
-                      backgroundColor: activeTab === tab.index ? "red" : "#fff",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                      transition: "all 0.3s ease",
-                      boxShadow:
+            {isMobile ? (
+              <Swiper spaceBetween={10} slidesPerView={2.8}>
+                {tabs.map((tab) => (
+                  <SwiperSlide key={tab.index} style={{ padding: "1.2rem 0" }}>
+                    <button
+                      onClick={() => setActiveTab(tab.index)}
+                      className={
                         activeTab === tab.index
-                          ? "0 4px 8px rgba(0, 0, 0, 0.1)"
-                          : "none",
-                      fontSize: "1.2rem",
-                      minHeight: "4rem",
-                    }}
-                    disabled={disabledTabs.includes(tab.index)}
-                  >
-                    {tab.name}
-                  </button>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          ) : (
-            <div className="tabs-grid">
-              {tabs.map((tab) => (
-                <div key={tab.index} style={{ flex: 1 }}>
-                  <button
-                    onClick={() => setActiveTab(tab.index)}
-                    className={
-                      activeTab === tab.index
-                        ? "tab-access active"
-                        : "tab-access"
-                    }
-                    style={{
-                      width: "100%",
-                      color: activeTab === tab.index ? "#fff" : "#333",
-                      backgroundColor: activeTab === tab.index ? "red" : "#fff",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                      transition: "all 0.3s ease",
-                      boxShadow:
+                          ? "tab-access active"
+                          : "tab-access"
+                      }
+                      style={{
+                        width: "100%",
+                        color: activeTab === tab.index ? "#fff" : "#333",
+                        backgroundColor:
+                          activeTab === tab.index ? "red" : "#fff",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                        boxShadow:
+                          activeTab === tab.index
+                            ? "0 4px 8px rgba(0, 0, 0, 0.1)"
+                            : "none",
+                        fontSize: "1.2rem",
+                        minHeight: "4rem",
+                      }}
+                      disabled={disabledTabs.includes(tab.index)}
+                    >
+                      {tab.name}
+                    </button>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <div className="tabs-grid">
+                {tabs.map((tab) => (
+                  <div key={tab.index} style={{ flex: 1 }}>
+                    <button
+                      onClick={() => setActiveTab(tab.index)}
+                      className={
                         activeTab === tab.index
-                          ? "0 4px 8px rgba(0, 0, 0, 0.1)"
-                          : "none",
-                    }}
-                    disabled={disabledTabs.includes(tab.index)}
-                  >
-                    {tab.name}
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
+                          ? "tab-access active"
+                          : "tab-access"
+                      }
+                      style={{
+                        width: "100%",
+                        color: activeTab === tab.index ? "#fff" : "#333",
+                        backgroundColor:
+                          activeTab === tab.index ? "red" : "#fff",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                        boxShadow:
+                          activeTab === tab.index
+                            ? "0 4px 8px rgba(0, 0, 0, 0.1)"
+                            : "none",
+                      }}
+                      disabled={disabledTabs.includes(tab.index)}
+                    >
+                      {tab.name}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
 
-          <div>{tabs[activeTab]?.component}</div>
+            <div>{tabs[activeTab]?.component}</div>
+          </div>
         </div>
       </div>
     </div>

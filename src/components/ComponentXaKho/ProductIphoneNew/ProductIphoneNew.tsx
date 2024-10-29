@@ -137,17 +137,20 @@ const ProductListIphone: React.FC = () => {
   }
 
   return (
-    <div className="container-iphone-ProductOld">
+    <div
+      className="container-iphone-ProductOld"
+      style={{ padding: "40px 0px 20px 0px" }}
+    >
       <div className="container">
-        <Image
-          src={imagesTitle}
-          alt=""
-          style={{ padding: "40px 0px 20px 0px" }}
-        />
         <div
           className="OldForNew-Section-Container-leather-case-a1"
           id="item-leather-case"
         >
+          <Image
+            src={imagesTitle}
+            alt=""
+            style={{ padding: "0px 0px 20px 0px" }}
+          />
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện</h2>
