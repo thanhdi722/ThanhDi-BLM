@@ -189,42 +189,60 @@ const BannerSlide = () => {
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickLeatherCase}
+              >
                 <Image
                   src={images4}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickLaptop}
+              >
                 <Image
                   src={images5}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickChargingCable}
+              >
                 <Image
                   src={images6}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickStrength}
+              >
                 <Image
                   src={images7}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickBackupCharger}
+              >
                 <Image
                   src={images8}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickLoudspeaker}
+              >
                 <Image
                   src={images9}
                   alt=""
@@ -282,62 +300,86 @@ const BannerSlide = () => {
                   />
                 </div>
               </Link> */}
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickLoudspeaker}
+              >
                 <Image
                   src={images9}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickBackupCharger}
+              >
                 <Image
                   src={images8}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickStrength}
+              >
                 <Image
                   src={images7}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickChargingCable}
+              >
                 <Image
                   src={images6}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickLaptop}
+              >
                 <Image
                   src={images5}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <div
+                className="OldForNew-Section1-image"
+                onClick={handleClickLeatherCase}
+              >
                 <Image
                   src={images4}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
               </div>
-              <div className="OldForNew-Section1-image">
+              <Link
+                className="OldForNew-Section1-image"
+                href="https://bachlongmobile.com/am-thanh/"
+              >
                 <Image
                   src={images3}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
-              </div>
-              <div className="OldForNew-Section1-image">
+              </Link>
+              <Link
+                className="OldForNew-Section1-image"
+                href="https://bachlongmobile.com/combo-phu-kien/chon-dong-phu-kien/chu-t/chu-t-choi-game/balo-tui-ch-ng-s-c/"
+              >
                 <Image
                   src={images2}
                   alt=""
                   className="OldForNew-Section1-imageItem"
                 />
-              </div>
+              </Link>
               <div className="OldForNew-Section1-image">
                 <Image
                   src={images1}

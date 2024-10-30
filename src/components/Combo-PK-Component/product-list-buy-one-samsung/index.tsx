@@ -107,7 +107,7 @@ const ProductList: React.FC = () => {
       setFilteredData(data || []);
     } else {
       const filtered = data?.filter((product) =>
-        product?.name.toLowerCase().includes(activeTab.toLowerCase())
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
       );
       setFilteredData(filtered || []);
     }
@@ -125,14 +125,17 @@ const ProductList: React.FC = () => {
     return <div>Error loading data</div>;
   }
 
+
+
   return (
-    <div className="product-list">
+    <div className="product-list" >
       <div className="upgrade-list">
         <div className="container">
           <div className="upgrade">
             <div className="upgrade-header">
               <h3 className="banner-slide-combo-title">iPad</h3>
             </div>
+
 
             <Swiper
               modules={[Navigation]}
@@ -176,7 +179,7 @@ const ProductList: React.FC = () => {
                       </div>
                       <div className="upgrade-item-content">
                         <h4 className="upgrade-item-content-tt">
-                          {product?.name}
+                          {product.name}
                         </h4>
                         <div className="upgrade-item-content-body">
                           <span className="upgrade-item-content-body-tt">

@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
-import imagesPK from "../../../../public/combo-pk/Phụ Kiện Mua 1 Tặng 1.png";
 export interface Product {
   id: number;
   name: string;
@@ -120,22 +119,17 @@ const Section5: React.FC = () => {
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
   return (
-    <div className="OldForNew-Section5" id="item-apple">
+    <div className="OldForNew-Section5">
       <div className="container">
-        <Image src={imagesPK} alt="no-products" className="images-pk" />
+        {/* <Image src={pklaptop} alt="no-products" className="images-pk" /> */}
 
         <div className="OldForNew-Section5-Container">
           <div className="header-table-combo-pk">
-            {/* <div style={{ paddingBottom: "10px" }}>
+            <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Mua 1 Tặng 1</h2>
-            </div> */}
+            </div>
             <div
-              style={{
-                display: "flex",
-                gap: "10px",
-                paddingBottom: "10px",
-                justifyContent: "center",
-              }}
+              style={{ display: "flex", gap: "10px", paddingBottom: "10px" }}
             >
               <button
                 className={`btn-tab-buyPhone ${

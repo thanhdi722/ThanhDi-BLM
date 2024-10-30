@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
 import "./product-list.scss";
-import pkApple from "../../../public/PK apple.png";
+import pkApple from "../../../public/PK apple.png"
 export interface Product {
   id: number;
   name: string;
@@ -107,7 +107,7 @@ const ProductList: React.FC = () => {
       setFilteredData(data || []);
     } else {
       const filtered = data?.filter((product) =>
-        product?.name.toLowerCase().includes(activeTab.toLowerCase())
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
       );
       setFilteredData(filtered || []);
     }
@@ -146,7 +146,7 @@ const ProductList: React.FC = () => {
             className=""
           /> */}
           <div className="upgrade">
-            <Image src={pkApple} alt="no-products" className="images-pk" />
+              <Image src={pkApple} alt="no-products" className="images-pk" />
 
             <div className="tabs">
               {tabs.map((tab) => (
@@ -214,7 +214,7 @@ const ProductList: React.FC = () => {
                       </div>
                       <div className="upgrade-item-content">
                         <h4 className="upgrade-item-content-tt">
-                          {product?.name}
+                          {product.name}
                         </h4>
                         <div className="upgrade-item-content-body">
                           <span className="upgrade-item-content-body-tt">

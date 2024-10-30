@@ -102,16 +102,21 @@ const Section5: React.FC = () => {
   });
 
   const [activeTab, setActiveTab] = useState<string>("Bao da, Ốp lưng");
+  const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
   useEffect(() => {
     if (activeTab === "All") {
+      setFilteredData(data || []);
     } else {
       const filtered = data?.filter((product) =>
         product?.name.toLowerCase().includes(activeTab.toLowerCase())
       );
+      setFilteredData(filtered || []);
     }
     setVisibleProducts(10);
+    setIsExpanded(false);
   }, [activeTab, data]);
 
   // Update the activeTab state to change the category_uid based on the selected tab
@@ -134,10 +139,24 @@ const Section5: React.FC = () => {
     }
   }, [activeTab]);
 
+  const toggleProducts = () => {
+    if (isExpanded) {
+      setVisibleProducts(10);
+      setIsExpanded(false);
+    } else {
+      setVisibleProducts(filteredData.length);
+      setIsExpanded(true);
+    }
+  };
+
+  const loadMore = () => {
+    setVisibleProducts((prevVisible) => prevVisible + 5);
+  };
+
   if (error) {
     return <div>Error loading data</div>;
   }
-
+  const [visibleCount, setVisibleCount] = useState(10);
   const loadMorePosts = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items

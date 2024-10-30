@@ -100,7 +100,7 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("Cáp sạc");
+  const [activeTab, setActiveTab] = useState<string>("Apple");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -125,6 +125,9 @@ const Section5: React.FC = () => {
         break;
       case "Củ sạc":
         variables.filter.category_uid.eq = "MjQw";
+        break;
+      case "Apple":
+        variables.filter.category_uid.eq = "NDAy";
         break;
       case "Bộ sạc":
         variables.filter.category_uid.eq = "MjQx";
@@ -176,6 +179,14 @@ const Section5: React.FC = () => {
               <h2 className="title-table-combo-pk">Phụ Kiện Cốc Cáp Sạc</h2>
             </div> */}
             <div className="tab-button-table-combo-pk">
+              <button
+                className={`btn-tab-buyPhone ${
+                  activeTab === "Apple" ? "btn-tab-buyPhone_active" : ""
+                }`}
+                onClick={() => setActiveTab("Apple")}
+              >
+                Apple
+              </button>
               <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "Cáp sạc" ? "btn-tab-buyPhone_active" : ""

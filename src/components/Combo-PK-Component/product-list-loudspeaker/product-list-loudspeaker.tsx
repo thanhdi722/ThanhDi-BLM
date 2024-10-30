@@ -2,7 +2,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "./product-list-loudspeaker.scss";
-// import { Carousel } from "antd";
 import CardProduct from "../CardProductComboPK/CardProduct";
 import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
@@ -11,6 +10,7 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
 import imagesPK from "../../../../public/combo-pk/Phụ Kiện Tai nghe.png";
+
 export interface Product {
   id: number;
   name: string;
@@ -30,53 +30,64 @@ export interface Product {
 
 const query = `
 query getProducts(
-$search: String
-$filter: ProductAttributeFilterInput
-$sort: ProductAttributeSortInput
-$pageSize: Int
-$currentPage: Int
+  $search: String
+  $filter: ProductAttributeFilterInput
+  $sort: ProductAttributeSortInput
+  $pageSize: Int
+  $currentPage: Int
 ) {
-products(
-  search: $search
-  filter: $filter
-  sort: $sort
-  pageSize: $pageSize
-  currentPage: $currentPage
-) {
-  items {
-    ...ProductInterfaceField
-  }
-}
-}
-fragment ProductInterfaceField on ProductInterface {
-id
-name
-url_key
-image {
-  url
-}
-price_range {
-  minimum_price {
-    final_price {
-      value
-      currency
+  products(
+    search: $search
+    filter: $filter
+    sort: $sort
+    pageSize: $pageSize
+    currentPage: $currentPage
+  ) {
+    items {
+      ...ProductInterfaceField
     }
   }
 }
+fragment ProductInterfaceField on ProductInterface {
+  id
+  name
+  url_key
+  image {
+    url
+  }
+  price_range {
+    minimum_price {
+      final_price {
+        value
+        currency
+      }
+    }
+  }
 }
 `;
 
-const variables = {
+const variablesTaiNghe = {
   filter: {
     category_uid: {
-      eq: "MTU2",
+      eq: "MTU2", // UID for Loa
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
 
-async function fetchProductListDataLoa() {
+const variablesLoa = {
+  filter: {
+    category_uid: {
+      eq: "MjU=", // UID for Tai Nghe
+    },
+  },
+  pageSize: 200,
+  currentPage: 1,
+};
+
+async function fetchProductListDataLoa(activeTab: string) {
+  const variables = activeTab === "Loa" ? variablesLoa : variablesTaiNghe;
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
@@ -93,23 +104,23 @@ async function fetchProductListDataLoa() {
 }
 
 const Section5: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<string>("Tai Nghe");
   const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataLoa"],
-    queryFn: fetchProductListDataLoa,
+    queryKey: ["productListDataLoa", activeTab],
+    queryFn: () => fetchProductListDataLoa(activeTab),
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("Al");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
+
   useEffect(() => {
-    // Remove filtering logic to show all products
-    setFilteredData(data || []); // Set filteredData to all products
+    setFilteredData(data || []);
     setVisibleProducts(10);
     setIsExpanded(false);
-  }, [activeTab, data]);
+  }, [data]);
 
   const toggleProducts = () => {
     if (isExpanded) {
@@ -121,46 +132,48 @@ const Section5: React.FC = () => {
     }
   };
 
-  const loadMore = () => {
-    setVisibleProducts((prevVisible) => prevVisible + 5);
+  const loadMorePosts = () => {
+    setVisibleCount((prevCount) => prevCount + 10);
+    setVisibleProducts((prevVisible) => prevVisible + 10);
   };
-
-  // if (isLoading) {
-  // 	return (
-  // 		<div className='loading container-spin'>
-  // 			<Spin />
-  // 		</div>
-  // 	);
-  // }
 
   if (error) {
     return <div>Error loading data</div>;
   }
 
-  const loadMorePosts = () => {
-    setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
-    setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
-  };
   return (
     <div className="OldForNew-Section-loudspeaker" id="item-loudspeaker">
       <div className="container">
         <div className="OldForNew-Section-Container-loudspeaker">
           <Image src={imagesPK} alt="PK" className="images-pk" />
-          <div className="header-table-combo-pk">
-            {/* <div style={{ paddingBottom: "10px" }}>
-              <h2 className="title-table-combo-pk">Phụ Kiện Tai nghe</h2>
-            </div> */}
-          </div>{" "}
+          <div className="header-table-combo-pk-loa">
+            <button
+              className={`btn-tab-buyPhone-loa ${
+                activeTab === "Tai Nghe" ? "btn-tab-buyPhone_active" : ""
+              }`}
+              onClick={() => setActiveTab("Tai Nghe")}
+            >
+              Tai Nghe
+            </button>
+            <button
+              className={`btn-tab-buyPhone-loa ${
+                activeTab === "Loa" ? "btn-tab-buyPhone_active" : ""
+              }`}
+              onClick={() => setActiveTab("Loa")}
+            >
+              Loa
+            </button>
+          </div>
+
           {isLoading && (
             <div
               className="loading container-spin flex h-28 items-center justify-center"
-              style={{
-                height: "300px",
-              }}
+              style={{ height: "300px" }}
             >
               <Spin />
             </div>
           )}
+
           {filteredData.length === 0 && !isLoading ? (
             <div className="no-products-message">
               <Image
@@ -183,7 +196,8 @@ const Section5: React.FC = () => {
                   />
                 ))}
               </div>
-              {visibleCount < (filteredData?.length || 0) && ( // Check if more products are available
+
+              {visibleCount < (filteredData?.length || 0) && (
                 <div className="load-more-container">
                   <button onClick={loadMorePosts}>Xem thêm</button>
                 </div>

@@ -114,20 +114,22 @@ const SectionBaoDa: React.FC = () => {
   useEffect(() => {
     const filtered = data?.filter(
       (product) =>
-        product?.name.toLowerCase().includes(activeTab.toLowerCase()) || // Include products based on activeTab
+        product?.name.toLowerCase().includes(activeTab.toLowerCase()) ||
         (activeTab === "Apple" &&
-          (product?.name.toLowerCase().includes("silicone") || // Include "Silicone"
-            product?.name.toLowerCase().includes("finewoven"))) // Include "Finewoven"
+          (product?.name.toLowerCase().includes("Silicone") ||
+            product?.name.toLowerCase().includes("finewoven") ||
+            product?.name.toLowerCase().includes("silicon")))
     );
     setFilteredData(filtered || []);
     setVisibleCount(10);
     setVisibleProducts(10);
     setIsExpanded(false);
     setSubActiveTab("16"); // Ensure subActiveTab is set correctly
+    console.log("t test", filtered);
   }, [activeTab, data]);
 
   // New useEffect to filter by subActiveTab
-  console.log("dataaaaaaaaaaa", filteredDataSub);
+
   useEffect(() => {
     let filtered = filteredData.filter((product) =>
       product?.name.toLowerCase().includes(subActiveTab.toLowerCase())
