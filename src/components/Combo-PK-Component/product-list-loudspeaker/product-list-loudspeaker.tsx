@@ -144,8 +144,8 @@ const Section5: React.FC = () => {
   return (
     <div className="OldForNew-Section-loudspeaker" id="item-loudspeaker">
       <div className="container">
-        <Image src={imagesPK} alt="PK" className="images-pk" />
         <div className="OldForNew-Section-Container-loudspeaker">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Tai nghe</h2>

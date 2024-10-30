@@ -195,8 +195,8 @@ const Section5: React.FC = () => {
   return (
     <div className="OldForNew-Section-laptop" id="item-laptop">
       <div className="container">
-        <Image src={imagesPK} alt="PK" className="images-pk" />
         <div className="OldForNew-Section-Container-laptop">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           {/* <div style={{ paddingBottom: "10px" }}>
             <h2 className="title-table-combo-pk">Đồ Chơi Công Nghệ</h2>
           </div>{" "} */}

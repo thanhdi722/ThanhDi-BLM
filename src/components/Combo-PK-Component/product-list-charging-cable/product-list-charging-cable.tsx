@@ -100,7 +100,7 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("All");
+  const [activeTab, setActiveTab] = useState<string>("Cáp sạc");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -165,24 +165,17 @@ const Section5: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
+  console.log("data check", data);
   return (
     <div className="OldForNew-Section-charging-cable" id="item-charging-cable">
       <div className="container">
-        <Image src={imagesPK} alt="PK" className="images-pk" />
         <div className="OldForNew-Section-Container-charging-cable">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Cốc Cáp Sạc</h2>
             </div> */}
             <div className="tab-button-table-combo-pk">
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("All")}
-              >
-                Apple
-              </button>
               <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "Cáp sạc" ? "btn-tab-buyPhone_active" : ""

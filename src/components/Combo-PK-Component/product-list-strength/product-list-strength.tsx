@@ -96,14 +96,14 @@ async function fetchProductListDataCuongLuc() {
 const Section5: React.FC = () => {
   // Moved useState hooks to the top level to avoid conditional calls
 
-  const [activeTab, setActiveTab] = useState<string>("Apple"); // Đặt giá trị mặc định là "All"
+  const [activeTab, setActiveTab] = useState<string>("Mipow"); // Đặt giá trị mặc định là "All"
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [filteredDataSub, setFilteredDataSub] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState(10);
 
-  const brands = ["Apple", "Mipow", "UNIQ", "Jcpal", "Pisen", "BAGI", "ZEELOT"];
+  const brands = ["Mipow", "UNIQ", "Jcpal", "Pisen", "BAGI", "ZEELOT"];
   const { data, error, isLoading } = useQuery<Product[]>({
     queryKey: ["productListDataCuongLuc", variables.filter.category_uid.eq],
     queryFn: fetchProductListDataCuongLuc,
@@ -179,8 +179,8 @@ const Section5: React.FC = () => {
   return (
     <div className="OldForNew-Section-strength" id="item-strength">
       <div className="container">
-        <Image src={imagesPK} alt="PK" className="images-pk" />
         <div className="OldForNew-Section-Container-strength">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Cường Lực</h2>

@@ -116,8 +116,7 @@ const SectionBaoDa: React.FC = () => {
       (product) =>
         product?.name.toLowerCase().includes(activeTab.toLowerCase()) || // Include products based on activeTab
         (activeTab === "Apple" &&
-          (product?.name.toLowerCase().includes("magsafe") || // Include "magsafe"
-            product?.name.toLowerCase().includes("silicone") || // Include "Silicone"
+          (product?.name.toLowerCase().includes("silicone") || // Include "Silicone"
             product?.name.toLowerCase().includes("finewoven"))) // Include "Finewoven"
     );
     setFilteredData(filtered || []);
@@ -157,9 +156,8 @@ const SectionBaoDa: React.FC = () => {
   return (
     <div className="OldForNew-Section-leather-case" id="item-leather-case">
       <div className="container">
-        <Image src={imagesPK} alt="PK" className="images-pk" />
-
         <div className="OldForNew-Section-Container-leather-case">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>

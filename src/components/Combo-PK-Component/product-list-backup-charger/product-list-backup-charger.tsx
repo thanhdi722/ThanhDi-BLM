@@ -100,7 +100,7 @@ const Section5: React.FC = () => {
     staleTime: 300000,
   });
 
-  const [activeTab, setActiveTab] = useState<string>("All");
+  const [activeTab, setActiveTab] = useState<string>("Pisen");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -127,11 +127,18 @@ const Section5: React.FC = () => {
       case "Innostyle":
         variables.filter.category_uid.eq = "MjMy";
         break;
+      case "Energizer":
+        variables.filter.category_uid.eq = "MTQx";
+        break;
       case "Khác":
         variables.filter.category_uid.eq = "MjM0";
         break;
+      case "Samsung":
+        variables.filter.category_uid.eq = "ODE=";
+        break;
+
       default:
-        variables.filter.category_uid.eq = "MTk=";
+        variables.filter.category_uid.eq = "MjMz";
     }
     setVisibleCount(10);
     setVisibleProducts(10);
@@ -169,21 +176,14 @@ const Section5: React.FC = () => {
   return (
     <div className="OldForNew-Section-backup-charger" id="item-backup-charger">
       <div className="container">
-        <Image src={imagesPK} alt="PK" className="images-pk" />
         <div className="OldForNew-Section-Container-backup-charger">
+          <Image src={imagesPK} alt="PK" className="images-pk" />
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện Sạc Dự Phòng</h2>
             </div> */}
             <div className="tab-button-table-combo-pk">
-              <button
-                className={`btn-tab-buyPhone ${
-                  activeTab === "All" ? "btn-tab-buyPhone_active" : ""
-                }`}
-                onClick={() => setActiveTab("All")}
-              >
-                Apple
-              </button>
+              {" "}
               <button
                 className={`btn-tab-buyPhone ${
                   activeTab === "Pisen" ? "btn-tab-buyPhone_active" : ""
@@ -194,11 +194,27 @@ const Section5: React.FC = () => {
               </button>
               <button
                 className={`btn-tab-buyPhone ${
+                  activeTab === "Energizer" ? "btn-tab-buyPhone_active" : ""
+                }`}
+                onClick={() => setActiveTab("Energizer")}
+              >
+                Energizer
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
                   activeTab === "Innostyle" ? "btn-tab-buyPhone_active" : ""
                 }`}
                 onClick={() => setActiveTab("Innostyle")}
               >
                 Innostyle
+              </button>
+              <button
+                className={`btn-tab-buyPhone ${
+                  activeTab === "Samsung" ? "btn-tab-buyPhone_active" : ""
+                }`}
+                onClick={() => setActiveTab("Samsung")}
+              >
+                Samsung
               </button>
             </div>
           </div>
