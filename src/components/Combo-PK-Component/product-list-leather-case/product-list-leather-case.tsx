@@ -130,15 +130,22 @@ const SectionBaoDa: React.FC = () => {
   // New useEffect to filter by subActiveTab
   console.log("dataaaaaaaaaaa", filteredDataSub);
   useEffect(() => {
-    const filtered = filteredData.filter(
-      (product) =>
-        product?.name.toLowerCase().includes(subActiveTab.toLowerCase()) // Ensure filtering is based on subActiveTab
+    let filtered = filteredData.filter((product) =>
+      product?.name.toLowerCase().includes(subActiveTab.toLowerCase())
     );
+
+    // If there are no products for iPhone 16, fall back to iPhone 15
+    if (subActiveTab === "16" && filtered.length === 0) {
+      setSubActiveTab("15");
+      filtered = filteredData.filter((product) =>
+        product?.name.toLowerCase().includes("15")
+      );
+    }
+
     setFilteredDataSub(filtered || []);
     setVisibleCount(10);
     setVisibleProducts(10);
-  }, [subActiveTab, filteredData]); // Add filteredData as a dependency
-
+  }, [subActiveTab, filteredData]);
   if (error) {
     return <div>Error loading data</div>;
   }

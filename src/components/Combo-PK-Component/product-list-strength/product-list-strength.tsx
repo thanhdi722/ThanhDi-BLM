@@ -133,13 +133,18 @@ const Section5: React.FC = () => {
   console.log("data a2", filteredData);
   // New useEffect to filter by subActiveTab
   useEffect(() => {
-    const filtered = filteredData.filter(
-      (product) =>
-        product?.name.toLowerCase().includes(subActiveTab.toLowerCase()) &&
-        !(
-          subActiveTab === "16" && product?.name.toLowerCase().includes("14916")
-        ) // Loại bỏ các sản phẩm chứa "14916" khi lọc "16"
+    let filtered = filteredData.filter((product) =>
+      product?.name.toLowerCase().includes(subActiveTab.toLowerCase())
     );
+
+    // If there are no products for iPhone 16, fall back to iPhone 15
+    if (subActiveTab === "16" && filtered.length === 0) {
+      setSubActiveTab("15");
+      filtered = filteredData.filter((product) =>
+        product?.name.toLowerCase().includes("15")
+      );
+    }
+
     setFilteredDataSub(filtered || []);
     setVisibleCount(10);
     setVisibleProducts(10);
