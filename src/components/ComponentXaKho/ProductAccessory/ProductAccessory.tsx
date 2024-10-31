@@ -132,43 +132,101 @@ function CardProductAccessory() {
               </div>
             ) : (
               <>
-                <table className="product-table">
-                  <thead>
+                <div className="table-pc">
+                  {" "}
+                  <table className="product-table">
+                    <thead>
+                      <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {displayedProducts?.map((product, index) => (
+                        <tr
+                          key={`${product.item.name}-${index}`}
+                          style={{ cursor: "pointer" }}
+                          className="product-row"
+                        >
+                          <td
+                            className="product-name"
+                            onClick={() => handleOpenModal(product.item)}
+                          >
+                            {product.item.name}
+                          </td>
+                          <td
+                            className="product-details"
+                            colSpan={2}
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                            onClick={() => handleOpenModal(product.item)}
+                          >
+                            <div
+                              className="price"
+                              style={{ padding: "10px 20px" }}
+                            >
+                              {product.item.price1.toLocaleString()} đ
+                            </div>
+                            <button
+                              onClick={() => handleOpenModal(product.item)}
+                              className="btn-handle-ok"
+                            >
+                              Đặt Ngay
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="table-mb">
+                  <table className="product-table">
+                    {/* <thead>
                     <tr>
                       <th>Tên sản phẩm</th>
-                      <th>Giá</th>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {displayedProducts?.map((product, index) => (
-                      <tr
-                        key={`${product.item.name}-${index}`}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <td onClick={() => handleOpenModal(product.item)}>
-                          {product.item.name}
-                        </td>
-                        <td onClick={() => handleOpenModal(product.item)}>
-                          {product.item.price1.toLocaleString()} đ
-                        </td>
-                        <td
-                          style={{
-                            width: "150px",
-                            textAlign: "center",
-                            padding: "5px",
-                          }}
-                        >
-                          <button
-                            onClick={() => handleOpenModal(product.item)}
-                            className="btn-handle-ok"
-                          >
-                            Đặt Ngay
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                  </thead> */}
+                    <tbody>
+                      {displayedProducts?.map((product, index) => (
+                        <React.Fragment key={`${product.item.name}-${index}`}>
+                          <tr className="product-row">
+                            <td
+                              className="product-name"
+                              onClick={() => handleOpenModal(product.item)}
+                            >
+                              {product.item.name}
+                            </td>
+                          </tr>
+                          <tr className="product-details">
+                            <td
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                padding: "10px 20px",
+                              }}
+                            >
+                              <div
+                                className="price"
+                                style={{ padding: "10px 0px" }}
+                              >
+                                {product.item.price1.toLocaleString()} đ
+                              </div>
+                              <button
+                                onClick={() => handleOpenModal(product.item)}
+                                className="btn-handle-ok"
+                              >
+                                Đặt Ngay
+                              </button>
+                            </td>
+                          </tr>
+                        </React.Fragment>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
                 {displayedProducts.length < filteredByTab.length && (
                   <button onClick={handleSeeMore} className="btn-see-more">
                     Xem thêm

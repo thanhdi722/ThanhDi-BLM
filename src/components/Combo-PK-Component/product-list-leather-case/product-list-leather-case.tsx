@@ -118,7 +118,9 @@ const SectionBaoDa: React.FC = () => {
         (activeTab === "Apple" &&
           (product?.name.toLowerCase().includes("Silicone") ||
             product?.name.toLowerCase().includes("finewoven") ||
-            product?.name.toLowerCase().includes("silicon")))
+            product?.name.toLowerCase().includes("silicon") ||
+            product?.name.toLowerCase().includes("suốt ma") ||
+            product?.name.toLowerCase().includes("beats")))
     );
     setFilteredData(filtered || []);
     setVisibleCount(10);
