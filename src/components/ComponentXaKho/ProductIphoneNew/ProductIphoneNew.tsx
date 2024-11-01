@@ -137,10 +137,7 @@ const ProductListIphone: React.FC = () => {
   }
 
   return (
-    <div
-      className="container-iphone-ProductOld"
-      style={{ padding: "40px 0px 20px 0px" }}
-    >
+    <div className="container-iphone-ProductOld">
       <div className="container">
         <div
           className="OldForNew-Section-Container-leather-case-a1"

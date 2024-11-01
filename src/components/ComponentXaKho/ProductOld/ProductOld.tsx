@@ -126,7 +126,7 @@ const ProductListIphone: React.FC = () => {
   return (
     <div
       className="container-iphone-ProductOld-old"
-      style={{ padding: "40px 0px 20px 0px" }}
+      style={{ padding: "20px 0px 20px 0px" }}
     >
       <div className="container">
         <div

@@ -1,0 +1,91 @@
+.page-flase-sale-tuan {
+  overflow: hidden;
+  background: linear-gradient(
+    to right,
+    #ffc400,
+    #fad776,
+    #eece75,
+    #ffce74,
+    #ffd344
+  );
+  position: relative;
+  .ghost1 {
+    position: fixed;
+    right: 0;
+    top: 20vh;
+    animation: wavyghost 16s infinite linear;
+    z-index: 999;
+    height: 10rem;
+    width: fit-content;
+    @media screen and (max-width: 850px) {
+      display: none;
+    }
+  }
+
+  .ghost2 {
+    position: fixed;
+    right: 0;
+    top: 70vh;
+    animation: wavyghost reverse 13s infinite linear;
+    z-index: 999;
+    height: 10rem;
+    width: fit-content;
+    @media screen and (max-width: 850px) {
+      display: none;
+    }
+  }
+  .flash-sale-banner {
+    position: fixed;
+    right: 0;
+    top: 20vh;
+    opacity: 0.8;
+    animation: wavyghost 16s infinite linear;
+    z-index: 999;
+    height: max-content;
+    width: fit-content;
+    img {
+      width: 150px;
+      height: 150px;
+    }
+    @media screen and (max-width: 850px) {
+      display: none;
+    }
+  }
+  .flash-sale-banner2 {
+    position: fixed;
+    right: 0;
+    opacity: 0.8;
+    top: 70vh;
+    animation: wavyghost reverse 13s infinite linear;
+    z-index: 999;
+    height: max-content;
+    width: fit-content;
+    @media screen and (max-width: 850px) {
+      display: none;
+    }
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  @keyframes wavyghost {
+    0% {
+      transform: translate(0vw, 0vh) scale(1.5, 1.5);
+    }
+    20% {
+      transform: translate(-20vw, 20vh) rotate(10deg);
+    }
+    40% {
+      transform: translate(-40vw, 0vh) scale(1.5, 1.5);
+    }
+    60% {
+      transform: translate(-60vw, -20vh) rotate(-10deg);
+    }
+    80% {
+      transform: translate(-80vw, 0vh) scale(1.5, 1.5);
+    }
+    100% {
+      transform: translate(-100vw, 20vh) rotate(10deg);
+    }
+  }
+}
