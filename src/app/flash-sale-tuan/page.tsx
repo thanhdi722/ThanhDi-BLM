@@ -8,6 +8,7 @@ import LaptopList from "../../components/flash-sale-tuan/laptop/index";
 import ToyList from "../../components/flash-sale-tuan/toy/index";
 import Rules from "../../components/flash-sale-tuan/rules/index";
 import AccessoriesList from "../../components/flash-sale-tuan/accessories";
+import BodyHallowween from "../../components/flash-sale-tuan/HeaderHalloween/HeaderHalloween";
 import IpadList from "../../components/flash-sale-tuan/ipad";
 import "./flash-sale-tuan.scss";
 import ic1 from "../../../public/flase-sale/imagefl1.png";
@@ -24,6 +25,7 @@ function page() {
         <Image src={ic2} alt="" />
       </div> */}
       <Banner />
+      <BodyHallowween />
       <div id="item-hot">
         <ProductList />
       </div>

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import DecorProduct from "../../../../public/halloween/ic-to.png";
+import DecorProduct from "../../../../public/halloween/decor-product.png";
 import DecorWomen from "../../../../public/halloween/decor-women-02.png";
 import FrameProduct from "../../../../public/halloween/frame-product.png";
 import { Spin } from "antd";
@@ -9,7 +9,7 @@ import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
-import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
+import DecorProduct2 from "../../../../public/flase-sale/dragon-sale.png";
 export interface Product {
   id: number;
   name: string;
@@ -196,7 +196,7 @@ const AppleList: React.FC = () => {
 
   return (
     <div
-      className="product-list-halloween"
+      className="product-list-sale"
       style={
         {
           // background: 'linear-gradient(180deg, #372d62 0, var(--bg-gradient-white, #5D0069) 90%)',
@@ -243,14 +243,14 @@ const AppleList: React.FC = () => {
                             alt="decor-product"
                             className="decor-product"
                           />
-                          <Image
+                          {/* <Image
                             src={DecorProduct2}
                             width={80}
                             height={80}
                             quality={100}
                             alt="decor-product"
                             className="decor-product2"
-                          />
+                          /> */}
                           <span></span>
                           {product.price_range.minimum_price.final_price.value >
                             3000000 && (

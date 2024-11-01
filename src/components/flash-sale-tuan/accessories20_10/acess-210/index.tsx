@@ -8,7 +8,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import DecorProduct from "../../../../../public/halloween/ic-to.png";
+import DecorProduct from "../../../../../public/halloween/decor-product.png";
 import DecorProduct2 from "../../../../../public/halloween/ICON-DRAGON.png";
 import FrameProduct from "../../../../../public/halloween/frame-product.png";
 import { useProductSaleData } from "../../../../app/hooks/useProductSaleData";
@@ -93,14 +93,14 @@ const Access210: React.FC = () => {
                           alt="decor-product"
                           className="decor-product"
                         />
-                        <Image
+                        {/* <Image
                           src={DecorProduct2}
                           width={80}
                           height={80}
                           quality={100}
                           alt="decor-product"
                           className="decor-product2"
-                        />
+                        /> */}
                         <span></span>
                         <span className="percent">Trả góp 0%</span>
                       </div>
@@ -202,14 +202,14 @@ const Access210: React.FC = () => {
                         alt="decor-product"
                         className="decor-product"
                       />
-                      <Image
+                      {/* <Image
                         src={DecorProduct2}
                         width={80}
                         height={80}
                         quality={100}
                         alt="decor-product"
                         className="decor-product2"
-                      />
+                      /> */}
                       <span></span>
                       <span className="percent">Trả góp 0%</span>
                     </div>

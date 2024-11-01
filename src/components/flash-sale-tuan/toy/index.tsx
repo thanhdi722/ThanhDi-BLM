@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
-import DecorProduct from "../../../../public/halloween/ic-to.png";
+import DecorProduct from "../../../../public/halloween/decor-product.png";
 import DecorWomen from "../../../../public/halloween/decor-women-06.png";
 import FrameProduct from "../../../../public/halloween/frame-product.png";
 import "./apple.scss";
@@ -171,7 +171,7 @@ const ToyList: React.FC = () => {
 
   return (
     <div
-      className="product-list-halloween"
+      className="product-list-sale"
       style={
         {
           // background: 'linear-gradient(180deg, #15001B 0, var(--bg-gradient-white, #5D0069) 90%)',
@@ -219,14 +219,14 @@ const ToyList: React.FC = () => {
                             alt="decor-product"
                             className="decor-product"
                           />
-                          <Image
+                          {/* <Image
                             src={DecorProduct2}
                             width={80}
                             height={80}
                             quality={100}
                             alt="decor-product"
                             className="decor-product2"
-                          />
+                          /> */}
                           <span></span>
                           {/* Only show "Trả góp 0%" if the product price is greater than 3,000,000 */}
                           {product.price_range.minimum_price.final_price.value >
