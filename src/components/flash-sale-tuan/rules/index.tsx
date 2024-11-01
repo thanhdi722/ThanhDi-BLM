@@ -19,7 +19,7 @@ const Rules = () => {
           </p>
           <p className="rules-description">
             Thời gian:{" "}
-            <span className="rules-section-title-hot">25/10 - 31/10/2024</span>{" "}
+            <span className="rules-section-title-hot">xx/11 - xx/11/2024</span>{" "}
             tại hệ thống Bạch Long Mobile.
           </p>
         </div>
