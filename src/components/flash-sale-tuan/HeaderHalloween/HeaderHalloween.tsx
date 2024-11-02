@@ -141,7 +141,7 @@ function HeaderHalloween() {
   console.log("data", data);
   return (
     <div className="HeaderHalloweens1">
-      <div>
+      {/* <div>
         {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
           <Image
             src={data.data.Slider.items[0].Banner.items[0].media}
@@ -166,7 +166,7 @@ function HeaderHalloween() {
           width={900}
           height={900}
         />
-      </div>
+      </div> */}
       <div
         className="banner-HeaderHalloween shine-banner"
         style={{ position: "relative", overflow: "hidden" }}
