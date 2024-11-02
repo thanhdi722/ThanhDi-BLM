@@ -251,18 +251,23 @@ function HeaderHalloween() {
                 className="privilege-img"
                 style={{ cursor: "pointer" }}
               >
-                <a
-                  href={item.link || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                {item.link ? (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                    <Image
+                      src={item.media || ""}
+                      alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
+                      width={1200}
+                      height={1000}
+                    />
+                  </a>
+                ) : (
                   <Image
                     src={item.media || ""}
                     alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
                     width={1200}
                     height={1000}
                   />
-                </a>
+                )}
               </div>
             ))}
         </div>

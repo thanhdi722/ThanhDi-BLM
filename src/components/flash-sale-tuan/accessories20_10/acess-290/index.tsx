@@ -9,7 +9,7 @@ import "swiper/css";
 import "./acess-women.scss";
 import DecorProduct from "../../../../../public/halloween/decor-product.png";
 import DecorProduct2 from "../../../../../public/halloween/ICON-DRAGON.png";
-import FrameProduct from "../../../../../public/halloween/frame-product.png";
+import FrameProduct from "../../../../../public/flase-sale/f1.png";
 import { useProductSaleData } from "../../../../app/hooks/useProductSaleData";
 import "./acess-women.scss";
 

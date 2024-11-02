@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Spin } from "antd";
 import DecorProduct from "../../../../public/halloween/decor-product.png";
 import DecorWomen from "../../../../public/flase-sale/dochoi.png";
-import FrameProduct from "../../../../public/halloween/frame-product.png";
+import FrameProduct from "../../../../public/flase-sale/f1.png";
 import "./apple.scss";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
 import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
