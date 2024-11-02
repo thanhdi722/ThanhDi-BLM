@@ -112,7 +112,7 @@ const ProductList: React.FC = () => {
   return (
     <div className="product-list-sale">
       <div className="container">
-        <div className="upgrade-list bg-01">
+        <div className="upgrade-list-sale bg-01">
           <div className="women-decor">
             <Image
               src={DecorWomen}

@@ -1,13 +1,14 @@
 .product-list-sale {
-  padding: 0 !important;
+  padding: 20px 0px !important;
   .bg-01 {
     background: rgb(57, 99, 56);
   }
-  .upgrade-list {
+
+  .upgrade-list-sale {
     padding: 1.2rem !important;
     border-radius: 0.8rem !important;
     .women-decor {
-      width: 80% !important;
+      // width: 80% !important;
       @media screen and (max-width: 850px) {
         width: 100% !important;
       }

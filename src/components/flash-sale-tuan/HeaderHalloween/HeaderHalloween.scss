@@ -1,5 +1,17 @@
 .HeaderHalloweens1 {
   position: relative;
+  .HeaderCombo-bannerPC {
+    display: block;
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+  .HeaderCombo-bannerMB {
+    display: none;
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
 
   .banner-HeaderHalloween-mobile {
     display: none;

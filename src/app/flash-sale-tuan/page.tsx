@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Banner from "../../components/flash-sale-tuan/banner/index";
 import ProductList from "../../components/flash-sale-tuan/product/index";
 import AppleList from "../../components/flash-sale-tuan/apple/index";
@@ -15,23 +16,15 @@ import ic1 from "../../../public/flase-sale/imagefl1.png";
 import ic2 from "../../../public/flase-sale/imagefl2.png";
 
 import Image from "next/image";
-function page() {
+
+function Page() {
   return (
     <div className="page-flase-sale-tuan">
-      {/* <div className="flash-sale-banner">
-        <Image src={ic1} alt="" />
-      </div>
-      <div className="flash-sale-banner2">
-        <Image src={ic2} alt="" />
-      </div> */}
-      <Banner />
+      {/* <Banner /> */}
       <BodyHallowween />
       <div id="item-hot">
         <ProductList />
       </div>
-      {/* <div id="item-access">
-        <AccessoriesList />
-      </div> */}
       <div id="item-iphone">
         <AppleList />
       </div>
@@ -57,4 +50,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

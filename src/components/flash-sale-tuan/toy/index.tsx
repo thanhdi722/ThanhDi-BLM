@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
 import DecorProduct from "../../../../public/halloween/decor-product.png";
-import DecorWomen from "../../../../public/halloween/decor-women-06.png";
+import DecorWomen from "../../../../public/flase-sale/dochoi.png";
 import FrameProduct from "../../../../public/halloween/frame-product.png";
 import "./apple.scss";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";

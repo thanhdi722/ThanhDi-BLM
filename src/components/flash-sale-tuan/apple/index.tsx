@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import DecorProduct from "../../../../public/halloween/decor-product.png";
-import DecorWomen from "../../../../public/halloween/decor-women-02.png";
+import DecorWomen from "../../../../public/flase-sale/PC_iPhone.png";
 import FrameProduct from "../../../../public/halloween/frame-product.png";
 import { Spin } from "antd";
 import "./apple.scss";

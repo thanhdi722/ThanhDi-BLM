@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import "./HeaderHalloween.scss";
-
+import bannerPC from "../../../../public/combo-pk/Head 1200x450.png";
+import bannerMB from "../../../../public/combo-pk/Head 900x900.png";
 import Privilege01 from "../../../../public/halloween/privilege-01.png";
 import Privilege02 from "../../../../public/halloween/privilege-02.png";
 import Privilege03 from "../../../../public/halloween/privilege-03.png";
@@ -16,7 +17,42 @@ function HeaderHalloween() {
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ]);
   const [isEventOver, setIsEventOver] = useState(false);
+  interface BannerItem {
+    banner_id: number;
+    caption: string;
+    link: string;
+    media: string;
+    media_alt: string;
+    name: string;
+    slider_id: number;
+  }
 
+  interface Banner {
+    __typename: string;
+    items: BannerItem[];
+    page_info: {
+      current_page: number;
+      page_size: number;
+      total_pages: number;
+    };
+  }
+
+  interface SliderItem {
+    title: string;
+    identifier: string;
+    Banner: Banner;
+  }
+
+  interface SliderData {
+    Slider: {
+      items: SliderItem[];
+      total_count: number;
+    };
+  }
+
+  interface ApiResponse {
+    data: SliderData;
+  }
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -42,9 +78,95 @@ function HeaderHalloween() {
 
     return () => clearInterval(interval);
   }, [endDate]);
+  const [data, setData] = useState<ApiResponse | null>(null);
+
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                query getSlider($filter: SliderFilterInput) {
+                  Slider(filter: $filter) {
+                    items {
+                      title
+                      identifier
+                      Banner {
+                        __typename
+                        items {
+                          banner_id
+                          caption
+                          link
+                          media
+                          media_alt
+                          name
+                          slider_id
+                        }
+                        page_info {
+                          current_page
+                          page_size
+                          total_pages
+                        }
+                      }
+                    }
+                    total_count
+                  }
+                }
+              `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "thang-tri-an",
+                },
+              },
+            },
+          }),
+        }
+      );
+
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      console.error("Error fetching data", err);
+    }
+  };
+  useEffect(() => {
+    fetchBannerHeader();
+  }, []);
 
   return (
     <div className="HeaderHalloweens1">
+      <div>
+        {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
+          <Image
+            src={data.data.Slider.items[0].Banner.items[0].media}
+            alt="Banner PC"
+            className="HeaderCombo-bannerPC"
+            width={1200} // Set appropriate width for the image
+            height={450} // Set appropriate height for the image
+          />
+        ) : (
+          <Image
+            src={bannerPC}
+            alt="Banner PC Placeholder"
+            className="HeaderCombo-bannerPC"
+            width={1200}
+            height={450}
+          />
+        )}
+        <Image
+          src={bannerMB}
+          alt="Banner Mobile"
+          className="HeaderCombo-bannerMB"
+          width={900}
+          height={900}
+        />
+      </div>
       <div
         className="banner-HeaderHalloween shine-banner"
         style={{ position: "relative", overflow: "hidden" }}
@@ -121,66 +243,28 @@ function HeaderHalloween() {
           <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
         </div>
         <div className="HeaderHalloween-promotion-list-privilege">
-          <div style={{ cursor: "pointer" }} className="privilege-img">
-            <Image
-              src={Privilege01}
-              alt="privilege-01"
-              width={1200}
-              height={1000}
-            />
-          </div>
-          <a
-            href="https://bachlongmobile.com/thu-cu-doi-moi/"
-            className="privilege-img"
-          >
-            <Image
-              src={Privilege02}
-              alt="privilege-02"
-              width={1200}
-              height={1000}
-            />
-          </a>
-          <a
-            href="https://bachlongmobile.com/promotion/tet-apple-bao-hanh-toan-dien/"
-            className="privilege-img"
-          >
-            <Image
-              src={Privilege03}
-              alt="privilege-03"
-              width={1200}
-              height={1000}
-            />
-          </a>
-          <a
-            href="https://bachlongmobile.com/combo-phu-kien/"
-            className="privilege-img"
-          >
-            <Image
-              src={Privilege04}
-              alt="privilege-04"
-              width={1200}
-              height={1000}
-            />
-          </a>
-          <div style={{ cursor: "pointer" }} className="privilege-img">
-            <Image
-              src={Privilege05}
-              alt="privilege-05"
-              width={1200}
-              height={1000}
-            />
-          </div>
-          <a
-            href="https://bachlongmobile.com/promotion/cung-mpos-x-bach-long-mobile-so-huu-iphone-16-series-gia-tot-qua-tang-khung/"
-            className="privilege-img"
-          >
-            <Image
-              src={Privilege06}
-              alt="privilege-05"
-              width={1200}
-              height={1000}
-            />
-          </a>
+          {data?.data?.Slider?.items[0]?.Banner?.items
+            .filter((item, index) => index >= 1 && index <= 6)
+            .map((item, index) => (
+              <div
+                key={index}
+                className="privilege-img"
+                style={{ cursor: "pointer" }}
+              >
+                <a
+                  href={item.link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={item.media || ""}
+                    alt={`privilege-0${index + 1}`}
+                    width={1200}
+                    height={1000}
+                  />
+                </a>
+              </div>
+            ))}
         </div>
       </div>
     </div>
