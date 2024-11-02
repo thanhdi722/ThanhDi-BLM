@@ -1,7 +1,7 @@
 .product-list-sale {
   padding: 20px 0px !important;
   .bg-01 {
-    background: rgb(57, 99, 56);
+    // background: rgb(23 17 107 / 50%);
   }
 
   .upgrade-list-sale {
@@ -36,10 +36,11 @@
         transition: all 0.5s ease-in-out;
         text-align: center;
         background-color: #fff;
-        color: #333;
+        color: #000000;
+        font-weight: 500;
 
         &:hover {
-          background-color: #f8f412 !important;
+          background-color: #0979cb !important;
           // color: #fff !important;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }

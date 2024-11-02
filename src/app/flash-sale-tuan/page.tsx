@@ -14,12 +14,17 @@ import IpadList from "../../components/flash-sale-tuan/ipad";
 import "./flash-sale-tuan.scss";
 import ic1 from "../../../public/flase-sale/imagefl1.png";
 import ic2 from "../../../public/flase-sale/imagefl2.png";
-
+import background from "../../../public/flase-sale/5be4e162eaa8a.webp";
 import Image from "next/image";
 
 function Page() {
   return (
     <div className="page-flase-sale-tuan">
+      <Image
+        src={background}
+        alt=""
+        style={{ position: "absolute", zIndex: "-1" }}
+      />
       <div className="flash-sale-banner">
         <Image src={ic1} alt="" />
       </div>

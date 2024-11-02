@@ -143,7 +143,8 @@ const ProductList: React.FC = () => {
                     style={{
                       width: "100%",
                       backgroundColor:
-                        activeTab === tab.index ? "#f8f412" : "#fff",
+                        activeTab === tab.index ? "#0979cb" : "#fff",
+                      color: activeTab === tab.index ? "#ffff" : "#000",
                       border:
                         activeTab === tab.index
                           ? "2px solid #ff4d4f"
@@ -181,7 +182,8 @@ const ProductList: React.FC = () => {
                     style={{
                       width: "100%",
                       backgroundColor:
-                        activeTab === tab.index ? "#f8f412" : "#fff",
+                        activeTab === tab.index ? "#0979cb" : "#fff",
+                      color: activeTab === tab.index ? "#ffff" : "#000",
                       borderRadius: "8px",
                       cursor: disabledTabs.includes(tab.index)
                         ? "not-allowed"

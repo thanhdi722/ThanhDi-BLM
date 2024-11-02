@@ -207,12 +207,11 @@ const LaptopList: React.FC = () => {
           <div className="container">
             <div
               style={{
-                background: "#CA8C37",
                 padding: "10px",
                 borderRadius: "5px",
               }}
             >
-              <div style={{ background: "#396338", padding: "10px" }}>
+              <div style={{ padding: "10px" }}>
                 <div className="women-decor">
                   <Image
                     src={DecorWomen}
