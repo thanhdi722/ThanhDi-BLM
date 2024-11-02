@@ -20,6 +20,12 @@ import Image from "next/image";
 function Page() {
   return (
     <div className="page-flase-sale-tuan">
+      <div className="flash-sale-banner">
+        <Image src={ic1} alt="" />
+      </div>
+      <div className="flash-sale-banner2">
+        <Image src={ic2} alt="" />
+      </div>
       {/* <Banner /> */}
       <BodyHallowween />
       <div id="item-hot">
