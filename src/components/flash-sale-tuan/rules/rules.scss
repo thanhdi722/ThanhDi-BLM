@@ -2,7 +2,94 @@
   padding: 40px 0;
   background: #396338;
   font-family: "Roboto", sans-serif;
-
+  .flash-sale-css {
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      padding: 6px 0px;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 6px 0px;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 6px 0px;
+    }
+    span {
+      font: 16px;
+      color: #000;
+      padding: 6px 0px;
+      line-height: 1.1;
+    }
+    p {
+      font: 16px;
+      color: #000;
+      padding: 6px 0px;
+      line-height: 1.1;
+    }
+    strong {
+      font-weight: 700;
+    }
+    ol {
+      padding: 10px 0px;
+      padding-left: 20px;
+    }
+    ul {
+      padding: 10px 0px;
+      padding-left: 20px;
+    }
+    ul li {
+      text-decoration: none;
+      list-style: initial !important;
+    }
+    a {
+      span {
+        color: #007bff;
+      }
+    }
+    p {
+      span {
+        img {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
+    }
+    p {
+      strong {
+        img {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
+    }
+    p {
+      em {
+        span {
+          img {
+            width: 100% !important;
+            height: 100% !important;
+          }
+        }
+      }
+    }
+    table {
+      tbody {
+        tr {
+          td {
+            border: 1px solid black;
+            img {
+              width: 100% !important;
+              // height: auto !important;
+            }
+          }
+        }
+      }
+    }
+  }
   .container {
     max-width: 1200px;
     margin: 0 auto;
