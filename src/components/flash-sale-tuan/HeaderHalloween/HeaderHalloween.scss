@@ -276,18 +276,20 @@
     }
   }
   .HeaderHalloween-promotion-list-privilege {
-    display: grid;
+    display: flex;
     padding: 1.2rem 0;
-    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
     align-items: center;
     width: 100%;
     justify-content: center;
+    gap: 10px;
     position: relative;
     z-index: 1;
 
     @media screen and (max-width: 1200px) {
       gap: 0rem;
       grid-template-columns: repeat(3, 1fr);
+      display: grid;
     }
     img {
       display: flex;
