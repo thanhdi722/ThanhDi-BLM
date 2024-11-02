@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper/types";
-import DecorWomen from "../../../../public/halloween/decor-women-01.png";
+import DecorWomen from "../../../../public/flase-sale/giovang.png";
 import Access10k from "../accessories20_10/acess-10k/index";
 import Access20k from "../accessories20_10/acess-20k/index";
 import Access110 from "../accessories20_10/acess-110/index";
