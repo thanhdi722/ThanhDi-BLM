@@ -138,7 +138,7 @@ function HeaderHalloween() {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
-
+  console.log("data", data);
   return (
     <div className="HeaderHalloweens1">
       <div>
@@ -244,7 +244,7 @@ function HeaderHalloween() {
         </div>
         <div className="HeaderHalloween-promotion-list-privilege">
           {data?.data?.Slider?.items[0]?.Banner?.items
-            .filter((item, index) => index >= 1 && index <= 6)
+            .filter((item) => item.name.includes("Tri Ân Đặc Quyền"))
             .map((item, index) => (
               <div
                 key={index}
@@ -258,7 +258,7 @@ function HeaderHalloween() {
                 >
                   <Image
                     src={item.media || ""}
-                    alt={`privilege-0${index + 1}`}
+                    alt={`privilege-${index + 1}`} // Adjust the alt text accordingly
                     width={1200}
                     height={1000}
                   />
