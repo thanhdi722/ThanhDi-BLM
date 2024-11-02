@@ -13,7 +13,7 @@ import BodyHallowween from "../../components/flash-sale-tuan/HeaderHalloween/Hea
 import IpadList from "../../components/flash-sale-tuan/ipad";
 import "./flash-sale-tuan.scss";
 import ic1 from "../../../public/flase-sale/imagefl1.png";
-import ic2 from "../../../public/flase-sale/imagefl2.png";
+import ic2 from "../../../public/flase-sale/img2.png";
 import background from "../../../public/flase-sale/5be4e162eaa8a.webp";
 import Image from "next/image";
 
