@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
-import imagesTitle from "../../../../public/warehouse-discharge/maylikenew.png";
+// import imagesTitle from "../../../../public/warehouse-discharge/maylikenew.png";
 export interface Product {
   id: number;
   name: string;
@@ -133,11 +133,11 @@ const ProductListIphone: React.FC = () => {
           className="OldForNew-Section-Container-leather-case-a1"
           id="item-leather-case"
         >
-          <Image
+          {/* <Image
             src={imagesTitle}
             alt=""
             style={{ padding: "0px 0px 20px 0px" }}
-          />
+          /> */}
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện</h2>
