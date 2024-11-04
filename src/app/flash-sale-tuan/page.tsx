@@ -24,7 +24,7 @@ const categories = [
   { id: "item-airpods", name: "Máy 99%" },
   { id: "item-ipad", name: "iPad" },
   { id: "item-mac", name: "Laptop" },
-  { id: "item-watch", name: "Android" },
+  { id: "item-android", name: "Android" },
   { id: "item-toy", name: "Phụ kiện Apple" },
 ];
 function Page() {
@@ -134,7 +134,7 @@ function Page() {
       <div id="item-mac">
         <LaptopList />
       </div>
-      <div className="item-watch">
+      <div id="item-android">
         <AndroidList />
       </div>
       <div id="item-toy">
