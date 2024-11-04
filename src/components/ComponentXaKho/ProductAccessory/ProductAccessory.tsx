@@ -30,7 +30,7 @@ function CardProductAccessory() {
     const fetchData = async () => {
       setLoading(true);
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxuvoT7Q9AbBQ11hDEHoAnGZ7qjAYvNmzz6s6hou6QT4krSKYZnPOBk_5XsconFLUdCGQ/exec?id=dsspXaKho"
+        "https://script.google.com/macros/s/AKfycbxuvoT7Q9AbBQ11hDEHoAnGZ7qjAYvNmzz6s6hou6QT4krSKYZnPOBk_5XsconFLUdCGQ/exec?id=dsspxakho"
       );
       const data = await response.json();
       setFilteredProducts(data);

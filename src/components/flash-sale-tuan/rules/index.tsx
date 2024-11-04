@@ -29,7 +29,7 @@ const Rules = () => {
   }, []);
 
   return (
-    <div className="rules" id="item-rules">
+    <div className="rules-flash-sale" id="item-rules">
       <div className="container">
         <div
           className="flash-sale-css"

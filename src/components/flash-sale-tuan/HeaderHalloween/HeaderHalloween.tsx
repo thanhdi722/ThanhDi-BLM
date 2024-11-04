@@ -10,6 +10,7 @@ import Privilege03 from "../../../../public/halloween/privilege-03.png";
 import Privilege04 from "../../../../public/halloween/privilege-04.png";
 import Privilege05 from "../../../../public/halloween/privilege-05.png";
 import Privilege06 from "../../../../public/halloween/privilege-06.png";
+import { Spin } from "antd";
 
 function HeaderHalloween() {
   const [endDate, setEndDate] = useState(new Date("2024-11-20T21:30:00"));
@@ -121,7 +122,7 @@ function HeaderHalloween() {
             variables: {
               filter: {
                 identifier: {
-                  eq: "thang-tri-an",
+                  eq: "banner-page-flash-sale-tuan",
                 },
               },
             },
@@ -141,32 +142,30 @@ function HeaderHalloween() {
   console.log("data", data);
   return (
     <div className="HeaderHalloweens1">
-      {/* <div>
+      <div>
         {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
-          <Image
+          <img
             src={data.data.Slider.items[0].Banner.items[0].media}
             alt="Banner PC"
             className="HeaderCombo-bannerPC"
-            width={1200} // Set appropriate width for the image
-            height={450} // Set appropriate height for the image
           />
         ) : (
-          <Image
-            src={bannerPC}
-            alt="Banner PC Placeholder"
-            className="HeaderCombo-bannerPC"
-            width={1200}
-            height={450}
-          />
+          <Spin>
+            <div style={{ width: 1820, height: 500 }} />
+          </Spin>
         )}
-        <Image
-          src={bannerMB}
-          alt="Banner Mobile"
-          className="HeaderCombo-bannerMB"
-          width={900}
-          height={900}
-        />
-      </div> */}
+        {data?.data?.Slider?.items[0]?.Banner?.items[1]?.media ? (
+          <img
+            src={data.data.Slider.items[0].Banner.items[1].media}
+            alt="Banner Mobile"
+            className="HeaderCombo-bannerMB"
+          />
+        ) : (
+          <Spin>
+            <div style={{ width: 1820, height: 500 }} />
+          </Spin>
+        )}
+      </div>
       <div
         className="banner-HeaderHalloween shine-banner"
         style={{ position: "relative", overflow: "hidden" }}
@@ -244,7 +243,7 @@ function HeaderHalloween() {
         </div>
         <div className="HeaderHalloween-promotion-list-privilege">
           {data?.data?.Slider?.items[0]?.Banner?.items
-            .filter((item) => item.name.includes("Tri Ân Đặc Quyền"))
+            .filter((item) => item.name.includes("ưu đãi flash sale tuần"))
             .map((item, index) => (
               <div
                 key={index}

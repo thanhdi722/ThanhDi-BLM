@@ -212,7 +212,7 @@ const AppleList: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              <div className="women-decor">
+              <div className="women-decor" style={{ paddingBottom: "20px" }}>
                 <Image
                   src={DecorWomen}
                   width={1920}

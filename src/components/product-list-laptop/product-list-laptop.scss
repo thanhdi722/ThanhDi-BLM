@@ -1,8 +1,12 @@
 .OldForNew-Section-Container-laptop {
   margin: auto;
   padding: 10px 10px;
-    background: linear-gradient(180deg,rgb(255, 194, 80) 0%,var(--bg-gradient-white,rgba(255,255,255,1)) 90%);
-    border-radius: 15px;
+  background: linear-gradient(
+    180deg,
+    rgb(255, 194, 80) 0%,
+    var(--bg-gradient-white, rgba(255, 255, 255, 1)) 90%
+  );
+  border-radius: 15px;
 }
 .OldForNew-Section-laptop {
   display: flex;
@@ -211,7 +215,7 @@
     background-color: #ef373e;
   }
 }
-.btn-tab-buyPhone{
+.btn-tab-buyPhone {
   background: white;
   width: max-content;
   height: max-content;
@@ -221,14 +225,14 @@
   font-weight: 600;
   @media (max-width: 767px) {
     margin: auto;
-     padding: 10px 10px;
+    padding: 10px 10px;
   }
 }
-.btn-tab-buyPhone_active{
+.btn-tab-buyPhone_active {
   background: red;
- color: #fff;
+  color: #fff;
 }
-.title-table-combo-pk{
+.title-table-combo-pk {
   color: #000;
   font-size: 22px;
   font-weight: 700;
@@ -237,10 +241,10 @@
     text-align: center;
   }
 }
-.header-table-combo-pk{
+.header-table-combo-pk {
   justify-content: space-between;
   display: flex;
-@media (max-width: 1000px) {
+  @media (max-width: 1000px) {
     display: block;
   }
 }

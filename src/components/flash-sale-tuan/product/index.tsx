@@ -23,46 +23,46 @@ const ProductList: React.FC = () => {
   const tabs = [
     {
       index: 0,
-      name: <span>NGÀY 25/10</span>,
+      name: <span>NGÀY 03/11</span>,
       component: <Access10k />,
-      date: new Date("2024-10-25"),
+      date: new Date("2024-11-03"),
     },
     {
       index: 1,
-      name: <span>NGÀY 26/10</span>,
+      name: <span>NGÀY 04/11</span>,
       component: <Access20k />,
-      date: new Date("2024-10-26"),
+      date: new Date("2024-11-04"),
     },
     {
       index: 2,
-      name: <span>NGÀY 27/10</span>,
+      name: <span>NGÀY 05/11</span>,
       component: <Access110 />,
-      date: new Date("2024-10-27"),
+      date: new Date("2024-11-05"),
     },
     {
       index: 3,
-      name: <span>NGÀY 28/10</span>,
+      name: <span>NGÀY 06/11</span>,
       component: <Access210 />,
-      date: new Date("2024-10-28"),
+      date: new Date("2024-11-05"),
     },
     {
       index: 4,
-      name: <span>NGÀY 29/10</span>,
+      name: <span>NGÀY 07/11</span>,
       component: <Access310 />,
-      date: new Date("2024-10-29"),
+      date: new Date("2024-11-05"),
     },
-    {
-      index: 5,
-      name: <span>NGÀY 30/10</span>,
-      component: <AccessTo210 />,
-      date: new Date("2024-10-30"),
-    },
-    {
-      index: 6,
-      name: <span>NGÀY 31/10</span>,
-      component: <Access290 />,
-      date: new Date("2024-10-31"),
-    },
+    // {
+    //   index: 5,
+    //   name: <span>NGÀY 30/10</span>,
+    //   component: <AccessTo210 />,
+    //   date: new Date("2024-10-30"),
+    // },
+    // {
+    //   index: 6,
+    //   name: <span>NGÀY 31/10</span>,
+    //   component: <Access290 />,
+    //   date: new Date("2024-10-31"),
+    // },
   ];
 
   const initialActiveTab = tabs.findIndex(

@@ -1,7 +1,7 @@
-.rules {
-  padding: 40px 0;
-  background: #396338;
-  font-family: "Roboto", sans-serif;
+.rules-flash-sale {
+  // padding: 40px 0;
+  // background: #396338;
+  // font-family: "Roboto", sans-serif;
   .flash-sale-css {
     h1 {
       font-size: 20px;
@@ -20,13 +20,13 @@
     }
     span {
       font: 16px;
-      color: #000;
+      color: #fff;
       padding: 6px 0px;
       line-height: 1.1;
     }
     p {
       font: 16px;
-      color: #000;
+      color: #fff;
       padding: 6px 0px;
       line-height: 1.1;
     }
@@ -105,7 +105,7 @@
     .rules-title {
       font-size: 36px;
       font-weight: 700;
-      color: #333; /* Màu chữ tối đơn giản */
+      color: #fff; /* Màu chữ tối đơn giản */
     }
 
     .rules-description {
@@ -150,17 +150,17 @@
         position: relative;
         list-style: none;
 
-        &::before {
-          content: "";
-          width: 8px;
-          height: 8px;
-          background-color: #22e078;
-          border-radius: 50%;
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-        }
+        // &::before {
+        //   content: "";
+        //   width: 8px;
+        //   height: 8px;
+        //   background-color: #22e078;
+        //   border-radius: 50%;
+        //   position: absolute;
+        //   left: 0;
+        //   top: 50%;
+        //   transform: translateY(-50%);
+        // }
       }
       .li-cus-02 {
         font-size: 18px;
@@ -171,17 +171,17 @@
         position: relative;
         list-style: none;
 
-        &::before {
-          content: "";
-          width: 8px;
-          height: 8px;
-          background-color: #37413b;
-          border-radius: 50%;
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-        }
+        // &::before {
+        //   content: "";
+        //   width: 8px;
+        //   height: 8px;
+        //   background-color: #37413b;
+        //   border-radius: 50%;
+        //   position: absolute;
+        //   left: 0;
+        //   top: 50%;
+        //   transform: translateY(-50%);
+        // }
       }
       li {
         font-size: 18px;
@@ -192,17 +192,17 @@
         position: relative;
         list-style: none;
 
-        &::before {
-          content: ""; /* Tạo chấm tròn trước mỗi mục */
-          width: 8px;
-          height: 8px;
-          background-color: #e74c3c; /* Màu nổi cho điểm */
-          border-radius: 50%;
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-        }
+        // &::before {
+        //   content: ""; /* Tạo chấm tròn trước mỗi mục */
+        //   width: 8px;
+        //   height: 8px;
+        //   background-color: #e74c3c; /* Màu nổi cho điểm */
+        //   border-radius: 50%;
+        //   position: absolute;
+        //   left: 0;
+        //   top: 50%;
+        //   transform: translateY(-50%);
+        // }
       }
 
       .rules-sublist {

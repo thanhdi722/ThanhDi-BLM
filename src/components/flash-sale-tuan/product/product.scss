@@ -37,11 +37,12 @@
         text-align: center;
         background-color: #fff;
         color: #000000;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 13px;
 
         &:hover {
           background-color: #0979cb !important;
-          // color: #fff !important;
+          color: #fff !important;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
