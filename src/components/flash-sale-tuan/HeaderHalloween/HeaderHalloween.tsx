@@ -11,6 +11,7 @@ import Privilege04 from "../../../../public/halloween/privilege-04.png";
 import Privilege05 from "../../../../public/halloween/privilege-05.png";
 import Privilege06 from "../../../../public/halloween/privilege-06.png";
 import { Spin } from "antd";
+import Link from "next/link";
 
 function HeaderHalloween() {
   const [endDate, setEndDate] = useState(new Date("2024-11-20T21:30:00"));
@@ -230,7 +231,9 @@ function HeaderHalloween() {
                   </div>
                 ))}
               </div>
-              <button className="Halloween-button">Xem thể lệ</button>
+              <Link href="#item-rules">
+                <button className="Halloween-button">Xem thể lệ</button>
+              </Link>
             </div>
           </div>
         )}

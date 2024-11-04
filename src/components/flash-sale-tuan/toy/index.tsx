@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
-import DecorProduct from "../../../../public/halloween/decor-product.png";
+import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
 import DecorWomen from "../../../../public/flase-sale/dochoi.png";
 import FrameProduct from "../../../../public/flase-sale/f1.png";
 import "./apple.scss";

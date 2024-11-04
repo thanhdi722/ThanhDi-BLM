@@ -140,7 +140,7 @@ function Page() {
       <div id="item-toy">
         <ToyList />
       </div>
-      <div id="item-rules">
+      <div>
         <Rules />
       </div>
       <div

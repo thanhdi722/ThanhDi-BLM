@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Spin } from "antd";
-import DecorProduct from "../../../../../public/halloween/decor-product.png";
+import DecorProduct from "../../../../../public/flase-sale/IC-DECOR.png";
 import DecorProduct2 from "../../../../../public/halloween/ICON-DRAGON.png";
 import FrameProduct from "../../../../../public/flase-sale/f1.png";
 import { useProductSaleData } from "../../../../app/hooks/useProductSaleData";
