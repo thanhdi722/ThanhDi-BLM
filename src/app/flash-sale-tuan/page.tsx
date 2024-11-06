@@ -109,7 +109,7 @@ function Page() {
       <Image
         src={background}
         alt=""
-        style={{ position: "absolute", zIndex: "-1" }}
+        style={{ position: "absolute", zIndex: "-1", height: "100%" }}
       />
       <div className="flash-sale-banner">
         <Image src={ic1} alt="" />
@@ -117,7 +117,6 @@ function Page() {
       <div className="flash-sale-banner2">
         <Image src={ic2} alt="" />
       </div>
-      {/* <Banner /> */}
       <BodyHallowween />
       <div id="item-hot">
         <ProductList />
