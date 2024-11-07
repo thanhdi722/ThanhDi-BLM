@@ -316,7 +316,9 @@ const ProductPercent: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              <div style={{ padding: "10px", backgroundColor: "#CA8C37" }}>
+              <div
+                style={{ padding: "10px", backgroundColor: "rgb(57, 99, 56)" }}
+              >
                 <div className="women-decor">
                   <Image
                     src={DecorWomen}

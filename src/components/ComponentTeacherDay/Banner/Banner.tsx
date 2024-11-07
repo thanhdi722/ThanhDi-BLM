@@ -133,7 +133,7 @@ function Banner() {
   }, []);
   return (
     <div className="HeaderHalloweens2">
-      {/* <div>
+      <div>
         {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
           <img
             src={data.data.Slider.items[0].Banner.items[0].media}
@@ -156,7 +156,7 @@ function Banner() {
             <div style={{ width: 1820, height: 500 }} />
           </Spin>
         )}
-      </div> */}
+      </div>
       <div className="container">
         {isEventOver ? (
           <div className="HeaderHalloween-time-line">
@@ -227,12 +227,16 @@ function Banner() {
           className="HeaderHalloween-promotion-header"
           style={{ fontWeight: 400 }}
         >
-          6 đặc quyền mua hàng tại{" "}
+          {`${
+            data?.data?.Slider?.items[0]?.Banner?.items.filter((item) =>
+              item.name.includes("ưu đãi nhà giáo")
+            ).length
+          } đặc quyền mua hàng tại `}
           <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
         </div>
         <div className="HeaderHalloween-promotion-list-privilege">
           {data?.data?.Slider?.items[0]?.Banner?.items
-            .filter((item) => item.name.includes("ưu đãi flash sale tuần"))
+            .filter((item) => item.name.includes("ưu đãi nhà giáo"))
             .map((item, index) => (
               <div
                 key={index}
