@@ -22,8 +22,184 @@ export default function page() {
         backgroundColor: "#D1BB99",
       }}
     >
-      <Image className="leaf" src={img} alt="" />
+      <Image className="book" src={img} alt="" />
+      <Image className="book2" src={img} alt="" />
+      <div className="leaf">
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png"
+            height="75px"
+            width="75px"
+            alt="fall leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png"
+            height="75px"
+            width="75px"
+            alt="autumn leaves collage"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png"
+            height="75px"
+            width="75px"
+            alt="fall leaves clip art"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png"
+            height="75px"
+            width="75px"
+            alt="green leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png"
+            height="75px"
+            width="75px"
+            alt="falling autumn leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+            height="75px"
+            width="75px"
+            alt="realistic fall leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+            height="75px"
+            width="75px"
+            alt="realistic fall leaves"
+          />
+        </div>
+      </div>
 
+      <div className="leaf leaf1">
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png"
+            height="75px"
+            width="75px"
+            alt="fall leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png"
+            height="75px"
+            width="75px"
+            alt="autumn leaves collage"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png"
+            height="75px"
+            width="75px"
+            alt="fall leaves clip art"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png"
+            height="75px"
+            width="75px"
+            alt="green leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png"
+            height="75px"
+            width="75px"
+            alt="falling autumn leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+            height="75px"
+            width="75px"
+            alt="realistic fall leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png"
+            height="75px"
+            width="75px"
+            alt="green leaves"
+          />
+        </div>
+      </div>
+
+      <div className="leaf leaf2">
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png"
+            height="75px"
+            width="75px"
+            alt="fall leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png"
+            height="75px"
+            width="75px"
+            alt="autumn leaves collage"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png"
+            height="75px"
+            width="75px"
+            alt="fall leaves clip art"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png"
+            height="75px"
+            width="75px"
+            alt="green leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png"
+            height="75px"
+            width="75px"
+            alt="falling autumn leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+            height="75px"
+            width="75px"
+            alt="realistic fall leaves"
+          />
+        </div>
+        <div>
+          <img
+            src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+            height="75px"
+            width="75px"
+            alt="autumn leaves"
+          />
+        </div>
+      </div>
       {/* <div id="item-hot">
         <ProductList />
       </div> */}
