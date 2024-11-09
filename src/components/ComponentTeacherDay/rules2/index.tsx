@@ -215,12 +215,19 @@ const Rules = () => {
           const detail = newsDataDetail.get(item.url_key);
           if (detail) {
             detail.forEach((d: any) => {
-              handleSubmit(new Event("submit"), d, index, item); // Gọi hàm submit cho từng detail
+              // Create a synthetic event to pass to handleSubmit
+              const syntheticEvent = {
+                preventDefault: () => {},
+                currentTarget: {
+                  /* Add necessary properties here if needed */
+                },
+              } as React.FormEvent<HTMLFormElement>;
+              handleSubmit(syntheticEvent, d, index, item); // Gọi hàm submit cho từng detail
             });
           }
         });
       }
-    }, 5000); // Thay đổi 5000 thành khoảng thời gian bạn muốn (ms)
+    }, 15000); // Thay đổi 5000 thành khoảng thời gian bạn muốn (ms)
 
     return () => clearInterval(interval); // Dọn dẹp interval khi component unmount
   }, [newsData, newsDataDetail]);
