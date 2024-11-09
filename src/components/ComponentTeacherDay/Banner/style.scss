@@ -297,7 +297,7 @@
     justify-content: center;
     gap: 10px;
     position: relative;
-    z-index: 1;
+    z-index: 4;
 
     @media screen and (max-width: 1200px) {
       gap: 0rem;
@@ -310,6 +310,7 @@
       justify-content: center;
       object-fit: contain;
       width: 100%;
+      z-index: 4;
     }
   }
 }
