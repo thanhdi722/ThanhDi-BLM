@@ -246,7 +246,6 @@ const Rules = () => {
       Number(newsDataPrice[index] || 0);
     const price = item.attributes?.[0]?.value;
     // Kiểm tra giá trị price trước khi gửi
-    console.log("Price to send:", priceValue); // Log giá trị price
 
     const formData = {
       sku: detail?.product?.sku,

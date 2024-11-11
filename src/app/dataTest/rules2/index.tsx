@@ -246,8 +246,8 @@ const Rules = () => {
       detail.product.price_range.minimum_price.final_price.value +
       Number(newsDataPrice[index] || 0);
     const price = item.attributes?.[0]?.value;
+
     // Kiểm tra giá trị price trước khi gửi
-    console.log("Price to send:", priceValue); // Log giá trị price
 
     const formData = {
       sku: detail.product.sku,
@@ -258,8 +258,12 @@ const Rules = () => {
       urlImage: detail?.product?.image?.url,
     };
 
+    useEffect(() => {
+      console.log("Form data to send:", formData);
+    }, [formData]);
+
     // Gửi dữ liệu đến Google Sheets
-    await fetch(
+    const response = await fetch(
       "https://script.google.com/macros/s/AKfycbzfx6lArA9mHQmqYQX7aZhdcCOLXCMWHQ0sxtdpdRnMWi2qdGy4LXAreSVbMqmgZfIlyg/exec",
       {
         method: "POST",
@@ -270,6 +274,9 @@ const Rules = () => {
         body: JSON.stringify(formData),
       }
     );
+
+    // Kiểm tra phản hồi từ Google Sheets
+    console.log("Response from Google Sheets:", response);
   };
 
   return (
