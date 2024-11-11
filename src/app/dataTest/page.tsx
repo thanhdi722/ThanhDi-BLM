@@ -5,7 +5,7 @@ export default function page() {
   return (
     <div>
       <Rules1 />
-      {/* <Rules2 /> */}
+      <Rules2 />
     </div>
   );
 }
