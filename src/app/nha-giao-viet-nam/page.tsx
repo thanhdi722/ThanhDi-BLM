@@ -10,6 +10,12 @@ import ToyList from "../../components/ComponentTeacherDay/toy/index";
 import IpadList from "../../components/ComponentTeacherDay/ipad";
 import img from "../../../public/2011/giay.png";
 import "./style.scss";
+import img10 from "../../../public/2011/10.png";
+import img11 from "../../../public/2011/11.png";
+import img12 from "../../../public/2011/12.png";
+import img13 from "../../../public/2011/13.png";
+import img14 from "../../../public/2011/14.png";
+
 export default function page() {
   return (
     <div
@@ -20,25 +26,20 @@ export default function page() {
         backgroundColor: "#D1BB99",
       }}
     >
-      <Image className="book" src={img} alt="" />
-      <Image className="book2" src={img} alt="" />
+      {/* <Image className="book" src={img} alt="" />
+      <Image className="book2" src={img} alt="" /> */}
 
       {/* <div id="item-hot">
         <ProductList />
       </div> */}
       <div style={{ position: "relative", overflow: "hidden" }}>
-        <div className="leaf">
+        {/* <div className="leaf">
           <div>
-            <img
-              src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png"
-              height="75px"
-              width="75px"
-              alt="fall leaves"
-            />
+            <img src={img10.src} height="75px" width="75px" alt="fall leaves" />
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png"
+              src={img11.src}
               height="75px"
               width="75px"
               alt="autumn leaves collage"
@@ -46,7 +47,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png"
+              src={img12.src}
               height="75px"
               width="75px"
               alt="fall leaves clip art"
@@ -54,7 +55,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png"
+              src={img13.src}
               height="75px"
               width="75px"
               alt="green leaves"
@@ -62,7 +63,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png"
+              src={img14.src}
               height="75px"
               width="75px"
               alt="falling autumn leaves"
@@ -70,7 +71,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+              src={img10.src}
               height="75px"
               width="75px"
               alt="realistic fall leaves"
@@ -78,26 +79,21 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+              src={img11.src}
               height="75px"
               width="75px"
               alt="realistic fall leaves"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="leaf leaf1">
           <div>
-            <img
-              src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png"
-              height="75px"
-              width="75px"
-              alt="fall leaves"
-            />
+            <img src={img12.src} height="75px" width="75px" alt="fall leaves" />
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png"
+              src={img13.src}
               height="75px"
               width="75px"
               alt="autumn leaves collage"
@@ -105,7 +101,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png"
+              src={img14.src}
               height="75px"
               width="75px"
               alt="fall leaves clip art"
@@ -113,7 +109,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png"
+              src={img10.src}
               height="75px"
               width="75px"
               alt="green leaves"
@@ -121,7 +117,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png"
+              src={img14.src}
               height="75px"
               width="75px"
               alt="falling autumn leaves"
@@ -129,7 +125,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+              src={img10.src}
               height="75px"
               width="75px"
               alt="realistic fall leaves"
@@ -137,7 +133,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png"
+              src={img11.src}
               height="75px"
               width="75px"
               alt="green leaves"
@@ -147,16 +143,11 @@ export default function page() {
 
         <div className="leaf leaf2">
           <div>
-            <img
-              src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png"
-              height="75px"
-              width="75px"
-              alt="fall leaves"
-            />
+            <img src={img12.src} height="75px" width="75px" alt="fall leaves" />
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png"
+              src={img13.src}
               height="75px"
               width="75px"
               alt="autumn leaves collage"
@@ -164,7 +155,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Clip-Art-PNG.png"
+              src={img14.src}
               height="75px"
               width="75px"
               alt="fall leaves clip art"
@@ -172,7 +163,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png"
+              src={img10.src}
               height="75px"
               width="75px"
               alt="green leaves"
@@ -180,7 +171,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png"
+              src={img14.src}
               height="75px"
               width="75px"
               alt="falling autumn leaves"
@@ -188,7 +179,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+              src={img10.src}
               height="75px"
               width="75px"
               alt="realistic fall leaves"
@@ -196,7 +187,7 @@ export default function page() {
           </div>
           <div>
             <img
-              src="http://www.pngmart.com/files/1/Realistic-Autumn-Fall-Leaves-PNG.png"
+              src={img11.src}
               height="75px"
               width="75px"
               alt="autumn leaves"
