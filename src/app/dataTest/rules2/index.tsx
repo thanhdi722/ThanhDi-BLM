@@ -248,6 +248,7 @@ const Rules = () => {
     const price = item.attributes?.[0]?.value;
 
     // Kiểm tra giá trị price trước khi gửi
+    console.log("Price to send:", priceValue); // Log giá trị price
 
     const formData = {
       sku: detail.product.sku,
@@ -258,9 +259,8 @@ const Rules = () => {
       urlImage: detail?.product?.image?.url,
     };
 
-    useEffect(() => {
-      console.log("Form data to send:", formData);
-    }, [formData]);
+    // Log formData để kiểm tra dữ liệu gửi
+    console.log("Form data to send:", formData);
 
     // Gửi dữ liệu đến Google Sheets
     const response = await fetch(
