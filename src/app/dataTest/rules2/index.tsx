@@ -255,6 +255,7 @@ const Rules = () => {
       price: priceValue, // Sử dụng giá trị đã kiểm tra
       sale: price,
       url: `https://bachlongmobile.com/products/${item.url_key}/?sku=${detail.product.sku}`,
+      urlImage: detail?.product?.image?.url,
     };
 
     // Gửi dữ liệu đến Google Sheets
@@ -321,6 +322,12 @@ const Rules = () => {
                         type="text"
                         name="url"
                         value={`https://bachlongmobile.com/products/${item.url_key}/?sku=${detail.product.sku}`}
+                        readOnly
+                      />
+                      <input
+                        type="text"
+                        name="image"
+                        value={detail?.product?.image?.url}
                         readOnly
                       />
                       <button type="submit">Submit</button>

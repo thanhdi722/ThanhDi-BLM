@@ -231,7 +231,7 @@ const Rules = () => {
     return () => clearInterval(interval); // Dọn dẹp interval khi component unmount
   }, [newsData, newsDataDetail]);
 
-  console.log("newsData", newsData);
+  console.log("newsData", newsDataDetail);
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -249,11 +249,12 @@ const Rules = () => {
     console.log("Price to send:", priceValue); // Log giá trị price
 
     const formData = {
-      sku: detail.product.sku,
-      name: detail.product.name,
+      sku: detail?.product?.sku,
+      name: detail?.product?.name,
       price: priceValue, // Sử dụng giá trị đã kiểm tra
       sale: price,
-      url: `https://bachlongmobile.com/products/${item.url_key}/?sku=${detail.product.sku}`,
+      url: `https://bachlongmobile.com/products/${item.url_key}/?sku=${detail?.product?.sku}`,
+      urlImage: detail?.product?.image?.url,
     };
 
     // Gửi dữ liệu đến Google Sheets
@@ -272,63 +273,59 @@ const Rules = () => {
 
   return (
     <div className="rules-flash-sale" id="item-rules">
-      <div className="container">
-        {newsData &&
-          newsData.map((item: any, index: number) => (
-            <div key={item.uid} style={{ zIndex: "999" }}>
-              {newsDataDetail
-                .get(item.url_key)
-                ?.map((detail: any, detailIndex: number) => (
-                  <div key={detailIndex}>
-                    <form
-                      onSubmit={(e) => handleSubmit(e, detail, index, item)}
-                    >
-                      <input
-                        type="text"
-                        name="stt" // Thêm trường stt
-                        value={index + 1} // Số thứ tự bắt đầu từ 1
-                        readOnly
-                      />
-                      <input
-                        type="text"
-                        name="sku"
-                        value={detail.product.sku}
-                        readOnly
-                      />
-                      <input
-                        type="text"
-                        name="name"
-                        value={detail.product.name}
-                        readOnly
-                      />
-                      <input
-                        type="text"
-                        name="sale"
-                        value={
-                          detail.product.price_range.minimum_price.final_price
-                            .value + Number(newsDataPrice[index] || 0)
-                        }
-                        readOnly
-                      />
-                      <input
-                        type="text"
-                        name="price"
-                        value={item.attributes[0].value}
-                        readOnly
-                      />
-                      <input
-                        type="text"
-                        name="url"
-                        value={`https://bachlongmobile.com/products/${item.url_key}/?sku=${detail.product.sku}`}
-                        readOnly
-                      />
-                      <button type="submit">Submit</button>
-                    </form>
-                  </div>
-                ))}
-            </div>
-          ))}
-      </div>
+      {newsData &&
+        newsData.map((item: any, index: number) => (
+          <div key={item.uid} style={{ zIndex: "999" }}>
+            {newsDataDetail
+              .get(item.url_key)
+              ?.map((detail: any, detailIndex: number) => (
+                <div key={detailIndex}>
+                  <form onSubmit={(e) => handleSubmit(e, detail, index, item)}>
+                    <input
+                      type="text"
+                      name="sku"
+                      value={detail.product.sku}
+                      readOnly
+                    />
+                    <input
+                      type="text"
+                      name="name"
+                      value={detail.product.name}
+                      readOnly
+                    />
+                    <input
+                      type="text"
+                      name="sale"
+                      value={
+                        detail.product.price_range.minimum_price.final_price
+                          .value + Number(newsDataPrice[index] || 0)
+                      }
+                      readOnly
+                    />
+                    <input
+                      type="text"
+                      name="price"
+                      value={item.attributes[0].value}
+                      readOnly
+                    />
+                    <input
+                      type="text"
+                      name="url"
+                      value={`https://bachlongmobile.com/products/${item.url_key}/?sku=${detail.product.sku}`}
+                      readOnly
+                    />
+                    <input
+                      type="text"
+                      name="image"
+                      value={detail?.product?.image?.url}
+                      readOnly
+                    />
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
+              ))}
+          </div>
+        ))}
     </div>
   );
 };

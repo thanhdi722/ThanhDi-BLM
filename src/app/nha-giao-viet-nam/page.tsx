@@ -7,9 +7,6 @@ import ProductPercent from "../../components/ComponentTeacherDay/99percent/index
 import AndroidList from "../../components/ComponentTeacherDay/android/index";
 import LaptopList from "../../components/ComponentTeacherDay/laptop/index";
 import ToyList from "../../components/ComponentTeacherDay/toy/index";
-import Rules from "../../components/ComponentTeacherDay/rules/index";
-import Rules2 from "../../components/ComponentTeacherDay/rules2/index";
-import imgBackground from "../../../public/2011/bacground.png";
 import IpadList from "../../components/ComponentTeacherDay/ipad";
 import img from "../../../public/2011/giay.png";
 import "./style.scss";
@@ -231,12 +228,6 @@ export default function page() {
         </div>
         <div id="item-toy">
           <ToyList />
-        </div>
-        <div>
-          <Rules />
-        </div>
-        <div>
-          <Rules2 />
         </div>
       </div>
     </div>
