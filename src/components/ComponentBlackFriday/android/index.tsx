@@ -305,11 +305,11 @@ const AndroidList: React.FC = () => {
             <div
               style={{
                 padding: "10px",
-                backgroundColor: "rgb(179 111 0)",
+                backgroundColor: "#b32321",
                 borderRadius: "5px",
               }}
             >
-              <div style={{ padding: "10px", backgroundColor: "#396338" }}>
+              <div>
                 <div className="women-decor">
                   <Image
                     src={DecorWomen}

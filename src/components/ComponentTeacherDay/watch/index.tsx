@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
-import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
-import FrameProduct from "../../../../public/flase-sale/f5.png";
-import { Spin } from "antd";
-import "./apple.scss";
-import Link from "next/link";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { Spin } from "antd";
+import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
+import DecorWomen from "../../../../public/flase-sale/PC_phukienapple.png";
+import FrameProduct from "../../../../public/flase-sale/f2.png";
+import "./apple.scss";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
-import DecorProduct2 from "../../../../public/flase-sale/dragon-sale.png";
+import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
 export interface Product {
   id: number;
   name: string;
@@ -27,106 +27,42 @@ export interface Product {
     };
   };
 }
-interface DailySalesData {
-  data: {
-    DailySales: {
-      items: DailySale[];
-      page_info: PageInfo;
-      total_count: number;
-    };
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
+
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
   };
 }
 
-interface DailySale {
-  end_date: string;
-  start_date: string;
-  color_code: string;
-  meta_image: string;
-  meta_image_mobile: string;
-  meta_image_product?: string | null;
-  list_item: any[];
-  identifier?: string | null;
-  entity_id: number;
-  items: SaleItem[];
-  priority: string;
-  show_in_home?: boolean | null;
-  status: number;
+interface SliderItem {
   title: string;
+  identifier: string;
+  Banner: Banner;
 }
 
-interface PageInfo {
-  current_page: number;
-  page_size: number;
-  total_pages: number;
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
 }
 
-interface SaleItem {
-  rating_summary_daily_sale?: string | null;
-  price_original: string;
-  entity_id: number;
-  product: Products;
-  product_id: number;
-  sale_price: number;
-  sale_qty: number;
-  saleable_qty: number;
-  sold_qty: number;
-  start_date?: string | null;
-  image_banner_sale?: string | null;
+interface ApiResponse {
+  data: SliderData;
 }
-
-interface Products {
-  __typename: string;
-  sku: string;
-  uid: string;
-  name: string;
-  url_key: string;
-  categories: Category[];
-  new_from_date?: string | null;
-  new_to_date?: string | null;
-  rating_summary: number;
-  review_count: number;
-  image: ProductImage;
-  price_range: PriceRange;
-  color?: number | null;
-  country_of_manufacture?: string | null;
-  daily_sale?: any | null;
-}
-
-interface Category {
-  name: string;
-  url_key: string;
-  url_path: string;
-  level: number;
-  uid: string;
-  path: string;
-}
-
-interface ProductImage {
-  url: string;
-}
-
-interface PriceRange {
-  __typename: string;
-  maximum_price: PriceDetails;
-  minimum_price: PriceDetails;
-}
-
-interface PriceDetails {
-  discount: Discount;
-  final_price: Price;
-  regular_price: Price;
-}
-
-interface Discount {
-  amount_off: number;
-  percent_off: number;
-}
-
-interface Price {
-  currency: string;
-  value: number;
-}
-
 const query = `
  query getProducts(
   $search: String
@@ -171,73 +107,54 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
   filter: {
     category_uid: {
-      eq: "Mzc2",
+      eq: "Mzg2",
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
 
-interface BannerItem {
-  banner_id: number;
-  caption: string;
-  link: string;
-  media: string;
-  media_alt: string;
-  name: string;
-  slider_id: number;
+async function fetchProductListData() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.products.items as Product[];
 }
 
-interface Banner {
-  __typename: string;
-  items: BannerItem[];
-  page_info: {
-    current_page: number;
-    page_size: number;
-    total_pages: number;
-  };
-}
+const ToyList: React.FC = () => {
+  const {
+    data: DataToy,
+    error,
+    isLoading,
+  } = useQuery<Product[]>({
+    queryKey: ["productToy"],
+    queryFn: fetchProductListData,
+    staleTime: 300000,
+  });
 
-interface SliderItem {
-  title: string;
-  identifier: string;
-  Banner: Banner;
-}
-
-interface SliderData {
-  Slider: {
-    items: SliderItem[];
-    total_count: number;
-  };
-}
-
-interface ApiResponse {
-  data: SliderData;
-}
-
-const AppleList: React.FC = () => {
-  // const {
-  //   data: dataApple,
-  //   error,
-  //   isLoading,
-  // } = useQuery<DailySalesData[]>({
-  //   queryKey: ["productApple"],
-  //   queryFn: fetchProductListData,
-  //   staleTime: 300000,
-  // });
-
-  const currentDate = new Date();
-  const targetDate = new Date("2024-10-26");
   const { data } = useProductSaleData();
   const filteredDatassss = data?.filter(
-    (item: DailySale) => item.title === "SP 20/11"
+    (item: any) => item.title === "SP 20/11"
   );
-  const filteredIphones =
-    filteredDatassss?.[0]?.items.filter((product: any) => {
+  const filteredIphones = filteredDatassss?.[0]?.items.filter(
+    (product: any) => {
       // Kiểm tra nếu tên sản phẩm chứa từ "iPhone"
-      return product.product.name.toLowerCase().includes("iphone");
-    }) || [];
+      return product.product.name.toLowerCase().includes("watch");
+    }
+  );
 
+  // Hiển thị các sản phẩm đã lọc
+
+  console.log("dataaaaaaaaaaaaaaaaaa", filteredDatassss);
   const productSale = data?.[0]?.items;
 
   const productSaleNames = productSale?.map(
@@ -259,7 +176,6 @@ const AppleList: React.FC = () => {
     return originalPrice.toLocaleString("vi-VN");
   };
 
-  const [activeTab, setActiveTab] = useState<string>("iPhone");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -319,6 +235,37 @@ const AppleList: React.FC = () => {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
+  useEffect(() => {
+    let filtered = DataToy || [];
+    setFilteredData(filtered);
+
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setVisibleCount(4);
+      } else {
+        setVisibleCount(10);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [DataToy]);
+
+  if (isLoading) {
+    return (
+      <div className="container-spin">
+        <Spin size="large" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error loading data</div>;
+  }
 
   const visibleProducts = filteredData.slice(0, visibleCount);
 
@@ -348,7 +295,7 @@ const AppleList: React.FC = () => {
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title iphone flash sale tuần")
+                        item.name.includes("title phụ kiện flash sale tuần")
                       )
                       .map((item, index) => (
                         <div key={index}>
@@ -364,6 +311,7 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
+
                 {filteredIphones && filteredIphones.length > 0 ? (
                   <div className="upgrade">
                     {filteredIphones
@@ -380,15 +328,6 @@ const AppleList: React.FC = () => {
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
-                              {/(iphone|ipad|macbook|watch)/i.test(
-                                product?.product?.name
-                              ) && (
-                                <Image
-                                  className="ic-auth"
-                                  src={DecorWomen}
-                                  alt=""
-                                />
-                              )}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
@@ -437,24 +376,6 @@ const AppleList: React.FC = () => {
                                     %
                                   </div>
                                 </div>
-                                <div
-                                  style={{
-                                    backgroundColor: "rgba(215, 0, 24, .08)",
-                                    borderRadius: "0.4rem",
-                                    color: "#d70018",
-                                    padding: "0.8rem",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  <span
-                                    style={{
-                                      fontSize: "1.2rem",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    Giá thu bằng giá bán - Trợ giá lên đến 100%
-                                  </span>
-                                </div>
                               </div>
                             </div>
                           </div>
@@ -474,7 +395,7 @@ const AppleList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredIphones.length && (
+                {/* {visibleCount < filteredIphones.length && (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}
@@ -490,7 +411,7 @@ const AppleList: React.FC = () => {
                       Xem thêm
                     </button>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
@@ -500,4 +421,4 @@ const AppleList: React.FC = () => {
   );
 };
 
-export default AppleList;
+export default ToyList;

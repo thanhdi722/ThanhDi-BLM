@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import Banner from "../../components/ComponentBlackFriday/Banner/Banner";
 import Image from "next/image";
 import AppleList from "../../components/ComponentBlackFriday/apple/index";
@@ -9,7 +10,31 @@ import ToyList from "../../components/ComponentBlackFriday/toy/index";
 import IpadList from "../../components/ComponentBlackFriday/ipad";
 import img from "../../../public/2011/giay.png";
 import "./style.scss";
+
 export default function page() {
+  useEffect(() => {
+    for (let i = 0; i < 400; i++) {
+      let star = document.createElement("div");
+      star.classList.add("star");
+
+      let size = Math.random() * 2.6 + 1;
+      //   -----------------------------------------------------------------------
+      star.style.top = Math.random() * document.body.scrollHeight + "px";
+      star.style.left = Math.random() * document.body.scrollWidth + "px";
+      star.style.width = size + "px";
+      star.style.height = size + "px";
+      star.style.opacity = Math.random().toString();
+      //   -----------------------------------------------------------------------
+
+      star.style.animation = "moveit 2.5s infinite";
+
+      let delayValue = Math.random() * 4;
+      star.style.animationDelay = delayValue + "s";
+
+      document.body.appendChild(star);
+    }
+  }, []);
+
   return (
     <div
       className="page-20-11"

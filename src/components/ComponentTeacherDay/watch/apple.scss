@@ -1,4 +1,8 @@
-.product-list-halloween {
+.product-list-sale {
+  padding: 4.8rem 0;
+  @media screen and (max-width: 768px) {
+    padding: 2.4rem 0;
+  }
   .tabs {
     display: flex;
     justify-content: center;
@@ -38,45 +42,33 @@
         }
       }
     }
-    .tabs-grid {
+    .tabs {
       padding: 1.2rem 0;
       font-size: 1.2rem;
       display: flex;
       flex-wrap: wrap;
       width: 100%;
 
-      .tab-access {
-        margin: 0;
-        padding: 1rem 0.2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 50px;
-        height: 100%;
-        transition: all 0.5s ease-in-out;
-        text-align: center;
-        background-color: #fff;
-
-        &:hover {
-          background-color: #ff7518 !important;
-          color: #fff !important;
-          border-color: #ff7518 !important;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+      .tab {
+        margin: 0 !important;
       }
     }
     .upgrade {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 1.2rem;
+
       @media screen and (max-width: "1200px") {
         grid-template-columns: repeat(4, 1fr);
+        margin-top: 2.4rem;
       }
       @media screen and (max-width: "850px") {
         grid-template-columns: repeat(3, 1fr);
+        margin-top: 1.6rem;
       }
       @media screen and (max-width: "768px") {
         grid-template-columns: repeat(2, 1fr);
+        margin-top: 1.2rem;
       }
 
       &-item {
@@ -106,21 +98,21 @@
           justify-content: space-between;
 
           .decor-product {
-            width: 4.4rem !important;
-            height: 4rem !important;
+            width: 2.4rem !important;
+            height: 3rem !important;
             position: absolute;
-            top: 1.4rem;
-            left: 1.4rem;
+            top: 0;
+            left: 0;
             transform: translate(-50%, -50%) !important;
             z-index: 3;
 
             @media screen and (max-width: 1024px) {
-              width: 60px !important;
-              height: 60px !important;
+              width: 2.2rem !important;
+              height: 3.6rem !important;
             }
             @media screen and (max-width: 768px) {
-              width: 40px !important;
-              height: 40px !important;
+              width: 1.6rem !important;
+              height: 2.2rem !important;
             }
             img {
               width: 100%;
@@ -228,9 +220,12 @@
     .percent {
       font-size: 1.2rem;
       border: 1px solid #ef373e;
-      padding: 1rem;
+      padding: 0.2rem;
       border-radius: 0.4rem;
       color: #ef373e;
+      @media (max-width: 767px) {
+        display: none;
+      }
     }
   }
 
