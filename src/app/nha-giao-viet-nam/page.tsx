@@ -27,7 +27,7 @@ const categories = [
   { id: "item-mac", name: "Laptop/Macbook" },
   { id: "item-watch", name: "Apple Watch" },
   { id: "item-android", name: "Android" },
-  { id: "item-toy", name: "Phụ kiện Apple" },
+  { id: "item-toy", name: "Phụ kiện" },
 ];
 export default function Page() {
   const swiperRef = useRef<any>(null);
