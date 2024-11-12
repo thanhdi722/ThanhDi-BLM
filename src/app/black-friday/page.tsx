@@ -11,7 +11,7 @@ import IpadList from "../../components/ComponentBlackFriday/ipad";
 import img from "../../../public/2011/giay.png";
 import "./style.scss";
 
-export default function page() {
+export default function Page() {
   useEffect(() => {
     for (let i = 0; i < 400; i++) {
       let star = document.createElement("div");

@@ -29,8 +29,7 @@ const categories = [
   { id: "item-android", name: "Android" },
   { id: "item-toy", name: "Phụ kiện Apple" },
 ];
-export default function page() {
-  const categoryRef = useRef(null);
+export default function Page() {
   const swiperRef = useRef<any>(null);
   const [isStickyVisible, setIsStickyVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
