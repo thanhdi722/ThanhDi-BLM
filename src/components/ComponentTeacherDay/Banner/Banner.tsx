@@ -132,7 +132,7 @@ function Banner() {
     fetchBannerHeader();
   }, []);
   return (
-    <div className="HeaderHalloweens2">
+    <div className="HeaderHalloweens20">
       <div>
         {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
           <img
