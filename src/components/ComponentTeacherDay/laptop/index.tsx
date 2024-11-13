@@ -146,14 +146,13 @@ const LaptopList: React.FC = () => {
     (item: any) => item.title === "SP 20/11"
   );
   const keywords = ["samsung"];
-  const filteredIphones = filteredDatassss?.[0]?.items.filter(
-    (product: any) => {
+  const filteredIphones =
+    filteredDatassss?.[0]?.items.filter((product: any) => {
       // Kiểm tra nếu tên sản phẩm chứa từ "iPhone"
       const productName = product.product.name.toLowerCase();
       if (productName.includes("watch")) return false;
       return keywords.some((keyword) => productName.includes(keyword));
-    }
-  );
+    }) || [];
 
   const productSale = data?.[0]?.items;
 
@@ -338,89 +337,91 @@ const LaptopList: React.FC = () => {
 
                 {filteredIphones && filteredIphones.length > 0 ? (
                   <div className="upgrade">
-                    {filteredIphones.map((product: any, index: number) => (
-                      <Link
-                        key={index}
-                        href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
-                        passHref
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ textDecoration: "none", color: "black" }}
-                      >
-                        <div className="upgrade-item">
-                          <div className="upgrade-item-header">
-                            <span className="percent">Trả góp 0%</span>
-                          </div>
-                          <div className="upgrade-item-img">
-                            <div className="img-content">
-                              <Image
-                                src={product?.product?.image?.url}
-                                width={1400}
-                                height={1200}
-                                quality={100}
-                                alt={`product-${index}`}
-                              />
+                    {filteredIphones
+                      .slice(0, visibleCount)
+                      .map((product: any, index: number) => (
+                        <Link
+                          key={index}
+                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
+                          passHref
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ textDecoration: "none", color: "black" }}
+                        >
+                          <div className="upgrade-item">
+                            <div className="upgrade-item-header">
+                              <span className="percent">Trả góp 0%</span>
                             </div>
-                            <div className="frame-product">
-                              <Image
-                                src={FrameProduct}
-                                width={500}
-                                height={500}
-                                quality={100}
-                                alt="frame-product"
-                              />
-                            </div>
-                          </div>
-                          <div className="upgrade-item-content">
-                            <h4 className="upgrade-item-content-tt">
-                              {product?.product?.name}
-                            </h4>
-                            <div className="upgrade-item-content-body">
-                              <div className="upgrade-item-content-body-price">
-                                {product?.sale_price?.toLocaleString("vi-VN")}{" "}
-                                VNĐ
+                            <div className="upgrade-item-img">
+                              <div className="img-content">
+                                <Image
+                                  src={product?.product?.image?.url}
+                                  width={1400}
+                                  height={1200}
+                                  quality={100}
+                                  alt={`product-${index}`}
+                                />
                               </div>
-                              <div className="upgrade-item-content-body-reduced">
-                                <div className="price-reduced">
-                                  {Number(
-                                    product?.price_original
-                                  )?.toLocaleString("vi-VN")}{" "}
+                              <div className="frame-product">
+                                <Image
+                                  src={FrameProduct}
+                                  width={500}
+                                  height={500}
+                                  quality={100}
+                                  alt="frame-product"
+                                />
+                              </div>
+                            </div>
+                            <div className="upgrade-item-content">
+                              <h4 className="upgrade-item-content-tt">
+                                {product?.product?.name}
+                              </h4>
+                              <div className="upgrade-item-content-body">
+                                <div className="upgrade-item-content-body-price">
+                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
                                   VNĐ
                                 </div>
-                                <div className="percent">
-                                  -
-                                  {Math.ceil(
-                                    100 -
-                                      (product.sale_price /
-                                        product.price_original) *
-                                        100
-                                  )}
-                                  %
+                                <div className="upgrade-item-content-body-reduced">
+                                  <div className="price-reduced">
+                                    {Number(
+                                      product?.price_original
+                                    )?.toLocaleString("vi-VN")}{" "}
+                                    VNĐ
+                                  </div>
+                                  <div className="percent">
+                                    -
+                                    {Math.ceil(
+                                      100 -
+                                        (product.sale_price /
+                                          product.price_original) *
+                                          100
+                                    )}
+                                    %
+                                  </div>
                                 </div>
-                              </div>
-                              <div
-                                style={{
-                                  backgroundColor: "rgba(215, 0, 24, .08)",
-                                  borderRadius: "0.4rem",
-                                  color: "#d70018",
-                                  padding: "0.8rem",
-                                  textAlign: "center",
-                                }}
-                              >
-                                <span
+                                <div
                                   style={{
-                                    fontSize: "1.2rem",
+                                    backgroundColor: "rgba(215, 0, 24, .08)",
+                                    borderRadius: "0.4rem",
+                                    color: "#d70018",
+                                    padding: "0.8rem",
                                     textAlign: "center",
                                   }}
                                 >
-                                  Giá thu bằng giá bán - Trợ giá lên đến 100%
-                                </span>
+                                  <span
+                                    style={{
+                                      fontSize: "1.2rem",
+                                      textAlign: "center",
+                                    }}
+                                  >
+                                    Giá thu bằng giá bán - Trợ giá lên đến 100%
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </Link>
-                    ))}
+                        </Link>
+                      ))}
                   </div>
                 ) : (
                   <div
@@ -435,7 +436,7 @@ const LaptopList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredData.length && (
+                {visibleCount < filteredIphones.length && (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}
