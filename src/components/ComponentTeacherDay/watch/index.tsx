@@ -220,7 +220,7 @@ const ToyList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-flash-sale-tuan",
+                  eq: "banner-nha-giao-viet-nam",
                 },
               },
             },
@@ -295,7 +295,7 @@ const ToyList: React.FC = () => {
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title phụ kiện flash sale tuần")
+                        item.name.includes("title watch nhà giáo")
                       )
                       .map((item, index) => (
                         <div key={index}>

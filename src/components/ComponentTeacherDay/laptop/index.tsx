@@ -145,10 +145,13 @@ const LaptopList: React.FC = () => {
   const filteredDatassss = data?.filter(
     (item: any) => item.title === "SP 20/11"
   );
+  const keywords = ["samsung"];
   const filteredIphones = filteredDatassss?.[0]?.items.filter(
     (product: any) => {
       // Kiểm tra nếu tên sản phẩm chứa từ "iPhone"
-      return product.product.name.toLowerCase().includes("macbook", "laptop");
+      const productName = product.product.name.toLowerCase();
+      if (productName.includes("watch")) return false;
+      return keywords.some((keyword) => productName.includes(keyword));
     }
   );
 
@@ -218,7 +221,7 @@ const LaptopList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-flash-sale-tuan",
+                  eq: "banner-nha-giao-viet-nam",
                 },
               },
             },
@@ -311,12 +314,12 @@ const LaptopList: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              <div style={{ backgroundColor: "#396338", padding: "10px" }}>
+              <div style={{ backgroundColor: "#004b20", padding: "10px" }}>
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title samsung flash sale tuần")
+                        item.name.includes("title macbook laptop nhà giáo")
                       )
                       .map((item, index) => (
                         <div key={index}>

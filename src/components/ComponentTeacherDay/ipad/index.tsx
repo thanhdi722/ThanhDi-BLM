@@ -243,7 +243,7 @@ const IpadList: React.FC = () => {
   const { data } = useProductSaleData();
   const filteredDatas = data?.filter((item: any) => item.title === "SP 20/11");
 
-  const keywords = ["ipad"];
+  const keywords = ["ipad", "macbook", "watch"];
 
   const filteredProducts = filteredDatas?.[0]?.items.filter((product: any) => {
     // Chuyển name của sản phẩm về chữ thường và kiểm tra với các từ khóa
@@ -317,7 +317,7 @@ const IpadList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-flash-sale-tuan",
+                  eq: "banner-nha-giao-viet-nam",
                 },
               },
             },
@@ -394,12 +394,12 @@ const IpadList: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              <div style={{ backgroundColor: "#396338", padding: "10px" }}>
+              <div style={{ backgroundColor: "#004b20", padding: "10px" }}>
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title ipad flash sale tuần")
+                        item.name.includes("title ipad nhà giáo")
                       )
                       .map((item, index) => (
                         <div key={index}>

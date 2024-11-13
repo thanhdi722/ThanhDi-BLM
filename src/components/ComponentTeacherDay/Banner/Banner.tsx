@@ -217,9 +217,9 @@ function Banner() {
                   </div>
                 ))}
               </div>
-              <Link href="#item-rules">
+              {/* <Link href="#item-rules">
                 <button className="Halloween-button">Xem thể lệ</button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         )}

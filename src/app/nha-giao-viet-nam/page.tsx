@@ -23,10 +23,9 @@ const categories = [
   { id: "item-hot", name: "Giá sốc" },
   { id: "item-iphone", name: "iPhone" },
   { id: "item-airpods", name: "Máy 99%" },
-  { id: "item-ipad", name: "iPad" },
-  { id: "item-mac", name: "Laptop/Macbook" },
-  { id: "item-watch", name: "Apple Watch" },
-  { id: "item-android", name: "Android" },
+  { id: "item-ipad", name: "iPad/Macbook/Watch" },
+  { id: "item-mac", name: "Samsung" },
+  { id: "item-android", name: "Oppo/Xiaomi/Laptop" },
   { id: "item-toy", name: "Phụ kiện" },
 ];
 export default function Page() {
@@ -305,9 +304,9 @@ export default function Page() {
         <div id="item-mac">
           <LaptopList />
         </div>
-        <div id="item-watch">
+        {/* <div id="item-watch">
           <WatchList />
-        </div>
+        </div> */}
         <div id="item-android">
           <AndroidList />
         </div>

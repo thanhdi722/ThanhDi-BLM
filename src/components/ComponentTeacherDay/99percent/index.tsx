@@ -311,7 +311,7 @@ const ProductPercent: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-flash-sale-tuan",
+                  eq: "banner-nha-giao-viet-nam",
                 },
               },
             },
@@ -409,12 +409,12 @@ const ProductPercent: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              <div style={{ backgroundColor: "#396338", padding: "10px" }}>
+              <div style={{ backgroundColor: "#004b20", padding: "10px" }}>
                 <div className="women-decor">
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title máy 99 flash sale tuần")
+                        item.name.includes("title máy 99 nhà giáo")
                       )
                       .map((item, index) => (
                         <div key={index}>

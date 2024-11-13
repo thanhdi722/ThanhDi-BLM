@@ -245,11 +245,12 @@ const AndroidList: React.FC = () => {
   const { data } = useProductSaleData();
   const filteredDatas = data?.filter((item: any) => item.title === "SP 20/11");
 
-  const keywords = ["oppo", "xiaomi", "samsung"];
+  const keywords = ["oppo", "xiaomi", "laptop"];
 
   const filteredProducts = filteredDatas?.[0]?.items.filter((product: any) => {
     // Chuyển name của sản phẩm về chữ thường và kiểm tra với các từ khóa
     const productName = product.product.name.toLowerCase();
+    if (productName.includes("watch")) return false;
     return keywords.some((keyword) => productName.includes(keyword));
   });
 
@@ -319,7 +320,7 @@ const AndroidList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-flash-sale-tuan",
+                  eq: "banner-nha-giao-viet-nam",
                 },
               },
             },
@@ -408,14 +409,12 @@ const AndroidList: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              <div style={{ backgroundColor: "#396338", padding: "10px" }}>
+              <div style={{ backgroundColor: "#004b20", padding: "10px" }}>
                 <div className="women-decor" style={{ padding: "10px 0px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes(
-                          "title Oppo Xiaomi Laptop flash sale tuần"
-                        )
+                        item.name.includes("title android nhà giáo")
                       )
                       .map((item, index) => (
                         <div key={index}>

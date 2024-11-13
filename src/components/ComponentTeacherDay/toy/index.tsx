@@ -220,7 +220,7 @@ const ToyList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-flash-sale-tuan",
+                  eq: "banner-nha-giao-viet-nam",
                 },
               },
             },
@@ -290,12 +290,12 @@ const ToyList: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              <div style={{ backgroundColor: "#396338", padding: "10px" }}>
+              <div style={{ backgroundColor: "#004b20", padding: "10px" }}>
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title phụ kiện flash sale tuần")
+                        item.name.includes("title phụ kiện nhà giáo")
                       )
                       .map((item, index) => (
                         <div key={index}>
