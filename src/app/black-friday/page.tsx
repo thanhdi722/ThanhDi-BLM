@@ -8,6 +8,7 @@ import AndroidList from "../../components/ComponentBlackFriday/android/index";
 import LaptopList from "../../components/ComponentBlackFriday/laptop/index";
 import ToyList from "../../components/ComponentBlackFriday/toy/index";
 import IpadList from "../../components/ComponentBlackFriday/ipad";
+import imgRocket from "../../../public/black-friday/GIF.gif";
 import img from "../../../public/2011/giay.png";
 import "./style.scss";
 
@@ -44,6 +45,9 @@ export default function Page() {
         backgroundColor: "black",
       }}
     >
+      <div className="rocket">
+        <Image className="rocket-fly shake" src={imgRocket} alt="" />
+      </div>
       {/* <Image className="book" src={img} alt="" />
       <Image className="book2" src={img} alt="" /> */}
 

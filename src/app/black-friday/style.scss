@@ -186,3 +186,67 @@
     transform: rotateX(180deg);
   }
 }
+@keyframes fly-up {
+  0% {
+    bottom: -20%;
+  }
+
+  100% {
+    bottom: 100%;
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(-2px, 0);
+  }
+  50% {
+    transform: translate(2px, 0);
+  }
+  75% {
+    transform: translate(-2px, 0);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+.rocket {
+  position: fixed;
+  bottom: -20%;
+  right: 0;
+  z-index: 99;
+  animation: fly-up 10s infinite;
+}
+.rocket-fly {
+  z-index: 99;
+  width: 200px;
+  height: 200px;
+  animation: fly-up 4s infinite alternate; // Đảm bảo rằng cả hai hoạt ảnh đều được định nghĩa đúng
+  animation-fill-mode: forwards; // Thêm thuộc tính này để giữ trạng thái cuối cùng của hoạt ảnh
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(-2px, 2px);
+  }
+  50% {
+    transform: translate(2px, -2px);
+  }
+  75% {
+    transform: translate(-2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.rocket-fly.shake {
+  position: relative;
+  animation: shake 0.5s infinite;
+  z-index: 99;
+}
