@@ -7,7 +7,10 @@ import Rules5 from "./ip11/index";
 import Rules6 from "./zfold6/index";
 import Rules7 from "./ultrawatch/index";
 import Rules8 from "./s24series/index";
-
+import Rules9 from "./airpod/index";
+import Rules10 from "./miband/index";
+import Rules11 from "./xiaomi14/index";
+import Rules12 from "./macbook/index";
 export default function page() {
   return (
     <div>
@@ -19,6 +22,10 @@ export default function page() {
       <Rules6 />
       <Rules7 />
       <Rules8 />
+      <Rules9 />
+      <Rules10 />
+      <Rules11 />
+      <Rules12 />
     </div>
   );
 }
