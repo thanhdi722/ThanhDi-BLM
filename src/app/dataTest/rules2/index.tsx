@@ -194,9 +194,9 @@ const Rules = () => {
           }
         );
         const detailData = await detailResponse.json();
-        const price = detailData.data.route.options[0].value[0].price;
+        const price = detailData.data.route.options?.[0]?.value?.[0]?.price;
         prices.push(price);
-        setNewsDataPrice2(detailData.data.route.attributes[0].value);
+        setNewsDataPrice2(detailData.data.route.attributes?.[0]?.value);
         setNewsDataDetail((prev) =>
           new Map(prev).set(item.url_key, detailData.data.route.variants)
         );
@@ -232,8 +232,6 @@ const Rules = () => {
     return () => clearInterval(interval); // Dọn dẹp interval khi component unmount
   }, [newsData, newsDataDetail]);
 
-  console.log("newsData", newsData);
-
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
     detail: any,
@@ -248,7 +246,6 @@ const Rules = () => {
     const price = item.attributes?.[0]?.value;
 
     // Kiểm tra giá trị price trước khi gửi
-    console.log("Price to send:", priceValue); // Log giá trị price
 
     const formData = {
       sku: detail.product.sku,
@@ -260,7 +257,6 @@ const Rules = () => {
     };
 
     // Log formData để kiểm tra dữ liệu gửi
-    console.log("Form data to send:", formData);
 
     // Gửi dữ liệu đến Google Sheets
     const response = await fetch(
@@ -276,7 +272,6 @@ const Rules = () => {
     );
 
     // Kiểm tra phản hồi từ Google Sheets
-    console.log("Response from Google Sheets:", response);
   };
 
   return (

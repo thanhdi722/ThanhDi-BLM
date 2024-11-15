@@ -194,9 +194,9 @@ const Rules = () => {
           }
         );
         const detailData = await detailResponse.json();
-        const price = detailData.data.route.options[0].value[0].price;
+        const price = detailData.data.route.options?.[0]?.value?.[0]?.price;
         prices.push(price);
-        setNewsDataPrice2(detailData.data.route.attributes[0].value);
+        setNewsDataPrice2(detailData.data.route.attributes?.[0]?.value);
         setNewsDataDetail((prev) =>
           new Map(prev).set(item.url_key, detailData.data.route.variants)
         );
@@ -230,8 +230,6 @@ const Rules = () => {
 
     return () => clearInterval(interval); // Dọn dẹp interval khi component unmount
   }, [newsData, newsDataDetail]);
-
-  console.log("newsData", newsDataDetail);
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -269,7 +267,7 @@ const Rules = () => {
       }
     );
   };
-
+  console.log("newsData", newsData);
   return (
     <div className="rules-flash-sale" id="item-rules">
       {newsData &&

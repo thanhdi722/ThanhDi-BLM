@@ -11,6 +11,11 @@ import Rules9 from "./airpod/index";
 import Rules10 from "./miband/index";
 import Rules11 from "./xiaomi14/index";
 import Rules12 from "./macbook/index";
+import Rules13 from "./ip12old/index";
+import Rules14 from "./ip13old/index";
+import Rules15 from "./ip14old/index";
+import Rules16 from "./ip15old/index";
+import Rules17 from "./ip11old/index";
 export default function page() {
   return (
     <div>
@@ -26,6 +31,11 @@ export default function page() {
       <Rules10 />
       <Rules11 />
       <Rules12 />
+      <Rules13 />
+      <Rules14 />
+      <Rules15 />
+      <Rules16 />
+      <Rules17 />
     </div>
   );
 }
