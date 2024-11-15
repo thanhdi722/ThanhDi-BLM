@@ -242,7 +242,12 @@ const Rules = () => {
     const priceValue =
       detail.product.price_range.minimum_price.final_price.value +
       Number(newsDataPrice[index] || 0);
-    const price = item.attributes?.[0]?.value;
+    const price =
+      item.attributes[0].value !== null
+        ? item.attributes[0].value
+        : detail.product.price_range.minimum_price.final_price.value +
+          Number(newsDataPrice[index] || 0) +
+          200000;
     // Kiểm tra giá trị price trước khi gửi
 
     const formData = {
@@ -302,7 +307,14 @@ const Rules = () => {
                     <input
                       type="text"
                       name="price"
-                      value={item.attributes[0].value}
+                      value={
+                        item.attributes[0].value !== null
+                          ? item.attributes[0].value
+                          : detail.product.price_range.minimum_price.final_price
+                              .value +
+                            Number(newsDataPrice[index] || 0) +
+                            200000
+                      }
                       readOnly
                     />
                     <input

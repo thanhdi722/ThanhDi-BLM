@@ -141,7 +141,7 @@ fragment ProductPriceField on ProductPrice {
 const variables = {
   filter: {
     category_uid: {
-      eq: "MTA4",
+      eq: "ODM=",
     },
   },
   pageSize: 200,
