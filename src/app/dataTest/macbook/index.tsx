@@ -247,7 +247,7 @@ const Rules = () => {
         ? item.attributes[0].value
         : detail.product.price_range.minimum_price.final_price.value +
           Number(newsDataPrice[index] || 0) +
-          200000;
+          500000;
     // Kiểm tra giá trị price trước khi gửi
 
     const formData = {
@@ -313,7 +313,7 @@ const Rules = () => {
                           : detail.product.price_range.minimum_price.final_price
                               .value +
                             Number(newsDataPrice[index] || 0) +
-                            200000
+                            500000
                       }
                       readOnly
                     />
