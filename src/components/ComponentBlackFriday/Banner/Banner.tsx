@@ -131,8 +131,40 @@ function Banner() {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
+
+  useEffect(() => {
+    var target_date = new Date().getTime() + 1000 * 3600 * 72; // set the countdown date
+    var countdown = document.getElementById("tiles"); // get tag element
+
+    const getCountdown = () => {
+      var current_date = new Date().getTime();
+      var seconds_left = (target_date - current_date) / 1000;
+
+      const days = pad(Math.floor(seconds_left / 86400));
+      seconds_left = seconds_left % 86400;
+
+      const hours = pad(Math.floor(seconds_left / 3600));
+      seconds_left = seconds_left % 3600;
+
+      const minutes = pad(Math.floor(seconds_left / 60));
+      const seconds = pad(Math.floor(seconds_left % 60));
+
+      // format countdown string + set tag value
+      if (countdown) {
+        countdown.innerHTML = `<span>${days}</span><span>${hours}</span><span>${minutes}</span><span>${seconds}</span>`;
+      }
+    };
+
+    const pad = (n: number) => (n < 10 ? "0" : "") + n.toString();
+
+    getCountdown(); // initial call
+    const interval = setInterval(getCountdown, 1000); // update every second
+
+    return () => clearInterval(interval); // cleanup on unmount
+  }, []);
+
   return (
-    <div className="HeaderHalloweens20">
+    <div className="HeaderBlackFriday">
       <div>
         {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
           <img
@@ -176,50 +208,17 @@ function Banner() {
             </p>
           </div>
         ) : (
-          <div className="HeaderHalloween-time-line">
-            <div className="HeaderHalloween-time-line-container">
-              <div className="HeaderHalloween-time-line-card-container">
-                {timeArray.map((time, index) => (
-                  <div
-                    className="HeaderHalloween-time-line-card-key"
-                    key={index}
-                  >
-                    <div className="HeaderHalloween-time-line-card">
-                      <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count">{`${time.days} `}</p>
-                        <p className="HeaderHalloween-time-line-subtext">
-                          Ngày
-                        </p>
-                      </div>
-                    </div>
-                    <div className="HeaderHalloween-time-line-card">
-                      <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count">{`${time.hours} `}</p>
-                        <p className="HeaderHalloween-time-line-subtext">Giờ</p>
-                      </div>
-                    </div>
-                    <div className="HeaderHalloween-time-line-card">
-                      <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count">{`${time.minutes} `}</p>
-                        <p className="HeaderHalloween-time-line-subtext">
-                          Phút
-                        </p>
-                      </div>
-                    </div>
-                    <div className="HeaderHalloween-time-line-card">
-                      <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count">{`${time.seconds} `}</p>
-                        <p className="HeaderHalloween-time-line-subtext">
-                          Giây
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+          <div id="countdown">
+            <div id="header"> Black Friday vẫn còn:</div>
+            <div id="tiles"></div>
+            <div className="labels">
+              <div>
+                <p></p>
+                <li>Ngày</li>
+                <li>Giờ</li>
+                <li>Phút</li>
+                <li>Giây</li>
               </div>
-              {/* <Link href="#item-rules">
-                <button className="Halloween-button">Xem thể lệ</button>
-              </Link> */}
             </div>
           </div>
         )}
