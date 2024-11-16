@@ -5,8 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
 import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
-import DecorWomen from "../../../../public/flase-sale/PC_Laptop.png";
-import FrameProduct from "../../../../public/2011/f500k.png";
+import DecorWomen from "../../../../public/flase-sale/PC_phukienapple.png";
+import FrameProduct from "../../../../public/flase-sale/f2.png";
 import "./apple.scss";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
 import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
@@ -107,7 +107,7 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
   filter: {
     category_uid: {
-      eq: "Mzgx",
+      eq: "Mzg2",
     },
   },
   pageSize: 200,
@@ -130,13 +130,13 @@ async function fetchProductListData() {
   return data.data.products.items as Product[];
 }
 
-const LaptopList: React.FC = () => {
+const ToyList: React.FC = () => {
   const {
-    data: dataLaptop,
+    data: DataToy,
     error,
     isLoading,
   } = useQuery<Product[]>({
-    queryKey: ["productLaptop"],
+    queryKey: ["productToy"],
     queryFn: fetchProductListData,
     staleTime: 300000,
   });
@@ -145,15 +145,16 @@ const LaptopList: React.FC = () => {
   const filteredDatassss = data?.filter(
     (item: any) => item.title === "SP 20/11"
   );
-  const keywords = ["samsung"];
-  const filteredIphones =
-    filteredDatassss?.[0]?.items.filter((product: any) => {
+  const filteredIphones = filteredDatassss?.[0]?.items.filter(
+    (product: any) => {
       // Kiểm tra nếu tên sản phẩm chứa từ "iPhone"
-      const productName = product.product.name.toLowerCase();
-      if (productName.includes("watch")) return false;
-      return keywords.some((keyword) => productName.includes(keyword));
-    }) || [];
+      return product.product.name.toLowerCase().includes("watch");
+    }
+  );
 
+  // Hiển thị các sản phẩm đã lọc
+
+  console.log("dataaaaaaaaaaaaaaaaaa", filteredDatassss);
   const productSale = data?.[0]?.items;
 
   const productSaleNames = productSale?.map(
@@ -175,7 +176,6 @@ const LaptopList: React.FC = () => {
     return originalPrice.toLocaleString("vi-VN");
   };
 
-  const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -236,30 +236,7 @@ const LaptopList: React.FC = () => {
     fetchBannerHeader();
   }, []);
   useEffect(() => {
-    let filtered = dataLaptop || [];
-
-    if (activeTab === "Phụ Kiện") {
-      filtered =
-        dataLaptop?.filter((product) => {
-          const hasAccessoryAttribute = product.attributes.some(
-            (attr: any) => attr.value === "Phụ Kiện"
-          );
-          return product.name.includes("Phụ Kiện") || hasAccessoryAttribute;
-        }) || [];
-    } else {
-      filtered =
-        dataLaptop?.filter((product) => {
-          const matchesTab =
-            activeTab === "iPhone 16"
-              ? product.name.startsWith("iPhone 16") &&
-                !product.name.includes("Plus") &&
-                !product.name.includes("Pro")
-              : product.name.includes(activeTab);
-
-          return matchesTab;
-        }) || [];
-    }
-
+    let filtered = DataToy || [];
     setFilteredData(filtered);
 
     const handleResize = () => {
@@ -276,7 +253,7 @@ const LaptopList: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [dataLaptop, activeTab]);
+  }, [DataToy]);
 
   if (isLoading) {
     return (
@@ -313,12 +290,12 @@ const LaptopList: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              <div style={{ backgroundColor: "#004b20", padding: "10px" }}>
+              <div style={{ backgroundColor: "#396338", padding: "10px" }}>
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title macbook laptop nhà giáo")
+                        item.name.includes("title watch nhà giáo")
                       )
                       .map((item, index) => (
                         <div key={index}>
@@ -399,24 +376,6 @@ const LaptopList: React.FC = () => {
                                     %
                                   </div>
                                 </div>
-                                <div
-                                  style={{
-                                    backgroundColor: "rgba(215, 0, 24, .08)",
-                                    borderRadius: "0.4rem",
-                                    color: "#d70018",
-                                    padding: "0.8rem",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  <span
-                                    style={{
-                                      fontSize: "1.2rem",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    Giá thu bằng giá bán - Trợ giá lên đến 100%
-                                  </span>
-                                </div>
                               </div>
                             </div>
                           </div>
@@ -436,7 +395,7 @@ const LaptopList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredIphones.length && (
+                {/* {visibleCount < filteredIphones.length && (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}
@@ -452,7 +411,7 @@ const LaptopList: React.FC = () => {
                       Xem thêm
                     </button>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
@@ -462,4 +421,4 @@ const LaptopList: React.FC = () => {
   );
 };
 
-export default LaptopList;
+export default ToyList;

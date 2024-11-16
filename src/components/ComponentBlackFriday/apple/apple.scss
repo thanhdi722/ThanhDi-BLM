@@ -1,4 +1,6 @@
-.product-list-sale {
+.product-20-11 {
+  z-index: 99;
+  position: relative;
   .tabs {
     display: flex;
     justify-content: center;
@@ -80,7 +82,6 @@
         flex-direction: column;
         justify-content: space-between;
         cursor: pointer;
-        z-index: 3;
         // overflow: hidden;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
         position: relative;
@@ -186,7 +187,7 @@
           &-body {
             display: flex;
             align-items: start;
-            gap: 1.2rem;
+            gap: 0rem;
             flex-direction: column;
 
             &-tt {
@@ -219,10 +220,19 @@
         }
       }
     }
+    .ic-auth {
+      width: 60px;
+      height: 25px;
+      object-fit: unset !important;
+      @media (max-width: 767px) {
+        height: 20px;
+        width: 40px;
+      }
+    }
     .percent {
-      font-size: 1.2rem;
+      font-size: 1rem;
       border: 1px solid #ef373e;
-      padding: 1rem;
+      padding: 0.5rem;
       border-radius: 0.4rem;
       color: #ef373e;
     }

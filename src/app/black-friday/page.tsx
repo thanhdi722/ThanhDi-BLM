@@ -9,33 +9,10 @@ import LaptopList from "../../components/ComponentBlackFriday/laptop/index";
 import ToyList from "../../components/ComponentBlackFriday/toy/index";
 import IpadList from "../../components/ComponentBlackFriday/ipad";
 import imgRocket from "../../../public/black-friday/GIF.gif";
-import img from "../../../public/2011/giay.png";
+import img from "../../../public/black-friday/bacground.png";
 import "./style.scss";
 
 export default function Page() {
-  useEffect(() => {
-    for (let i = 0; i < 400; i++) {
-      let star = document.createElement("div");
-      star.classList.add("star");
-
-      let size = Math.random() * 2.6 + 1;
-      //   -----------------------------------------------------------------------
-      star.style.top = Math.random() * document.body.scrollHeight + "px";
-      star.style.left = Math.random() * document.body.scrollWidth + "px";
-      star.style.width = size + "px";
-      star.style.height = size + "px";
-      star.style.opacity = Math.random().toString();
-      //   -----------------------------------------------------------------------
-
-      star.style.animation = "moveit 2.5s infinite";
-
-      let delayValue = Math.random() * 4;
-      star.style.animationDelay = delayValue + "s";
-
-      document.body.appendChild(star);
-    }
-  }, []);
-
   return (
     <div
       className="page-20-11"
@@ -45,9 +22,10 @@ export default function Page() {
         backgroundColor: "black",
       }}
     >
-      <div className="rocket">
+      <Image className="background-home-black-friday" src={img} alt="" />
+      {/* <div className="rocket">
         <Image className="rocket-fly shake" src={imgRocket} alt="" />
-      </div>
+      </div> */}
       {/* <Image className="book" src={img} alt="" />
       <Image className="book2" src={img} alt="" /> */}
 

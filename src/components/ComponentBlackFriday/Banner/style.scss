@@ -10,7 +10,7 @@
     display: block;
   }
 }
-.HeaderBlackFriday {
+.HeaderHalloweens20 {
   position: relative;
   .HeaderCombo-bannerPC {
     display: block;
@@ -106,13 +106,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4.8rem 0;
+    padding: 0;
 
     @media screen and (max-width: 1200px) {
       padding: 2.4rem 0;
     }
     .Halloween-button {
-      background-color: #b32321;
+      background-color: rgba(255, 174, 0, 0.5);
       color: white;
       font-size: 18px;
       font-weight: 500;
@@ -126,7 +126,7 @@
     }
 
     .Halloween-button:hover {
-      background-color: #d13835;
+      background-color: #e6b30b;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
       transform: scale(1.05);
     }
@@ -156,13 +156,13 @@
   }
 
   .HeaderHalloween-time-line-card {
-    width: 20rem;
-    height: 20rem;
+    width: 15rem;
+    height: 15rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url("../../../../public/black-friday/time-line.png");
+    background-image: url("../../../../public/2011/time-line.png");
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
@@ -209,7 +209,7 @@
       font-size: 1.6rem;
     }
     @media screen and (max-width: 576px) {
-      // margin-top: 2rem;
+      margin-top: 0rem;
     }
   }
   .HeaderHalloween-time-line-card-key {
@@ -278,7 +278,7 @@
   .HeaderHalloween-promotion-header {
     text-align: center;
     font-size: 3.2rem;
-    color: #ffffff;
+    color: #fdff00;
     text-transform: uppercase;
     font-weight: 600;
     @media screen and (max-width: 1200px) {
@@ -312,172 +312,5 @@
       width: 100%;
       z-index: 4;
     }
-  }
-}
-
-#countdown {
-  width: 465px;
-  // height: 112px;
-  margin: 20px auto;
-  text-align: center;
-  background: #b32321;
-  background-image: -webkit-linear-gradient(
-    top,
-    #b32321,
-    #b32321,
-    #b32321,
-    #b32321
-  );
-  background-image: -moz-linear-gradient(
-    top,
-    #b32321,
-    #b32321,
-    #b32321,
-    #b32321
-  );
-  background-image: -ms-linear-gradient(
-    top,
-    #b32321,
-    #b32321,
-    #b32321,
-    #b32321
-  );
-  background-image: -o-linear-gradient(top, #b32321, #b32321, #b32321, #b32321);
-  border: 1px solid #111;
-  border-radius: 5px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
-  // margin: auto;
-  padding: 24px 0;
-  position: unset;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  @media screen and (max-width: 767px) {
-    width: 100%;
-  }
-}
-
-// #countdown:before {
-//   content: "";
-//   width: 8px;
-//   height: 65px;
-//   background: #444;
-//   background-image: -webkit-linear-gradient(top, #555, #444, #444, #555);
-//   background-image: -moz-linear-gradient(top, #555, #444, #444, #555);
-//   background-image: -ms-linear-gradient(top, #555, #444, #444, #555);
-//   background-image: -o-linear-gradient(top, #555, #444, #444, #555);
-//   border: 1px solid #111;
-//   border-top-left-radius: 6px;
-//   border-bottom-left-radius: 6px;
-//   display: block;
-//   position: absolute;
-//   top: 48px;
-//   left: -10px;
-// }
-
-// #countdown:after {
-//   content: "";
-//   width: 8px;
-//   height: 65px;
-//   background: #442;
-//   background-image: -webkit-linear-gradient(top, #555, #444, #444, #555);
-//   background-image: -moz-linear-gradient(top, #555, #444, #444, #555);
-//   background-image: -ms-linear-gradient(top, #555, #444, #444, #555);
-//   background-image: -o-linear-gradient(top, #555, #444, #444, #555);
-//   border: 1px solid #111;
-//   border-top-right-radius: 6px;
-//   border-bottom-right-radius: 6px;
-//   display: block;
-//   position: absolute;
-//   top: 48px;
-//   right: -10px;
-// }
-
-#countdown #tiles {
-  position: relative;
-  z-index: 1;
-}
-
-#countdown #tiles > span {
-  width: 90px;
-  max-width: 92px;
-  font: bold 48px "Droid Sans", Arial, sans-serif;
-  text-align: center;
-  color: #111;
-  background-color: #ddd;
-  background-image: -webkit-linear-gradient(top, #bbb, #eee);
-  background-image: -moz-linear-gradient(top, #bbb, #eee);
-  background-image: -ms-linear-gradient(top, #bbb, #eee);
-  background-image: -o-linear-gradient(top, #bbb, #eee);
-  border-top: 1px solid #fff;
-  border-radius: 3px;
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
-  margin: 0 7px;
-  padding: 18px 0;
-  display: inline-block;
-  position: relative;
-  @media screen and (max-width: 767px) {
-    width: 60px;
-    font-size: 36px;
-    max-width: 60px;
-    padding: 12px 0;
-  }
-}
-
-#countdown #tiles > span:before {
-  content: "";
-  width: 100%;
-  height: 13px;
-  background: #111;
-  display: block;
-  padding: 0 3px;
-  position: absolute;
-  top: 41%;
-  left: -3px;
-  z-index: -1;
-}
-
-#countdown #tiles > span:after {
-  content: "";
-  width: 100%;
-  height: 1px;
-  background: #eee;
-  border-top: 1px solid #333;
-  display: block;
-  position: absolute;
-  top: 48%;
-  left: 0;
-}
-#header {
-  width: 100%;
-  padding: 10px;
-  font: bold 18px "Droid Sans", Arial, sans-serif;
-  color: #ffff00;
-  text-shadow: 1px 1px 0px #000;
-  text-align: center;
-  text-transform: uppercase;
-  display: inline-block;
-}
-#countdown .labels {
-  width: 100%;
-  height: 25px;
-  text-align: center;
-  padding: 10px;
-  bottom: 8px;
-}
-
-#countdown .labels li {
-  width: 102px;
-  font: bold 15px "Droid Sans", Arial, sans-serif;
-  color: #ffff00;
-  text-shadow: 1px 1px 0px #000;
-  text-align: center;
-  text-align: center;
-  text-transform: uppercase;
-  display: inline-block;
-  @media screen and (max-width: 767px) {
-    font-size: 12px;
-    width: 80px;
   }
 }
