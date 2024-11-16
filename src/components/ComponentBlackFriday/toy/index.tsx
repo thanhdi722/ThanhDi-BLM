@@ -283,14 +283,19 @@ const ToyList: React.FC = () => {
       <div>
         <div className="upgrade-list">
           <div className="container">
-            <div
-              style={{
-                padding: "10px",
-                backgroundColor: "rgb(179 111 0)",
-                borderRadius: "5px",
-              }}
-            >
-              <div style={{ backgroundColor: "#004b20", padding: "10px" }}>
+            <div>
+              <div
+                style={{
+                  border: "3px solid #FB0000",
+                  padding: "10px",
+                  borderTopLeftRadius: "20px",
+                  borderBottomRightRadius: "20px",
+                  borderTopRightRadius: "100px",
+                  borderBottomLeftRadius: "100px",
+                  boxShadow:
+                    "rgb(99 42 42) 20px 20px 25px, rgb(79 32 32) -20px -20px 25px",
+                }}
+              >
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items

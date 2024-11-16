@@ -405,13 +405,14 @@ const AndroidList: React.FC = () => {
             <div>
               <div
                 style={{
-                  border: "3px solid red",
+                  border: "3px solid #FB0000",
                   padding: "10px",
                   borderTopLeftRadius: "20px",
                   borderBottomRightRadius: "20px",
                   borderTopRightRadius: "100px",
                   borderBottomLeftRadius: "100px",
-                  boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+                  boxShadow:
+                    "rgb(99 42 42) 20px 20px 25px, rgb(79 32 32) -20px -20px 25px",
                 }}
               >
                 <div className="women-decor" style={{ padding: "10px 0px" }}>
