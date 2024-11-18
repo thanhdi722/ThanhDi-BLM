@@ -228,14 +228,14 @@ function Banner() {
         >
           {`${
             data?.data?.Slider?.items[0]?.Banner?.items.filter((item) =>
-              item.name.includes("ưu đãi nhà giáo")
+              item.name.includes("ưu đãi black friday")
             ).length
           } đặc quyền mua hàng tại `}
           <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
         </div>
         <div className="HeaderHalloween-promotion-list-privilege">
           {data?.data?.Slider?.items[0]?.Banner?.items
-            .filter((item) => item.name.includes("ưu đãi nhà giáo"))
+            .filter((item) => item.name.includes("ưu đãi black friday"))
             .map((item, index) => (
               <div
                 key={index}
