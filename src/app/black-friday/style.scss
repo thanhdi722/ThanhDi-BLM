@@ -241,6 +241,9 @@
   right: 0;
   z-index: 99;
   animation: fly-up 10s infinite;
+  @media screen and (max-width: 1700px) {
+    display: none;
+  }
 }
 .rocket-fly {
   z-index: 99;
