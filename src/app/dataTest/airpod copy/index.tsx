@@ -141,7 +141,7 @@ fragment ProductPriceField on ProductPrice {
 const variables = {
   filter: {
     category_uid: {
-      eq: "Njk=",
+      eq: "MjU0",
     },
   },
   pageSize: 200,
@@ -194,12 +194,11 @@ const Rules = () => {
           }
         );
         const detailData = await detailResponse.json();
-        console.log("detailData", detailData);
         const price = detailData.data.route.options?.[0]?.value?.[0]?.price;
         prices.push(price);
         setNewsDataPrice2(detailData.data.route.attributes?.[0]?.value);
         setNewsDataDetail((prev) =>
-          new Map(prev).set(item.url_key, detailData.data.route)
+          new Map(prev).set(item.url_key, detailData.data.route.variants)
         );
       }
       setNewsDataPrice(prices);
@@ -239,9 +238,16 @@ const Rules = () => {
     item: any
   ) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
-    console.log("i  ", item);
-    const priceValue = item.price_range?.maximum_price?.final_price?.value;
-    const price = item.attributes[0].value;
+
+    const priceValue =
+      detail.product.price_range.minimum_price.final_price.value +
+      Number(newsDataPrice[index] || 0);
+    const price =
+      item.attributes[0].value !== null
+        ? item.attributes[0].value
+        : detail.product.price_range.minimum_price.final_price.value +
+          Number(newsDataPrice[index] || 0) +
+          500000;
 
     // Kiểm tra giá trị price trước khi gửi
 
@@ -256,7 +262,7 @@ const Rules = () => {
 
     // Gửi dữ liệu đến Google Sheets
     await fetch(
-      "https://script.google.com/macros/s/AKfycbwAGZNtesiv-GxbLqPYIiDV8z851v9vsPOAWuEWEWhMafKU7uooeLxtMqZIljXc9EaPcA/exec",
+      "https://script.google.com/macros/s/AKfycbzfx6lArA9mHQmqYQX7aZhdcCOLXCMWHQ0sxtdpdRnMWi2qdGy4LXAreSVbMqmgZfIlyg/exec",
       {
         method: "POST",
         mode: "no-cors",
@@ -267,7 +273,7 @@ const Rules = () => {
       }
     );
   };
-  console.log("newsDataDetail", newsData);
+
   return (
     <div className="rules-flash-sale" id="item-rules">
       {newsData &&
@@ -275,7 +281,7 @@ const Rules = () => {
           <div key={item.uid} style={{ zIndex: "999" }}>
             {newsDataDetail
               .get(item.url_key)
-              ?.variants?.map((detail: any, detailIndex: number) => (
+              ?.map((detail: any, detailIndex: number) => (
                 <div key={detailIndex}>
                   <form onSubmit={(e) => handleSubmit(e, detail, index, item)}>
                     <input
@@ -294,14 +300,22 @@ const Rules = () => {
                       type="text"
                       name="sale"
                       value={
-                        item.price_range?.maximum_price?.final_price?.value
+                        detail.product.price_range.minimum_price.final_price
+                          .value + Number(newsDataPrice[index] || 0)
                       }
                       readOnly
                     />
                     <input
                       type="text"
                       name="price"
-                      value={item.attributes[0].value}
+                      value={
+                        item.attributes[0].value !== null
+                          ? item.attributes[0].value
+                          : detail.product.price_range.minimum_price.final_price
+                              .value +
+                            Number(newsDataPrice[index] || 0) +
+                            500000
+                      }
                       readOnly
                     />
                     <input
