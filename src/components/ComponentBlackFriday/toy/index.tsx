@@ -318,7 +318,7 @@ const ToyList: React.FC = () => {
                 </div>
 
                 {filteredDatassss && filteredDatassss.length > 0 ? (
-                  <div className="upgrade">
+                  <div className="upgrade" style={{ paddingBottom: "50px" }}>
                     {filteredDatassss?.[0]?.items
                       ?.slice(0, visibleCount)
                       .map((product: any, index: number) => (
