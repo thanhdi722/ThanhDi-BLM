@@ -256,7 +256,7 @@ const Rules = () => {
 
     // Gửi dữ liệu đến Google Sheets
     await fetch(
-      "https://script.google.com/macros/s/AKfycbwAGZNtesiv-GxbLqPYIiDV8z851v9vsPOAWuEWEWhMafKU7uooeLxtMqZIljXc9EaPcA/exec",
+      "https://script.google.com/macros/s/AKfycbzlF91mRmshzax0_s1KpkA2OGejQ2caGbm_qXspFbkizqv8_beb_sVYCvXy3cN9NQ1MLA/exec",
       {
         method: "POST",
         mode: "no-cors",
