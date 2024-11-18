@@ -240,9 +240,9 @@ const Rules = () => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
 
     const priceValue =
-      detail.product.price_range.minimum_price.final_price.value +
-      Number(newsDataPrice[index] || 0);
-    const price = item.price_range?.maximum_price?.final_price?.value;
+      item.price_range?.maximum_price?.final_price?.value + 500000;
+
+    const price = item.attributes[0].value;
     // Kiểm tra giá trị price trước khi gửi
 
     const formData = {
@@ -294,17 +294,15 @@ const Rules = () => {
                       type="text"
                       name="sale"
                       value={
-                        detail.product.price_range.minimum_price.final_price
-                          .value + Number(newsDataPrice[index] || 0)
+                        item.price_range?.maximum_price?.final_price?.value +
+                        500000
                       }
                       readOnly
                     />
                     <input
                       type="text"
                       name="price"
-                      value={
-                        item.price_range?.maximum_price?.final_price?.value
-                      }
+                      value={item.attributes[0].value}
                       readOnly
                     />
                     <input
