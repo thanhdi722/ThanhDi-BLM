@@ -484,7 +484,7 @@ const AppleList: React.FC = () => {
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "#ff7518",
+                        backgroundColor: "rgb(255 0 0)",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",
