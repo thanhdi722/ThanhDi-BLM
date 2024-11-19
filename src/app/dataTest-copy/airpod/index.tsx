@@ -245,18 +245,22 @@ const Rules = () => {
   ) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
     console.log("i", item);
-    const priceValue = item.price_range?.maximum_price?.final_price?.value;
-    const price = item.attributes[0].value;
+    const priceValue =
+      item.price_range?.maximum_price?.final_price?.value ||
+      item.price_range?.minimum_price?.final_price?.value;
+    const price = item.attributes[0].value || item.attributes[0].value;
 
     // Kiểm tra giá trị price trước khi gửi
 
     const formData = {
-      sku: detail?.product?.sku,
-      name: detail?.product?.name,
+      sku: detail?.product?.sku || detail?.sku,
+      name: detail?.product?.name || detail?.name,
       price: priceValue, // Sử dụng giá trị đã kiểm tra
       sale: price,
-      url: `https://bachlongmobile.com/products/${item.url_key}/?sku=${detail?.product?.sku}`,
-      urlImage: detail?.product?.image?.url,
+      url: `https://bachlongmobile.com/products/${item.url_key}/?sku=${
+        detail?.product?.sku || detail?.sku
+      }`,
+      urlImage: detail?.product?.image?.url || detail?.image?.url,
     };
 
     // Gửi dữ liệu đến Google Sheets
