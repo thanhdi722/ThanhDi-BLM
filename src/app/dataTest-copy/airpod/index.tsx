@@ -199,7 +199,12 @@ const Rules = () => {
         prices.push(price);
         setNewsDataPrice2(detailData.data.route.attributes?.[0]?.value);
         setNewsDataDetail((prev) =>
-          new Map(prev).set(item.url_key, detailData.data.route)
+          new Map(prev).set(
+            item.url_key,
+            Array.isArray(detailData.data.route.variants)
+              ? detailData.data.route.variants
+              : [detailData.data.route]
+          )
         );
       }
       setNewsDataPrice(prices);
@@ -239,7 +244,7 @@ const Rules = () => {
     item: any
   ) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
-    console.log("i  ", item);
+    console.log("i", item);
     const priceValue = item.price_range?.maximum_price?.final_price?.value;
     const price = item.attributes[0].value;
 
@@ -267,7 +272,7 @@ const Rules = () => {
       }
     );
   };
-  console.log("newsDataDetail", newsData);
+
   return (
     <div className="rules-flash-sale" id="item-rules">
       {newsData &&
@@ -275,45 +280,50 @@ const Rules = () => {
           <div key={item.uid} style={{ zIndex: "999" }}>
             {newsDataDetail
               .get(item.url_key)
-              ?.variants?.map((detail: any, detailIndex: number) => (
+              ?.map((detail: any, detailIndex: number) => (
                 <div key={detailIndex}>
                   <form onSubmit={(e) => handleSubmit(e, detail, index, item)}>
                     <input
                       type="text"
                       name="sku"
-                      value={detail.product.sku}
+                      value={detail?.product?.sku || detail?.sku}
                       readOnly
                     />
                     <input
                       type="text"
                       name="name"
-                      value={detail.product.name}
+                      value={detail?.product?.name || detail?.name}
                       readOnly
                     />
                     <input
                       type="text"
                       name="sale"
                       value={
-                        item.price_range?.maximum_price?.final_price?.value
+                        item.price_range?.maximum_price?.final_price?.value ||
+                        item.price_range?.minimum_price?.final_price?.value
                       }
                       readOnly
                     />
                     <input
                       type="text"
                       name="price"
-                      value={item.attributes[0].value}
+                      value={
+                        item.attributes[0]?.value || item.attributes[0]?.value
+                      }
                       readOnly
                     />
                     <input
                       type="text"
                       name="url"
-                      value={`https://bachlongmobile.com/products/${item.url_key}/?sku=${detail.product.sku}`}
+                      value={`https://bachlongmobile.com/products/${
+                        item.url_key
+                      }/?sku=${detail?.product?.sku || detail?.sku}`}
                       readOnly
                     />
                     <input
                       type="text"
                       name="image"
-                      value={detail?.product?.image?.url}
+                      value={detail?.product?.image?.url || detail?.image?.url}
                       readOnly
                     />
                     <button type="submit">Submit</button>

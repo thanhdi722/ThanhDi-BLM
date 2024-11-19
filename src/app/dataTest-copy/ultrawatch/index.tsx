@@ -266,7 +266,7 @@ const Rules = () => {
       }
     );
   };
-  console.log("newsData", newsData);
+
   return (
     <div className="rules-flash-sale" id="item-rules">
       {newsData &&
