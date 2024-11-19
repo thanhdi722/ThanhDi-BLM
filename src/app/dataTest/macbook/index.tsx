@@ -240,25 +240,22 @@ const Rules = () => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
 
     const priceValue =
-      detail.product.price_range.minimum_price.final_price.value +
-      Number(newsDataPrice[index] || 0);
-    const price =
-      item.attributes[0].value !== null
-        ? item.attributes[0].value
-        : detail.product.price_range.minimum_price.final_price.value +
-          Number(newsDataPrice[index] || 0) +
-          500000;
+      item.price_range?.maximum_price?.final_price?.value ||
+      item.price_range?.minimum_price?.final_price?.value;
+    const price = item.attributes[0].value || item.attributes[0].value;
+
     // Kiểm tra giá trị price trước khi gửi
 
     const formData = {
-      sku: detail?.product?.sku,
-      name: detail?.product?.name,
+      sku: detail?.product?.sku || detail?.sku,
+      name: detail?.product?.name || detail?.name,
       price: priceValue, // Sử dụng giá trị đã kiểm tra
       sale: price,
-      url: `https://bachlongmobile.com/products/${item.url_key}/?sku=${detail?.product?.sku}`,
-      urlImage: detail?.product?.image?.url,
+      url: `https://bachlongmobile.com/products/${item.url_key}/?sku=${
+        detail?.product?.sku || detail?.sku
+      }`,
+      urlImage: detail?.product?.image?.url || detail?.image?.url,
     };
-
     // Gửi dữ liệu đến Google Sheets
     await fetch(
       "https://script.google.com/macros/s/AKfycbzfx6lArA9mHQmqYQX7aZhdcCOLXCMWHQ0sxtdpdRnMWi2qdGy4LXAreSVbMqmgZfIlyg/exec",
@@ -286,21 +283,21 @@ const Rules = () => {
                     <input
                       type="text"
                       name="sku"
-                      value={detail.product.sku}
+                      value={detail?.product?.sku || detail?.sku}
                       readOnly
                     />
                     <input
                       type="text"
                       name="name"
-                      value={detail.product.name}
+                      value={detail?.product?.name || detail?.name}
                       readOnly
                     />
                     <input
                       type="text"
                       name="sale"
                       value={
-                        detail.product.price_range.minimum_price.final_price
-                          .value + Number(newsDataPrice[index] || 0)
+                        item.price_range?.maximum_price?.final_price?.value ||
+                        item.price_range?.minimum_price?.final_price?.value
                       }
                       readOnly
                     />
@@ -308,25 +305,22 @@ const Rules = () => {
                       type="text"
                       name="price"
                       value={
-                        item.attributes[0].value !== null
-                          ? item.attributes[0].value
-                          : detail.product.price_range.minimum_price.final_price
-                              .value +
-                            Number(newsDataPrice[index] || 0) +
-                            500000
+                        item.attributes[0]?.value || item.attributes[0]?.value
                       }
                       readOnly
                     />
                     <input
                       type="text"
                       name="url"
-                      value={`https://bachlongmobile.com/products/${item.url_key}/?sku=${detail.product.sku}`}
+                      value={`https://bachlongmobile.com/products/${
+                        item.url_key
+                      }/?sku=${detail?.product?.sku || detail?.sku}`}
                       readOnly
                     />
                     <input
                       type="text"
                       name="image"
-                      value={detail?.product?.image?.url}
+                      value={detail?.product?.image?.url || detail?.image?.url}
                       readOnly
                     />
                     <button type="submit">Submit</button>
