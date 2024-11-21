@@ -16,10 +16,11 @@ import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 const categories = [
-  { id: "item-hot", name: "Giá sốc" },
+  // { id: "item-hot", name: "Giá sốc" },
   { id: "item-iphone", name: "iPhone" },
+  { id: "item-ipad", name: "iPad/Macbook" },
   { id: "item-airpods", name: "Máy 99%" },
-  { id: "item-ipad", name: "iPad/Macbook/Watch" },
+
   { id: "item-mac", name: "Samsung" },
   { id: "item-android", name: "Oppo/Xiaomi/Laptop" },
   { id: "item-toy", name: "Phụ kiện" },
@@ -116,18 +117,19 @@ export default function Page() {
         <div>
           <Banner />
         </div>
-        <div id="item-hot">
+        {/* <div id="item-hot">
           <ProductList />
-        </div>
+        </div> */}
         <div id="item-iphone">
           <AppleList />
-        </div>
-        <div id="item-airpods">
-          <ProductPercent />
         </div>
         <div id="item-ipad">
           <IpadList />
         </div>
+        <div id="item-airpods">
+          <ProductPercent />
+        </div>
+
         <div id="item-mac">
           <LaptopList />
         </div>

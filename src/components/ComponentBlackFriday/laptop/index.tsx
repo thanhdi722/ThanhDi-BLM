@@ -107,7 +107,7 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
   filter: {
     category_uid: {
-      eq: "Mzgx",
+      eq: "NDA5",
     },
   },
   pageSize: 200,
@@ -131,49 +131,22 @@ async function fetchProductListData() {
 }
 
 const LaptopList: React.FC = () => {
-  const {
-    data: dataLaptop,
-    error,
-    isLoading,
-  } = useQuery<Product[]>({
-    queryKey: ["productLaptop"],
+  const { data, error, isLoading } = useQuery<Product[]>({
+    queryKey: ["productListDataLaptopBlackfriday"],
     queryFn: fetchProductListData,
     staleTime: 300000,
   });
 
-  const { data } = useProductSaleData();
-  const filteredDatassss = data?.filter(
-    (item: any) => item.title === "SP 20/11"
-  );
-  const keywords = ["samsung"];
-  const filteredIphones =
-    filteredDatassss?.[0]?.items.filter((product: any) => {
-      // Kiểm tra nếu tên sản phẩm chứa từ "iPhone"
-      const productName = product.product.name.toLowerCase();
-      if (productName.includes("watch")) return false;
-      return keywords.some((keyword) => productName.includes(keyword));
-    }) || [];
-
-  const productSale = data?.[0]?.items;
-
-  const productSaleNames = productSale?.map(
-    (productSale: any) => productSale.product.name
-  );
-  const productSalePrices = productSale?.map(
-    (productSale: any) => productSale.sale_price
-  );
-
-  const getProductSalePrice = (productName: string, originalPrice: number) => {
-    if (productSaleNames && productSalePrices) {
-      const saleIndex = productSaleNames.findIndex(
-        (name: string) => name === productName
+  useEffect(() => {
+    if (activeTab === "All") {
+      setFilteredData(data || []);
+    } else {
+      const filtered = data?.filter((product) =>
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
       );
-      if (saleIndex !== -1) {
-        return productSalePrices[saleIndex].toLocaleString("vi-VN");
-      }
+      setFilteredData(filtered || []);
     }
-    return originalPrice.toLocaleString("vi-VN");
-  };
+  }, [data]);
 
   const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -220,7 +193,7 @@ const LaptopList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-nha-giao-viet-nam",
+                  eq: "banner-page-black-friday",
                 },
               },
             },
@@ -235,48 +208,6 @@ const LaptopList: React.FC = () => {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
-  useEffect(() => {
-    let filtered = dataLaptop || [];
-
-    if (activeTab === "Phụ Kiện") {
-      filtered =
-        dataLaptop?.filter((product) => {
-          const hasAccessoryAttribute = product.attributes.some(
-            (attr: any) => attr.value === "Phụ Kiện"
-          );
-          return product.name.includes("Phụ Kiện") || hasAccessoryAttribute;
-        }) || [];
-    } else {
-      filtered =
-        dataLaptop?.filter((product) => {
-          const matchesTab =
-            activeTab === "iPhone 16"
-              ? product.name.startsWith("iPhone 16") &&
-                !product.name.includes("Plus") &&
-                !product.name.includes("Pro")
-              : product.name.includes(activeTab);
-
-          return matchesTab;
-        }) || [];
-    }
-
-    setFilteredData(filtered);
-
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(4);
-      } else {
-        setVisibleCount(10);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [dataLaptop, activeTab]);
 
   if (isLoading) {
     return (
@@ -307,23 +238,14 @@ const LaptopList: React.FC = () => {
         <div className="upgrade-list">
           <div className="container">
             <div>
-              <div
-                style={{
-                  border: "3px solid #FB0000",
-                  padding: "10px",
-                  borderTopLeftRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  borderTopRightRadius: "100px",
-                  borderBottomLeftRadius: "100px",
-                  boxShadow:
-                    "rgb(99 42 42) 20px 20px 25px, rgb(79 32 32) -20px -20px 25px",
-                }}
-              >
+              <div className="border_black_friday">
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title macbook laptop nhà giáo")
+                        item.name.includes(
+                          "title sản phẩm samsung page black friday"
+                        )
                       )
                       .map((item, index) => (
                         <div key={index}>
@@ -340,14 +262,14 @@ const LaptopList: React.FC = () => {
                   )}
                 </div>
 
-                {filteredIphones && filteredIphones.length > 0 ? (
+                {filteredData && filteredData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredIphones
+                    {filteredData
                       .slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
+                          href={`https://bachlongmobile.com/products/${product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
@@ -360,7 +282,7 @@ const LaptopList: React.FC = () => {
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
-                                  src={product?.product?.image?.url}
+                                  src={product?.image?.url}
                                   width={1400}
                                   height={1200}
                                   quality={100}
@@ -379,17 +301,20 @@ const LaptopList: React.FC = () => {
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">
-                                {product?.product?.name}
+                                {product?.name}
                               </h4>
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
-                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                  {Number(
+                                    product?.price_range?.minimum_price
+                                      ?.final_price?.value
+                                  )?.toLocaleString("vi-VN")}{" "}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
                                     {Number(
-                                      product?.price_original
+                                      product?.attributes[0]?.value
                                     )?.toLocaleString("vi-VN")}{" "}
                                     VNĐ
                                   </div>
@@ -397,8 +322,11 @@ const LaptopList: React.FC = () => {
                                     -
                                     {Math.ceil(
                                       100 -
-                                        (product.sale_price /
-                                          product.price_original) *
+                                        (Number(product?.attributes[0]?.value) /
+                                          Number(
+                                            product?.price_range?.minimum_price
+                                              ?.final_price?.value
+                                          )) *
                                           100
                                     )}
                                     %
@@ -441,7 +369,7 @@ const LaptopList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredIphones.length && (
+                {visibleCount < filteredData?.length ? (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}
@@ -457,6 +385,8 @@ const LaptopList: React.FC = () => {
                       Xem thêm
                     </button>
                   </div>
+                ) : (
+                  <div style={{ height: "50px" }} />
                 )}
               </div>
             </div>

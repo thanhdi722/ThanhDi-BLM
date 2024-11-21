@@ -206,7 +206,7 @@ fragment ProductPriceField on ProductPrice {
 const variables = {
   filter: {
     category_uid: {
-      eq: "Mzgw",
+      eq: "NDA3",
     },
   },
   pageSize: 200,
@@ -230,47 +230,22 @@ async function fetchProductListData() {
 }
 
 const IpadList: React.FC = () => {
-  const {
-    data: DataIpad,
-    error,
-    isLoading,
-  } = useQuery<Product[]>({
-    queryKey: ["ipadData"],
+  const { data, error, isLoading } = useQuery<Product[]>({
+    queryKey: ["productListDataIpadBlackfriday"],
     queryFn: fetchProductListData,
     staleTime: 300000,
   });
 
-  const { data } = useProductSaleData();
-  const filteredDatas = data?.filter((item: any) => item.title === "SP 20/11");
-
-  const keywords = ["ipad", "macbook"];
-
-  const filteredProducts = filteredDatas?.[0]?.items.filter((product: any) => {
-    // Chuyển name của sản phẩm về chữ thường và kiểm tra với các từ khóa
-    const productName = product.product.name.toLowerCase();
-    return keywords.some((keyword) => productName.includes(keyword));
-  });
-
-  const productSale = data?.[0]?.items;
-
-  const productSaleNames = productSale?.map(
-    (productSale: any) => productSale.product.name
-  );
-  const productSalePrices = productSale?.map(
-    (productSale: any) => productSale.sale_price
-  );
-
-  const getProductSalePrice = (productName: string, originalPrice: number) => {
-    if (productSaleNames && productSalePrices) {
-      const saleIndex = productSaleNames.findIndex(
-        (name: string) => name === productName
+  useEffect(() => {
+    if (activeTab === "All") {
+      setFilteredData(data || []);
+    } else {
+      const filtered = data?.filter((product) =>
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
       );
-      if (saleIndex !== -1) {
-        return productSalePrices[saleIndex].toLocaleString("vi-VN");
-      }
+      setFilteredData(filtered || []);
     }
-    return originalPrice.toLocaleString("vi-VN");
-  };
+  }, [data]);
 
   const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -317,7 +292,7 @@ const IpadList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-nha-giao-viet-nam",
+                  eq: "banner-page-black-friday",
                 },
               },
             },
@@ -332,32 +307,6 @@ const IpadList: React.FC = () => {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
-  useEffect(() => {
-    const filtered = DataIpad?.filter((product) => {
-      const matchesTab = product.name
-        .toLowerCase()
-        .includes(activeTab.toLowerCase());
-
-      return matchesTab;
-    });
-
-    setFilteredData(filtered || []);
-
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(4);
-      } else {
-        setVisibleCount(10);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [DataIpad, activeTab]);
 
   if (isLoading) {
     return (
@@ -388,23 +337,14 @@ const IpadList: React.FC = () => {
         <div className="upgrade-list">
           <div className="container">
             <div>
-              <div
-                style={{
-                  border: "3px solid #FB0000",
-                  padding: "10px",
-                  borderTopLeftRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  borderTopRightRadius: "100px",
-                  borderBottomLeftRadius: "100px",
-                  boxShadow:
-                    "rgb(99 42 42) 20px 20px 25px, rgb(79 32 32) -20px -20px 25px",
-                }}
-              >
+              <div className="border_black_friday">
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title ipad nhà giáo")
+                        item.name.includes(
+                          "title sản phẩm ipad macbook page black friday"
+                        )
                       )
                       .map((item, index) => (
                         <div key={index}>
@@ -443,14 +383,14 @@ const IpadList: React.FC = () => {
 							))}
 					</div> */}
 
-                {filteredProducts && filteredProducts.length > 0 ? (
+                {filteredData && filteredData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredProducts
+                    {filteredData
                       ?.slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
+                          href={`https://bachlongmobile.com/products/${product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
@@ -460,7 +400,7 @@ const IpadList: React.FC = () => {
                             <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
                               {/(iphone|ipad|macbook|watch)/i.test(
-                                product?.product?.name
+                                product?.name
                               ) && (
                                 <Image
                                   className="ic-auth"
@@ -472,7 +412,7 @@ const IpadList: React.FC = () => {
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
-                                  src={product?.product?.image?.url}
+                                  src={product?.image?.url}
                                   width={1400}
                                   height={1200}
                                   quality={100}
@@ -491,17 +431,20 @@ const IpadList: React.FC = () => {
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">
-                                {product?.product?.name}
+                                {product?.name}
                               </h4>
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
-                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                  {Number(
+                                    product?.price_range?.minimum_price
+                                      ?.final_price?.value
+                                  )?.toLocaleString("vi-VN")}{" "}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
                                     {Number(
-                                      product?.price_original
+                                      product?.attributes[0]?.value
                                     )?.toLocaleString("vi-VN")}{" "}
                                     VNĐ
                                   </div>
@@ -509,8 +452,11 @@ const IpadList: React.FC = () => {
                                     -
                                     {Math.ceil(
                                       100 -
-                                        (product.sale_price /
-                                          product.price_original) *
+                                        (Number(product.attributes[0]?.value) /
+                                          Number(
+                                            product.price_range?.minimum_price
+                                              ?.final_price?.value
+                                          )) *
                                           100
                                     )}
                                     %
@@ -553,7 +499,7 @@ const IpadList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredProducts?.length && (
+                {visibleCount < filteredData?.length ? (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}
@@ -569,6 +515,8 @@ const IpadList: React.FC = () => {
                       Xem thêm
                     </button>
                   </div>
+                ) : (
+                  <div style={{ height: "50px" }} />
                 )}
               </div>
             </div>

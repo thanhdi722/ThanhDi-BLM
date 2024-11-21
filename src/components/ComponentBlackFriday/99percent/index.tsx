@@ -206,14 +206,14 @@ fragment ProductPriceField on ProductPrice {
 const variables = {
   filter: {
     category_uid: {
-      eq: "Mzc3",
+      eq: "NDA4",
     },
   },
   pageSize: 200,
   currentPage: 1,
 };
 
-async function fetchProductListData() {
+async function fetchProductListDataApple() {
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
@@ -230,40 +230,22 @@ async function fetchProductListData() {
 }
 
 const ProductPercent: React.FC = () => {
-  const {
-    data: DataPercent,
-    error,
-    isLoading,
-  } = useQuery<Product[]>({
-    queryKey: ["productPercentData"],
-    queryFn: fetchProductListData,
+  const { data, error, isLoading } = useQuery<Product[]>({
+    queryKey: ["productListDataApple99blackfriday"],
+    queryFn: fetchProductListDataApple,
     staleTime: 300000,
   });
-  const { data } = useProductSaleData();
-  const filteredDatassss = data?.filter(
-    (item: any) => item.title === "SP Máy cũ 20/11"
-  );
 
-  const productSale = data?.[0]?.items;
-
-  const productSaleNames = productSale?.map(
-    (productSale: any) => productSale.product.name
-  );
-  const productSalePrices = productSale?.map(
-    (productSale: any) => productSale.sale_price
-  );
-
-  const getProductSalePrice = (productName: string, originalPrice: number) => {
-    if (productSaleNames && productSalePrices) {
-      const saleIndex = productSaleNames.findIndex(
-        (name: string) => name === productName
+  useEffect(() => {
+    if (activeTab === "All") {
+      setFilteredData(data || []);
+    } else {
+      const filtered = data?.filter((product) =>
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
       );
-      if (saleIndex !== -1) {
-        return productSalePrices[saleIndex].toLocaleString("vi-VN");
-      }
+      setFilteredData(filtered || []);
     }
-    return originalPrice.toLocaleString("vi-VN");
-  };
+  }, [data]);
 
   const [activeTab, setActiveTab] = useState<string>("iPhone");
   const [activeSubTab, setActiveSubTab] = useState<string>("");
@@ -311,7 +293,7 @@ const ProductPercent: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-nha-giao-viet-nam",
+                  eq: "banner-page-black-friday",
                 },
               },
             },
@@ -336,7 +318,7 @@ const ProductPercent: React.FC = () => {
   ];
 
   useEffect(() => {
-    const filtered = DataPercent?.filter((product) => {
+    const filtered = data?.filter((product) => {
       const matchesTab =
         (activeTab === "iPhone 16" && activeSubTab === "iPhone 16") ||
         (activeTab === "iPhone 15" && activeSubTab === "iPhone 15") ||
@@ -372,7 +354,7 @@ const ProductPercent: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [DataPercent, activeTab, activeSubTab]);
+  }, [data, activeTab, activeSubTab]);
 
   if (isLoading) {
     return (
@@ -391,7 +373,7 @@ const ProductPercent: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
-
+  console.log("data check", filteredData);
   return (
     <div
       className="product-20-11"
@@ -403,23 +385,14 @@ const ProductPercent: React.FC = () => {
         <div className="upgrade-list">
           <div className="container">
             <div>
-              <div
-                style={{
-                  border: "3px solid #FB0000",
-                  padding: "10px",
-                  borderTopLeftRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  borderTopRightRadius: "100px",
-                  borderBottomLeftRadius: "100px",
-                  boxShadow:
-                    "rgb(99 42 42) 20px 20px 25px, rgb(79 32 32) -20px -20px 25px",
-                }}
-              >
-                <div className="women-decor">
+              <div className="border_black_friday">
+                <div className="women-decor" style={{ padding: "10px 0px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title máy 99 nhà giáo")
+                        item.name.includes(
+                          "title sản phẩm máy 99 page black friday"
+                        )
                       )
                       .map((item, index) => (
                         <div key={index}>
@@ -435,68 +408,15 @@ const ProductPercent: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                {/* <div className="tabs">
-                  {tabs.map((tab) => (
-                    <div key={tab.name}>
-                      <button
-                        onClick={() => {
-                          setActiveTab(tab.name);
-                        }}
-                        className={
-                          activeTab === tab.name ? "tab active" : "tab"
-                        }
-                        style={{
-                          color: activeTab === tab.name ? "#fff" : "#000",
-                          backgroundColor:
-                            activeTab === tab.name ? "#ff7518" : "#fff",
-                          padding: "12px 24px",
-                          margin: "8px",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                          transition: "all 0.3s ease",
-                          boxShadow:
-                            activeTab === tab.name
-                              ? "0 4px 8px rgba(0, 0, 0, 0.1)"
-                              : "none",
-                        }}
-                      >
-                        {tab.name}
-                      </button>
-                    </div>
-                  ))}
-                </div> */}
 
-                {/* <div style={{ display: 'flex', marginBottom: '12px' }} className='sub-tab-list'>
-						{tabs
-							.find((tab) => tab.name === activeTab)
-							?.subTabs.map((subTab) => (
-								<button
-									key={subTab}
-									onClick={() => setActiveSubTab(subTab)}
-									className={activeSubTab === subTab ? 'sub-tab active' : 'sub-tab'}
-									style={{
-										color: activeSubTab === subTab ? 'white' : '#000',
-										backgroundColor: activeSubTab === subTab ? '#ef373e' : '#f1f1f1',
-										border: activeSubTab === subTab ? '1px solid #ef373e' : '1px solid #ccc',
-										padding: '5px 10px',
-										margin: '5px',
-										borderRadius: '5px',
-										cursor: 'pointer',
-									}}
-								>
-									{subTab}
-								</button>
-							))}
-					</div> */}
-
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                {filteredData && filteredData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items
+                    {filteredData
                       ?.slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
+                          href={`https://bachlongmobile.com/products/${product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
@@ -509,7 +429,7 @@ const ProductPercent: React.FC = () => {
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
-                                  src={product?.product?.image?.url}
+                                  src={product?.image?.url}
                                   width={1400}
                                   height={1200}
                                   quality={100}
@@ -528,26 +448,34 @@ const ProductPercent: React.FC = () => {
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">
-                                {product?.product?.name}
+                                {product?.name}
                               </h4>
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
-                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                  {Number(
+                                    product?.price_range?.minimum_price
+                                      ?.final_price?.value
+                                  )?.toLocaleString("vi-VN")}{" "}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
                                     {Number(
-                                      product?.price_original
-                                    )?.toLocaleString("vi-VN")}
+                                      product?.attributes[0]?.value
+                                    )?.toLocaleString("vi-VN")}{" "}
                                     VNĐ
                                   </div>
                                   <div className="percent">
                                     -
                                     {Math.ceil(
                                       100 -
-                                        (product.sale_price /
-                                          product.price_original) *
+                                        (Number(
+                                          product?.price_range?.minimum_price
+                                            ?.final_price?.value
+                                        ) /
+                                          Number(
+                                            product?.attributes[0]?.value
+                                          )) *
                                           100
                                     )}
                                     %
@@ -590,7 +518,7 @@ const ProductPercent: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items.length && (
+                {visibleCount < filteredData?.length ? (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}
@@ -606,6 +534,8 @@ const ProductPercent: React.FC = () => {
                       Xem thêm
                     </button>
                   </div>
+                ) : (
+                  <div style={{ height: "50px" }} />
                 )}
               </div>
             </div>

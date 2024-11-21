@@ -107,7 +107,7 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
   filter: {
     category_uid: {
-      eq: "Mzg2",
+      eq: "NDEx",
     },
   },
   pageSize: 200,
@@ -131,50 +131,24 @@ async function fetchProductListData() {
 }
 
 const ToyList: React.FC = () => {
-  const {
-    data: DataToy,
-    error,
-    isLoading,
-  } = useQuery<Product[]>({
-    queryKey: ["productToy"],
+  const { data, error, isLoading } = useQuery<Product[]>({
+    queryKey: ["productListDataToyBlackfriday"],
     queryFn: fetchProductListData,
     staleTime: 300000,
   });
 
-  const { data } = useProductSaleData();
-  const filteredDatassss = data?.filter(
-    (item: any) => item.title === "SP Phụ kiện 20/11"
-  );
-  // const filteredIphones = filteredDatassss?.[0]?.items.filter(
-  //   (product: any) => {
-  //     // Kiểm tra nếu tên sản phẩm chứa từ "iPhone"
-  //     return product.product.name.toLowerCase().includes("watch");
-  //   }
-  // );
+  const [activeTab, setActiveTab] = useState<string>("All");
 
-  // Hiển thị các sản phẩm đã lọc
-
-  console.log("dataaaaaaaaaaaaaaaaaa", filteredDatassss);
-  const productSale = data?.[0]?.items;
-
-  const productSaleNames = productSale?.map(
-    (productSale: any) => productSale.product.name
-  );
-  const productSalePrices = productSale?.map(
-    (productSale: any) => productSale.sale_price
-  );
-
-  const getProductSalePrice = (productName: string, originalPrice: number) => {
-    if (productSaleNames && productSalePrices) {
-      const saleIndex = productSaleNames.findIndex(
-        (name: string) => name === productName
+  useEffect(() => {
+    if (activeTab === "All") {
+      setFilteredData(data || []);
+    } else {
+      const filtered = data?.filter((product) =>
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
       );
-      if (saleIndex !== -1) {
-        return productSalePrices[saleIndex].toLocaleString("vi-VN");
-      }
+      setFilteredData(filtered || []);
     }
-    return originalPrice.toLocaleString("vi-VN");
-  };
+  }, [data]);
 
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
@@ -220,7 +194,7 @@ const ToyList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-nha-giao-viet-nam",
+                  eq: "banner-page-black-friday",
                 },
               },
             },
@@ -235,25 +209,6 @@ const ToyList: React.FC = () => {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
-  useEffect(() => {
-    let filtered = DataToy || [];
-    setFilteredData(filtered);
-
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(4);
-      } else {
-        setVisibleCount(10);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [DataToy]);
 
   if (isLoading) {
     return (
@@ -284,23 +239,14 @@ const ToyList: React.FC = () => {
         <div className="upgrade-list">
           <div className="container">
             <div>
-              <div
-                style={{
-                  border: "3px solid #FB0000",
-                  padding: "10px",
-                  borderTopLeftRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  borderTopRightRadius: "100px",
-                  borderBottomLeftRadius: "100px",
-                  boxShadow:
-                    "rgb(99 42 42) 20px 20px 25px, rgb(79 32 32) -20px -20px 25px",
-                }}
-              >
-                <div className="women-decor" style={{ paddingBottom: "20px" }}>
+              <div className="border_black_friday">
+                <div className="women-decor">
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title phụ kiện nhà giáo")
+                        item.name.includes(
+                          "title sản phẩm phụ kiện page black friday"
+                        )
                       )
                       .map((item, index) => (
                         <div key={index}>
@@ -317,14 +263,14 @@ const ToyList: React.FC = () => {
                   )}
                 </div>
 
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                {filteredData && filteredData.length > 0 ? (
                   <div className="upgrade" style={{ paddingBottom: "50px" }}>
-                    {filteredDatassss?.[0]?.items
+                    {filteredData
                       ?.slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
+                          href={`https://bachlongmobile.com/products/${product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
@@ -337,7 +283,7 @@ const ToyList: React.FC = () => {
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
-                                  src={product?.product?.image?.url}
+                                  src={product?.image?.url}
                                   width={1400}
                                   height={1200}
                                   quality={100}
@@ -356,17 +302,19 @@ const ToyList: React.FC = () => {
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">
-                                {product?.product?.name}
+                                {product?.name}
                               </h4>
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
-                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                  {product?.price_range?.minimum_price?.final_price?.value?.toLocaleString(
+                                    "vi-VN"
+                                  )}{" "}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
                                     {Number(
-                                      product?.price_original
+                                      product?.attributes[0]?.value
                                     )?.toLocaleString("vi-VN")}{" "}
                                     VNĐ
                                   </div>
@@ -374,8 +322,13 @@ const ToyList: React.FC = () => {
                                     -
                                     {Math.ceil(
                                       100 -
-                                        (product.sale_price /
-                                          product.price_original) *
+                                        (Number(
+                                          product?.price_range?.minimum_price
+                                            ?.final_price?.value
+                                        ) /
+                                          Number(
+                                            product?.attributes[0]?.value
+                                          )) *
                                           100
                                     )}
                                     %
@@ -400,7 +353,7 @@ const ToyList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items?.length && (
+                {visibleCount < filteredData?.length ? (
                   <div style={{ textAlign: "center", marginTop: "20px" }}>
                     <button
                       onClick={loadMore}
@@ -416,6 +369,8 @@ const ToyList: React.FC = () => {
                       Xem thêm
                     </button>
                   </div>
+                ) : (
+                  <div style={{ height: "50px" }} />
                 )}
               </div>
             </div>
