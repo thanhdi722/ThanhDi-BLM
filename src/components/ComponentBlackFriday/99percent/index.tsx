@@ -338,7 +338,15 @@ const ProductPercent: React.FC = () => {
 
       return matchesTab && matchesSubTab;
     });
-    setFilteredData(filtered || []);
+
+    const sortedFiltered = filtered?.sort((a, b) => {
+      return (
+        a.price_range.minimum_price.final_price.value -
+        b.price_range.minimum_price.final_price.value
+      );
+    });
+
+    setFilteredData(sortedFiltered || []);
 
     const handleResize = () => {
       if (window.innerWidth < 768) {

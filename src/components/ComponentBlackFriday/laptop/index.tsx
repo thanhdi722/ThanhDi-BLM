@@ -144,7 +144,14 @@ const LaptopList: React.FC = () => {
       const filtered = data?.filter((product) =>
         product.name.toLowerCase().includes(activeTab.toLowerCase())
       );
-      setFilteredData(filtered || []);
+      const sortedFiltered = filtered?.sort((a, b) => {
+        return (
+          a.price_range.minimum_price.final_price.value -
+          b.price_range.minimum_price.final_price.value
+        );
+      });
+
+      setFilteredData(sortedFiltered || []);
     }
   }, [data]);
 
