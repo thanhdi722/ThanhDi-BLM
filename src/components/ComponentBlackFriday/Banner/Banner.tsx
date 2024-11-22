@@ -180,10 +180,10 @@ function Banner() {
           <div id="countdown">
             <div id="header"> Black Friday vẫn còn:</div>
             <div id="tiles">
-              <span>{timeArray[0].days} Ngày</span>
-              <span>{timeArray[0].hours} Giờ</span>
-              <span>{timeArray[0].minutes} Phút</span>
-              <span>{timeArray[0].seconds} Giây</span>
+              <span>{timeArray[0].days}</span>
+              <span>{timeArray[0].hours}</span>
+              <span>{timeArray[0].minutes}</span>
+              <span>{timeArray[0].seconds}</span>
             </div>
             <div className="labels">
               <div>
