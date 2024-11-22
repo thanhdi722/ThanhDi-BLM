@@ -264,7 +264,7 @@ const ToyList: React.FC = () => {
                 </div>
 
                 {filteredData && filteredData.length > 0 ? (
-                  <div className="upgrade" style={{ paddingBottom: "50px" }}>
+                  <div className="upgrade">
                     {filteredData
                       ?.slice(0, visibleCount)
                       .map((product: any, index: number) => (

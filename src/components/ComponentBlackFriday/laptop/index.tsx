@@ -319,7 +319,6 @@ const LaptopList: React.FC = () => {
                                     VNĐ
                                   </div>
                                   <div className="percent">
-                                    -
                                     {Math.ceil(
                                       100 -
                                         (Number(product?.attributes[0]?.value) /

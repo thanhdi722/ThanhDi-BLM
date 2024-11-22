@@ -41,7 +41,7 @@ interface ApiResponse {
   data: SliderData;
 }
 function Banner() {
-  const [endDate, setEndDate] = useState(new Date("2024-11-20T21:30:00"));
+  const [endDate, setEndDate] = useState(new Date("2024-11-30T21:30:00"));
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ]);
@@ -132,37 +132,6 @@ function Banner() {
     fetchBannerHeader();
   }, []);
 
-  useEffect(() => {
-    var target_date = new Date().getTime() + 1000 * 3600 * 72; // set the countdown date
-    var countdown = document.getElementById("tiles"); // get tag element
-
-    const getCountdown = () => {
-      var current_date = new Date().getTime();
-      var seconds_left = (target_date - current_date) / 1000;
-
-      const days = pad(Math.floor(seconds_left / 86400));
-      seconds_left = seconds_left % 86400;
-
-      const hours = pad(Math.floor(seconds_left / 3600));
-      seconds_left = seconds_left % 3600;
-
-      const minutes = pad(Math.floor(seconds_left / 60));
-      const seconds = pad(Math.floor(seconds_left % 60));
-
-      // format countdown string + set tag value
-      if (countdown) {
-        countdown.innerHTML = `<span>${days}</span><span>${hours}</span><span>${minutes}</span><span>${seconds}</span>`;
-      }
-    };
-
-    const pad = (n: number) => (n < 10 ? "0" : "") + n.toString();
-
-    getCountdown(); // initial call
-    const interval = setInterval(getCountdown, 1000); // update every second
-
-    return () => clearInterval(interval); // cleanup on unmount
-  }, []);
-
   return (
     <div className="HeaderBlackFriday">
       <div>
@@ -210,7 +179,12 @@ function Banner() {
         ) : (
           <div id="countdown">
             <div id="header"> Black Friday vẫn còn:</div>
-            <div id="tiles"></div>
+            <div id="tiles">
+              <span>{timeArray[0].days} Ngày</span>
+              <span>{timeArray[0].hours} Giờ</span>
+              <span>{timeArray[0].minutes} Phút</span>
+              <span>{timeArray[0].seconds} Giây</span>
+            </div>
             <div className="labels">
               <div>
                 <p></p>

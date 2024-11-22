@@ -360,28 +360,6 @@ const IpadList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                {/* <div style={{ display: 'flex', marginBottom: '12px' }} className='sub-tab-list'>
-						{tabs
-							.find((tab) => tab.name === activeTab)
-							?.subTabs.map((subTab) => (
-								<button
-									key={subTab}
-									onClick={() => setActiveSubTab(subTab)}
-									className={activeSubTab === subTab ? 'sub-tab active' : 'sub-tab'}
-									style={{
-										color: activeSubTab === subTab ? 'white' : '#000',
-										backgroundColor: activeSubTab === subTab ? '#ef373e' : '#f1f1f1',
-										border: activeSubTab === subTab ? '1px solid #ef373e' : '1px solid #ccc',
-										padding: '5px 10px',
-										margin: '5px',
-										borderRadius: '5px',
-										cursor: 'pointer',
-									}}
-								>
-									{subTab}
-								</button>
-							))}
-					</div> */}
 
                 {filteredData && filteredData.length > 0 ? (
                   <div className="upgrade">
@@ -449,7 +427,6 @@ const IpadList: React.FC = () => {
                                     VNĐ
                                   </div>
                                   <div className="percent">
-                                    -
                                     {Math.ceil(
                                       100 -
                                         (Number(product.attributes[0]?.value) /
