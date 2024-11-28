@@ -17,10 +17,12 @@ import Rules15 from "./ip14old/index";
 import Rules16 from "./ip15old/index";
 import Rules17 from "./ip11old/index";
 import Rules18 from "./ipad/index";
+import RulesToy from "./toy/index";
 export default function page() {
   return (
     <div>
       <Rules1 />
+      <RulesToy />
       <Rules2 />
       <Rules3 />
       <Rules4 />
