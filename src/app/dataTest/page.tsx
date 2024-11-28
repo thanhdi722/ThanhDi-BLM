@@ -18,6 +18,7 @@ import Rules16 from "./ip15old/index";
 import Rules17 from "./ip11old/index";
 import Rules18 from "./ipad/index";
 import RulesToy from "./toy/index";
+import RulesXiaomiPad from "./xiaomipad/index";
 export default function page() {
   return (
     <div>
@@ -40,6 +41,7 @@ export default function page() {
       <Rules16 />
       <Rules17 />
       <Rules18 />
+      <RulesXiaomiPad />
     </div>
   );
 }
