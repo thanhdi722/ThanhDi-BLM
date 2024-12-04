@@ -529,7 +529,7 @@ const ProductPercent: React.FC = () => {
                   </div>
                 )}
                 {visibleCount < filteredData?.length ? (
-                  <div style={{ textAlign: "center", marginTop: "20px" }}>
+                  <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}
                       style={{

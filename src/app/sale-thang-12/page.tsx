@@ -17,13 +17,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 const categories = [
   // { id: "item-hot", name: "Giá sốc" },
+  { id: "item-toy", name: "Phụ kiện" },
   { id: "item-iphone", name: "iPhone" },
   { id: "item-ipad", name: "iPad/Macbook" },
   { id: "item-airpods", name: "Máy 99%" },
 
   { id: "item-mac", name: "Samsung" },
   { id: "item-android", name: "Oppo/Xiaomi/Laptop" },
-  { id: "item-toy", name: "Phụ kiện" },
 ];
 export default function Page() {
   const swiperRef = useRef<any>(null);
@@ -119,6 +119,9 @@ export default function Page() {
         {/* <div id="item-hot">
           <ProductList />
         </div> */}
+        <div id="item-toy">
+          <ToyList />
+        </div>
         <div id="item-iphone">
           <AppleList />
         </div>
@@ -138,9 +141,7 @@ export default function Page() {
         <div id="item-android">
           <AndroidList />
         </div>
-        <div id="item-toy">
-          <ToyList />
-        </div>
+
         <div
           className={`sticky-category ${
             isStickyVisible ? "visible" : "hidden"

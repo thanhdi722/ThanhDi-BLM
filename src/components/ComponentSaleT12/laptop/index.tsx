@@ -378,11 +378,11 @@ const LaptopList: React.FC = () => {
                   </div>
                 )}
                 {visibleCount < filteredData?.length ? (
-                  <div style={{ textAlign: "center", marginTop: "20px" }}>
+                  <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "rgb(255 0 0)",
+                        backgroundColor: "rgb(246 143 62)",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",

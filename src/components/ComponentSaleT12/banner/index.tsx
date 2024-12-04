@@ -93,33 +93,33 @@ function HeaderHalloween() {
           },
           body: JSON.stringify({
             query: `
-                query getSlider($filter: SliderFilterInput) {
-                  Slider(filter: $filter) {
+            query getSlider($filter: SliderFilterInput) {
+              Slider(filter: $filter) {
+                items {
+                  title
+                  identifier
+                  Banner {
+                    __typename
                     items {
-                      title
-                      identifier
-                      Banner {
-                        __typename
-                        items {
-                          banner_id
-                          caption
-                          link
-                          media
-                          media_alt
-                          name
-                          slider_id
-                        }
-                        page_info {
-                          current_page
-                          page_size
-                          total_pages
-                        }
-                      }
+                      banner_id
+                      caption
+                      link
+                      media
+                      media_alt
+                      name
+                      slider_id
                     }
-                    total_count
+                    page_info {
+                      current_page
+                      page_size
+                      total_pages
+                    }
                   }
                 }
-              `,
+                total_count
+              }
+            }
+          `,
             variables: {
               filter: {
                 identifier: {
@@ -234,9 +234,6 @@ function HeaderHalloween() {
                     </div>
                   ))}
                 </div>
-                <Link href="#item-rules">
-                  <button className="Halloween-button">Xem thể lệ</button>
-                </Link>
               </div>
             </div>
           </div>
@@ -245,12 +242,12 @@ function HeaderHalloween() {
           className="HeaderHalloween-promotion-header"
           style={{ fontWeight: 400 }}
         >
-          6 đặc quyền mua hàng tại{" "}
+          {`6 đặc quyền mua hàng tại `}
           <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
         </div>
         <div className="HeaderHalloween-promotion-list-privilege">
           {data?.data?.Slider?.items[0]?.Banner?.items
-            .filter((item) => item.name.includes("ưu đãi flash sale tuần"))
+            .filter((item) => item.name.includes("đặt quyền deal đầu tháng"))
             .map((item, index) => (
               <div
                 key={index}

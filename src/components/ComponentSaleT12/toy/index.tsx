@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Spin } from "antd";
-import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
-import DecorWomen from "../../../../public/flase-sale/PC_phukienapple.png";
-// import FrameProduct from "../../../../public/black-friday/f80.png";
 import "./apple.scss";
+import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
+import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
+import FrameProduct from "../../../../public/2011/f1v1.png";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
 import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
 export interface Product {
@@ -81,25 +81,124 @@ const query = `
     items {
       ...ProductInterfaceField
     }
-  }
+    aggregations {
+      attribute_code
+      count
+      label
+      options {
+        count
+        label
+        value
+        swatch_data {
+          type
+          value
+        }
+      }
+      position
+    }
+    sort_fields {
+      default
+      options {
+        label
+        value
+      }
+    }
+    total_count
+    page_info {
+      current_page
+      page_size
+      total_pages
+    }  }
 }
 fragment ProductInterfaceField on ProductInterface {
+ image_banner
+  __typename
+  sku
+  uid
   name
   url_key
+  url_suffix
+  canonical_url
+  stock_status
+  categories {
+    __typename
+    name
+    url_key
+    url_path
+    level
+    uid
+    position
+    icon_image
+    image
+    path
+  }
+  id
+  meta_description
+  meta_keyword
+  meta_title
+  new_from_date
+  new_to_date
+  rating_summary
+  review_count
+  thumbnail {
+    url
+    position
+  }
   image {
     url
   }
+  price_range {
+    ...PriceRangeField
+  }
+  ...CustomField
+}
+fragment CustomField on ProductInterface {
+  color
+  country_of_manufacture
+  daily_sale {
+    end_date
+    entity_id
+    sale_price
+    sale_qty
+    saleable_qty
+    sold_qty
+    start_date
+    __typename
+  }
+  rating_summary_start {
+    star_1
+    star_2
+    star_3
+    star_4
+    star_5
+  }
   attributes {
     attribute_code
+    label
     value
   }
-  price_range {
-    minimum_price {
-      final_price {
-        value
-        currency
-      }
-    }
+}
+fragment PriceRangeField on PriceRange {
+  __typename
+  maximum_price {
+    ...ProductPriceField
+  }
+  minimum_price {
+    ...ProductPriceField
+  }
+}
+fragment ProductPriceField on ProductPrice {
+  discount {
+    amount_off
+    percent_off
+  }
+  final_price {
+    currency
+    value
+  }
+  regular_price {
+    currency
+    value
   }
 }
 `;
@@ -107,7 +206,7 @@ fragment ProductInterfaceField on ProductInterface {
 const variables = {
   filter: {
     category_uid: {
-      eq: "Mzg2",
+      eq: "NDEx",
     },
   },
   pageSize: 200,
@@ -130,22 +229,32 @@ async function fetchProductListData() {
   return data.data.products.items as Product[];
 }
 
-const ToyList: React.FC = () => {
-  const {
-    data: DataToy,
-    error,
-    isLoading,
-  } = useQuery<Product[]>({
-    queryKey: ["productToy"],
+const IpadList: React.FC = () => {
+  const { data, error, isLoading } = useQuery<Product[]>({
+    queryKey: ["productListDataPKDeal12"],
     queryFn: fetchProductListData,
     staleTime: 300000,
   });
 
-  const { data } = useProductSaleData();
-  const filteredDatassss = data?.filter(
-    (item: any) => item.title === "SP PK Flash Sale Tuần"
-  );
+  useEffect(() => {
+    if (activeTab === "All") {
+      setFilteredData(data || []);
+    } else {
+      const filtered = data?.filter((product) =>
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
+      );
+      const sortedFiltered = filtered?.sort((a, b) => {
+        return (
+          a.price_range.minimum_price.final_price.value -
+          b.price_range.minimum_price.final_price.value
+        );
+      });
 
+      setFilteredData(sortedFiltered || []);
+    }
+  }, [data]);
+
+  const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -205,22 +314,6 @@ const ToyList: React.FC = () => {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(4);
-      } else {
-        setVisibleCount(10);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [DataToy]);
 
   if (isLoading) {
     return (
@@ -236,45 +329,10 @@ const ToyList: React.FC = () => {
 
   const visibleProducts = filteredData.slice(0, visibleCount);
 
-  const sendDataToSheet = async (product: any) => {
-    try {
-      const formattedProduct = {
-        id: product?.product.sku,
-        name: product.product.name,
-        price: product.sale_price,
-        url: `https://bachlongmobile.com/products/${product.product.url_key}`,
-      };
-
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycby1FLauF5ueVPviTiibysZqLcCWabJsgMmjen7w6kMb5wkM6aMgOPGG7-KxoCj_VxDf/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formattedProduct),
-        }
-      );
-      console.log("Data sent successfully:", response);
-    } catch (error) {
-      console.error("Error sending data:", error);
-    }
-  };
-
   const loadMore = () => {
-    const productsToSend = visibleProducts;
-    productsToSend.forEach((product) => {
-      sendDataToSheet(product);
-    });
     setVisibleCount((prevCount) => prevCount + 10);
   };
-  const seeee = () => {
-    const productsToSend = filteredDatassss?.[0]?.items;
-    productsToSend.forEach((product: any) => {
-      sendDataToSheet(product);
-    });
-  };
+
   return (
     <div
       className="product-20-11"
@@ -306,21 +364,20 @@ const ToyList: React.FC = () => {
                         </div>
                       ))
                   ) : (
-                    <Spin>
+                    <Spin style={{ display: "flex", justifyContent: "center" }}>
                       <div style={{ width: 200, height: 200 }} />
                     </Spin>
                   )}
                 </div>
 
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                {filteredData && filteredData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items
+                    {filteredData
                       ?.slice(0, visibleCount)
-                      .sort((a: any, b: any) => a.sale_price - b.sale_price)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
-                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
+                          href={`https://bachlongmobile.com/products/${product?.url_key}`}
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
@@ -328,12 +385,21 @@ const ToyList: React.FC = () => {
                         >
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
-                              {/* <span className="percent">Trả góp 0%</span> */}
+                              <span className="percent">Trả góp 0%</span>
+                              {/(iphone|ipad|macbook|watch)/i.test(
+                                product?.name
+                              ) && (
+                                <Image
+                                  className="ic-auth"
+                                  src={DecorWomen}
+                                  alt=""
+                                />
+                              )}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
-                                  src={product?.product?.image?.url}
+                                  src={product?.image?.url}
                                   width={1400}
                                   height={1200}
                                   quality={100}
@@ -341,41 +407,64 @@ const ToyList: React.FC = () => {
                                 />
                               </div>
                               <div className="frame-product">
-                                {/* <Image
+                                <Image
                                   src={FrameProduct}
                                   width={500}
                                   height={500}
                                   quality={100}
                                   alt="frame-product"
-                                /> */}
+                                />
                               </div>
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">
-                                {product?.product?.name}
+                                {product?.name}
                               </h4>
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
-                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                  {Number(
+                                    product?.price_range?.minimum_price
+                                      ?.final_price?.value
+                                  )?.toLocaleString("vi-VN")}{" "}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
                                     {Number(
-                                      product?.price_original
+                                      product?.attributes[0]?.value
                                     )?.toLocaleString("vi-VN")}{" "}
                                     VNĐ
                                   </div>
                                   <div className="percent">
-                                    -
                                     {Math.ceil(
                                       100 -
-                                        (product.sale_price /
-                                          product.price_original) *
+                                        (Number(product.attributes[0]?.value) /
+                                          Number(
+                                            product.price_range?.minimum_price
+                                              ?.final_price?.value
+                                          )) *
                                           100
                                     )}
                                     %
                                   </div>
+                                </div>
+                                <div
+                                  style={{
+                                    backgroundColor: "rgba(215, 0, 24, .08)",
+                                    borderRadius: "0.4rem",
+                                    color: "#d70018",
+                                    padding: "0.8rem",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  <span
+                                    style={{
+                                      fontSize: "1.2rem",
+                                      textAlign: "center",
+                                    }}
+                                  >
+                                    Giá thu bằng giá bán - Trợ giá lên đến 100%
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -396,12 +485,12 @@ const ToyList: React.FC = () => {
                     <Spin />
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items?.length ? (
-                  <div style={{ textAlign: "center", marginTop: "20px" }}>
+                {visibleCount < filteredData?.length ? (
+                  <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "rgb(255 0 0)",
+                        backgroundColor: "rgb(246 143 62)",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",
@@ -424,4 +513,4 @@ const ToyList: React.FC = () => {
   );
 };
 
-export default ToyList;
+export default IpadList;
