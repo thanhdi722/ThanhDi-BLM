@@ -123,7 +123,7 @@ function HeaderHalloween() {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-flash-sale-tuan",
+                  eq: "banner-page-deal-dau-thang-12",
                 },
               },
             },
