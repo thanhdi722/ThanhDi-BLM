@@ -242,7 +242,13 @@ const AppleList: React.FC = () => {
 
   useEffect(() => {
     if (activeTab === "All") {
-      setFilteredData(data || []);
+      const sortedData = (data || []).sort((a, b) => {
+        return (
+          a.price_range.minimum_price.final_price.value -
+          b.price_range.minimum_price.final_price.value
+        );
+      });
+      setFilteredData(sortedData);
     } else {
       const filtered = data?.filter((product) =>
         product.name.toLowerCase().includes(activeTab.toLowerCase())
