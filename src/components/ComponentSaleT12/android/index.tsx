@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { Spin } from "antd";
+import { Skeleton, Spin } from "antd";
 import "./product.scss";
 import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
 import DecorWomen from "../../../../public/flase-sale/PC_Android.png";
@@ -326,13 +326,13 @@ const AndroidList: React.FC = () => {
     },
   ];
 
-  if (isLoading) {
-    return (
-      <div className="container-spin">
-        <Spin size="large" />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="container-spin">
+  //       <Spin size="large" />
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return <div>Error loading data</div>;
@@ -529,16 +529,50 @@ const AndroidList: React.FC = () => {
                       ))}
                   </div>
                 ) : (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      height: "200px",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Spin />
+                  <div className="upgrade">
+                    {[...Array(10)].map((_, index) => (
+                      <div
+                        key={index}
+                        className="upgrade-item"
+                        style={{ padding: "10px" }}
+                      >
+                        <div className="">
+                          <Skeleton.Image
+                            active
+                            style={{
+                              width: "210px",
+                              height: "210px",
+                              marginBottom: "10px",
+                            }}
+                          />
+                        </div>
+                        <div className="upgrade-item-content">
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                              marginBottom: "8px",
+                            }}
+                          />
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                              marginBottom: "8px",
+                            }}
+                          />
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
                 {visibleCount < filteredData?.length ? (

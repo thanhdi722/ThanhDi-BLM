@@ -216,13 +216,13 @@ const LaptopList: React.FC = () => {
     fetchBannerHeader();
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className="container-spin">
-        <Spin size="large" />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="container-spin">
+  //       <Spin size="large" />
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return <div>Error loading data</div>;

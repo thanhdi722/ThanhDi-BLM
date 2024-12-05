@@ -364,13 +364,13 @@ const ProductPercent: React.FC = () => {
     };
   }, [data, activeTab, activeSubTab]);
 
-  if (isLoading) {
-    return (
-      <div className="container-spin">
-        <Spin size="large" />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="container-spin">
+  //       <Spin size="large" />
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return <div>Error loading data</div>;
