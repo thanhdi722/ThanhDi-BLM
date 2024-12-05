@@ -299,7 +299,7 @@ const AndroidList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-black-friday",
+                  eq: "banner-page-deal-dau-thang-12",
                 },
               },
             },
@@ -362,9 +362,7 @@ const AndroidList: React.FC = () => {
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes(
-                          "title sản phẩm oppo xiaomi laptop page black friday"
-                        )
+                        item.name.includes("title android deal đầu tháng")
                       )
                       .map((item, index) => (
                         <div key={index}>

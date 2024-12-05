@@ -299,7 +299,7 @@ const IpadList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-black-friday",
+                  eq: "banner-page-deal-dau-thang-12",
                 },
               },
             },
@@ -351,9 +351,7 @@ const IpadList: React.FC = () => {
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes(
-                          "title sản phẩm ipad macbook page black friday"
-                        )
+                        item.name.includes("title ipad deal đầu tháng")
                       )
                       .map((item, index) => (
                         <div key={index}>

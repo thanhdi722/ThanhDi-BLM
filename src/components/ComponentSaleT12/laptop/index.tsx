@@ -200,7 +200,7 @@ const LaptopList: React.FC = () => {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-black-friday",
+                  eq: "banner-page-deal-dau-thang-12",
                 },
               },
             },
@@ -252,9 +252,7 @@ const LaptopList: React.FC = () => {
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes(
-                          "title sản phẩm samsung page black friday"
-                        )
+                        item.name.includes("title samsung deal đầu tháng")
                       )
                       .map((item, index) => (
                         <div key={index}>
