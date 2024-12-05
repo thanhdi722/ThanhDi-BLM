@@ -242,7 +242,7 @@ function HeaderHalloween() {
           className="HeaderHalloween-promotion-header"
           style={{ fontWeight: 400 }}
         >
-          {`6 đặc quyền mua hàng tại `}
+          {`7 đặc quyền mua hàng tại `}
           <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
         </div>
         <div className="HeaderHalloween-promotion-list-privilege">
