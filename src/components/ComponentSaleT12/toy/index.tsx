@@ -1,15 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import { Spin } from "antd";
-import "./apple.scss";
 import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
 import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
 import FrameProduct from "../../../../public/2011/f1v1.png";
+import { Skeleton, Spin } from "antd";
+import "./apple.scss";
+import Link from "next/link";
+import Image from "next/image";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
-import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
+import DecorProduct2 from "../../../../public/flase-sale/dragon-sale.png";
 export interface Product {
   id: number;
   name: string;
@@ -27,6 +27,157 @@ export interface Product {
     };
   };
 }
+interface DailySalesData {
+  data: {
+    DailySales: {
+      items: DailySale[];
+      page_info: PageInfo;
+      total_count: number;
+    };
+  };
+}
+
+interface DailySale {
+  end_date: string;
+  start_date: string;
+  color_code: string;
+  meta_image: string;
+  meta_image_mobile: string;
+  meta_image_product?: string | null;
+  list_item: any[];
+  identifier?: string | null;
+  entity_id: number;
+  items: SaleItem[];
+  priority: string;
+  show_in_home?: boolean | null;
+  status: number;
+  title: string;
+}
+
+interface PageInfo {
+  current_page: number;
+  page_size: number;
+  total_pages: number;
+}
+
+interface SaleItem {
+  rating_summary_daily_sale?: string | null;
+  price_original: string;
+  entity_id: number;
+  product: Products;
+  product_id: number;
+  sale_price: number;
+  sale_qty: number;
+  saleable_qty: number;
+  sold_qty: number;
+  start_date?: string | null;
+  image_banner_sale?: string | null;
+}
+
+interface Products {
+  __typename: string;
+  sku: string;
+  uid: string;
+  name: string;
+  url_key: string;
+  categories: Category[];
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  rating_summary: number;
+  review_count: number;
+  image: ProductImage;
+  price_range: PriceRange;
+  color?: number | null;
+  country_of_manufacture?: string | null;
+  daily_sale?: any | null;
+}
+
+interface Category {
+  name: string;
+  url_key: string;
+  url_path: string;
+  level: number;
+  uid: string;
+  path: string;
+}
+
+interface ProductImage {
+  url: string;
+}
+
+interface PriceRange {
+  __typename: string;
+  maximum_price: PriceDetails;
+  minimum_price: PriceDetails;
+}
+
+interface PriceDetails {
+  discount: Discount;
+  final_price: Price;
+  regular_price: Price;
+}
+
+interface Discount {
+  amount_off: number;
+  percent_off: number;
+}
+
+interface Price {
+  currency: string;
+  value: number;
+}
+
+const query = `
+ query getProducts(
+  $search: String
+  $filter: ProductAttributeFilterInput
+  $sort: ProductAttributeSortInput
+  $pageSize: Int
+  $currentPage: Int
+) {
+  products(
+    search: $search
+    filter: $filter
+    sort: $sort
+    pageSize: $pageSize
+    currentPage: $currentPage
+  ) {
+    items {
+      ...ProductInterfaceField
+    }
+  }
+}
+fragment ProductInterfaceField on ProductInterface {
+  name
+  url_key
+  image {
+    url
+  }
+  attributes {
+    attribute_code
+    value
+  }
+  price_range {
+    minimum_price {
+      final_price {
+        value
+        currency
+      }
+    }
+  }
+}
+`;
+
+const variables = {
+  filter: {
+    category_uid: {
+      eq: "NDEx",
+    },
+  },
+  pageSize: 200,
+  currentPage: 1,
+};
+
 interface BannerItem {
   banner_id: number;
   caption: string;
@@ -63,176 +214,29 @@ interface SliderData {
 interface ApiResponse {
   data: SliderData;
 }
-const query = `
- query getProducts(
-  $search: String
-  $filter: ProductAttributeFilterInput
-  $sort: ProductAttributeSortInput
-  $pageSize: Int
-  $currentPage: Int
-) {
-  products(
-    search: $search
-    filter: $filter
-    sort: $sort
-    pageSize: $pageSize
-    currentPage: $currentPage
-  ) {
-    items {
-      ...ProductInterfaceField
-    }
-    aggregations {
-      attribute_code
-      count
-      label
-      options {
-        count
-        label
-        value
-        swatch_data {
-          type
-          value
-        }
+
+const AppleList: React.FC = () => {
+  async function fetchProductListDataApple() {
+    const response = await fetch(
+      "https://beta-api.bachlongmobile.com/graphql",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query,
+          variables,
+        }),
       }
-      position
-    }
-    sort_fields {
-      default
-      options {
-        label
-        value
-      }
-    }
-    total_count
-    page_info {
-      current_page
-      page_size
-      total_pages
-    }  }
-}
-fragment ProductInterfaceField on ProductInterface {
- image_banner
-  __typename
-  sku
-  uid
-  name
-  url_key
-  url_suffix
-  canonical_url
-  stock_status
-  categories {
-    __typename
-    name
-    url_key
-    url_path
-    level
-    uid
-    position
-    icon_image
-    image
-    path
-  }
-  id
-  meta_description
-  meta_keyword
-  meta_title
-  new_from_date
-  new_to_date
-  rating_summary
-  review_count
-  thumbnail {
-    url
-    position
-  }
-  image {
-    url
-  }
-  price_range {
-    ...PriceRangeField
-  }
-  ...CustomField
-}
-fragment CustomField on ProductInterface {
-  color
-  country_of_manufacture
-  daily_sale {
-    end_date
-    entity_id
-    sale_price
-    sale_qty
-    saleable_qty
-    sold_qty
-    start_date
-    __typename
-  }
-  rating_summary_start {
-    star_1
-    star_2
-    star_3
-    star_4
-    star_5
-  }
-  attributes {
-    attribute_code
-    label
-    value
-  }
-}
-fragment PriceRangeField on PriceRange {
-  __typename
-  maximum_price {
-    ...ProductPriceField
-  }
-  minimum_price {
-    ...ProductPriceField
-  }
-}
-fragment ProductPriceField on ProductPrice {
-  discount {
-    amount_off
-    percent_off
-  }
-  final_price {
-    currency
-    value
-  }
-  regular_price {
-    currency
-    value
-  }
-}
-`;
+    );
 
-const variables = {
-  filter: {
-    category_uid: {
-      eq: "NDEx",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-
-async function fetchProductListData() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
-
-  const data = await response.json();
-  return data.data.products.items as Product[];
-}
-
-const IpadList: React.FC = () => {
+    const data = await response.json();
+    return data.data.products.items as Product[];
+  }
   const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataPKDeal12"],
-    queryFn: fetchProductListData,
+    queryKey: ["productListDataPhuKienDeal12"],
+    queryFn: fetchProductListDataApple,
     staleTime: 300000,
   });
 
@@ -254,7 +258,7 @@ const IpadList: React.FC = () => {
     }
   }, [data]);
 
-  const [activeTab, setActiveTab] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<string>("All");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -315,18 +319,6 @@ const IpadList: React.FC = () => {
     fetchBannerHeader();
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className="container-spin">
-        <Spin size="large" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div>Error loading data</div>;
-  }
-
   const visibleProducts = filteredData.slice(0, visibleCount);
 
   const loadMore = () => {
@@ -369,11 +361,10 @@ const IpadList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-
                 {filteredData && filteredData.length > 0 ? (
                   <div className="upgrade">
                     {filteredData
-                      ?.slice(0, visibleCount)
+                      .slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
@@ -387,7 +378,7 @@ const IpadList: React.FC = () => {
                             <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
                               {/(iphone|ipad|macbook|watch)/i.test(
-                                product?.name
+                                product?.product?.name
                               ) && (
                                 <Image
                                   className="ic-auth"
@@ -436,13 +427,12 @@ const IpadList: React.FC = () => {
                                     VNĐ
                                   </div>
                                   <div className="percent">
+                                    -
                                     {Math.ceil(
                                       100 -
-                                        (Number(product.attributes[0]?.value) /
-                                          Number(
-                                            product.price_range?.minimum_price
-                                              ?.final_price?.value
-                                          )) *
+                                        (product.price_range?.minimum_price
+                                          ?.final_price?.value /
+                                          product.attributes[0]?.value) *
                                           100
                                     )}
                                     %
@@ -473,16 +463,50 @@ const IpadList: React.FC = () => {
                       ))}
                   </div>
                 ) : (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      height: "200px",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Spin />
+                  <div className="upgrade">
+                    {[...Array(10)].map((_, index) => (
+                      <div
+                        key={index}
+                        className="upgrade-item"
+                        style={{ padding: "10px" }}
+                      >
+                        <div className="">
+                          <Skeleton.Image
+                            active
+                            style={{
+                              width: "210px",
+                              height: "210px",
+                              marginBottom: "10px",
+                            }}
+                          />
+                        </div>
+                        <div className="upgrade-item-content">
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                              marginBottom: "8px",
+                            }}
+                          />
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                              marginBottom: "8px",
+                            }}
+                          />
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
                 {visibleCount < filteredData?.length ? (
@@ -513,4 +537,4 @@ const IpadList: React.FC = () => {
   );
 };
 
-export default IpadList;
+export default AppleList;
