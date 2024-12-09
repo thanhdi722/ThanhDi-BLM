@@ -356,7 +356,7 @@ const AndroidList: React.FC = () => {
           <div className="container">
             <div>
               <div
-                style={{ border: "10px solid #ff3333", borderRadius: "20px" }}
+                style={{ border: "10px solid #002aa1", borderRadius: "20px" }}
               >
                 <div className="women-decor" style={{ padding: "10px 0px" }}>
                   {dataTitle ? (
@@ -580,7 +580,7 @@ const AndroidList: React.FC = () => {
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "#ff3333",
+                        backgroundColor: "#002aa1",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",

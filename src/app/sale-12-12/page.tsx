@@ -7,7 +7,8 @@ import AppleList from "../../components/ComponentSale1212/apple/index";
 import ProductPercent from "../../components/ComponentSale1212/99percent/index";
 import AndroidList from "../../components/ComponentSale1212/android/index";
 import LaptopList from "../../components/ComponentSale1212/laptop/index";
-import ToyList from "../../components/ComponentSale1212/toy/index";
+import ToyList11 from "../../components/ComponentSale1212/toy11/index";
+import ToyList12 from "../../components/ComponentSale1212/toy/index";
 import IpadList from "../../components/ComponentSale1212/ipad/index";
 import WatchList from "../../components/ComponentSale1212/watch/index";
 import img from "../../../public/black-friday/bacground.webp";
@@ -17,7 +18,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 const categories = [
   // { id: "item-hot", name: "Giá sốc" },
-  { id: "item-toy", name: "Phụ kiện" },
+  { id: "item-toy11", name: "Mua 1 tăng 1" },
+  { id: "item-toy", name: "Phụ Kiện" },
   { id: "item-iphone", name: "iPhone" },
   { id: "item-ipad", name: "iPad/Macbook" },
   { id: "item-airpods", name: "Máy 99%" },
@@ -105,7 +107,7 @@ export default function Page() {
     <div
       className="page-sale-thang-12-12"
       style={{
-        backgroundColor: "#ffeced",
+        backgroundColor: "#e2e5ff",
       }}
     >
       <div style={{ position: "relative", overflow: "hidden" }}>
@@ -119,8 +121,11 @@ export default function Page() {
         {/* <div id="item-hot">
           <ProductList />
         </div> */}
+        <div id="item-toy11">
+          <ToyList11 />
+        </div>
         <div id="item-toy">
-          <ToyList />
+          <ToyList12 />
         </div>
         <div id="item-iphone">
           <AppleList />

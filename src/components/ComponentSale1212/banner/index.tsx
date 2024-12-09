@@ -241,7 +241,7 @@ function HeaderHalloween() {
         <div
           style={{
             padding: "10px",
-            background: "#ff3333",
+            background: "#002aa1",
             borderRadius: "10px",
           }}
         >

@@ -51,7 +51,7 @@
     .category-mobile {
       display: none;
       width: 100%;
-      background: #ff3333;
+      background: #002aa1;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       text-align: center;
       @media screen and (max-width: 1440px) {
@@ -98,14 +98,14 @@
         height: 100%;
         background-size: cover;
         background-repeat: no-repeat;
-        background-color: #ff3333;
+        background-color: #002aa1;
         z-index: 1;
         border-radius: 0.6rem;
         opacity: 1;
       }
     }
     &.default {
-      background-color: #ff3333;
+      background-color: #002aa1;
       opacity: 0.5;
     }
   }
