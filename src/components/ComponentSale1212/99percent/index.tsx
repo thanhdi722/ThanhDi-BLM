@@ -491,7 +491,7 @@ const ProductPercent: React.FC = () => {
                                 </div>
                                 <div
                                   style={{
-                                    backgroundColor: "#ff3333",
+                                    backgroundColor: "rgba(215, 0, 24, .08)",
                                     borderRadius: "0.4rem",
                                     color: "#d70018",
                                     padding: "0.8rem",
@@ -565,7 +565,7 @@ const ProductPercent: React.FC = () => {
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "rgb(246 143 62)",
+                        backgroundColor: "#ff3333",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",
