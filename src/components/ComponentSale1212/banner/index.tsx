@@ -271,7 +271,7 @@ function HeaderHalloween() {
         <div
           style={{
             padding: "10px",
-            background: "#2425ff",
+            background: "linear-gradient(0deg, #2425ff, #3458e9)",
             borderRadius: "10px",
             marginBottom: "20px",
           }}
