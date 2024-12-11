@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
 import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
-import FrameProduct from "../../../../public/2011/f1v1.png";
+import FrameProduct from "../../../../public/sale-12/fpk.png";
 import { Skeleton, Spin } from "antd";
 import "./apple.scss";
 import Link from "next/link";
@@ -471,7 +471,7 @@ const AppleList: React.FC = () => {
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "#002aa1",
+                        backgroundColor: "#008fff",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",

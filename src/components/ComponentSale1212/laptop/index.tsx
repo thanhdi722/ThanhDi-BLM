@@ -412,7 +412,7 @@ const LaptopList: React.FC = () => {
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "#002aa1",
+                        backgroundColor: "#008fff",
                         color: "white",
                         border: "none",
                         padding: "10px 20px",
