@@ -205,6 +205,21 @@
       margin-top: 0rem;
     }
   }
+  .HeaderHalloween-time-line-count-key {
+    font-size: 2rem; // text-6xl
+    font-weight: bold;
+    color: #ffffff; // amber-100
+    text-align: center;
+    @media screen and (max-width: 1200px) {
+      font-size: 2rem;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 1.6rem;
+    }
+    @media screen and (max-width: 576px) {
+      margin-top: 0rem;
+    }
+  }
   .HeaderHalloween-time-line-card-key {
     display: flex;
     gap: 2px;

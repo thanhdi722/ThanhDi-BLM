@@ -223,7 +223,7 @@ function HeaderHalloween() {
                         </div>
                       </div>
                       <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count">:</p>
+                        <p className="HeaderHalloween-time-line-count-key">:</p>
                       </div>
                       <div className="HeaderHalloween-time-line-card">
                         <div className="content-card">
@@ -236,7 +236,7 @@ function HeaderHalloween() {
                         </div>
                       </div>
                       <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count">:</p>
+                        <p className="HeaderHalloween-time-line-count-key">:</p>
                       </div>
                       <div className="HeaderHalloween-time-line-card">
                         <div className="content-card">
@@ -249,7 +249,7 @@ function HeaderHalloween() {
                         </div>
                       </div>
                       <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count">:</p>
+                        <p className="HeaderHalloween-time-line-count-key">:</p>
                       </div>
                       <div className="HeaderHalloween-time-line-card">
                         <div className="content-card">
