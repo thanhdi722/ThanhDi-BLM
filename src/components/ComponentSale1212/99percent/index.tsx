@@ -352,7 +352,7 @@ const ProductPercent: React.FC = () => {
       if (window.innerWidth < 768) {
         setVisibleCount(4);
       } else {
-        setVisibleCount(10);
+        setVisibleCount(8);
       }
     };
 
