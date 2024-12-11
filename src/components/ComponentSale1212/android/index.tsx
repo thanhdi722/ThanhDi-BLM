@@ -355,9 +355,7 @@ const AndroidList: React.FC = () => {
         <div className="upgrade-list">
           <div className="container">
             <div>
-              <div
-                style={{ border: "10px solid #002aa1", borderRadius: "20px" }}
-              >
+              <div>
                 <div className="women-decor" style={{ padding: "10px 0px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items

@@ -336,9 +336,7 @@ const AppleList: React.FC = () => {
         <div className="upgrade-list">
           <div className="container">
             <div>
-              <div
-                style={{ border: "10px solid #002aa1", borderRadius: "20px" }}
-              >
+              <div>
                 <div className="women-decor" style={{ paddingBottom: "20px" }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items

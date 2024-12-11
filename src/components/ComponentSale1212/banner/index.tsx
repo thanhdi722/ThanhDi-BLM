@@ -243,7 +243,7 @@ function HeaderHalloween() {
             padding: "10px",
             background: "#002aa1",
             borderRadius: "10px",
-            marginTop: "20px",
+            margin: "20px 0px",
           }}
         >
           <div

@@ -18,14 +18,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 const categories = [
   // { id: "item-hot", name: "Giá sốc" },
-  { id: "item-toy11", name: "Mua 1 tăng 1" },
-  { id: "item-toy", name: "Phụ Kiện" },
-  { id: "item-iphone", name: "iPhone" },
-  { id: "item-ipad", name: "iPad/Macbook" },
+  // { id: "item-toy11", name: "Mua 1 tăng 1" },
+
+  { id: "item-iphone", name: "Sản phẩm nổi bậc" },
+  // { id: "item-ipad", name: "iPad/Macbook" },
   { id: "item-airpods", name: "Máy 99%" },
 
   { id: "item-mac", name: "Samsung" },
   { id: "item-android", name: "Oppo/Xiaomi/Laptop" },
+  { id: "item-toy", name: "Phụ Kiện" },
 ];
 export default function Page() {
   const swiperRef = useRef<any>(null);
@@ -107,7 +108,7 @@ export default function Page() {
     <div
       className="page-sale-thang-12-12"
       style={{
-        backgroundColor: "#e2e5ff",
+        backgroundColor: "#000b6b",
       }}
     >
       <div style={{ position: "relative", overflow: "hidden" }}>
@@ -121,18 +122,16 @@ export default function Page() {
         {/* <div id="item-hot">
           <ProductList />
         </div> */}
-        <div id="item-toy11">
+        {/* <div id="item-toy11">
           <ToyList11 />
-        </div>
-        <div id="item-toy">
-          <ToyList12 />
-        </div>
+        </div> */}
+
         <div id="item-iphone">
           <AppleList />
         </div>
-        <div id="item-ipad">
+        {/* <div id="item-ipad">
           <IpadList />
-        </div>
+        </div> */}
         <div id="item-airpods">
           <ProductPercent />
         </div>
@@ -146,7 +145,9 @@ export default function Page() {
         <div id="item-android">
           <AndroidList />
         </div>
-
+        <div id="item-toy">
+          <ToyList12 />
+        </div>
         <div
           className={`sticky-category ${
             isStickyVisible ? "visible" : "hidden"
