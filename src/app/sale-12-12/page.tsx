@@ -20,7 +20,7 @@ const categories = [
   // { id: "item-hot", name: "Giá sốc" },
   // { id: "item-toy11", name: "Mua 1 tăng 1" },
 
-  { id: "item-iphone", name: "Sản phẩm nổi bậc" },
+  { id: "item-iphone", name: "Sản phẩm nổi bật" },
   // { id: "item-ipad", name: "iPad/Macbook" },
   { id: "item-airpods", name: "Máy 99%" },
 

@@ -9,7 +9,7 @@ import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
-import DecorProduct2 from "../../../../public/sale-12/fai.png";
+import DecorProduct2 from "../../../../public/sale-12/fai2.png";
 export interface Product {
   id: number;
   name: string;
@@ -260,7 +260,7 @@ const AppleList: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<string>("iPhone");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
-  const [visibleCount, setVisibleCount] = useState<number>(10);
+  const [visibleCount, setVisibleCount] = useState<number>(8);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
   const fetchBannerHeader = async () => {
     try {
@@ -322,7 +322,7 @@ const AppleList: React.FC = () => {
   const visibleProducts = filteredData.slice(0, visibleCount);
 
   const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 10);
+    setVisibleCount((prevCount) => prevCount + 8);
   };
 
   return (
