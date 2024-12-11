@@ -172,7 +172,7 @@ function HeaderHalloween() {
         style={{ position: "relative", overflow: "hidden" }}
       ></div>
       <div className="container">
-        {/* {isEventOver ? (
+        {isEventOver ? (
           <div className="HeaderHalloween-time-line">
             <p
               className="HeaderHalloween-time-line-end-text"
@@ -192,7 +192,20 @@ function HeaderHalloween() {
         ) : (
           <div className="HeaderHalloween-time-line">
             <div className="HeaderHalloween-time-line-container">
-              <div className="HeaderHalloween-time-line-card-container">
+              <div
+                className="HeaderHalloween-time-line-card-container"
+                style={{ display: "flex" }}
+              >
+                <p
+                  style={{
+                    fontSize: "20px",
+                    padding: "5px",
+                    color: "#ffffff",
+                    fontWeight: "700",
+                  }}
+                >
+                  Ngày kết thúc :
+                </p>
                 <div>
                   {timeArray.map((time, index) => (
                     <div
@@ -201,34 +214,51 @@ function HeaderHalloween() {
                     >
                       <div className="HeaderHalloween-time-line-card">
                         <div className="content-card">
-                          <p className="HeaderHalloween-time-line-count">{`${time.days} `}</p>
-                          <p className="HeaderHalloween-time-line-subtext">
+                          <p className="HeaderHalloween-time-line-count">{`${String(
+                            time.days
+                          ).padStart(2, "0")} `}</p>
+                          {/* <p className="HeaderHalloween-time-line-subtext">
                             Ngày
-                          </p>
+                          </p> */}
                         </div>
+                      </div>
+                      <div className="content-card">
+                        <p className="HeaderHalloween-time-line-count">:</p>
                       </div>
                       <div className="HeaderHalloween-time-line-card">
                         <div className="content-card">
-                          <p className="HeaderHalloween-time-line-count">{`${time.hours} `}</p>
-                          <p className="HeaderHalloween-time-line-subtext">
+                          <p className="HeaderHalloween-time-line-count">{`${String(
+                            time.hours
+                          ).padStart(2, "0")} `}</p>
+                          {/* <p className="HeaderHalloween-time-line-subtext">
                             Giờ
-                          </p>
+                          </p> */}
                         </div>
+                      </div>
+                      <div className="content-card">
+                        <p className="HeaderHalloween-time-line-count">:</p>
                       </div>
                       <div className="HeaderHalloween-time-line-card">
                         <div className="content-card">
-                          <p className="HeaderHalloween-time-line-count">{`${time.minutes} `}</p>
-                          <p className="HeaderHalloween-time-line-subtext">
+                          <p className="HeaderHalloween-time-line-count">{`${String(
+                            time.minutes
+                          ).padStart(2, "0")} `}</p>
+                          {/* <p className="HeaderHalloween-time-line-subtext">
                             Phút
-                          </p>
+                          </p> */}
                         </div>
+                      </div>
+                      <div className="content-card">
+                        <p className="HeaderHalloween-time-line-count">:</p>
                       </div>
                       <div className="HeaderHalloween-time-line-card">
                         <div className="content-card">
-                          <p className="HeaderHalloween-time-line-count">{`${time.seconds} `}</p>
-                          <p className="HeaderHalloween-time-line-subtext">
+                          <p className="HeaderHalloween-time-line-count">{`${String(
+                            time.seconds
+                          ).padStart(2, "0")} `}</p>
+                          {/* <p className="HeaderHalloween-time-line-subtext">
                             Giây
-                          </p>
+                          </p> */}
                         </div>
                       </div>
                     </div>
@@ -237,21 +267,23 @@ function HeaderHalloween() {
               </div>
             </div>
           </div>
-        )} */}
+        )}
         <div
           style={{
             padding: "10px",
-            background: "#002aa1",
+            background: "#2425ff",
             borderRadius: "10px",
-            margin: "20px 0px",
+            marginBottom: "20px",
           }}
         >
           <div
             className="HeaderHalloween-promotion-header"
             style={{ fontWeight: 400 }}
           >
-            {`7 đặc quyền mua hàng tại `}
-            <span style={{ fontWeight: 700 }}>Bạch Long Mobile</span>
+            {` `}
+            <span style={{ fontWeight: 700, color: "#ffff00" }}>
+              7 đặc quyền mua hàng tại Bạch Long Mobile
+            </span>
           </div>
           <div className="HeaderHalloween-promotion-list-privilege">
             {data?.data?.Slider?.items[0]?.Banner?.items

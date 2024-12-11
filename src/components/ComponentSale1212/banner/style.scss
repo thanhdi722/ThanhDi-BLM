@@ -94,7 +94,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem 0;
+    padding: 2rem 0;
 
     @media screen and (max-width: 1200px) {
       padding: 2.4rem 0;
@@ -148,17 +148,19 @@
   }
 
   .HeaderHalloween-time-line-card {
-    width: 18rem;
-    height: 9rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../../../../public/sale-12/viber_image_2024-11-27_13-16-38-251.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    z-index: 10;
+    // width: 18rem;
+    // height: 9rem;
+    // display: flex;
+    background-color: #fde68a;
+    border-radius: 5px;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // background-image: url("../../../../public/sale-12/viber_image_2024-11-27_13-16-38-251.png");
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // position: relative;
+    // z-index: 10;
 
     @media screen and (max-width: 1200px) {
       width: 15rem;
@@ -175,11 +177,10 @@
   }
 
   .HeaderHalloween-time-line-card-container {
-    margin-bottom: 2.4rem;
   }
 
   .content-card {
-    padding: 10px;
+    padding: 5px;
     display: block;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -190,9 +191,9 @@
   }
 
   .HeaderHalloween-time-line-count {
-    font-size: 3rem; // text-6xl
+    font-size: 2rem; // text-6xl
     font-weight: bold;
-    color: #ffff; // amber-100
+    color: #2425ff; // amber-100
     text-align: center;
     @media screen and (max-width: 1200px) {
       font-size: 2rem;
@@ -206,7 +207,7 @@
   }
   .HeaderHalloween-time-line-card-key {
     display: flex;
-    gap: 10px;
+    gap: 2px;
 
     @media (max-width: 768px) {
       gap: 5px;
@@ -270,7 +271,7 @@
   .HeaderHalloween-promotion-header {
     text-align: center;
     font-size: 3.2rem;
-    color: #ffff;
+    color: #ffff00;
     text-transform: uppercase;
     font-weight: 600;
     @media screen and (max-width: 1200px) {
@@ -287,13 +288,13 @@
     align-items: center;
     width: 100%;
     justify-content: center;
-    gap: 10px;
+    gap: 0px;
     position: relative;
     z-index: 1;
 
     @media screen and (max-width: 1200px) {
       gap: 0rem;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       display: grid;
     }
     img {

@@ -291,7 +291,7 @@ const AppleList: React.FC = () => {
   console.log("filteredDatassss", filteredDatassss);
   return (
     <div
-      className="product-20-11"
+      className="product-sale-12-12-toy"
       style={{
         marginBottom: "20px",
       }}
