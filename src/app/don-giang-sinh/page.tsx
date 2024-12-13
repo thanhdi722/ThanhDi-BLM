@@ -87,17 +87,34 @@ export default function Page() {
       }
     }
   }, [activeCategory]);
-  function letsSpin() {
-    var x = 1024;
-    var y = 9999;
-    var deg = Math.floor(Math.random() * (x - y)) + y;
+  // function letsSpin() {
+  //   var x = 1024;
+  //   var y = 9999;
+  //   var deg = Math.floor(Math.random() * (y - x)) + x;
 
+  //   const wheelSpin = document.getElementById("wheelSpin");
+  //   if (wheelSpin) {
+  //     wheelSpin.style.transition = "transform 8s ease-out";
+  //     wheelSpin.style.transform = "rotate(" + deg + "deg)";
+  //   }
+  // }
+  useEffect(() => {
     const wheelSpin = document.getElementById("wheelSpin");
     if (wheelSpin) {
-      wheelSpin.style.transform = "rotate(" + deg + "deg)";
-    }
-  }
+      let deg = 0;
+      const spinInterval = setInterval(() => {
+        deg += 10;
+        wheelSpin.style.transition = "transform 0.5s linear";
+        wheelSpin.style.transform = `rotate(${deg}deg)`;
 
+        if (deg >= 3600) {
+          clearInterval(spinInterval);
+          wheelSpin.style.transition = "transform 4s ease-out";
+          wheelSpin.style.transform = `rotate(${deg + 360}deg)`;
+        }
+      }, 200);
+    }
+  }, []);
   return (
     <div
       className="page-sale-thang-12-12"
@@ -243,9 +260,7 @@ export default function Page() {
             </div>
           </div>
 
-          <button className="spin-spin" onClick={letsSpin}>
-            SPIN
-          </button>
+          <button className="spin-spin">SPIN</button>
         </div>
       </div>
     </div>
