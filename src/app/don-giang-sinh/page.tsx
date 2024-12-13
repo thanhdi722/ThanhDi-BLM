@@ -87,34 +87,17 @@ export default function Page() {
       }
     }
   }, [activeCategory]);
-  // function letsSpin() {
-  //   var x = 1024;
-  //   var y = 9999;
-  //   var deg = Math.floor(Math.random() * (y - x)) + x;
+  function letsSpin() {
+    var x = 1024;
+    var y = 9999;
+    var deg = Math.floor(Math.random() * (x - y)) + y;
 
-  //   const wheelSpin = document.getElementById("wheelSpin");
-  //   if (wheelSpin) {
-  //     wheelSpin.style.transition = "transform 8s ease-out";
-  //     wheelSpin.style.transform = "rotate(" + deg + "deg)";
-  //   }
-  // }
-  useEffect(() => {
     const wheelSpin = document.getElementById("wheelSpin");
     if (wheelSpin) {
-      let deg = 0;
-      const spinInterval = setInterval(() => {
-        deg += 10;
-        wheelSpin.style.transition = "transform 0.5s linear";
-        wheelSpin.style.transform = `rotate(${deg}deg)`;
-
-        if (deg >= 3600) {
-          clearInterval(spinInterval);
-          wheelSpin.style.transition = "transform 4s ease-out";
-          wheelSpin.style.transform = `rotate(${deg + 360}deg)`;
-        }
-      }, 200);
+      wheelSpin.style.transform = "rotate(" + deg + "deg)";
     }
-  }, []);
+  }
+
   return (
     <div
       className="page-sale-thang-12-12"
@@ -222,7 +205,7 @@ export default function Page() {
             </Swiper>
           </div>
         </div>
-        <div
+        {/* <div
           id="main"
           className={`main-spin ${isStickyVisible ? "visible" : "hidden"}`}
           style={{
@@ -260,8 +243,10 @@ export default function Page() {
             </div>
           </div>
 
-          <button className="spin-spin">SPIN</button>
-        </div>
+          <button className="spin-spin" onClick={letsSpin}>
+            SPIN
+          </button>
+        </div> */}
       </div>
     </div>
   );
