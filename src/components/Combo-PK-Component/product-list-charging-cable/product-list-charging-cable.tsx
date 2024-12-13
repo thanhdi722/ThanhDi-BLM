@@ -168,7 +168,7 @@ const Section5: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 10); // Increase the count by 6
     setVisibleProducts((prevVisible) => prevVisible + 10); // Update visibleProducts to show more items
   };
-  console.log("data check", data);
+
   return (
     <div className="OldForNew-Section-charging-cable" id="item-charging-cable">
       <div className="container">

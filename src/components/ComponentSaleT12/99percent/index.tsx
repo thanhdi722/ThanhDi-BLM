@@ -381,7 +381,7 @@ const ProductPercent: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
-  console.log("data check", filteredData);
+
   return (
     <div
       className="product-20-11"

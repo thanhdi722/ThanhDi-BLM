@@ -140,7 +140,6 @@ function HeaderHalloween() {
   useEffect(() => {
     fetchBannerHeader();
   }, []);
-  console.log("data", data);
   return (
     <div className="page-sale-thang-12">
       <div>

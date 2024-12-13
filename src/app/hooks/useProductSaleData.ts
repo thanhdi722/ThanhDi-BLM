@@ -42,7 +42,7 @@ const variables = {
 	pageSize: 200,
 	currentPage: 1,
 };
-
+;
 async function fetchProductSaleData() {
 	const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
 		method: 'POST',
