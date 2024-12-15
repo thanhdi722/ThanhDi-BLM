@@ -178,19 +178,21 @@ const AndroidList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                <div className="tab-buttons">
-                  <button
-                    className={activeTab === "Xiaomi" ? "active" : ""}
-                    onClick={() => handleTabChange("Xiaomi")}
-                  >
-                    Xiaomi
-                  </button>
-                  <button
-                    className={activeTab === "Oppo" ? "active" : ""}
-                    onClick={() => handleTabChange("Oppo")}
-                  >
-                    Oppo
-                  </button>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="tab-buttons">
+                    <button
+                      className={activeTab === "Xiaomi" ? "active" : ""}
+                      onClick={() => handleTabChange("Xiaomi")}
+                    >
+                      Xiaomi
+                    </button>
+                    <button
+                      className={activeTab === "Oppo" ? "active" : ""}
+                      onClick={() => handleTabChange("Oppo")}
+                    >
+                      Oppo
+                    </button>
+                  </div>
                 </div>
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
