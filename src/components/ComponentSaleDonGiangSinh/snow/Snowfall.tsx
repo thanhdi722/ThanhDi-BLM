@@ -18,7 +18,7 @@ const Snowfall: React.FC = () => {
     const fallingTime = Math.floor(Math.random() * 10) + 5;
 
     // Random between snowflake and red envelope
-    const isSnowflake = Math.random() > 0.3; // 70% chance for snowflake, 30% for envelope
+    // const isSnowflake = Math.random() > 0.3;
 
     flakeWrapper.style.width = "40px";
     flakeWrapper.style.height = "40px";
@@ -26,7 +26,8 @@ const Snowfall: React.FC = () => {
     flakeWrapper.style.transform = `scale(${flakeSize})`;
     flakeWrapper.style.animation = `falling-snow ${fallingTime}s linear infinite`;
 
-    flakeWrapper.innerHTML = isSnowflake ? flakeSvg : redEnvelopeSvg;
+    // flakeWrapper.innerHTML = isSnowflake ? flakeSvg : redEnvelopeSvg;
+    flakeWrapper.innerHTML = flakeSvg;
     document.querySelector(".background")?.appendChild(flakeWrapper);
   };
 

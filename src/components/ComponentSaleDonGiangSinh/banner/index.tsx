@@ -190,82 +190,19 @@ function HeaderHalloween() {
             </p>
           </div>
         ) : (
-          <div className="HeaderHalloween-time-line">
-            <div className="HeaderHalloween-time-line-container">
-              <div
-                className="HeaderHalloween-time-line-card-container"
-                style={{ display: "flex" }}
-              >
-                <p
-                  style={{
-                    fontSize: "20px",
-                    padding: "5px",
-                    color: "#fff",
-                    fontWeight: "700",
-                  }}
-                >
-                  Ngày kết thúc :
-                </p>
-                <div>
-                  {timeArray.map((time, index) => (
-                    <div
-                      className="HeaderHalloween-time-line-card-key"
-                      key={index}
-                    >
-                      <div className="HeaderHalloween-time-line-card">
-                        <div className="content-card">
-                          <p className="HeaderHalloween-time-line-count">{`${String(
-                            time.days
-                          ).padStart(2, "0")} `}</p>
-                          {/* <p className="HeaderHalloween-time-line-subtext">
-                            Ngày
-                          </p> */}
-                        </div>
-                      </div>
-                      <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count-key">:</p>
-                      </div>
-                      <div className="HeaderHalloween-time-line-card">
-                        <div className="content-card">
-                          <p className="HeaderHalloween-time-line-count">{`${String(
-                            time.hours
-                          ).padStart(2, "0")} `}</p>
-                          {/* <p className="HeaderHalloween-time-line-subtext">
-                            Giờ
-                          </p> */}
-                        </div>
-                      </div>
-                      <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count-key">:</p>
-                      </div>
-                      <div className="HeaderHalloween-time-line-card">
-                        <div className="content-card">
-                          <p className="HeaderHalloween-time-line-count">{`${String(
-                            time.minutes
-                          ).padStart(2, "0")} `}</p>
-                          {/* <p className="HeaderHalloween-time-line-subtext">
-                            Phút
-                          </p> */}
-                        </div>
-                      </div>
-                      <div className="content-card">
-                        <p className="HeaderHalloween-time-line-count-key">:</p>
-                      </div>
-                      <div className="HeaderHalloween-time-line-card">
-                        <div className="content-card">
-                          <p className="HeaderHalloween-time-line-count">{`${String(
-                            time.seconds
-                          ).padStart(2, "0")} `}</p>
-                          {/* <p className="HeaderHalloween-time-line-subtext">
-                            Giây
-                          </p> */}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          <div className="header-deal-24-12">
+            <h1>
+              <div className="newYear-deal-24-12">
+                Giáng sinh an lành - nhận quà hạnh phúc
               </div>
-            </div>
+              <div className="title-deal-24-12">thời gian còn lại</div>
+            </h1>
+            <h2 className="countdown-deal-24-12">
+              <div id="countdown-days">{timeArray[0].days}d</div>
+              <div id="countdown-hours">{timeArray[0].hours}h</div>
+              <div id="countdown-minutes">{timeArray[0].minutes}m</div>
+              <div id="countdown-seconds">{timeArray[0].seconds}s</div>
+            </h2>
           </div>
         )}
         <div
