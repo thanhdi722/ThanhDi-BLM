@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useProductSaleDataIP } from "../../../app/hooks/productDailySale2412/useProductSaleDataIP";
 import { useProductSaleDataNONP } from "../../../app/hooks/productDailySale2412/useProductSaleDataNONP";
 import { useProductSaleDataPKApple } from "../../../app/hooks/productDailySale2412/useProductSaleDataPKApple";
+import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
 export interface Product {
   id: number;
   name: string;
@@ -325,15 +326,14 @@ const AppleList: React.FC = () => {
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
-                              {/* {/(iphone|ipad|macbook|watch)/i.test(
-                                product?.product?.name
-                              ) && (
+                              {(activeTab === "iPhone" ||
+                                activeTab === "NONP") && (
                                 <Image
                                   className="ic-auth"
                                   src={DecorWomen}
                                   alt=""
                                 />
-                              )} */}
+                              )}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
@@ -382,24 +382,29 @@ const AppleList: React.FC = () => {
                                     %
                                   </div>
                                 </div>
-                                {/* <div
-                                  style={{
-                                    backgroundColor: "rgba(215, 0, 24, .08)",
-                                    borderRadius: "0.4rem",
-                                    color: "#d70018",
-                                    padding: "0.8rem",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  <span
-                                    style={{
-                                      fontSize: "1.2rem",
-                                      textAlign: "center",
-                                    }}
-                                  >
-                                    Giá thu bằng giá bán - Trợ giá lên đến 100%
-                                  </span>
-                                </div> */}
+                                {activeTab === "iPhone" ||
+                                  (activeTab === "NONP" && (
+                                    <div
+                                      style={{
+                                        backgroundColor:
+                                          "rgba(215, 0, 24, .08)",
+                                        borderRadius: "0.4rem",
+                                        color: "#d70018",
+                                        padding: "0.8rem",
+                                        textAlign: "center",
+                                      }}
+                                    >
+                                      <span
+                                        style={{
+                                          fontSize: "1.2rem",
+                                          textAlign: "center",
+                                        }}
+                                      >
+                                        Giá thu bằng giá bán - Trợ giá lên đến
+                                        100%
+                                      </span>
+                                    </div>
+                                  ))}
                               </div>
                             </div>
                           </div>

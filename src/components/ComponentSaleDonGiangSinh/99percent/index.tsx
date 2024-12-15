@@ -1,15 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { Skeleton, Spin } from "antd";
 import "./product.scss";
-import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
-import DecorWomen from "../../../../public/flase-sale/maycu.png";
+import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
 import FrameProduct from "../../../../public/sale-12/fai.png";
-import { useProductSaleDataDaily99 } from "../../../app/hooks/useProductSaleData99";
-import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
 import { useProductSaleDataIPHONE99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataIPHONE99";
 import { useProductSaleDataSAMSUNG99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataSAMSUNG99";
 import { useProductSaleDataWACTH99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataWACTH99";
@@ -233,15 +229,14 @@ const ProductPercent: React.FC = () => {
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
-                              {/* {/(iphone|ipad|macbook|watch)/i.test(
-                                product?.product?.name
-                              ) && (
-                                <Image
-                                  className="ic-auth"
-                                  src={DecorWomen}
-                                  alt=""
-                                />
-                              )} */}
+                              {activeSubTab === "iPhone" &&
+                                product?.product?.name && (
+                                  <Image
+                                    className="ic-auth"
+                                    src={DecorWomen}
+                                    alt=""
+                                  />
+                                )}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">

@@ -266,7 +266,7 @@ const AndroidList: React.FC = () => {
                                     %
                                   </div>
                                 </div>
-                                {/* <div
+                                <div
                                   style={{
                                     backgroundColor: "rgba(215, 0, 24, .08)",
                                     borderRadius: "0.4rem",
@@ -283,7 +283,7 @@ const AndroidList: React.FC = () => {
                                   >
                                     Giá thu bằng giá bán - Trợ giá lên đến 100%
                                   </span>
-                                </div> */}
+                                </div>
                               </div>
                             </div>
                           </div>
