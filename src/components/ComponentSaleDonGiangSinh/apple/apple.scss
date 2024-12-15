@@ -13,9 +13,10 @@
   }
   .tab-buttons {
     display: flex;
-    justify-content: center; // Center the buttons
+    overflow-x: auto;
     gap: 1.2rem;
     padding: 10px; // Add padding
+    white-space: nowrap;
 
     button {
       background-color: transparent;
