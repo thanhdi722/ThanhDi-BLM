@@ -130,12 +130,12 @@ export default function Index() {
     ];
 
     const signs = [
-      "With love,",
-      "Yours merrily,",
-      "Warmest hugs,",
-      "Off to the next chimney,",
-      "Stay magical,",
-      "Happily yours,",
+      // "Với tình yêu,",
+      "Thân ái,",
+      // "Những cái ôm ấm áp,",
+      // "Đi đến ống khói tiếp theo,",
+      // "Hãy giữ phép màu,",
+      // "Hạnh phúc của bạn,",
     ];
 
     const toggleBodyScroll = (disable: boolean) => {
@@ -235,7 +235,7 @@ export default function Index() {
             Stay magical,
           </div>
           <div>
-            <span className="font-script-deal-24-12">Santa</span> 🎅
+            <span className="font-script-deal-24-12">Bạch Long Mobile</span> 🎅
           </div>
         </div>
       </dialog>
