@@ -1,15 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
-import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
 import FrameProduct from "../../../../public/sale-12/fpk.png";
 import { Skeleton, Spin } from "antd";
 import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
-import DecorProduct2 from "../../../../public/flase-sale/dragon-sale.png";
+import { useProductSaleDataPKTaiNghe } from "../../../app/hooks/productDailySale2412/useProductSaleDataPKTaiNghe";
+import { useProductSaleDataPKCuongLuc } from "../../../app/hooks/productDailySale2412/useProductSaleDataPKCuongLuc";
+import { useProductSaleDataPKAmThanh } from "../../../app/hooks/productDailySale2412/useProductSaleDataPKAmThanh";
+import { useProductSaleDataPKCocCapSac } from "../../../app/hooks/productDailySale2412/useProductSaleDataPKCocCapSac";
+import { useProductSaleDataPKBaoDa } from "../../../app/hooks/productDailySale2412/useProductSaleDataPKBaoDa";
+import { useProductSaleDataPKSacDuPhong } from "../../../app/hooks/productDailySale2412/useProductSaleDataPKSacDuPhong";
 export interface Product {
   id: number;
   name: string;
@@ -216,13 +217,32 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductSaleData();
-
-  const filteredDatassss = data?.filter(
-    (item: any) => item.title === "SP PK Flash Sale Tuần"
+  const { data } = useProductSaleDataPKCuongLuc();
+  const filteredDataCuongLuc = data?.filter(
+    (item: any) => item.title === "SP CƯỜNG LỰC 24/12"
+  );
+  const { data: dataPKBaoDa } = useProductSaleDataPKBaoDa();
+  const filteredDataPKBaoDa = dataPKBaoDa?.filter(
+    (item: any) => item.title === "SP BAO DA 24/12"
+  );
+  const { data: dataPKTaiNghe } = useProductSaleDataPKTaiNghe();
+  const filteredDataPKTaiNghe = dataPKTaiNghe?.filter(
+    (item: any) => item.title === "SP PK TAI NGHE 24/12"
+  );
+  const { data: dataPKAmThanh } = useProductSaleDataPKAmThanh();
+  const filteredDataPKAmThanh = dataPKAmThanh?.filter(
+    (item: any) => item.title === "SP ÂM THANH 24/12"
+  );
+  const { data: dataPKSacDuPhong } = useProductSaleDataPKSacDuPhong();
+  const filteredDataPKSacDuPhong = dataPKSacDuPhong?.filter(
+    (item: any) => item.title === "SP PK SẠC DỰ PHÒNG 24/12"
+  );
+  const { data: dataPKCocCapSac } = useProductSaleDataPKCocCapSac();
+  const filteredDataPKCocCapSac = dataPKCocCapSac?.filter(
+    (item: any) => item.title === "SP CỐC CÁP SẠC 24/12"
   );
 
-  const [activeTab, setActiveTab] = useState<string>("All");
+  const [activeTab, setActiveTab] = useState<string>("cuongluc");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -288,6 +308,22 @@ const AppleList: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const currentData =
+    activeTab === "cuongluc"
+      ? filteredDataCuongLuc
+      : activeTab === "baoda"
+      ? filteredDataPKBaoDa
+      : activeTab === "amthanh"
+      ? filteredDataPKAmThanh
+      : activeTab === "coccapsac"
+      ? filteredDataPKCocCapSac
+      : activeTab === "sacduphong"
+      ? filteredDataPKSacDuPhong
+      : filteredDataPKTaiNghe;
 
   return (
     <div
@@ -321,9 +357,47 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                <div className="tab-buttons">
+                  <button
+                    className={activeTab === "cuongluc" ? "active" : ""}
+                    onClick={() => handleTabChange("cuongluc")}
+                  >
+                    Cường Lực
+                  </button>
+                  <button
+                    className={activeTab === "baoda" ? "active" : ""}
+                    onClick={() => handleTabChange("baoda")}
+                  >
+                    Bao da
+                  </button>
+                  <button
+                    className={activeTab === "tainghe" ? "active" : ""}
+                    onClick={() => handleTabChange("tainghe")}
+                  >
+                    Tai nghe
+                  </button>
+                  <button
+                    className={activeTab === "amthanh" ? "active" : ""}
+                    onClick={() => handleTabChange("amthanh")}
+                  >
+                    Âm thanh
+                  </button>
+                  <button
+                    className={activeTab === "sacduphong" ? "active" : ""}
+                    onClick={() => handleTabChange("sacduphong")}
+                  >
+                    Sạc dự phòng
+                  </button>
+                  <button
+                    className={activeTab === "coccapsac" ? "active" : ""}
+                    onClick={() => handleTabChange("coccapsac")}
+                  >
+                    Cốc cắp sạc
+                  </button>
+                </div>
+                {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items
+                    {currentData?.[0]?.items
                       .sort((a: any, b: any) => a.sale_price - b.sale_price)
                       .slice(0, visibleCount)
                       .map((product: any, index: number) => (
@@ -466,7 +540,7 @@ const AppleList: React.FC = () => {
                     ))}
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items?.length ? (
+                {visibleCount < currentData?.[0]?.items?.length ? (
                   <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}

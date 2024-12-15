@@ -1,15 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import DecorProduct from "../../../../public/flase-sale/IC-DECOR.png";
-import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
 import FrameProduct from "../../../../public/sale-12/fip.png";
 import { Skeleton, Spin } from "antd";
 import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { useProductSaleDataDaily1212 } from "../../../app/hooks/useProductSaleDataApple";
-import DecorProduct2 from "../../../../public/sale-12/fai2.png";
+import { useProductSaleDataIP } from "../../../app/hooks/productDailySale2412/useProductSaleDataIP";
+import { useProductSaleDataNONP } from "../../../app/hooks/productDailySale2412/useProductSaleDataNONP";
+import { useProductSaleDataPKApple } from "../../../app/hooks/productDailySale2412/useProductSaleDataPKApple";
 export interface Product {
   id: number;
   name: string;
@@ -127,57 +125,6 @@ interface Price {
   value: number;
 }
 
-const query = `
- query getProducts(
-  $search: String
-  $filter: ProductAttributeFilterInput
-  $sort: ProductAttributeSortInput
-  $pageSize: Int
-  $currentPage: Int
-) {
-  products(
-    search: $search
-    filter: $filter
-    sort: $sort
-    pageSize: $pageSize
-    currentPage: $currentPage
-  ) {
-    items {
-      ...ProductInterfaceField
-    }
-  }
-}
-fragment ProductInterfaceField on ProductInterface {
-  name
-  url_key
-  image {
-    url
-  }
-  attributes {
-    attribute_code
-    value
-  }
-  price_range {
-    minimum_price {
-      final_price {
-        value
-        currency
-      }
-    }
-  }
-}
-`;
-
-const variables = {
-  filter: {
-    category_uid: {
-      eq: "NDA2",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-
 interface BannerItem {
   banner_id: number;
   caption: string;
@@ -216,12 +163,21 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductSaleDataDaily1212();
+  const { data } = useProductSaleDataIP();
   console.log("data check apple ", data);
   const filteredDatassss = data?.filter(
-    (item: any) => item.title === "Nổi bật 12-12"
+    (item: any) => item.title === "SP iPhone 24/12"
   );
-
+  const { data: dataNONP } = useProductSaleDataNONP();
+  console.log("data check apple ", dataNONP);
+  const filteredDatassssNONP = dataNONP?.filter(
+    (item: any) => item.title === "SP NON PHONE 24/12"
+  );
+  const { data: dataPKApple } = useProductSaleDataPKApple();
+  console.log("data check apple ", dataPKApple);
+  const filteredDatassssPKApple = dataPKApple?.filter(
+    (item: any) => item.title === "SP PK APPLE 24/12"
+  );
   const [activeTab, setActiveTab] = useState<string>("iPhone");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
@@ -289,6 +245,17 @@ const AppleList: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
 
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const currentData =
+    activeTab === "iPhone"
+      ? filteredDatassss
+      : activeTab === "NONP"
+      ? filteredDatassssNONP
+      : filteredDatassssPKApple;
+
   return (
     <div
       className="product-20-11"
@@ -301,7 +268,7 @@ const AppleList: React.FC = () => {
           <div className="container">
             <div>
               <div>
-                <div className="women-decor" style={{ paddingBottom: "20px" }}>
+                <div className="women-decor">
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
@@ -321,9 +288,29 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                <div className="tab-buttons">
+                  <button
+                    className={activeTab === "iPhone" ? "active" : ""}
+                    onClick={() => handleTabChange("iPhone")}
+                  >
+                    iPhone
+                  </button>
+                  <button
+                    className={activeTab === "NONP" ? "active" : ""}
+                    onClick={() => handleTabChange("NONP")}
+                  >
+                    NON-PHONE
+                  </button>
+                  <button
+                    className={activeTab === "PKAPPLE" ? "active" : ""}
+                    onClick={() => handleTabChange("PKAPPLE")}
+                  >
+                    Phụ kiện Apple
+                  </button>
+                </div>
+                {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items
+                    {currentData?.[0]?.items
                       .sort((a: any, b: any) => a.sale_price - b.sale_price)
                       .slice(0, visibleCount)
                       .map((product: any, index: number) => (
@@ -466,7 +453,7 @@ const AppleList: React.FC = () => {
                     ))}
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items?.length ? (
+                {visibleCount < currentData?.[0]?.items?.length ? (
                   <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}

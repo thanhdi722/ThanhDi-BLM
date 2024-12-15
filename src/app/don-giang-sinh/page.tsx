@@ -12,10 +12,10 @@ import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 const categories = [
-  { id: "item-iphone", name: "Sản phẩm nổi bật" },
+  { id: "item-iphone", name: "iPhone" },
   { id: "item-airpods", name: "Máy 99%" },
   { id: "item-mac", name: "Samsung" },
-  { id: "item-android", name: "Oppo/Xiaomi/Laptop" },
+  { id: "item-android", name: "Android" },
   { id: "item-toy", name: "Phụ Kiện" },
 ];
 export default function Page() {

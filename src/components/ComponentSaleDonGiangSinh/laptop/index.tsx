@@ -10,6 +10,9 @@ import FrameProduct from "../../../../public/sale-12/fan.png";
 import "./apple.scss";
 import { useProductSaleDataDailySamsung } from "../../../app/hooks/useProductSaleDataSamsung";
 import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
+import { useProductSaleDataSamSungDT } from "@/app/hooks/productDailySale2412/useProductSaleDataSamSungDT";
+import { useProductSaleDataSamSungMTB } from "@/app/hooks/productDailySale2412/useProductSaleDataSamSungMTB";
+import { useProductSaleDataSamSungWATCH } from "@/app/hooks/productDailySale2412/useProductSaleDataSamSungWATCH";
 export interface Product {
   id: number;
   name: string;
@@ -63,80 +66,24 @@ interface SliderData {
 interface ApiResponse {
   data: SliderData;
 }
-const query = `
- query getProducts(
-  $search: String
-  $filter: ProductAttributeFilterInput
-  $sort: ProductAttributeSortInput
-  $pageSize: Int
-  $currentPage: Int
-) {
-  products(
-    search: $search
-    filter: $filter
-    sort: $sort
-    pageSize: $pageSize
-    currentPage: $currentPage
-  ) {
-    items {
-      ...ProductInterfaceField
-    }
-  }
-}
-fragment ProductInterfaceField on ProductInterface {
-  name
-  url_key
-  image {
-    url
-  }
-  attributes {
-    attribute_code
-    value
-  }
-  price_range {
-    minimum_price {
-      final_price {
-        value
-        currency
-      }
-    }
-  }
-}
-`;
-
-const variables = {
-  filter: {
-    category_uid: {
-      eq: "NDA5",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-
-async function fetchProductListData() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
-
-  const data = await response.json();
-  return data.data.products.items as Product[];
-}
 
 const LaptopList: React.FC = () => {
-  const { data } = useProductSaleDataDailySamsung();
-  const filteredDatassss = data?.filter(
-    (item: any) => item.title === "Flash Sale Samsung 12-12"
+  const { data: dataSamSungDT } = useProductSaleDataSamSungDT();
+  const filteredDatassssSamSungDT = dataSamSungDT?.filter(
+    (item: any) => item.title === "SP ĐT SAMSUNG"
   );
 
-  const [activeTab, setActiveTab] = useState<string>("");
+  const { data: dataSamSungMTB } = useProductSaleDataSamSungMTB();
+  const filteredDatassssSamSungMTB = dataSamSungMTB?.filter(
+    (item: any) => item.title === "SP MTB SAMSUNG"
+  );
+
+  const { data: dataSamSungWATCH } = useProductSaleDataSamSungWATCH();
+  const filteredDatassssSamSungWATCH = dataSamSungWATCH?.filter(
+    (item: any) => item.title === "SP WATCH SAMSUNG"
+  );
+
+  const [activeTab, setActiveTab] = useState<string>("DT");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -203,6 +150,17 @@ const LaptopList: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
 
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const currentData =
+    activeTab === "DT"
+      ? filteredDatassssSamSungDT
+      : activeTab === "MTB"
+      ? filteredDatassssSamSungMTB
+      : filteredDatassssSamSungWATCH;
+
   return (
     <div
       className="product-20-11"
@@ -235,10 +193,29 @@ const LaptopList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                <div className="tab-buttons">
+                  <button
+                    className={activeTab === "DT" ? "active" : ""}
+                    onClick={() => handleTabChange("DT")}
+                  >
+                    Điện thoại
+                  </button>
+                  <button
+                    className={activeTab === "MTB" ? "active" : ""}
+                    onClick={() => handleTabChange("MTB")}
+                  >
+                    Máy tính bảng
+                  </button>
+                  <button
+                    className={activeTab === "WATCH" ? "active" : ""}
+                    onClick={() => handleTabChange("WATCH")}
+                  >
+                    WATCH
+                  </button>
+                </div>
+                {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items
+                    {currentData?.[0]?.items
                       .sort((a: any, b: any) => a.sale_price - b.sale_price)
                       .slice(0, visibleCount)
                       .map((product: any, index: number) => (
@@ -381,7 +358,7 @@ const LaptopList: React.FC = () => {
                     ))}
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items?.length ? (
+                {visibleCount < currentData?.[0]?.items?.length ? (
                   <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}

@@ -96,27 +96,14 @@ function HeaderHalloween() {
             query getSlider($filter: SliderFilterInput) {
               Slider(filter: $filter) {
                 items {
-                  title
-                  identifier
                   Banner {
                     __typename
                     items {
-                      banner_id
-                      caption
-                      link
-                      media
-                      media_alt
-                      name
-                      slider_id
-                    }
-                    page_info {
-                      current_page
-                      page_size
-                      total_pages
-                    }
+                     name           
+                     media                     
+                    }       
                   }
-                }
-                total_count
+                }               
               }
             }
           `,

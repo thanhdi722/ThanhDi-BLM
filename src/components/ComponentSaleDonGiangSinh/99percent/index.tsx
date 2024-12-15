@@ -10,6 +10,9 @@ import DecorWomen from "../../../../public/flase-sale/maycu.png";
 import FrameProduct from "../../../../public/sale-12/fai.png";
 import { useProductSaleDataDaily99 } from "../../../app/hooks/useProductSaleData99";
 import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
+import { useProductSaleDataIPHONE99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataIPHONE99";
+import { useProductSaleDataSAMSUNG99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataSAMSUNG99";
+import { useProductSaleDataWACTH99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataWACTH99";
 export interface Product {
   id: number;
   name: string;
@@ -63,180 +66,22 @@ interface SliderData {
 interface ApiResponse {
   data: SliderData;
 }
-const query = `
- query getProducts(
-  $search: String
-  $filter: ProductAttributeFilterInput
-  $sort: ProductAttributeSortInput
-  $pageSize: Int
-  $currentPage: Int
-) {
-  products(
-    search: $search
-    filter: $filter
-    sort: $sort
-    pageSize: $pageSize
-    currentPage: $currentPage
-  ) {
-    items {
-      ...ProductInterfaceField
-    }
-    aggregations {
-      attribute_code
-      count
-      label
-      options {
-        count
-        label
-        value
-        swatch_data {
-          type
-          value
-        }
-      }
-      position
-    }
-    sort_fields {
-      default
-      options {
-        label
-        value
-      }
-    }
-    total_count
-    page_info {
-      current_page
-      page_size
-      total_pages
-    }  }
-}
-fragment ProductInterfaceField on ProductInterface {
- image_banner
-  __typename
-  sku
-  uid
-  name
-  url_key
-  url_suffix
-  canonical_url
-  stock_status
-  categories {
-    __typename
-    name
-    url_key
-    url_path
-    level
-    uid
-    position
-    icon_image
-    image
-    path
-  }
-  id
-  meta_description
-  meta_keyword
-  meta_title
-  new_from_date
-  new_to_date
-  rating_summary
-  review_count
-  thumbnail {
-    url
-    position
-  }
-  image {
-    url
-  }
-  price_range {
-    ...PriceRangeField
-  }
-  ...CustomField
-}
-fragment CustomField on ProductInterface {
-  color
-  country_of_manufacture
-  daily_sale {
-    end_date
-    entity_id
-    sale_price
-    sale_qty
-    saleable_qty
-    sold_qty
-    start_date
-    __typename
-  }
-  rating_summary_start {
-    star_1
-    star_2
-    star_3
-    star_4
-    star_5
-  }
-  attributes {
-    attribute_code
-    label
-    value
-  }
-}
-fragment PriceRangeField on PriceRange {
-  __typename
-  maximum_price {
-    ...ProductPriceField
-  }
-  minimum_price {
-    ...ProductPriceField
-  }
-}
-fragment ProductPriceField on ProductPrice {
-  discount {
-    amount_off
-    percent_off
-  }
-  final_price {
-    currency
-    value
-  }
-  regular_price {
-    currency
-    value
-  }
-}
-`;
-
-const variables = {
-  filter: {
-    category_uid: {
-      eq: "NDA4",
-    },
-  },
-  pageSize: 200,
-  currentPage: 1,
-};
-
-async function fetchProductListDataApple() {
-  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
-
-  const data = await response.json();
-  return data.data.products.items as Product[];
-}
 
 const ProductPercent: React.FC = () => {
-  const { data } = useProductSaleDataDaily99();
-  console.log("data sssss", data);
-  const filteredDatassss = data?.filter(
-    (item: any) => item.title === "Flash Sale Máy 99 12-12"
+  const { data: dataIPHONE99 } = useProductSaleDataIPHONE99();
+  const filteredIPHONE99 = dataIPHONE99?.filter(
+    (item: any) => item.title === "SP IPHONE 99 24/12"
+  );
+  const { data: dataSAMSUNG99 } = useProductSaleDataSAMSUNG99();
+  const filteredSAMSUNG99 = dataSAMSUNG99?.filter(
+    (item: any) => item.title === "SP SAMSUNG 99 24/12"
+  );
+  const { data: dataWACTH99 } = useProductSaleDataWACTH99();
+  const filteredWACTH99 = dataWACTH99?.filter(
+    (item: any) => item.title === "SP MTB WATCH 99 24/12"
   );
 
-  const [activeSubTab, setActiveSubTab] = useState<string>("");
+  const [activeSubTab, setActiveSubTab] = useState<string>("iPhone");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -310,6 +155,15 @@ const ProductPercent: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
+  const handleTabChange = (tab: string) => {
+    setActiveSubTab(tab);
+  };
+  const currentData =
+    activeSubTab === "iPhone"
+      ? filteredIPHONE99
+      : activeSubTab === "Samsung"
+      ? filteredSAMSUNG99
+      : filteredWACTH99;
   return (
     <div
       className="product-20-11"
@@ -342,10 +196,29 @@ const ProductPercent: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                <div className="tab-buttons">
+                  <button
+                    className={activeSubTab === "iPhone" ? "active" : ""}
+                    onClick={() => handleTabChange("iPhone")}
+                  >
+                    iPhone
+                  </button>
+                  <button
+                    className={activeSubTab === "Samsung" ? "active" : ""}
+                    onClick={() => handleTabChange("Samsung")}
+                  >
+                    Samsung
+                  </button>
+                  <button
+                    className={activeSubTab === "WATCH" ? "active" : ""}
+                    onClick={() => handleTabChange("WATCH")}
+                  >
+                    Watch
+                  </button>
+                </div>
+                {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items
+                    {currentData?.[0]?.items
                       .sort((a: any, b: any) => a.sale_price - b.sale_price)
                       .slice(0, visibleCount)
                       .map((product: any, index: number) => (
@@ -488,7 +361,7 @@ const ProductPercent: React.FC = () => {
                     ))}
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items?.length ? (
+                {visibleCount < currentData?.[0]?.items?.length ? (
                   <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}
