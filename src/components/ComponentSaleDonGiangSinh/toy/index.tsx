@@ -357,7 +357,7 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                <div style={{ margin: "auto", width: "100%" }}>
+                <div style={{ display: "flex", justifyContent: "center" }}>
                   <div className="tab-buttons">
                     <button
                       className={activeTab === "cuongluc" ? "active" : ""}
