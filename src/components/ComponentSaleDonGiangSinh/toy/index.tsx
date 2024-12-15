@@ -357,43 +357,45 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                <div className="tab-buttons">
-                  <button
-                    className={activeTab === "cuongluc" ? "active" : ""}
-                    onClick={() => handleTabChange("cuongluc")}
-                  >
-                    Cường Lực
-                  </button>
-                  <button
-                    className={activeTab === "baoda" ? "active" : ""}
-                    onClick={() => handleTabChange("baoda")}
-                  >
-                    Bao da
-                  </button>
-                  <button
-                    className={activeTab === "tainghe" ? "active" : ""}
-                    onClick={() => handleTabChange("tainghe")}
-                  >
-                    Tai nghe
-                  </button>
-                  <button
-                    className={activeTab === "amthanh" ? "active" : ""}
-                    onClick={() => handleTabChange("amthanh")}
-                  >
-                    Âm thanh
-                  </button>
-                  <button
-                    className={activeTab === "sacduphong" ? "active" : ""}
-                    onClick={() => handleTabChange("sacduphong")}
-                  >
-                    Sạc dự phòng
-                  </button>
-                  <button
-                    className={activeTab === "coccapsac" ? "active" : ""}
-                    onClick={() => handleTabChange("coccapsac")}
-                  >
-                    Cốc cắp sạc
-                  </button>
+                <div style={{ margin: "auto", width: "100%" }}>
+                  <div className="tab-buttons">
+                    <button
+                      className={activeTab === "cuongluc" ? "active" : ""}
+                      onClick={() => handleTabChange("cuongluc")}
+                    >
+                      Cường Lực
+                    </button>
+                    <button
+                      className={activeTab === "baoda" ? "active" : ""}
+                      onClick={() => handleTabChange("baoda")}
+                    >
+                      Bao da
+                    </button>
+                    <button
+                      className={activeTab === "tainghe" ? "active" : ""}
+                      onClick={() => handleTabChange("tainghe")}
+                    >
+                      Tai nghe
+                    </button>
+                    <button
+                      className={activeTab === "amthanh" ? "active" : ""}
+                      onClick={() => handleTabChange("amthanh")}
+                    >
+                      Âm thanh
+                    </button>
+                    <button
+                      className={activeTab === "sacduphong" ? "active" : ""}
+                      onClick={() => handleTabChange("sacduphong")}
+                    >
+                      Sạc dự phòng
+                    </button>
+                    <button
+                      className={activeTab === "coccapsac" ? "active" : ""}
+                      onClick={() => handleTabChange("coccapsac")}
+                    >
+                      Cốc cắp sạc
+                    </button>
+                  </div>
                 </div>
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
