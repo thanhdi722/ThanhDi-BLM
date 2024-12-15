@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
-
+import imgSnowman from "../../../../public/sale-12/snowman-with-shadow-isolated-white-background-vector_24908-38962.avif";
 export default function Index() {
   const winterWrapperRef = useRef<HTMLDivElement | null>(null);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
@@ -197,10 +197,10 @@ export default function Index() {
             </div>
           </div>
           <div className="box-title-deal-24-12">
-            <div className="font-sans-serif-deal-24-12">letters from</div>
-            <div className="font-script-deal-24-12">Santa</div>
-            <div className="font-sans-serif-deal-24-12">for</div>
-            <div className="font-script-deal-24-12">you</div>
+            <div className="font-sans-serif-deal-24-12">Bạch Long Mobile</div>
+            <div className="font-script-deal-24-12">Thân Gửi</div>
+            {/* <div className="font-sans-serif-deal-24-12"></div> */}
+            <div className="font-script-deal-24-12">Tới Bạn</div>
           </div>
         </div>
       </div>
@@ -208,7 +208,13 @@ export default function Index() {
         className="winter-wrapper-deal-24-12"
         id="winter-wrapper"
         ref={winterWrapperRef}
-      ></div>
+      >
+        <img
+          className="snowman-deal-24-12"
+          src={imgSnowman.src}
+          alt="Snowman"
+        />
+      </div>
       <div className="ground-deal-24-12"></div>
 
       <dialog className="mail-deal-24-12" id="mail" ref={dialogRef}>

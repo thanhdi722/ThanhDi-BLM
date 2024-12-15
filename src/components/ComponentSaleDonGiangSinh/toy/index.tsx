@@ -293,7 +293,7 @@ const AppleList: React.FC = () => {
     <div
       className="product-sale-12-12-toy"
       style={{
-        marginBottom: "20px",
+        marginBottom: "200px",
       }}
     >
       <div>
