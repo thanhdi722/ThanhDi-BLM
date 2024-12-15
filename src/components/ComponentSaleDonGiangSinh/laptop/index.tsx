@@ -138,7 +138,7 @@ const LaptopList: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<string>("");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
-  const [visibleCount, setVisibleCount] = useState<number>(8);
+  const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
   const fetchBannerHeader = async () => {
     try {
@@ -200,7 +200,7 @@ const LaptopList: React.FC = () => {
   const visibleProducts = filteredData.slice(0, visibleCount);
 
   const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 8);
+    setVisibleCount((prevCount) => prevCount + 10);
   };
 
   return (
