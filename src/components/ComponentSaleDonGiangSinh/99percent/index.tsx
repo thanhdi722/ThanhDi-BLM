@@ -192,25 +192,27 @@ const ProductPercent: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                <div className="tab-buttons">
-                  <button
-                    className={activeSubTab === "iPhone" ? "active" : ""}
-                    onClick={() => handleTabChange("iPhone")}
-                  >
-                    iPhone
-                  </button>
-                  <button
-                    className={activeSubTab === "Samsung" ? "active" : ""}
-                    onClick={() => handleTabChange("Samsung")}
-                  >
-                    Samsung
-                  </button>
-                  <button
-                    className={activeSubTab === "WATCH" ? "active" : ""}
-                    onClick={() => handleTabChange("WATCH")}
-                  >
-                    Watch
-                  </button>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="tab-buttons">
+                    <button
+                      className={activeSubTab === "iPhone" ? "active" : ""}
+                      onClick={() => handleTabChange("iPhone")}
+                    >
+                      iPhone
+                    </button>
+                    <button
+                      className={activeSubTab === "Samsung" ? "active" : ""}
+                      onClick={() => handleTabChange("Samsung")}
+                    >
+                      Samsung
+                    </button>
+                    <button
+                      className={activeSubTab === "WATCH" ? "active" : ""}
+                      onClick={() => handleTabChange("WATCH")}
+                    >
+                      Watch
+                    </button>
+                  </div>
                 </div>
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">

@@ -289,25 +289,27 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                <div className="tab-buttons">
-                  <button
-                    className={activeTab === "iPhone" ? "active" : ""}
-                    onClick={() => handleTabChange("iPhone")}
-                  >
-                    iPhone
-                  </button>
-                  <button
-                    className={activeTab === "NONP" ? "active" : ""}
-                    onClick={() => handleTabChange("NONP")}
-                  >
-                    NON-PHONE
-                  </button>
-                  <button
-                    className={activeTab === "PKAPPLE" ? "active" : ""}
-                    onClick={() => handleTabChange("PKAPPLE")}
-                  >
-                    Phụ kiện Apple
-                  </button>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="tab-buttons">
+                    <button
+                      className={activeTab === "iPhone" ? "active" : ""}
+                      onClick={() => handleTabChange("iPhone")}
+                    >
+                      iPhone
+                    </button>
+                    <button
+                      className={activeTab === "NONP" ? "active" : ""}
+                      onClick={() => handleTabChange("NONP")}
+                    >
+                      NON-PHONE
+                    </button>
+                    <button
+                      className={activeTab === "PKAPPLE" ? "active" : ""}
+                      onClick={() => handleTabChange("PKAPPLE")}
+                    >
+                      Phụ kiện Apple
+                    </button>
+                  </div>
                 </div>
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">

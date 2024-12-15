@@ -193,25 +193,27 @@ const LaptopList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                <div className="tab-buttons">
-                  <button
-                    className={activeTab === "DT" ? "active" : ""}
-                    onClick={() => handleTabChange("DT")}
-                  >
-                    Điện thoại
-                  </button>
-                  <button
-                    className={activeTab === "MTB" ? "active" : ""}
-                    onClick={() => handleTabChange("MTB")}
-                  >
-                    Máy tính bảng
-                  </button>
-                  <button
-                    className={activeTab === "WATCH" ? "active" : ""}
-                    onClick={() => handleTabChange("WATCH")}
-                  >
-                    WATCH
-                  </button>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="tab-buttons">
+                    <button
+                      className={activeTab === "DT" ? "active" : ""}
+                      onClick={() => handleTabChange("DT")}
+                    >
+                      Điện thoại
+                    </button>
+                    <button
+                      className={activeTab === "MTB" ? "active" : ""}
+                      onClick={() => handleTabChange("MTB")}
+                    >
+                      Máy tính bảng
+                    </button>
+                    <button
+                      className={activeTab === "WATCH" ? "active" : ""}
+                      onClick={() => handleTabChange("WATCH")}
+                    >
+                      WATCH
+                    </button>
+                  </div>
                 </div>
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
