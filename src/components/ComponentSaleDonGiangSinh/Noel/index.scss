@@ -30,7 +30,7 @@ body {
 .header-deal-24-12 {
   position: relative;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 .snowman-deal-24-12 {
   position: absolute; // or relative, depending on your layout
@@ -102,14 +102,6 @@ body {
 $numberOfSnowflake: 250; // update together with js
 $numberOfSnowflakeMd: 50; // update together with js
 $numberOfSnowflakeLg: 50; // update together with js
-
-.winter-wrapper-deal-24-12 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 
 .snowflake-deal-24-12 {
   position: absolute;
