@@ -98,54 +98,6 @@ export default function Page() {
       wheelSpin.style.transform = "rotate(" + deg + "deg)";
     }
   }
-  const S = 1000 * 60;
-  const H = S * 60;
-  const D = H * 24;
-
-  const daysContainer = document.getElementById("countdown-days");
-  const hoursContainer = document.getElementById("countdown-hours");
-  const minutesContainer = document.getElementById("countdown-minutes");
-  const secondsContainer = document.getElementById("countdown-seconds");
-
-  const startCounter = setInterval(() => {
-    const today = new Date();
-    const targetDate = new Date("December 24, 2024 21:30:00").getTime(); // Updated target date
-    const now = today.getTime();
-    const timeLeft = targetDate - now;
-    const days = Math.floor(timeLeft / D);
-    const hours = Math.floor((timeLeft % D) / H);
-    const minutes = Math.floor((timeLeft % H) / S);
-    const seconds = Math.floor((timeLeft % S) / 1000);
-
-    // Check if the current date is the first day of January
-    if (today.getMonth() === 0 && today.getDate() === 1) {
-      // Hide the countdown or perform any other action
-      if (daysContainer) daysContainer.style.display = "none";
-      if (hoursContainer) hoursContainer.style.display = "none";
-      if (minutesContainer) minutesContainer.style.display = "none";
-      if (secondsContainer) secondsContainer.style.display = "none";
-    } else {
-      if (daysContainer) daysContainer.textContent = `${days}d`;
-      if (hoursContainer) hoursContainer.textContent = `${hours}h`;
-      if (minutesContainer) minutesContainer.textContent = `${minutes}m`;
-      if (secondsContainer) secondsContainer.textContent = `${seconds}s`;
-
-      if (days <= 0) {
-        if (daysContainer) daysContainer.style.display = "none";
-        if (hours <= 0) {
-          if (hoursContainer) hoursContainer.style.display = "none";
-          if (minutes <= 0) {
-            if (minutesContainer) minutesContainer.style.display = "none";
-          }
-        }
-      } else if (days >= 360) {
-        if (daysContainer) daysContainer.style.display = "block";
-        if (hoursContainer) hoursContainer.style.display = "block";
-        if (minutesContainer) minutesContainer.style.display = "block";
-      }
-    }
-  }, 1000);
-
   return (
     <div
       className="page-sale-thang-12-12"
@@ -155,26 +107,14 @@ export default function Page() {
     >
       <Snowfall />
       <div style={{ position: "relative", overflow: "hidden" }}>
-        {/* <Image className="background-home-black-friday" src={img} alt="" />
-        <div className="rocket">
-          <Image className="rocket-fly shake" src={imgRocket} alt="" />
-        </div> */}
         <div>
           <Banner />
         </div>
-        {/* <div id="item-hot">
-          <ProductList />
-        </div> */}
-        {/* <div id="item-toy11">
-          <ToyList11 />
-        </div> */}
 
         <div id="item-iphone">
           <AppleList />
         </div>
-        {/* <div id="item-ipad">
-          <IpadList />
-        </div> */}
+
         <div id="item-airpods">
           <ProductPercent />
         </div>
@@ -182,9 +122,7 @@ export default function Page() {
         <div id="item-mac">
           <LaptopList />
         </div>
-        {/* <div id="item-watch">
-          <WatchList />
-        </div> */}
+
         <div id="item-android">
           <AndroidList />
         </div>
