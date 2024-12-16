@@ -18,12 +18,9 @@
   bottom: 10px; // Align it with the bottom of the wrapper
   left: 10%; // Center it horizontally
   transform: translateX(-50%); // Adjust for centering
-  width: 200px; // Adjust size as needed
+  width: 100px; // Adjust size as needed
   height: auto; // Maintain aspect ratio
   z-index: 1;
-  @media screen and (max-width: 768px) {
-    left: 30%;
-  }
 }
 .newYear-deal-24-12 {
   font-family: var(--font-script);

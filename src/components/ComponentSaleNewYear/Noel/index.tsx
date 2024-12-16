@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import "./index.scss";
-import imgSnowman from "../../../../public/sale-12/viber_image_2024-12-16_15-21-07-538.png";
+import imgSnowman from "../../../../public/sale-12/snowman-with-shadow-isolated-white-background-vector_24908-38962.avif";
 export default function Index() {
   const winterWrapperRef = useRef<HTMLDivElement | null>(null);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
