@@ -12,6 +12,7 @@ import { useProductSaleDataDailyAndroid12 } from "../../../app/hooks/useProductS
 import DecorProduct22 from "../../../../public/black-friday/card.png";
 import { useProductSaleDataAndroidOppo } from "../../../app/hooks/productDailySale2412/useProductSaleDataAndroidOppo";
 import { useProductSaleDataAndroidXIAOMI } from "../../../app/hooks/productDailySale2412/useProductSaleDataAndroidXIAOMI";
+import { useProductSaleDataAndroidLaptop } from "../../../app/hooks/productDailySale2412/useProductSaleDataAndroidLaptop";
 export interface Product {
   id: number;
   name: string;
@@ -75,7 +76,10 @@ const AndroidList: React.FC = () => {
   const filteredDatassssOppo = dataAndroidOppo?.filter(
     (item: any) => item.title === "SP OPPO 24/12"
   );
-
+  const { data: dataAndroidLaptop } = useProductSaleDataAndroidLaptop();
+  const filteredDatassssAndroidLaptop = dataAndroidLaptop?.filter(
+    (item: any) => item.title === "SP LAPTOP ANDROID"
+  );
   const [activeTab, setActiveTab] = useState<string>("Xiaomi");
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
@@ -140,7 +144,13 @@ const AndroidList: React.FC = () => {
     setActiveTab(tab);
   };
   const currentData =
-    activeTab === "Xiaomi" ? filteredDatassssXIAOMI : filteredDatassssOppo;
+    activeTab === "Xiaomi"
+      ? filteredDatassssXIAOMI
+      : activeTab === "Oppo"
+      ? filteredDatassssOppo
+      : activeTab === "Laptop"
+      ? filteredDatassssAndroidLaptop
+      : [];
 
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
@@ -191,6 +201,12 @@ const AndroidList: React.FC = () => {
                       onClick={() => handleTabChange("Oppo")}
                     >
                       Oppo
+                    </button>
+                    <button
+                      className={activeTab === "Laptop" ? "active" : ""}
+                      onClick={() => handleTabChange("Laptop")}
+                    >
+                      Laptop
                     </button>
                   </div>
                 </div>

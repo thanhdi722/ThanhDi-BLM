@@ -10,9 +10,10 @@ import FrameProduct from "../../../../public/sale-12/fan.png";
 import "./apple.scss";
 import { useProductSaleDataDailySamsung } from "../../../app/hooks/useProductSaleDataSamsung";
 import DecorProduct2 from "../../../../public/halloween/ICON-DRAGON.png";
-import { useProductSaleDataSamSungDT } from "@/app/hooks/productDailySale2412/useProductSaleDataSamSungDT";
-import { useProductSaleDataSamSungMTB } from "@/app/hooks/productDailySale2412/useProductSaleDataSamSungMTB";
-import { useProductSaleDataSamSungWATCH } from "@/app/hooks/productDailySale2412/useProductSaleDataSamSungWATCH";
+import { useProductSaleDataSamSungDT } from "../../../app/hooks/productDailySale2412/useProductSaleDataSamSungDT";
+import { useProductSaleDataSamSungMTB } from "../../../app/hooks/productDailySale2412/useProductSaleDataSamSungMTB";
+import { useProductSaleDataSamSungWATCH } from "../../../app/hooks/productDailySale2412/useProductSaleDataSamSungWATCH";
+import { useProductSaleDataSamSungTAINGHE } from "../../../app/hooks/productDailySale2412/useProductSaleDataSamSungTAINGHE";
 export interface Product {
   id: number;
   name: string;
@@ -81,6 +82,11 @@ const LaptopList: React.FC = () => {
   const { data: dataSamSungWATCH } = useProductSaleDataSamSungWATCH();
   const filteredDatassssSamSungWATCH = dataSamSungWATCH?.filter(
     (item: any) => item.title === "SP WATCH SAMSUNG"
+  );
+
+  const { data: dataSamSungTAINGHE } = useProductSaleDataSamSungTAINGHE();
+  const filteredDatassssSamSungTAINGHE = dataSamSungTAINGHE?.filter(
+    (item: any) => item.title === "SP TAI NGHE SMARTTAG SAMSUNG"
   );
 
   const [activeTab, setActiveTab] = useState<string>("DT");
@@ -159,7 +165,11 @@ const LaptopList: React.FC = () => {
       ? filteredDatassssSamSungDT
       : activeTab === "MTB"
       ? filteredDatassssSamSungMTB
-      : filteredDatassssSamSungWATCH;
+      : activeTab === "WATCH"
+      ? filteredDatassssSamSungWATCH
+      : activeTab === "TAINGHE"
+      ? filteredDatassssSamSungTAINGHE
+      : [];
 
   return (
     <div
@@ -211,7 +221,13 @@ const LaptopList: React.FC = () => {
                       className={activeTab === "WATCH" ? "active" : ""}
                       onClick={() => handleTabChange("WATCH")}
                     >
-                      WATCH
+                      Watch
+                    </button>
+                    <button
+                      className={activeTab === "TAINGHE" ? "active" : ""}
+                      onClick={() => handleTabChange("TAINGHE")}
+                    >
+                      Tai Nghe / Smart Tag
                     </button>
                   </div>
                 </div>
