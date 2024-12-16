@@ -210,7 +210,7 @@ const ProductPercent: React.FC = () => {
                       className={activeSubTab === "WATCH" ? "active" : ""}
                       onClick={() => handleTabChange("WATCH")}
                     >
-                      Watch
+                      Watch / Tablet
                     </button>
                   </div>
                 </div>
