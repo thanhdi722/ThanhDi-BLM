@@ -110,7 +110,7 @@ function HeaderHalloween() {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-deal-dau-thang-12",
+                  eq: "don-giang-sinh-24-12",
                 },
               },
             },
@@ -180,15 +180,15 @@ function HeaderHalloween() {
           <div className="header-deal-24-12">
             <h1>
               <div className="newYear-deal-24-12">
-                Giáng sinh an lành - nhận quà hạnh phúc
+                {/* Giáng sinh an lành - nhận quà hạnh phúc */}
               </div>
               <div className="title-deal-24-12">thời gian còn lại</div>
             </h1>
             <h2 className="countdown-deal-24-12">
-              <div id="countdown-days">{timeArray[0].days}d</div>
-              <div id="countdown-hours">{timeArray[0].hours}h</div>
-              <div id="countdown-minutes">{timeArray[0].minutes}m</div>
-              <div id="countdown-seconds">{timeArray[0].seconds}s</div>
+              <div id="countdown-days">{timeArray[0].days}Ngày</div>
+              <div id="countdown-hours">{timeArray[0].hours}Giờ</div>
+              <div id="countdown-minutes">{timeArray[0].minutes}Phút</div>
+              <div id="countdown-seconds">{timeArray[0].seconds}Giây</div>
             </h2>
           </div>
         )}
@@ -205,13 +205,13 @@ function HeaderHalloween() {
             style={{ fontWeight: 400 }}
           >
             {` `}
-            <span style={{ fontWeight: 700, color: "#ffff00" }}>
-              7 đặc quyền mua hàng tại Bạch Long Mobile
-            </span>
+            <a href="http://www.luciacenetiempo.com" className="glitch-24-12">
+              8 đặc quyền mua hàng tại Bạch Long Mobile!
+            </a>
           </div>
           <div className="HeaderHalloween-promotion-list-privilege">
             {data?.data?.Slider?.items[0]?.Banner?.items
-              .filter((item) => item.name.includes("đặt quyền deal đầu tháng"))
+              .filter((item) => item.name.includes("ưu đãi đón giáng sinh"))
               .map((item, index) => (
                 <div
                   key={index}

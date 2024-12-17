@@ -108,33 +108,27 @@ const LaptopList: React.FC = () => {
                     Slider(filter: $filter) {
                       items {
                         title
-                        identifier
+                     
                         Banner {
                           __typename
                           items {
-                            banner_id
-                            caption
-                            link
+                           
                             media
-                            media_alt
+                           
                             name
-                            slider_id
+                           
                           }
-                          page_info {
-                            current_page
-                            page_size
-                            total_pages
-                          }
+                         
                         }
                       }
-                      total_count
+                    
                     }
                   }
                 `,
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-deal-dau-thang-12",
+                  eq: "don-giang-sinh-24-12",
                 },
               },
             },
@@ -187,7 +181,7 @@ const LaptopList: React.FC = () => {
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title samsung deal đầu tháng")
+                        item.name.includes("title samsung đón giáng sinh 24/12")
                       )
                       .map((item, index) => (
                         <div key={index}>

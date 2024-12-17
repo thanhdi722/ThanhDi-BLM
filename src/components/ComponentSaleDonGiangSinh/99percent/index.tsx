@@ -96,33 +96,27 @@ const ProductPercent: React.FC = () => {
                     Slider(filter: $filter) {
                       items {
                         title
-                        identifier
+                      
                         Banner {
                           __typename
                           items {
-                            banner_id
-                            caption
-                            link
+                           
                             media
-                            media_alt
+                        
                             name
-                            slider_id
+
                           }
-                          page_info {
-                            current_page
-                            page_size
-                            total_pages
-                          }
+                         
                         }
                       }
-                      total_count
+                     
                     }
                   }
                 `,
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-page-deal-dau-thang-12",
+                  eq: "don-giang-sinh-24-12",
                 },
               },
             },
@@ -176,7 +170,7 @@ const ProductPercent: React.FC = () => {
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
                       .filter((item) =>
-                        item.name.includes("title máy 99 deal đầu tháng")
+                        item.name.includes("title máy cũ đón giáng sinh 24/12")
                       )
                       .map((item, index) => (
                         <div key={index}>

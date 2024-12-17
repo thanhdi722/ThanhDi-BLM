@@ -321,3 +321,106 @@
     }
   }
 }
+.glitch-24-12 {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  line-height: 1;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  text-decoration: none;
+  color: #fff;
+  &:before,
+  &:after {
+    display: block;
+    content: "8 đặc quyền mua hàng tại Bạch Long Mobile";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+  }
+  &:after {
+    color: #f0f;
+    z-index: -2;
+    animation: glitch-left-2 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
+      both infinite;
+  }
+  &:before {
+    color: #0ff;
+    z-index: -1;
+    animation: glitch-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+      infinite;
+  }
+}
+@keyframes glitch-small {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(1px, 1px);
+  }
+  66% {
+    transform: translate(-1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-medium {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-left {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-1px, 1px);
+  }
+  66% {
+    transform: translate(1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-left-2 {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-1px, -1px);
+  }
+  66% {
+    transform: translate(1px, 1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
