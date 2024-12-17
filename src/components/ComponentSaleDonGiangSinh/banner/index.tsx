@@ -159,7 +159,7 @@ function HeaderHalloween() {
         style={{ position: "relative", overflow: "hidden" }}
       ></div>
       <div className="container">
-        {/* {isEventOver ? (
+        {isEventOver ? (
           <div className="HeaderHalloween-time-line">
             <p
               className="HeaderHalloween-time-line-end-text"
@@ -191,7 +191,7 @@ function HeaderHalloween() {
               <div id="countdown-seconds">{timeArray[0].seconds}s</div>
             </h2>
           </div>
-        )} */}
+        )}
         <div
           style={{
             padding: "10px",
