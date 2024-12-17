@@ -375,13 +375,13 @@ const AppleList: React.FC = () => {
                       className={activeTab === "tainghe" ? "active" : ""}
                       onClick={() => handleTabChange("tainghe")}
                     >
-                      Tai nghe
+                      Chuột / Bàn phím
                     </button>
                     <button
                       className={activeTab === "amthanh" ? "active" : ""}
                       onClick={() => handleTabChange("amthanh")}
                     >
-                      Âm thanh
+                      Loa bluetooth
                     </button>
                     <button
                       className={activeTab === "sacduphong" ? "active" : ""}
@@ -413,7 +413,7 @@ const AppleList: React.FC = () => {
                         >
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
-                              <span className="percent">Trả góp 0%</span>
+                              {/* <span className="percent">Trả góp 0%</span> */}
                               {/* {/(iphone|ipad|macbook|watch)/i.test(
                                 product?.product?.name
                               ) && (
