@@ -8,6 +8,7 @@ import LaptopList from "../../components/ComponentSaleDonGiangSinh/laptop/index"
 import ToyList12 from "../../components/ComponentSaleDonGiangSinh/toy/index";
 import Snowfall from "../../components/ComponentSaleDonGiangSinh/snow/Snowfall";
 import Noel from "../../components/ComponentSaleDonGiangSinh/Noel/index";
+import NoelComponent2 from "../../components/ComponentSaleDonGiangSinh/noel2/index";
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -106,6 +107,7 @@ export default function Page() {
       }}
     >
       <Snowfall />
+      <NoelComponent2 />
       <div style={{ position: "relative", overflow: "hidden" }}>
         <div>
           <Banner />

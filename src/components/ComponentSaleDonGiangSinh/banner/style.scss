@@ -320,6 +320,19 @@
       width: 100%;
     }
   }
+  .privilege-img {
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+
+    img {
+      transition: transform 0.5s ease-in-out;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
+  }
 }
 .glitch-24-12 {
   font-size: 30px;
@@ -360,6 +373,9 @@
     z-index: -1;
     animation: glitch-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
       infinite;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
   }
 }
 @keyframes glitch-small {
