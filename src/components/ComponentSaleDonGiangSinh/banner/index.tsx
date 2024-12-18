@@ -205,9 +205,9 @@ function HeaderHalloween() {
             style={{ fontWeight: 400 }}
           >
             {` `}
-            <a href="http://www.luciacenetiempo.com" className="glitch-24-12">
+            <p className="glitch-24-12">
               8 đặc quyền mua hàng tại Bạch Long Mobile!
-            </a>
+            </p>
           </div>
           <div className="HeaderHalloween-promotion-list-privilege">
             {data?.data?.Slider?.items[0]?.Banner?.items
