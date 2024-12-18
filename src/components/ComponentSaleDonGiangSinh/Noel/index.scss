@@ -69,13 +69,16 @@
 }
 
 .title-deal-24-12 {
-  font-size: 1rem;
+  font-size: 1.5rem;
   &:before,
   &:after {
     content: " ***** ";
     font-size: 0.75rem;
     letter-spacing: 0.25em;
     color: #bad594;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
   }
 }
 
