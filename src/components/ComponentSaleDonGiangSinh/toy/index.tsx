@@ -389,7 +389,7 @@ const AppleList: React.FC = () => {
                       className={activeTab === "coccapsac" ? "active" : ""}
                       onClick={() => handleTabChange("coccapsac")}
                     >
-                      Cốc cắp sạc
+                      Cốc cáp sạc
                     </button>
                   </div>
                 </div>
