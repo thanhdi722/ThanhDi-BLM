@@ -225,14 +225,14 @@ const ProductPercent: React.FC = () => {
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
-                              {activeSubTab === "iPhone" &&
+                              {/* {activeSubTab === "iPhone" &&
                                 product?.product?.name && (
                                   <Image
                                     className="ic-auth"
                                     src={DecorWomen}
                                     alt=""
                                   />
-                                )}
+                                )} */}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
