@@ -1,6 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import FrameProduct from "../../../../public/sale-12/fip.png";
+import FrameProduct1 from "../../../../public/sale-12/fai2.png";
+import FrameProduct2 from "../../../../public/sale-12/fpk.png";
+import FrameProduct3 from "../../../../public/sale-12/fai.png";
 import { Skeleton, Spin } from "antd";
 import "./apple.scss";
 import Link from "next/link";
@@ -343,7 +346,15 @@ const AppleList: React.FC = () => {
                               </div>
                               <div className="frame-product">
                                 <Image
-                                  src={FrameProduct}
+                                  src={
+                                    activeTab === "iPhone"
+                                      ? product?.product?.name.includes("16")
+                                        ? FrameProduct
+                                        : FrameProduct1
+                                      : activeTab === "NONP"
+                                      ? FrameProduct3
+                                      : FrameProduct2
+                                  }
                                   width={500}
                                   height={500}
                                   quality={100}
