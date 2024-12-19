@@ -1,10 +1,49 @@
-.page-sale-thang-12 {
+.page-sale-new-year {
   position: relative;
   .HeaderCombo-bannerPC {
     display: block;
     @media (max-width: 767px) {
       display: none;
     }
+  }
+  .title-deal-24-12,
+  .countdown-deal-24-12 {
+    font-family: var(--font-sans-serif);
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    margin: 0 0 1.5em;
+    padding: 0;
+    font-size: 1.8rem;
+    position: relative;
+    color: #fff;
+  }
+  .countdown-deal-24-12 {
+    display: flex;
+    gap: 0.35em;
+    justify-content: space-between;
+    max-width: 330px;
+    margin: 0 auto;
+  }
+  .title-deal-24-12 {
+    font-size: 1.5rem;
+    &:before,
+    &:after {
+      content: " ***** ";
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: #bad594;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  .header-deal-24-12 {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
   }
   .HeaderCombo-bannerMB {
     display: none;
@@ -350,7 +389,7 @@
   transform: translate(-50%, -50%);
   margin: 0;
   text-decoration: none;
-  color: #fff;
+  color: #ff0000;
   &:before,
   &:after {
     display: block;
@@ -363,13 +402,13 @@
     opacity: 0.8;
   }
   &:after {
-    color: #f0f;
+    color: rgb(255, 255, 255);
     z-index: -2;
     animation: glitch-left-2 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
       both infinite;
   }
   &:before {
-    color: #0ff;
+    color: rgb(190, 255, 255);
     z-index: -1;
     animation: glitch-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
       infinite;

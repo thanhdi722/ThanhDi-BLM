@@ -129,7 +129,7 @@ function HeaderHalloween() {
   }, []);
 
   return (
-    <div className="page-sale-thang-12">
+    <div className="page-sale-new-year">
       <div>
         {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
           <img
@@ -177,7 +177,7 @@ function HeaderHalloween() {
             </p>
           </div>
         ) : (
-          <div className="header-deal-24-12">
+          <div className="header-deal-24-12" style={{ padding: "10px 0" }}>
             <h1>
               <div className="newYear-deal-24-12">
                 {/* Giáng sinh an lành - nhận quà hạnh phúc */}
