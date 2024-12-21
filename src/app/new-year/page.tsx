@@ -105,7 +105,12 @@ export default function Page() {
       <Image
         src={background}
         alt=""
-        style={{ position: "absolute", zIndex: "-1", height: "100%" }}
+        style={{
+          position: "absolute",
+          zIndex: "-1",
+          height: "100%",
+          objectFit: "fill",
+        }}
       />
       {/* <Snowfall /> */}
       <div style={{ position: "relative", overflow: "hidden" }}>
