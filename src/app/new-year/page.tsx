@@ -8,6 +8,7 @@ import LaptopList from "../../components/ComponentSaleNewYear/laptop/index";
 import ToyList12 from "../../components/ComponentSaleNewYear/toy/index";
 import Snowfall from "../../components/ComponentSaleNewYear/snow/Snowfall";
 import Noel from "../../components/ComponentSaleNewYear/Noel/index";
+import SnowFall from "../../components/ComponentSaleNewYear/snow/SnowFall";
 import background from "../../../public/sale-12/5c3b4e476d3d0.webp";
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -241,6 +242,7 @@ export default function Page() {
           </button>
         </div> */}
         {/* <Noel /> */}
+        <Snowfall />
       </div>
     </div>
   );
