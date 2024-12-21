@@ -150,29 +150,28 @@ const ComboIPhone15: React.FC = () => {
         <div className="container">
           <h1 className="title-combo-15">COMBO PHỤ KIỆN IPHONE 15</h1>
           {loading && (
-            // <div className="banner-slide-combo15">
-            //   {[
-            //     { combo: "COMBO 1", persen: "50%", image: images1 },
-            //     { combo: "COMBO 2", persen: "40%", image: images2 },
-            //     { combo: "COMBO 3", persen: "30%", image: images3 },
-            //     { combo: "COMBO 4", persen: "20%", image: images4 },
-            //   ].map((combo, index) => (
-            //     <div key={index} className="banner-slide-combo15-wrap">
-            //       <div className="banner-slide-combo15-card">
-            //         <div className="banner-slide-combo15-button">
-            //           {combo.combo}
-            //         </div>
-            //         <Image
-            //           src={combo.image}
-            //           alt="banner-slide-combo15-image"
-            //           className="banner-slide-combo15-image"
-            //         />
-            //         <div className="banner-slide-combo15-price"></div>
-            //       </div>
-            //     </div>
-            //   ))}
-            // </div>
-            <Spin />
+            <div className="banner-slide-combo15">
+              {[
+                { combo: "COMBO 1", persen: "50%", image: images1 },
+                { combo: "COMBO 2", persen: "40%", image: images2 },
+                { combo: "COMBO 3", persen: "30%", image: images3 },
+                { combo: "COMBO 4", persen: "20%", image: images4 },
+              ].map((combo, index) => (
+                <div key={index} className="banner-slide-combo15-wrap">
+                  <div className="banner-slide-combo15-card">
+                    <div className="banner-slide-combo15-button">
+                      {combo.combo}
+                    </div>
+                    <Image
+                      src={combo.image}
+                      alt="banner-slide-combo15-image"
+                      className="banner-slide-combo15-image"
+                    />
+                    <div className="banner-slide-combo15-price"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
           <div className="banner-slide-combo15">
             {fetchedData.map((combo, index) => (

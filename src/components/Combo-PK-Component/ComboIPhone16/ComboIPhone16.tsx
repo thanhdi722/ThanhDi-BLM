@@ -157,34 +157,35 @@ const ComboIPhone16: React.FC = () => {
           <div className="container">
             <h1 className="title-combo-16">COMBO PHỤ KIỆN IPHONE 16 SERIES</h1>
             {loading && (
-              //   <div className="banner-slide-combo">
-              //     {[
-              //       { combo: "COMBO 1", persen: "50%", image: images1 },
-              //       { combo: "COMBO 2", persen: "40%", image: images2 },
-              //       { combo: "COMBO 3", persen: "30%", image: images3 },
-              //       { combo: "COMBO 4", persen: "20%", image: images4 },
-              //     ].map((combo, index) => (
-              //       <div key={index} className="banner-slide-combo-wrap">
-              //         <div className="banner-slide-combo-card">
-              //           <div className="banner-slide-combo-header">
-              //             <div className="combo-txt">
-              //               <span>-{combo.persen}</span>
-              //             </div>
-              //           </div>
-              //           <div className="banner-slide-combo-button">
-              //             {combo.combo}
-              //           </div>
-              //           <Image
-              //             src={combo.image}
-              //             width={400}
-              //             height={400}
-              //             alt={combo.combo}
-              //             className="banner-slide-combo-image"
-              //             loading="lazy"
-              //           />
-              //         </div>
-              //       </div>
-              <Spin />
+              <div className="banner-slide-combo">
+                {[
+                  { combo: "COMBO 1", persen: "50%", image: images1 },
+                  { combo: "COMBO 2", persen: "40%", image: images2 },
+                  { combo: "COMBO 3", persen: "30%", image: images3 },
+                  { combo: "COMBO 4", persen: "20%", image: images4 },
+                ].map((combo, index) => (
+                  <div key={index} className="banner-slide-combo-wrap">
+                    <div className="banner-slide-combo-card">
+                      <div className="banner-slide-combo-header">
+                        <div className="combo-txt">
+                          <span>-{combo.persen}</span>
+                        </div>
+                      </div>
+                      <div className="banner-slide-combo-button">
+                        {combo.combo}
+                      </div>
+                      <Image
+                        src={combo.image}
+                        width={400}
+                        height={400}
+                        alt={combo.combo}
+                        className="banner-slide-combo-image"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             )}
             {fetchedData.length > 0 && (
               <div className="banner-slide-combo">
