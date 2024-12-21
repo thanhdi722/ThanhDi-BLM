@@ -17,7 +17,16 @@ const query = `
 		   image {
             url
           }
-          
+          	price_range {
+             minimum_price {
+   						   
+                  final_price {
+                  
+  									value
+                  }
+                 
+ 						 }
+ 					 }
         }
         sale_price
         price_original

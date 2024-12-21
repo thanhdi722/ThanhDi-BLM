@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query'
 
 const query = `
 	query getProductDailySales(
@@ -17,7 +17,16 @@ const query = `
 		   image {
             url
           }
-          
+          	price_range {
+             minimum_price {
+   						   
+                  final_price {
+                  
+  									value
+                  }
+                 
+ 						 }
+ 					 }
         }
         sale_price
         price_original
@@ -31,39 +40,38 @@ const query = `
     total_count
   }
 }
-`;
-
+`
 
 const variables = {
-	filter: {
-		sale_type: {
-			eq: 'sp-pk-cuong-luc-24-12',
-		},
-	},
-	pageSize: 99,
-	currentPage: 1,
-};
+  filter: {
+    sale_type: {
+      eq: 'sp-pk-cuong-luc-24-12',
+    },
+  },
+  pageSize: 99,
+  currentPage: 1,
+}
 
 async function fetchProductSaleDataPKCuongLuc() {
-	const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({
-			query,
-			variables,
-		}),
-	});
+  const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
+  })
 
-	const data = await response.json();
-	return data.data.DailySales.items;
+  const data = await response.json()
+  return data.data.DailySales.items
 }
 
 export const useProductSaleDataPKCuongLuc = () => {
-	return useQuery({
-		queryKey: ['fetchProductSaleDataPKCuongLuc'],
-		queryFn: fetchProductSaleDataPKCuongLuc,
-		staleTime: 5000,
-	});
-};
+  return useQuery({
+    queryKey: ['fetchProductSaleDataPKCuongLuc'],
+    queryFn: fetchProductSaleDataPKCuongLuc,
+    staleTime: 5000,
+  })
+}

@@ -18,9 +18,12 @@
   bottom: 10px; // Align it with the bottom of the wrapper
   left: 10%; // Center it horizontally
   transform: translateX(-50%); // Adjust for centering
-  width: 100px; // Adjust size as needed
+  width: 200px; // Adjust size as needed
   height: auto; // Maintain aspect ratio
   z-index: 1;
+  @media screen and (max-width: 768px) {
+    left: 30%;
+  }
 }
 .newYear-deal-24-12 {
   font-family: var(--font-script);
@@ -29,19 +32,17 @@
   letter-spacing: 0.02em;
   padding: 10px 0px;
   font-weight: bold;
-  background: repeating-linear-gradient(
-    45deg,
-    #d80e13,
-    #d80e13 10px,
-    #ffffff 10px,
-    #ffffff 20px
-  );
+  background: repeating-linear-gradient(45deg, #d80e13, #d80e13 10px, #ffffff 10px, #ffffff 20px);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.24), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.24),
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
   @media screen and (max-width: 1200px) {
     font-size: calc(5rem);
@@ -56,7 +57,7 @@
   font-family: var(--font-sans-serif);
   text-transform: uppercase;
   font-weight: 500;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.1em;
   line-height: 1;
   margin: 0 0 1.5em;
   padding: 0;
@@ -66,13 +67,16 @@
 }
 
 .title-deal-24-12 {
-  font-size: 1rem;
+  font-size: 1.5rem;
   &:before,
   &:after {
-    content: " ***** ";
+    content: ' ***** ';
     font-size: 0.75rem;
     letter-spacing: 0.25em;
-    color: #bad594;
+    color: #92d436;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
   }
 }
 
@@ -118,35 +122,20 @@ $numberOfSnowflakeLg: 50; // update together with js
     &._sm-#{$i} {
       left: random(120) - 20 + vw;
       filter: blur((random(2)-1) + px);
-      animation: ((random(100) + 50)/5) +
-        s
-        fall
-        (random(100) / -5) +
-        s
-        infinite;
+      animation: ((random(100) + 50)/5) + s fall (random(100) / -5) + s infinite;
     }
   }
   @for $i from 1 through $numberOfSnowflakeMd {
     &._md-#{$i} {
       left: random(120) - 20 + vw;
       filter: blur((random(2)-1) + px);
-      animation: ((random(100) + 50)/5) +
-        s
-        fall
-        (random(100) / -5) +
-        s
-        infinite;
+      animation: ((random(100) + 50)/5) + s fall (random(100) / -5) + s infinite;
     }
   }
   @for $i from 1 through $numberOfSnowflakeLg {
     &._lg-#{$i} {
       left: random(120) - 20 + vw;
-      animation: ((random(100) + 50)/5) +
-        s
-        fall
-        (random(100) / -5) +
-        s
-        infinite;
+      animation: ((random(100) + 50)/5) + s fall (random(100) / -5) + s infinite;
     }
   }
 }
@@ -185,7 +174,7 @@ $numberOfSnowflakeLg: 50; // update together with js
   &:before {
     border-radius: 50%;
 
-    content: " ";
+    content: ' ';
     position: absolute;
 
     width: 71vw;
@@ -200,7 +189,7 @@ $numberOfSnowflakeLg: 50; // update together with js
   &:after {
     border-radius: 50%;
 
-    content: " ";
+    content: ' ';
     position: absolute;
 
     width: 38vw;
@@ -265,7 +254,7 @@ $numberOfSnowflakeLg: 50; // update together with js
     border-radius: 0 0 7px 7px;
     border: 5px solid #b90b21;
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       bottom: calc(100% + 5px);
       left: -15px;
@@ -275,7 +264,7 @@ $numberOfSnowflakeLg: 50; // update together with js
       background-color: #b90b21;
     }
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       top: -5px;
       left: -5px;
@@ -303,7 +292,7 @@ $numberOfSnowflakeLg: 50; // update together with js
     left: 0;
     right: 0;
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: 50%;

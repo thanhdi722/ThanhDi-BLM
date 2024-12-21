@@ -320,4 +320,201 @@
       width: 100%;
     }
   }
+  .privilege-img {
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+
+    img {
+      transition: transform 0.5s ease-in-out;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
+  }
+}
+.glitch-24-12 {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  line-height: 1;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  text-decoration: none;
+  color: #ff0000;
+  &:before,
+  &:after {
+    display: block;
+    content: "8 đặc quyền mua hàng tại Bạch Long Mobile";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+  }
+  &:after {
+    color: rgb(38, 0, 255);
+    z-index: -2;
+    animation: glitch-left-2 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
+      both infinite;
+  }
+  &:before {
+    color: rgb(243, 244, 255);
+    z-index: -1;
+    animation: glitch-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+      infinite;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+@keyframes glitch-small {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(1px, 1px);
+  }
+  66% {
+    transform: translate(-1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-medium {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-left {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-1px, 1px);
+  }
+  66% {
+    transform: translate(1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-left-2 {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-1px, -1px);
+  }
+  66% {
+    transform: translate(1px, 1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+.title-deal-24-12,
+.countdown-deal-24-12 {
+  font-family: var(--font-sans-serif);
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  margin: 0 0 1.5em;
+  padding: 0;
+  font-size: 1.8rem;
+  position: relative;
+  color: red;
+}
+
+.title-deal-24-12 {
+  font-size: 1.5rem;
+  &:before,
+  &:after {
+    content: " ***** ";
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: #92d436;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.countdown-deal-24-12 {
+  display: flex;
+  gap: 0.35em;
+  justify-content: space-between;
+  max-width: 330px;
+  margin: 0 auto;
+}
+.newYear-deal-24-12 {
+  font-family: var(--font-script);
+  font-size: calc(5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  padding: 10px 0px;
+  font-weight: bold;
+  background: repeating-linear-gradient(
+    45deg,
+    #d80e13,
+    #d80e13 10px,
+    #ffffff 10px,
+    #ffffff 20px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.24), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  @media screen and (max-width: 1200px) {
+    font-size: calc(5rem);
+  }
+  @media (max-width: 768px) {
+    font-size: calc(3rem);
+  }
+}
+.font-sans-serif-deal-24-12 {
+  font-family: var(--font-sans-serif);
+  font-weight: 200;
+  font-size: 0.75em;
+}
+
+.font-script-deal-24-12 {
+  font-family: var(--font-script);
+}
+
+.header-deal-24-12 {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
 }

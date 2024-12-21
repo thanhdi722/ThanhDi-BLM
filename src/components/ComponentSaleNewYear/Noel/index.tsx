@@ -1,15 +1,15 @@
-"use client";
-import React, { useEffect, useRef, useState } from "react";
-import "./index.scss";
-import imgSnowman from "../../../../public/sale-12/snowman-with-shadow-isolated-white-background-vector_24908-38962.avif";
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
+import './index.scss'
+import imgSnowman from '../../../../public/sale-12/viber_image_2024-12-16_15-21-07-538.png'
 export default function Index() {
-  const winterWrapperRef = useRef<HTMLDivElement | null>(null);
-  const dialogRef = useRef<HTMLDialogElement | null>(null);
-  const showButtonRef = useRef<HTMLButtonElement | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const mailContentRef = useRef<HTMLParagraphElement | null>(null);
-  const mailSignRef = useRef<HTMLDivElement | null>(null);
-  const [isOverlayVisible, setOverlayVisible] = useState(false);
+  const winterWrapperRef = useRef<HTMLDivElement | null>(null)
+  const dialogRef = useRef<HTMLDialogElement | null>(null)
+  const showButtonRef = useRef<HTMLButtonElement | null>(null)
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
+  const mailContentRef = useRef<HTMLParagraphElement | null>(null)
+  const mailSignRef = useRef<HTMLDivElement | null>(null)
+  const [isOverlayVisible, setOverlayVisible] = useState(false)
 
   useEffect(() => {
     // START countdown
@@ -82,13 +82,13 @@ export default function Index() {
     //   }, 1250);
     // };
 
-    const winterWrapper = winterWrapperRef.current;
+    const winterWrapper = winterWrapperRef.current
     if (winterWrapper) {
       const wrapConfig = [
-        { className: "_sm", spanCount: 250 },
-        { className: "_md", spanCount: 50 },
-        { className: "_lg", spanCount: 50 },
-      ];
+        { className: '_sm', spanCount: 250 },
+        { className: '_md', spanCount: 50 },
+        { className: '_lg', spanCount: 50 },
+      ]
       // wrapConfig.map(({ className, spanCount }) =>
       //   createSnowflake(winterWrapper, spanCount, className)
       // );
@@ -114,57 +114,56 @@ export default function Index() {
       // });
     }
 
-    const dialog = dialogRef.current;
-    const showButton = showButtonRef.current;
-    const closeButton = closeButtonRef.current;
-    const mailContent = mailContentRef.current;
-    const mailSign = mailSignRef.current;
+    const dialog = dialogRef.current
+    const showButton = showButtonRef.current
+    const closeButton = closeButtonRef.current
+    const mailContent = mailContentRef.current
+    const mailSign = mailSignRef.current
 
     const greetings = [
-      "Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc",
-      "Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc",
-      "Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc",
-      "Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc",
-      "Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc",
-      "Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc",
-    ];
+      'Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc',
+      'Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc',
+      'Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc',
+      'Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc',
+      'Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc',
+      'Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc',
+    ]
 
     const signs = [
       // "Với tình yêu,",
-      "Thân ái,",
+      '',
       // "Những cái ôm ấm áp,",
       // "Đi đến ống khói tiếp theo,",
       // "Hãy giữ phép màu,",
       // "Hạnh phúc của bạn,",
-    ];
+    ]
 
     const toggleBodyScroll = (disable: boolean) => {
       if (disable) {
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden'
       } else {
-        document.body.style.overflow = "";
+        document.body.style.overflow = ''
       }
-    };
+    }
 
     if (showButton && dialog && mailContent && mailSign) {
-      showButton.addEventListener("click", () => {
-        const randomGreeting =
-          greetings[Math.floor(Math.random() * greetings.length)];
-        const randomSign = signs[Math.floor(Math.random() * signs.length)];
-        mailContent.textContent = randomGreeting;
-        mailSign.textContent = randomSign;
-        dialog.showModal();
-        setOverlayVisible(true);
-        toggleBodyScroll(true);
-      });
+      showButton.addEventListener('click', () => {
+        const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)]
+        const randomSign = signs[Math.floor(Math.random() * signs.length)]
+        mailContent.textContent = randomGreeting
+        mailSign.textContent = randomSign
+        dialog.showModal()
+        setOverlayVisible(true)
+        toggleBodyScroll(true)
+      })
     }
 
     if (closeButton && dialog) {
-      closeButton.addEventListener("click", () => {
-        dialog.close();
-        setOverlayVisible(false);
-        toggleBodyScroll(false);
-      });
+      closeButton.addEventListener('click', () => {
+        dialog.close()
+        setOverlayVisible(false)
+        toggleBodyScroll(false)
+      })
     }
 
     return () => {
@@ -172,9 +171,9 @@ export default function Index() {
         // Remove the event listener for fireworks
         // winterWrapper.removeEventListener("click", startFireworks);
       }
-      toggleBodyScroll(false);
-    };
-  }, []);
+      toggleBodyScroll(false)
+    }
+  }, [])
 
   return (
     <div className="index-noel-deal-24-12">
@@ -204,46 +203,27 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div
-        className="winter-wrapper-deal-24-12"
-        id="winter-wrapper"
-        ref={winterWrapperRef}
-      >
-        <img
-          className="snowman-deal-24-12"
-          src={imgSnowman.src}
-          alt="Snowman"
-        />
+      <div className="winter-wrapper-deal-24-12" id="winter-wrapper" ref={winterWrapperRef}>
+        <img className="snowman-deal-24-12" src={imgSnowman.src} alt="Snowman" />
       </div>
       <div className="ground-deal-24-12"></div>
 
       <dialog className="mail-deal-24-12" id="mail" ref={dialogRef}>
         <div className="mail-inner-deal-24-12">
-          <button
-            className="mail-close-deal-24-12"
-            autoFocus
-            id="mailClose"
-            ref={closeButtonRef}
-          >
+          <button className="mail-close-deal-24-12" autoFocus id="mailClose" ref={closeButtonRef}>
             X
           </button>
           <p className="mail-title-deal-24-12">Ho ho ho!</p>
-          <p id="mailContent" ref={mailContentRef}>
+          <p className="font-script-deal-24-12" id="mailContent" ref={mailContentRef}>
             Bạch Long Mobile chúc bạn có một Giáng sinh an lành và hạnh phúc
           </p>
-          <div id="mailSign" ref={mailSignRef}>
-            Stay magical,
-          </div>
+          <div id="mailSign" ref={mailSignRef}></div>
           <div>
-            <span className="font-script-deal-24-12">Bạch Long Mobile</span> 🎅
+            <span className="font-script-deal-24-12">🎁</span> 🎅
           </div>
         </div>
       </dialog>
-      <button
-        className="mailbox-shadow-deal-24-12"
-        id="mailbox"
-        ref={showButtonRef}
-      ></button>
+      <button className="mailbox-shadow-deal-24-12" id="mailbox" ref={showButtonRef}></button>
     </div>
-  );
+  )
 }

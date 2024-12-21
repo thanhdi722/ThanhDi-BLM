@@ -45,14 +45,14 @@ const query = `
 const variables = {
   filter: {
     sale_type: {
-      eq: 'sp-mtb-samsung',
+      eq: 'sp-pk-12k-24-12',
     },
   },
   pageSize: 99,
   currentPage: 1,
 }
 
-async function fetchProductSaleDataSamSungMTB() {
+async function fetchProductSaleDataPK12K() {
   const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
     method: 'POST',
     headers: {
@@ -68,10 +68,10 @@ async function fetchProductSaleDataSamSungMTB() {
   return data.data.DailySales.items
 }
 
-export const useProductSaleDataSamSungMTB = () => {
+export const useProductSaleDataPK12K = () => {
   return useQuery({
-    queryKey: ['fetchProductSaleDataSamSungMTB'],
-    queryFn: fetchProductSaleDataSamSungMTB,
+    queryKey: ['fetchProductSaleDataPK12K'],
+    queryFn: fetchProductSaleDataPK12K,
     staleTime: 5000,
   })
 }
