@@ -7,8 +7,8 @@ import AndroidList from "../../components/ComponentSaleNewYear/android/index";
 import LaptopList from "../../components/ComponentSaleNewYear/laptop/index";
 import ToyList12 from "../../components/ComponentSaleNewYear/toy/index";
 import Snowfall from "../../components/ComponentSaleNewYear/snow/Snowfall";
-import Noel from "../../components/ComponentSaleNewYear/Noel/index";
-import SnowFall from "../../components/ComponentSaleNewYear/snow/Snowfall";
+import giftree from "../../../public/sale-12/giftree.gif";
+import giftree2 from "../../../public/sale-12/giftree2.gif";
 import background from "../../../public/sale-12/5c3b4e476d3d0.webp";
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -114,6 +114,35 @@ export default function Page() {
         }}
       />
       {/* <Snowfall /> */}
+      <Image
+        src={giftree}
+        alt=""
+        width={200}
+        height={200}
+        style={{
+          position: "fixed",
+          zIndex: "1000",
+          width: "300px",
+          height: "auto",
+          top: "50%",
+          right: "0",
+        }}
+      />
+      <Image
+        src={giftree2}
+        alt=""
+        width={200}
+        height={200}
+        className={`sticky-category ${isStickyVisible ? "visible" : "hidden"}`}
+        style={{
+          position: "fixed",
+          width: "300px !important",
+          height: "auto",
+          zIndex: "1000",
+          top: "40%",
+          left: "0",
+        }}
+      />
       <div style={{ position: "relative", overflow: "hidden" }}>
         <div>
           <Banner />
