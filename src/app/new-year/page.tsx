@@ -11,7 +11,7 @@ import giftree from "../../../public/sale-12/giftree.gif";
 import giftree2 from "../../../public/sale-12/giftree2.gif";
 import background from "../../../public/sale-12/5c3b4e476d3d0.webp";
 import Noel from "../../components/ComponentSaleNewYear/Noel/index";
-
+import Cloud from "../../components/ComponentSaleNewYear/cloud/cloud";
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -262,6 +262,16 @@ export default function Page() {
         {/* <Noel /> */}
         <Snowfall />
         <Noel />
+        <div
+          style={{
+            zIndex: -1,
+          }}
+          className={`sticky-category ${
+            isStickyVisible ? "visible" : "hidden"
+          }`}
+        >
+          <Cloud />
+        </div>
       </div>
     </div>
   );

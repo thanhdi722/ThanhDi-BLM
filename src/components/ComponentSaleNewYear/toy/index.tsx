@@ -330,12 +330,7 @@ const AppleList: React.FC = () => {
       : filteredDataPKTaiNghe;
 
   return (
-    <div
-      className="product-sale-12-12-toy"
-      style={{
-        marginBottom: "200px",
-      }}
-    >
+    <div className="product-sale-12-12-toy">
       <div>
         <div className="upgrade-list">
           <div className="container">
