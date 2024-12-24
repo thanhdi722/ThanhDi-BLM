@@ -119,29 +119,16 @@ export default function Page() {
         alt=""
         width={200}
         height={200}
-        style={{
-          position: "fixed",
-          zIndex: "1000",
-          width: "300px",
-          height: "auto",
-          top: "50%",
-          right: "0",
-        }}
+        className={`giftree-1`}
       />
       <Image
         src={giftree2}
         alt=""
         width={200}
         height={200}
-        className={`sticky-category ${isStickyVisible ? "visible" : "hidden"}`}
-        style={{
-          position: "fixed",
-          width: "300px !important",
-          height: "auto",
-          zIndex: "1000",
-          top: "40%",
-          left: "0",
-        }}
+        className={`sticky-category giftree-2 ${
+          isStickyVisible ? "visible" : "hidden"
+        }`}
       />
       <div style={{ position: "relative", overflow: "hidden" }}>
         <div>
