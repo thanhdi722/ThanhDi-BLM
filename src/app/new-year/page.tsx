@@ -10,6 +10,8 @@ import Snowfall from "../../components/ComponentSaleNewYear/snow/Snowfall";
 import giftree from "../../../public/sale-12/giftree.gif";
 import giftree2 from "../../../public/sale-12/giftree2.gif";
 import background from "../../../public/sale-12/5c3b4e476d3d0.webp";
+import Noel from "../../components/ComponentSaleNewYear/Noel/index";
+
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -259,6 +261,7 @@ export default function Page() {
         </div> */}
         {/* <Noel /> */}
         <Snowfall />
+        <Noel />
       </div>
     </div>
   );
