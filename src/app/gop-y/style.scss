@@ -1,0 +1,138 @@
+.page-gop-y {
+  background-color: #ffefa5;
+
+  .Header-bannerMB {
+    display: none;
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
+
+  .Header-bannerPC {
+    display: block;
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+  .btn-submit-gop-y {
+    background-color: #f5222d;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 auto;
+    display: block;
+    font-weight: bold;
+    span {
+    }
+    &:hover {
+      background-color: #ff3e48;
+      color: #fff;
+    }
+  }
+  .form-gop-y {
+    display: flex;
+    gap: 16px;
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+  }
+  .form-rating {
+    display: flex;
+    justify-content: space-evenly;
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+  }
+  .rating {
+    align-items: center;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+    text-indent: 5px;
+    gap: 5px;
+    @media (max-width: 767px) {
+      justify-content: start;
+      margin-left: 10px;
+    }
+  }
+  .rating label {
+    text-indent: -28px;
+    display: inline-block;
+    position: relative;
+    color: #ccc;
+    cursor: pointer;
+  }
+  .rating input[type="radio"] {
+    opacity: 0;
+    + label:before {
+      content: "★";
+      position: absolute;
+      color: gold;
+      text-indent: 0;
+      transition: color 0.5s ease;
+    }
+    &:checked {
+      + label ~ label:before {
+        color: transparent;
+      }
+    }
+  }
+
+  .container {
+    .content-wrapper {
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #f5222d;
+    }
+
+    .importance-section {
+      margin-bottom: 2rem;
+      background-color: #fff5f5;
+      padding: 1rem;
+      border-radius: 0.25rem;
+
+      .importance-title {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .importance-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        @media (min-width: 768px) {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+        }
+
+        .importance-item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &:nth-child(odd) {
+            justify-self: end;
+          }
+
+          &:nth-child(even) {
+            justify-self: start;
+          }
+
+          .icon {
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+  }
+}
