@@ -236,7 +236,7 @@ export default function PageGopY() {
                       Samsung Premium Store: 134 Trần Phú, P.4, Q.5
                     </Option>
                     <Option value="136 Trần Phú, P.4, Q.5">
-                      136 Tr��n Phú, P.4, Q.5
+                      136 Trần Phú, P.4, Q.5
                     </Option>
                     <Option value="225 Trần Quang Khải, P.Tân Định, Q.1">
                       225 Trần Quang Khải, P.Tân Định, Q.1
