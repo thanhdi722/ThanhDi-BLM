@@ -199,7 +199,6 @@ export default function PageGopY() {
                 <Form.Item
                   name="fullName"
                   label="Họ và tên"
-                  rules={[{ required: true, message: "Vui lòng nhập họ tên" }]}
                   style={{ flex: 1 }}
                 >
                   <Input placeholder="Nhập họ và tên của bạn" />
@@ -208,9 +207,6 @@ export default function PageGopY() {
                 <Form.Item
                   name="phone"
                   label="Số điện thoại"
-                  rules={[
-                    { required: true, message: "Vui lòng nhập số điện thoại" },
-                  ]}
                   style={{ flex: 1 }}
                 >
                   <Input placeholder="Nhập số điện thoại của bạn" />
@@ -220,9 +216,6 @@ export default function PageGopY() {
                 <Form.Item
                   name="infoStaff"
                   label="Thông tin nhân viên tư vấn"
-                  rules={[
-                    { required: true, message: "Thông tin nhân viên tư vấn" },
-                  ]}
                   style={{ flex: 1 }}
                 >
                   <Input placeholder="Nhập họ và tên của bạn" />
@@ -369,9 +362,6 @@ export default function PageGopY() {
               <Form.Item
                 name="feedback"
                 label="Quý khách vui lòng để lại góp ý hoặc khiếu nại về chất lượng sản phẩm và dịch vụ Bạch Long Mobile"
-                rules={[
-                  { required: true, message: "Vui lòng nhập góp ý của bạn" },
-                ]}
               >
                 <TextArea
                   rows={4}
