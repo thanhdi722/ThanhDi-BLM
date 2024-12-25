@@ -64,6 +64,9 @@ interface ApiResponse {
 export default function PageGopY() {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [form] = Form.useForm();
+  const [productRating, setProductRating] = useState<number>(5);
+  const [serviceRating, setServiceRating] = useState<number>(5);
+  const [staffRating, setStaffRating] = useState<number>(5);
 
   const onFinish = (values: any) => {
     console.log("Received values:", values);
@@ -186,6 +189,11 @@ export default function PageGopY() {
               layout="vertical"
               onFinish={onFinish}
               requiredMark={true}
+              initialValues={{
+                productQuality: productRating,
+                serviceQuality: serviceRating,
+                staffAttitude: staffRating,
+              }}
             >
               <div className="form-gop-y">
                 <Form.Item
@@ -223,9 +231,6 @@ export default function PageGopY() {
                 <Form.Item
                   name="branch"
                   label="Chi nhánh Bạch Long Mobile quý khách đã mua hàng"
-                  rules={[
-                    { required: true, message: "Vui lòng chọn chi nhánh" },
-                  ]}
                   style={{ flex: 1 }}
                 >
                   <Select placeholder="Chọn chi nhánh">
@@ -275,51 +280,24 @@ export default function PageGopY() {
                   ]}
                 >
                   <fieldset className="rating">
-                    <input
-                      name="productRating"
-                      type="radio"
-                      id="productRating5"
-                      value="5"
-                    />
-                    <label htmlFor="productRating5" title="5 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="productRating"
-                      type="radio"
-                      id="productRating4"
-                      value="4"
-                    />
-                    <label htmlFor="productRating4" title="4 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="productRating"
-                      type="radio"
-                      id="productRating3"
-                      value="3"
-                    />
-                    <label htmlFor="productRating3" title="3 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="productRating"
-                      type="radio"
-                      id="productRating2"
-                      value="2"
-                    />
-                    <label htmlFor="productRating2" title="2 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="productRating"
-                      type="radio"
-                      id="productRating1"
-                      value="1"
-                    />
-                    <label htmlFor="productRating1" title="1 stars">
-                      ☆
-                    </label>
+                    {[1, 2, 3, 4, 5].map((value) => (
+                      <React.Fragment key={value}>
+                        <input
+                          name="productRating"
+                          type="radio"
+                          id={`productRating${value}`}
+                          value={value}
+                          checked={productRating === value}
+                          onChange={() => setProductRating(value)}
+                        />
+                        <label
+                          htmlFor={`productRating${value}`}
+                          title={`${value} sao`}
+                        >
+                          ☆
+                        </label>
+                      </React.Fragment>
+                    ))}
                   </fieldset>
                 </Form.Item>
 
@@ -334,51 +312,24 @@ export default function PageGopY() {
                   ]}
                 >
                   <fieldset className="rating">
-                    <input
-                      name="serviceRating"
-                      type="radio"
-                      id="serviceRating5"
-                      value="5"
-                    />
-                    <label htmlFor="serviceRating5" title="5 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="serviceRating"
-                      type="radio"
-                      id="serviceRating4"
-                      value="4"
-                    />
-                    <label htmlFor="serviceRating4" title="4 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="serviceRating"
-                      type="radio"
-                      id="serviceRating3"
-                      value="3"
-                    />
-                    <label htmlFor="serviceRating3" title="3 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="serviceRating"
-                      type="radio"
-                      id="serviceRating2"
-                      value="2"
-                    />
-                    <label htmlFor="serviceRating2" title="2 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="serviceRating"
-                      type="radio"
-                      id="serviceRating1"
-                      value="1"
-                    />
-                    <label htmlFor="serviceRating1" title="1 stars">
-                      ☆
-                    </label>
+                    {[1, 2, 3, 4, 5].map((value) => (
+                      <React.Fragment key={value}>
+                        <input
+                          name="serviceRating"
+                          type="radio"
+                          id={`serviceRating${value}`}
+                          value={value}
+                          checked={serviceRating === value}
+                          onChange={() => setServiceRating(value)}
+                        />
+                        <label
+                          htmlFor={`serviceRating${value}`}
+                          title={`${value} sao`}
+                        >
+                          ☆
+                        </label>
+                      </React.Fragment>
+                    ))}
                   </fieldset>
                 </Form.Item>
 
@@ -393,51 +344,24 @@ export default function PageGopY() {
                   ]}
                 >
                   <fieldset className="rating">
-                    <input
-                      name="staffRating"
-                      type="radio"
-                      id="staffRating5"
-                      value="5"
-                    />
-                    <label htmlFor="staffRating5" title="5 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="staffRating"
-                      type="radio"
-                      id="staffRating4"
-                      value="4"
-                    />
-                    <label htmlFor="staffRating4" title="4 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="staffRating"
-                      type="radio"
-                      id="staffRating3"
-                      value="3"
-                    />
-                    <label htmlFor="staffRating3" title="3 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="staffRating"
-                      type="radio"
-                      id="staffRating2"
-                      value="2"
-                    />
-                    <label htmlFor="staffRating2" title="2 stars">
-                      ☆
-                    </label>
-                    <input
-                      name="staffRating"
-                      type="radio"
-                      id="staffRating1"
-                      value="1"
-                    />
-                    <label htmlFor="staffRating1" title="1 stars">
-                      ☆
-                    </label>
+                    {[1, 2, 3, 4, 5].map((value) => (
+                      <React.Fragment key={value}>
+                        <input
+                          name="staffRating"
+                          type="radio"
+                          id={`staffRating${value}`}
+                          value={value}
+                          checked={staffRating === value}
+                          onChange={() => setStaffRating(value)}
+                        />
+                        <label
+                          htmlFor={`staffRating${value}`}
+                          title={`${value} sao`}
+                        >
+                          ☆
+                        </label>
+                      </React.Fragment>
+                    ))}
                   </fieldset>
                 </Form.Item>
               </div>
