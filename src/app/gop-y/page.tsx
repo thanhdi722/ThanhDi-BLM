@@ -444,7 +444,7 @@ export default function PageGopY() {
 
               <Form.Item
                 name="feedback"
-                label="Quý khách vui lòng để lại góp ý hoặc khiếu n���i về chất lượng sản phẩm và dịch vụ Bạch Long Mobile"
+                label="Quý khách vui lòng để lại góp ý hoặc khiếu nại về chất lượng sản phẩm và dịch vụ Bạch Long Mobile"
                 rules={[
                   { required: true, message: "Vui lòng nhập góp ý của bạn" },
                 ]}
