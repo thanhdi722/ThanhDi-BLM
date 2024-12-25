@@ -60,7 +60,7 @@ interface ApiResponse {
   data: SliderData;
 }
 
-export default function page() {
+export default function PageGopY() {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [form] = Form.useForm();
 
@@ -451,6 +451,7 @@ export default function page() {
               <Form.Item>
                 <Button
                   type="primary"
+                  className="btn-submit-gop-y"
                   htmlType="submit"
                   style={{
                     margin: "0 auto",
