@@ -9,6 +9,7 @@ import {
   Card,
   Typography,
   Select,
+  Skeleton,
 } from "antd";
 import { Option } from "antd/es/mentions";
 import {
@@ -127,9 +128,17 @@ export default function PageGopY() {
             className="Header-bannerPC"
           />
         ) : (
-          <Spin>
-            <div style={{ width: 1820, height: 500 }} />
-          </Spin>
+          <Skeleton.Avatar
+            active
+            size={500}
+            shape="square"
+            style={{
+              width: 1920,
+              height: 500,
+              display: "block",
+              margin: "0 auto",
+            }}
+          />
         )}
         {data?.data?.Slider?.items[0]?.Banner?.items[1]?.media ? (
           <img
@@ -138,9 +147,7 @@ export default function PageGopY() {
             className="Header-bannerMB"
           />
         ) : (
-          <Spin>
-            <div style={{ width: 1820, height: 500 }} />
-          </Spin>
+          <></>
         )}
       </div>
       <div className="container">
@@ -229,7 +236,7 @@ export default function PageGopY() {
                       Samsung Premium Store: 134 Trần Phú, P.4, Q.5
                     </Option>
                     <Option value="136 Trần Phú, P.4, Q.5">
-                      136 Trần Phú, P.4, Q.5
+                      136 Tr��n Phú, P.4, Q.5
                     </Option>
                     <Option value="225 Trần Quang Khải, P.Tân Định, Q.1">
                       225 Trần Quang Khải, P.Tân Định, Q.1
@@ -437,7 +444,7 @@ export default function PageGopY() {
 
               <Form.Item
                 name="feedback"
-                label="Quý khách vui lòng để lại góp ý hoặc khiếu nại về chất lượng sản phẩm và dịch vụ Bạch Long Mobile"
+                label="Quý khách vui lòng để lại góp ý hoặc khiếu n���i về chất lượng sản phẩm và dịch vụ Bạch Long Mobile"
                 rules={[
                   { required: true, message: "Vui lòng nhập góp ý của bạn" },
                 ]}
