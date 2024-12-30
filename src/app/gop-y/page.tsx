@@ -64,12 +64,32 @@ interface ApiResponse {
 export default function PageGopY() {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [form] = Form.useForm();
-  const [productRating, setProductRating] = useState<number>(5);
-  const [serviceRating, setServiceRating] = useState<number>(5);
-  const [staffRating, setStaffRating] = useState<number>(5);
-
-  const onFinish = (values: any) => {
+  const [productRating, setProductRating] = useState<number>(0);
+  const [serviceRating, setServiceRating] = useState<number>(0);
+  const [staffRating, setStaffRating] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const onFinish = async (values: any) => {
     console.log("Received values:", values);
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbynTwOHeCJ_5e4_IgDkANJJQF-mf97TDVvtdKlH6VzxNM3vpl8tFRbE9rAHNSkbWK32BQ/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
+      const result = await response.json();
+      if (result.result === "success") {
+        console.log("Data sent to Google Sheets successfully");
+      }
+    } catch (error) {
+      console.error("Error sending data to Google Sheets", error);
+    }
   };
   const fetchBannerHeader = async () => {
     try {
@@ -111,6 +131,8 @@ export default function PageGopY() {
       setData(result);
     } catch (err) {
       console.error("Error fetching data", err);
+    } finally {
+      setLoading(false); // Reset loading state after submission
     }
   };
   useEffect(() => {
@@ -272,26 +294,10 @@ export default function PageGopY() {
                     },
                   ]}
                 >
-                  <fieldset className="rating">
-                    {[1, 2, 3, 4, 5].map((value) => (
-                      <React.Fragment key={value}>
-                        <input
-                          name="productRating"
-                          type="radio"
-                          id={`productRating${value}`}
-                          value={value}
-                          checked={productRating === value}
-                          onChange={() => setProductRating(value)}
-                        />
-                        <label
-                          htmlFor={`productRating${value}`}
-                          title={`${value} sao`}
-                        >
-                          ☆
-                        </label>
-                      </React.Fragment>
-                    ))}
-                  </fieldset>
+                  <Rate
+                    value={productRating}
+                    onChange={(value) => setProductRating(value)}
+                  />
                 </Form.Item>
 
                 <Form.Item
@@ -304,26 +310,10 @@ export default function PageGopY() {
                     },
                   ]}
                 >
-                  <fieldset className="rating">
-                    {[1, 2, 3, 4, 5].map((value) => (
-                      <React.Fragment key={value}>
-                        <input
-                          name="serviceRating"
-                          type="radio"
-                          id={`serviceRating${value}`}
-                          value={value}
-                          checked={serviceRating === value}
-                          onChange={() => setServiceRating(value)}
-                        />
-                        <label
-                          htmlFor={`serviceRating${value}`}
-                          title={`${value} sao`}
-                        >
-                          ☆
-                        </label>
-                      </React.Fragment>
-                    ))}
-                  </fieldset>
+                  <Rate
+                    value={serviceRating}
+                    onChange={(value) => setServiceRating(value)}
+                  />
                 </Form.Item>
 
                 <Form.Item
@@ -336,26 +326,10 @@ export default function PageGopY() {
                     },
                   ]}
                 >
-                  <fieldset className="rating">
-                    {[1, 2, 3, 4, 5].map((value) => (
-                      <React.Fragment key={value}>
-                        <input
-                          name="staffRating"
-                          type="radio"
-                          id={`staffRating${value}`}
-                          value={value}
-                          checked={staffRating === value}
-                          onChange={() => setStaffRating(value)}
-                        />
-                        <label
-                          htmlFor={`staffRating${value}`}
-                          title={`${value} sao`}
-                        >
-                          ☆
-                        </label>
-                      </React.Fragment>
-                    ))}
-                  </fieldset>
+                  <Rate
+                    value={staffRating}
+                    onChange={(value) => setStaffRating(value)}
+                  />
                 </Form.Item>
               </div>
 
@@ -368,14 +342,32 @@ export default function PageGopY() {
                   placeholder="Chia sẻ trải nghiệm của bạn về sản phẩm và dịch vụ của chúng tôi"
                 />
               </Form.Item>
-
+              <div className="cam-ket-bao-mat">
+                <h2 style={{ width: "100%" }}>
+                  <strong style={{ color: "red", fontWeight: "700" }}>
+                    CAM KẾT BẢO MẬT
+                  </strong>
+                </h2>
+                <strong style={{ color: "red", fontWeight: "700" }}>
+                  {" "}
+                  Bạch Long Mobile
+                </strong>{" "}
+                cam kết bảo mật thông tin để nhằm nâng cao chất lượng phục vụ và
+                được gửi trực tiếp Ban Giám Đốc để kiểm tra và xử lý. <br /> Cảm
+                ơn khách hàng đã tin tưởng, đồng hành và góp ý cho
+                <strong style={{ color: "red", fontWeight: "700" }}>
+                  {" "}
+                  Bạch Long Mobile
+                </strong>
+                .
+              </div>
               <Form.Item>
                 <Button
                   type="primary"
                   className="btn-submit-gop-y"
                   htmlType="submit"
                   style={{
-                    margin: "0 auto",
+                    margin: "20px auto",
                     display: "flex",
                     justifyContent: "center",
                   }}

@@ -240,7 +240,8 @@ const Rules = () => {
   ) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
 
-    const priceValue = item.price_range?.maximum_price?.final_price?.value;
+    const priceValue =
+      detail?.product?.price_range?.maximum_price?.final_price?.value;
     const price = item.attributes[0].value;
 
     // Kiểm tra giá trị price trước khi gửi
@@ -307,7 +308,8 @@ const Rules = () => {
                         type="text"
                         name="sale"
                         value={
-                          item.price_range?.maximum_price?.final_price?.value
+                          detail?.product?.price_range?.maximum_price
+                            ?.final_price?.value
                         }
                         readOnly
                       />
