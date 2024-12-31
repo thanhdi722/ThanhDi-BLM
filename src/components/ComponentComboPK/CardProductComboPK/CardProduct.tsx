@@ -3,6 +3,7 @@ import React from "react";
 import "./CardProduct.scss";
 import iconconhang from "../../../../public/ic-shipped.png";
 import Image from "next/image";
+import Link from "next/link";
 export interface Product {
   id: number;
   name: string;
@@ -10,6 +11,7 @@ export interface Product {
   image: {
     url: string;
   };
+  price_original: number;
   price_range: {
     minimum_price: {
       final_price: {
@@ -24,56 +26,131 @@ function CardProduct({
   url_key,
   image,
   price_range,
+  price_original,
 }: Omit<Product, "id">) {
   return (
-    <div className="CardProduct">
-      <a
+    // <div className="CardProduct">
+    //   <a
+    //     href={`https://bachlongmobile.com/products/${url_key}`}
+    //     style={{ width: "100%", textDecoration: "none" }}
+    //   >
+    //     <figure className="product__img">
+    //       <img className="product__img-detail" alt={name} src={image?.url} />
+    //     </figure>
+    //     <div className="product__titleCombo" style={{ textDecoration: "none" }}>
+    //       {name}
+    //     </div>
+    //     <div
+    //       className="product__groupPrice"
+    //       style={{ background: "0", paddingLeft: "10px" }}
+    //     >
+    //       {/* <span className="product__price">Giá: </span> */}
+    //       <p className="product__priceSpecial">
+    //         {price_range?.minimum_price?.final_price?.value.toLocaleString()}{" "}
+    //         {price_range?.minimum_price?.final_price?.currency}
+    //       </p>
+    //       <div style={{ display: "flex", gap: "10px", marginTop: "6px" }}>
+    //         <p className="product__price_gach">
+    //           {(
+    //             price_range?.minimum_price?.final_price?.value + 300000
+    //           ).toLocaleString()}{" "}
+    //           VNĐ
+    //         </p>
+    //         <div className="product__price__percent-cardComboPK">
+    //           <p className="product__price--percent-detail">
+    //             -&nbsp;
+    //             {Math.round(
+    //               ((price_range?.minimum_price?.final_price?.value +
+    //                 300000 -
+    //                 price_range?.minimum_price?.final_price?.value) /
+    //                 (price_range?.minimum_price?.final_price?.value + 300000)) *
+    //                 100
+    //             )}
+    //             %
+    //           </p>
+    //         </div>
+    //       </div>
+
+    //       {/* <div className="product__con-hang">
+    //         <Image src={iconconhang} alt="" className="product__con-hang-img" />
+    //         <span className="product__con-hang-detail">Còn hàng</span>
+    //       </div> */}
+    //     </div>
+    //   </a>
+    // </div>
+    <div className="upgrade">
+      <Link
         href={`https://bachlongmobile.com/products/${url_key}`}
-        style={{ width: "100%", textDecoration: "none" }}
+        passHref
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none", color: "black" }}
       >
-        <figure className="product__img">
-          <img className="product__img-detail" alt={name} src={image?.url} />
-        </figure>
-        <div className="product__titleCombo" style={{ textDecoration: "none" }}>
-          {name}
-        </div>
-        <div
-          className="product__groupPrice"
-          style={{ background: "0", paddingLeft: "10px" }}
-        >
-          {/* <span className="product__price">Giá: </span> */}
-          <p className="product__priceSpecial">
-            {price_range?.minimum_price?.final_price?.value.toLocaleString()}{" "}
-            {price_range?.minimum_price?.final_price?.currency}
-          </p>
-          <div style={{ display: "flex", gap: "10px", marginTop: "6px" }}>
-            <p className="product__price_gach">
-              {(
-                price_range?.minimum_price?.final_price?.value + 300000
-              ).toLocaleString()}{" "}
-              VNĐ
-            </p>
-            <div className="product__price__percent-cardComboPK">
-              <p className="product__price--percent-detail">
-                -&nbsp;
-                {Math.round(
-                  ((price_range?.minimum_price?.final_price?.value +
-                    300000 -
-                    price_range?.minimum_price?.final_price?.value) /
-                    (price_range?.minimum_price?.final_price?.value + 300000)) *
-                    100
-                )}
-                %
-              </p>
+        <div className="upgrade-item">
+          <div className="upgrade-item-header">
+            <span className="percent">
+              -
+              {Math.round(
+                ((price_original -
+                  price_range?.minimum_price?.final_price?.value) /
+                  price_original) *
+                  100
+              )}
+              %
+            </span>
+            {/* {(activeTab === "iPhone" || activeTab === "NONP") && (
+                  <Image className="ic-auth" src={DecorWomen} alt="" />
+                )} */}
+          </div>
+          <div className="upgrade-item-img">
+            <div className="img-content">
+              <Image
+                src={image?.url}
+                width={1400}
+                height={1200}
+                quality={100}
+                alt={name}
+              />
+            </div>
+            <div className="frame-product">
+              {/* <Image
+                  src={
+                    activeTab === 'iPhone'
+                      ? product?.product?.name.includes('16')
+                        ? FrameProduct
+                        : FrameProduct1
+                      : activeTab === 'NONP'
+                        ? FrameProduct3
+                        : FrameProduct2
+                  }
+                  width={500}
+                  height={500}
+                  quality={100}
+                  alt="frame-product"
+                /> */}
             </div>
           </div>
-
-          {/* <div className="product__con-hang">
-            <Image src={iconconhang} alt="" className="product__con-hang-img" />
-            <span className="product__con-hang-detail">Còn hàng</span>
-          </div> */}
+          <div className="upgrade-item-content">
+            <h4 className="upgrade-item-content-tt">{name}</h4>
+            <div className="upgrade-item-content-body">
+              <div className="upgrade-item-content-body-price">
+                {price_range?.minimum_price?.final_price?.value?.toLocaleString(
+                  "vi-VN"
+                )}{" "}
+                VNĐ
+              </div>
+              <div className="upgrade-item-content-body-reduced">
+                <div className="price-reduced">
+                  {Number(price_original)?.toLocaleString("vi-VN")} VNĐ
+                </div>
+                {/* <div className="percent">
+                 
+                </div> */}
+              </div>
+            </div>
+          </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }

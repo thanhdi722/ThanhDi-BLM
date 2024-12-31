@@ -18,21 +18,7 @@ const query = `
     items {
       ...ProductInterfaceField
     }
-    aggregations {
-      attribute_code
-      count
-      label
-      options {
-        count
-        label
-        value
-        swatch_data {
-          type
-          value
-        }
-      }
-      position
-    }
+    
     sort_fields {
       default
       options {
@@ -40,47 +26,12 @@ const query = `
         value
       }
     }
-    total_count
-    page_info {
-      current_page
-      page_size
-      total_pages
-    }  }
+   
+    }
 }
 fragment ProductInterfaceField on ProductInterface {
- image_banner
-  __typename
-  sku
-  uid
   name
   url_key
-  url_suffix
-  canonical_url
-  stock_status
-  categories {
-    __typename
-    name
-    url_key
-    url_path
-    level
-    uid
-    position
-    icon_image
-    image
-    path
-  }
-  id
-  meta_description
-  meta_keyword
-  meta_title
-  new_from_date
-  new_to_date
-  rating_summary
-  review_count
-  thumbnail {
-    url
-    position
-  }
   image {
     url
   }
@@ -90,8 +41,6 @@ fragment ProductInterfaceField on ProductInterface {
   ...CustomField
 }
 fragment CustomField on ProductInterface {
-  color
-  country_of_manufacture
   daily_sale {
     end_date
     entity_id
@@ -102,55 +51,37 @@ fragment CustomField on ProductInterface {
     start_date
     __typename
   }
-  rating_summary_start {
-    star_1
-    star_2
-    star_3
-    star_4
-    star_5
-  }
+
   attributes {
-    attribute_code
-    label
+   
     value
   }
 }
 fragment PriceRangeField on PriceRange {
-  __typename
-  maximum_price {
-    ...ProductPriceField
-  }
   minimum_price {
     ...ProductPriceField
   }
 }
 fragment ProductPriceField on ProductPrice {
-  discount {
-    amount_off
-    percent_off
-  }
   final_price {
     currency
     value
   }
-  regular_price {
-    currency
-    value
-  }
+ 
 }
 `;
 
 const variables = {
   filter: {
-    sale_type: {
-      eq: "MzE0",
+    category_uid: {
+      eq: "MjI2",
     },
   },
-  pageSize: 99,
+  pageSize: 200,
   currentPage: 1,
 };
 
-async function fetchProductComboBaoDa() {
+async function fetchProductComboBaoDaIpadPro() {
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
     headers: {
@@ -163,13 +94,13 @@ async function fetchProductComboBaoDa() {
   });
 
   const data = await response.json();
-  return data;
+  return data?.data?.products?.items;
 }
 
-export const useProductComboBaoDa = () => {
+export const useProductComboBaoDaIpadPro = () => {
   return useQuery({
-    queryKey: ["fetchProductComboBaoDa"],
-    queryFn: fetchProductComboBaoDa,
+    queryKey: ["fetchProductComboBaoDaIpadPro"],
+    queryFn: fetchProductComboBaoDaIpadPro,
     staleTime: 5000,
   });
 };

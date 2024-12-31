@@ -15,3 +15,64 @@
   );
   border-radius: 15px;
 }
+.list-product-combo-bao-da {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.2rem;
+  @media screen and (max-width: "1200px") {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media screen and (max-width: "850px") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (max-width: "768px") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.list-tab-parent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  padding-bottom: 10px;
+  button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  button.active {
+    background-color: red;
+    color: white;
+  }
+}
+.list-child-tab {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.tab-parent button,
+.tab-child button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tab-parent button.active,
+.tab-child button.active {
+  background-color: red;
+  color: white;
+}
+
+// Optional: Add hover effect
