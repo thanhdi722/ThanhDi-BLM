@@ -209,27 +209,21 @@ const SectionBaoDa: React.FC = () => {
                   query getSlider($filter: SliderFilterInput) {
                     Slider(filter: $filter) {
                       items {
-                        title
-                        identifier
+                      title
                         Banner {
                           __typename
                           items {
-                            banner_id
-                            caption
+                           
                             link
                             media
                             media_alt
                             name
-                            slider_id
+                           
                           }
-                          page_info {
-                            current_page
-                            page_size
-                            total_pages
-                          }
+                          
                         }
                       }
-                      total_count
+                     
                     }
                   }
                 `,
@@ -273,122 +267,6 @@ const SectionBaoDa: React.FC = () => {
             <Spin>
               <div style={{ width: 200, height: 200 }} />
             </Spin>
-          )}
-          <div className="header-table-combo-pk">
-            {/* <div style={{ paddingBottom: "10px" }}>
-              <h2 className="title-table-combo-pk">Phụ Kiện Bao Da, Ốp Lưng</h2>
-            </div> */}
-            <div>
-              <div className="tab-button-table-combo-pk">
-                {brands.map((brand) => (
-                  <button
-                    key={brand}
-                    className={`btn-tab-buyPhone ${
-                      activeTab === brand ? "btn-tab-buyPhone_active" : ""
-                    }`}
-                    onClick={() => {
-                      setActiveTab(brand);
-                      setSubActiveTab("All"); // Reset sub-tab when changing main tab
-                    }}
-                  >
-                    {brand}
-                  </button>
-                ))}
-              </div>
-
-              <div className="tab-button-table-combo-pk-sub">
-                {filteredData &&
-                  filteredData.length > 0 && ( // Check if there is data
-                    <>
-                      {filteredData.some((product) =>
-                        product.name.toLowerCase().includes("16")
-                      ) && ( // Check for iPhone 16
-                        <button
-                          key="16"
-                          className={`btn-tab-buyPhone-sub ${
-                            subActiveTab === "16"
-                              ? "btn-tab-buyPhone_active"
-                              : ""
-                          }`}
-                          onClick={() => setSubActiveTab("16")}
-                        >
-                          iPhone 16
-                        </button>
-                      )}
-                      {filteredData.some((product) =>
-                        product.name.toLowerCase().includes("15")
-                      ) && ( // Check for iPhone 15
-                        <button
-                          key="15"
-                          className={`btn-tab-buyPhone-sub ${
-                            subActiveTab === "15"
-                              ? "btn-tab-buyPhone_active"
-                              : ""
-                          }`}
-                          onClick={() => setSubActiveTab("15")}
-                        >
-                          iPhone 15
-                        </button>
-                      )}
-                      {filteredData.some((product) =>
-                        product.name.toLowerCase().includes("14")
-                      ) && ( // Check for iPhone 14
-                        <button
-                          key="14"
-                          className={`btn-tab-buyPhone-sub ${
-                            subActiveTab === "14"
-                              ? "btn-tab-buyPhone_active"
-                              : ""
-                          }`}
-                          onClick={() => setSubActiveTab("14")}
-                        >
-                          iPhone 14
-                        </button>
-                      )}
-                    </>
-                  )}
-              </div>
-            </div>
-          </div>
-          {isLoading && (
-            <div
-              className="loading container-spin flex h-28 items-center justify-center"
-              style={{
-                height: "300px",
-              }}
-            >
-              <Spin />
-            </div>
-          )}
-          {filteredDataSub && filteredDataSub.length === 0 && !isLoading ? (
-            <div className="no-products-message">
-              <Image
-                src={noProducts}
-                alt="no-products"
-                className="no-products-image"
-              />
-              <span>Không có sản phẩm</span>
-            </div>
-          ) : (
-            <>
-              <div className="OldForNew-Section5-ItemSlider">
-                {filteredDataSub?.slice(0, visibleProducts).map((product) => (
-                  <CardProduct
-                    key={product?.id}
-                    name={product?.name}
-                    url_key={product?.url_key}
-                    image={product?.image}
-                    price_range={product?.price_range}
-                  />
-                ))}
-              </div>
-
-              {visibleCount < (filteredDataSub?.length || 0) && ( // Check if more products are available
-                <div className="load-more-container">
-                  <button onClick={loadMorePosts}>Xem thêm</button>
-                </div>
-              )}
-            </>
           )}
         </div>
       </div>

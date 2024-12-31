@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import "./CardProduct.css";
+import "./CardProduct.scss";
 import iconconhang from "../../../../public/ic-shipped.png";
 import Image from "next/image";
 export interface Product {

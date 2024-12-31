@@ -9,23 +9,6 @@
   position: relative;
 }
 
-/* .swiper-slide {
-  flex-shrink: 0;
-  height: 100%;
-  position: relative;
-  transition-property: transform;
-}
-.swiper-slide {
-  text-align: center;
-  font-size: 14px;
-
-  display: flex;
-  border-color: #f47700;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  margin-top: 5px !important;
-} */
 .product__img-detail {
   object-fit: contain;
   max-width: 200px;
@@ -36,10 +19,12 @@
   margin-top: 20px;
   padding: 10px 0px;
   transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
-.product__img-detail:hover {
-  transform: scale(1.1);
-}
+
 .product__price__percent-cardComboPK {
   width: max-content;
   height: max-content;
@@ -52,13 +37,15 @@
   z-index: 100;
   display: flex;
   border-radius: 5px;
+
+  .product__price--percent-detail {
+    justify-content: center;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+  }
 }
-.product__price--percent-detail {
-  justify-content: center;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-}
+
 .product__con-hang {
   display: flex;
   color: #00ff15;
@@ -70,14 +57,16 @@
   padding: 5px;
   border-radius: 5px;
   margin: 10px 0;
-}
-.product__con-hang span {
-  padding: 5px;
-  border-radius: 5px;
-}
-.product__con-hang-img {
-  width: 24px;
-  height: 24px;
+
+  span {
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .product__con-hang-img {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .product__discount {
@@ -92,6 +81,7 @@
   border-radius: 5px;
   line-height: 1;
 }
+
 .sticker-combo-requare {
   position: absolute;
   background-image: url(https://bachlongmobile.com/bnews/wp-content/uploads/2022/10/STICKER-DISCOUNT-2022-1.png);
@@ -118,6 +108,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .product__groupPrice {
   position: relative;
   /* display: flex; */
@@ -127,6 +118,7 @@
   line-height: 1;
   border-radius: 0px 0px 8px 8px;
 }
+
 .product__price {
   font-weight: bold;
   font-size: 16px;
@@ -138,12 +130,14 @@
   font-size: 18px;
   font-weight: bold;
 }
+
 .product__priceRegular {
   color: white;
   font-size: 16px;
   font-weight: bold;
   text-decoration: line-through;
 }
+
 .product__price_gach {
   text-decoration: line-through;
   font-size: 16px;
@@ -151,6 +145,7 @@
   margin-top: 6px;
   color: #7a7a7a;
 }
+
 @media (max-width: 1000px) {
   .OldForNew-Section1-bg2 {
     display: block;
@@ -166,6 +161,7 @@
     gap: 10px;
   }
 }
+
 @media (max-width: 850px) {
   .CardProduct {
     /* width: 270px; */
@@ -177,6 +173,7 @@
     /* width: 250px; */
   }
 }
+
 @media (max-width: 767px) {
   .product__price__percent-cardComboPK {
     width: 50px;
@@ -187,9 +184,7 @@
     left: 55%;
   }
   .product__price_gach {
-
     font-size: 14px;
-
   }
   .product__priceSpecial {
     font-size: 16px;
