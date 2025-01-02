@@ -18,10 +18,11 @@ import { useProductComboBaoDaIpadMini } from "../hook/ComboPK/ComboBaoDa/ComboBa
 import { useProductComboBaoDaGalaxyS } from "../hook/ComboPK/ComboBaoDa/ComboBaoDaGalaxyS";
 import { useProductComboBaoDaGalaxyZ } from "../hook/ComboPK/ComboBaoDa/ComboBaoDaGalaxyZ";
 import { useProductComboBaoDaAirPods } from "../hook/ComboPK/ComboBaoDa/ComboBaoDaAirPods";
-
+import CardSkeleton from "../CardSkeleton";
 const SectionBaoDa: React.FC = () => {
   const [activeParentTab, setActiveParentTab] = useState<string>("iPhone");
   const [activeChildTab, setActiveChildTab] = useState<string>("16");
+  const [visibleProducts, setVisibleProducts] = useState<number>(10);
 
   const handleParentTabChange = (parentTab: string) => {
     setActiveParentTab(parentTab);
@@ -134,149 +135,101 @@ const SectionBaoDa: React.FC = () => {
   const renderContent = () => {
     if (!dataTitle) {
       return (
-        <Spin>
-          <div style={{ width: 200, height: 200 }} />
-        </Spin>
+        <div className="list-product-combo-bao-da">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
+        </div>
       );
     }
 
+    const renderProducts = (data: any[]) => {
+      if (!data) {
+        // Display CardSkeletons while data is loading
+        return Array.from({ length: visibleProducts }).map((_, index) => (
+          <CardSkeleton key={index} />
+        ));
+      }
+
+      return data
+        ?.slice(0, visibleProducts)
+        .map((item: any) => (
+          <CardProduct
+            key={item.id}
+            name={item.name}
+            url_key={item.url_key}
+            image={item.image}
+            price_range={item.price_range}
+            price_original={item.attributes[0].value}
+          />
+        ));
+    };
+
+    let products;
     if (activeParentTab === "iPhone") {
       switch (activeChildTab) {
         case "16":
-          return dataIphone16?.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataIphone16);
+          break;
         case "15":
-          return dataIphone15.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataIphone15);
+          break;
         case "14":
-          return dataIphone14.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataIphone14);
+          break;
         case "13":
-          return dataIphone13.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataIphone13);
+          break;
         default:
           return null;
       }
     } else if (activeParentTab === "AirPods") {
-      return dataAirPods.map((item: any) => (
-        <CardProduct
-          key={item.id}
-          name={item.name}
-          url_key={item.url_key}
-          image={item.image}
-          price_range={item.price_range}
-          price_original={item.attributes[0].value}
-        />
-      ));
+      products = renderProducts(dataAirPods);
     } else if (activeParentTab === "Galaxy") {
       switch (activeChildTab) {
         case "Galaxy Z":
-          return dataGalaxyZ.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataGalaxyZ);
+          break;
         case "Galaxy S":
-          return dataGalaxyS.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataGalaxyS);
+          break;
         default:
           return null;
       }
     } else if (activeParentTab === "iPad") {
       switch (activeChildTab) {
         case "Pro":
-          return dataIpadPro.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataIpadPro);
+          break;
         case "Gen":
-          return dataIpadGen.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataIpadGen);
+          break;
         case "Air":
-          return dataIpadAir.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataIpadAir);
+          break;
         case "Mini":
-          return dataIpadMini.map((item: any) => (
-            <CardProduct
-              key={item.id}
-              name={item.name}
-              url_key={item.url_key}
-              image={item.image}
-              price_range={item.price_range}
-              price_original={item.attributes[0].value}
-            />
-          ));
+          products = renderProducts(dataIpadMini);
+          break;
         default:
           return null;
       }
     }
+
+    return (
+      <>
+        <div className="list-product-combo-bao-da">{products}</div>
+        <div>
+          {products && products.length >= visibleProducts && (
+            <button
+              className="btn-see-more"
+              onClick={() => setVisibleProducts(visibleProducts + 10)}
+            >
+              Xem thêm
+            </button>
+          )}
+        </div>
+      </>
+    );
   };
   const fetchBannerHeader = async () => {
     try {
@@ -383,7 +336,7 @@ const SectionBaoDa: React.FC = () => {
           </button>
         </div>
         <div className="tab-child">{renderChildTabs()}</div>
-        <div className="list-product-combo-bao-da">{renderContent()}</div>
+        <div className="">{renderContent()}</div>
       </div>
     </div>
   );

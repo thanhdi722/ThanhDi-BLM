@@ -35,7 +35,7 @@
   overflow-x: scroll;
   flex-wrap: nowrap;
   gap: 6px;
-  justify-content: flex-start;
+  justify-content: center;
   padding-bottom: 10px;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -73,7 +73,7 @@
   overflow-x: scroll;
   flex-wrap: nowrap;
   gap: 6px;
-
+  justify-content: center;
   padding-bottom: 10px;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -91,10 +91,6 @@
     }
   }
 }
-.tab-child {
-  display: flex;
-  justify-content: center;
-}
 .tab-parent button,
 .tab-child button {
   background-color: white;
@@ -106,6 +102,10 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   white-space: nowrap;
+}
+.tab-child {
+  display: flex;
+  justify-content: center;
 }
 
 .tab-parent button.active,
