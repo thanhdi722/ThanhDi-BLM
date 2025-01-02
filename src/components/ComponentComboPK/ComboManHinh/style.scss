@@ -45,7 +45,7 @@
   @media screen and (max-width: "768px") {
     overflow-x: auto;
     flex-wrap: unset !important;
-    // justify-content: unset !important;
+    justify-content: unset !important;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     &::-webkit-scrollbar {
@@ -83,7 +83,7 @@
   @media screen and (max-width: "768px") {
     overflow-x: auto;
     flex-wrap: unset !important;
-    // justify-content: unset !important;
+    justify-content: unset !important;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     &::-webkit-scrollbar {
