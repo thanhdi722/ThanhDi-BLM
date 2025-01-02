@@ -7,66 +7,36 @@ import { useQuery } from "@tanstack/react-query";
 import { Spin } from "antd";
 import "swiper/css";
 import "swiper/css/navigation";
-
-import { useProductComboSacDuPhongInnostyle } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongInnostyle";
-import { useProductComboSacDuPhongPisen } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongPisen";
-import { useProductComboSacDuPhongMicroPack } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongMicroPack";
-import { useProductComboSacDuPhongKhac } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongKhac";
-import { useProductComboSacDuPhongMazer } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongMazer";
-import { useProductComboSacDuPhongEnergizer } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongEnergizer";
-import { useProductComboSacDuPhongSamsung } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongSamsung";
+import { useProductComboPKKhac } from "../hook/ComboPK/ComboDoChoiCongNghe/ComboPKKhac";
+import { useProductComboPKLaptop } from "../hook/ComboPK/ComboDoChoiCongNghe/ComboPKLaptop";
 
 import CardSkeleton from "../CardSkeleton";
 const SectionBaoDa: React.FC = () => {
-  const [activeParentTab, setActiveParentTab] = useState<string>("Innostyle");
-  const [activeChildTab, setActiveChildTab] = useState<string>("Innostyle");
+  const [activeParentTab, setActiveParentTab] = useState<string>("laptop");
+  const [activeChildTab, setActiveChildTab] = useState<string>("laptop");
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
 
   const handleParentTabChange = (parentTab: string) => {
     setActiveParentTab(parentTab);
     setVisibleProducts(10);
     // Reset the active child tab to the first option of the selected parent tab
-    if (parentTab === "Innostyle") {
-      setActiveChildTab("Innostyle");
-    } else if (parentTab === "Pisen") {
-      setActiveChildTab("Pisen");
-    } else if (parentTab === "MicroPack") {
-      setActiveChildTab("MicroPack");
-    } else if (parentTab === "Khac") {
-      setActiveChildTab("Khac");
-    } else if (parentTab === "Mazer") {
-      setActiveChildTab("Mazer");
-    } else if (parentTab === "Energizer") {
-      setActiveChildTab("Energizer");
-    } else if (parentTab === "Samsung") {
-      setActiveChildTab("Samsung");
+    if (parentTab === "laptop") {
+      setActiveChildTab("laptop");
+    } else if (parentTab === "khac") {
+      setActiveChildTab("khac");
     }
   };
 
-  const { data: dataInnostyle } = useProductComboSacDuPhongInnostyle();
-  const { data: dataPisen } = useProductComboSacDuPhongPisen();
-  const { data: dataMicroPack } = useProductComboSacDuPhongMicroPack();
-  const { data: dataKhac } = useProductComboSacDuPhongKhac();
-  const { data: dataMazer } = useProductComboSacDuPhongMazer();
-  const { data: dataEnergizer } = useProductComboSacDuPhongEnergizer();
-  const { data: dataSamsung } = useProductComboSacDuPhongSamsung();
+  const { data: dataPKKhac } = useProductComboPKKhac();
+  const { data: dataPKLaptop } = useProductComboPKLaptop();
 
   const [dataTitle, setDataTitle] = useState<any>(null);
 
   const renderChildTabs = () => {
-    if (activeParentTab === "Innostyle") {
+    if (activeParentTab === "laptop") {
       return null;
-    } else if (activeParentTab === "Pisen") {
-      return null;
-    } else if (activeParentTab === "MicroPack") {
-      return null;
-    } else if (activeParentTab === "Khac") {
-      return null;
-    } else if (activeParentTab === "Mazer") {
-      return null;
-    } else if (activeParentTab === "Energizer") {
-      return null;
-    } else if (activeParentTab === "Samsung") {
+    }
+    if (activeParentTab === "khac") {
       return null;
     }
   };
@@ -105,20 +75,10 @@ const SectionBaoDa: React.FC = () => {
     };
 
     let products;
-    if (activeParentTab === "Innostyle") {
-      products = renderProducts(dataInnostyle);
-    } else if (activeParentTab === "Pisen") {
-      products = renderProducts(dataPisen);
-    } else if (activeParentTab === "MicroPack") {
-      products = renderProducts(dataMicroPack);
-    } else if (activeParentTab === "Khac") {
-      products = renderProducts(dataKhac);
-    } else if (activeParentTab === "Mazer") {
-      products = renderProducts(dataMazer);
-    } else if (activeParentTab === "Energizer") {
-      products = renderProducts(dataEnergizer);
-    } else if (activeParentTab === "Samsung") {
-      products = renderProducts(dataSamsung);
+    if (activeParentTab === "khac") {
+      products = renderProducts(dataPKKhac);
+    } else if (activeParentTab === "laptop") {
+      products = renderProducts(dataPKLaptop);
     }
 
     return (
@@ -217,45 +177,14 @@ const SectionBaoDa: React.FC = () => {
         )}
         <div className="list-tab-parent">
           <button
-            className={activeParentTab === "Innostyle" ? "active" : ""}
-            onClick={() => handleParentTabChange("Innostyle")}
+            className={activeParentTab === "laptop" ? "active" : ""}
+            onClick={() => handleParentTabChange("laptop")}
           >
-            Innostyle
+            Laptop/Macbook
           </button>
           <button
-            className={activeParentTab === "Pisen" ? "active" : ""}
-            onClick={() => handleParentTabChange("Pisen")}
-          >
-            Pisen
-          </button>
-          <button
-            className={activeParentTab === "MicroPack" ? "active" : ""}
-            onClick={() => handleParentTabChange("MicroPack")}
-          >
-            MicroPack
-          </button>
-          <button
-            className={activeParentTab === "Mazer" ? "active" : ""}
-            onClick={() => handleParentTabChange("Mazer")}
-          >
-            Mazer
-          </button>
-          <button
-            className={activeParentTab === "Energizer" ? "active" : ""}
-            onClick={() => handleParentTabChange("Energizer")}
-          >
-            Energizer
-          </button>
-
-          <button
-            className={activeParentTab === "Samsung" ? "active" : ""}
-            onClick={() => handleParentTabChange("Samsung")}
-          >
-            Samsung
-          </button>
-          <button
-            className={activeParentTab === "Khac" ? "active" : ""}
-            onClick={() => handleParentTabChange("Khac")}
+            className={activeParentTab === "khac" ? "active" : ""}
+            onClick={() => handleParentTabChange("khac")}
           >
             Khác
           </button>

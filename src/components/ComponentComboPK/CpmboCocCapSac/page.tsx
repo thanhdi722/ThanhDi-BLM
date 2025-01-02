@@ -8,65 +8,47 @@ import { Spin } from "antd";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { useProductComboSacDuPhongInnostyle } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongInnostyle";
-import { useProductComboSacDuPhongPisen } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongPisen";
-import { useProductComboSacDuPhongMicroPack } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongMicroPack";
-import { useProductComboSacDuPhongKhac } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongKhac";
-import { useProductComboSacDuPhongMazer } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongMazer";
-import { useProductComboSacDuPhongEnergizer } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongEnergizer";
-import { useProductComboSacDuPhongSamsung } from "../hook/ComboPK/ComboSacDuPhong/ComboSacDuPhongSamsung";
+import { useProductComboCocSac } from "../hook/ComboPK/ComboCocCap/ComboCocSac";
+import { useProductComboSac } from "../hook/ComboPK/ComboCocCap/ComboCapSac";
+import { useProductComboCapChuyenDoi } from "../hook/ComboPK/ComboCocCap/ComboCapChuyenDoi";
+import { useProductComboBoSac } from "../hook/ComboPK/ComboCocCap/ComboBoSac";
 
 import CardSkeleton from "../CardSkeleton";
 const SectionBaoDa: React.FC = () => {
-  const [activeParentTab, setActiveParentTab] = useState<string>("Innostyle");
-  const [activeChildTab, setActiveChildTab] = useState<string>("Innostyle");
+  const [activeParentTab, setActiveParentTab] = useState<string>("BoSac");
+  const [activeChildTab, setActiveChildTab] = useState<string>("Coc");
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
 
   const handleParentTabChange = (parentTab: string) => {
     setActiveParentTab(parentTab);
     setVisibleProducts(10);
     // Reset the active child tab to the first option of the selected parent tab
-    if (parentTab === "Innostyle") {
-      setActiveChildTab("Innostyle");
-    } else if (parentTab === "Pisen") {
-      setActiveChildTab("Pisen");
-    } else if (parentTab === "MicroPack") {
-      setActiveChildTab("MicroPack");
-    } else if (parentTab === "Khac") {
-      setActiveChildTab("Khac");
-    } else if (parentTab === "Mazer") {
-      setActiveChildTab("Mazer");
-    } else if (parentTab === "Energizer") {
-      setActiveChildTab("Energizer");
-    } else if (parentTab === "Samsung") {
-      setActiveChildTab("Samsung");
+    if (parentTab === "Coc") {
+      setActiveChildTab("Coc");
+    } else if (parentTab === "Sac") {
+      setActiveChildTab("Sac");
+    } else if (parentTab === "CapChuyenDoi") {
+      setActiveChildTab("CapChuyenDoi");
+    } else if (parentTab === "BoSac") {
+      setActiveChildTab("BoSac");
     }
   };
 
-  const { data: dataInnostyle } = useProductComboSacDuPhongInnostyle();
-  const { data: dataPisen } = useProductComboSacDuPhongPisen();
-  const { data: dataMicroPack } = useProductComboSacDuPhongMicroPack();
-  const { data: dataKhac } = useProductComboSacDuPhongKhac();
-  const { data: dataMazer } = useProductComboSacDuPhongMazer();
-  const { data: dataEnergizer } = useProductComboSacDuPhongEnergizer();
-  const { data: dataSamsung } = useProductComboSacDuPhongSamsung();
+  const { data: dataCoc } = useProductComboCocSac();
+  const { data: dataSac } = useProductComboSac();
+  const { data: dataCapChuyenDoi } = useProductComboCapChuyenDoi();
+  const { data: dataBoSac } = useProductComboBoSac();
 
   const [dataTitle, setDataTitle] = useState<any>(null);
 
   const renderChildTabs = () => {
-    if (activeParentTab === "Innostyle") {
+    if (activeParentTab === "Coc") {
       return null;
-    } else if (activeParentTab === "Pisen") {
+    } else if (activeParentTab === "Sac") {
       return null;
-    } else if (activeParentTab === "MicroPack") {
+    } else if (activeParentTab === "CapChuyenDoi") {
       return null;
-    } else if (activeParentTab === "Khac") {
-      return null;
-    } else if (activeParentTab === "Mazer") {
-      return null;
-    } else if (activeParentTab === "Energizer") {
-      return null;
-    } else if (activeParentTab === "Samsung") {
+    } else if (activeParentTab === "BoSac") {
       return null;
     }
   };
@@ -105,20 +87,14 @@ const SectionBaoDa: React.FC = () => {
     };
 
     let products;
-    if (activeParentTab === "Innostyle") {
-      products = renderProducts(dataInnostyle);
-    } else if (activeParentTab === "Pisen") {
-      products = renderProducts(dataPisen);
-    } else if (activeParentTab === "MicroPack") {
-      products = renderProducts(dataMicroPack);
-    } else if (activeParentTab === "Khac") {
-      products = renderProducts(dataKhac);
-    } else if (activeParentTab === "Mazer") {
-      products = renderProducts(dataMazer);
-    } else if (activeParentTab === "Energizer") {
-      products = renderProducts(dataEnergizer);
-    } else if (activeParentTab === "Samsung") {
-      products = renderProducts(dataSamsung);
+    if (activeParentTab === "Coc") {
+      products = renderProducts(dataCoc);
+    } else if (activeParentTab === "Sac") {
+      products = renderProducts(dataSac);
+    } else if (activeParentTab === "CapChuyenDoi") {
+      products = renderProducts(dataCapChuyenDoi);
+    } else if (activeParentTab === "BoSac") {
+      products = renderProducts(dataBoSac);
     }
 
     return (
@@ -217,49 +193,32 @@ const SectionBaoDa: React.FC = () => {
         )}
         <div className="list-tab-parent">
           <button
-            className={activeParentTab === "Innostyle" ? "active" : ""}
-            onClick={() => handleParentTabChange("Innostyle")}
+            className={activeParentTab === "BoSac" ? "active" : ""}
+            onClick={() => handleParentTabChange("BoSac")}
           >
-            Innostyle
+            Bộ sạc
           </button>
           <button
-            className={activeParentTab === "Pisen" ? "active" : ""}
-            onClick={() => handleParentTabChange("Pisen")}
+            className={activeParentTab === "Sac" ? "active" : ""}
+            onClick={() => handleParentTabChange("Sac")}
           >
-            Pisen
+            Cáp sạc
           </button>
           <button
-            className={activeParentTab === "MicroPack" ? "active" : ""}
-            onClick={() => handleParentTabChange("MicroPack")}
+            className={activeParentTab === "Coc" ? "active" : ""}
+            onClick={() => handleParentTabChange("Coc")}
           >
-            MicroPack
-          </button>
-          <button
-            className={activeParentTab === "Mazer" ? "active" : ""}
-            onClick={() => handleParentTabChange("Mazer")}
-          >
-            Mazer
-          </button>
-          <button
-            className={activeParentTab === "Energizer" ? "active" : ""}
-            onClick={() => handleParentTabChange("Energizer")}
-          >
-            Energizer
+            Cốc sạc
           </button>
 
           <button
-            className={activeParentTab === "Samsung" ? "active" : ""}
-            onClick={() => handleParentTabChange("Samsung")}
+            className={activeParentTab === "CapChuyenDoi" ? "active" : ""}
+            onClick={() => handleParentTabChange("CapChuyenDoi")}
           >
-            Samsung
-          </button>
-          <button
-            className={activeParentTab === "Khac" ? "active" : ""}
-            onClick={() => handleParentTabChange("Khac")}
-          >
-            Khác
+            Cáp chuyển đổi
           </button>
         </div>
+
         <div className="tab-child">{renderChildTabs()}</div>
         <div className="">{renderContent()}</div>
       </div>

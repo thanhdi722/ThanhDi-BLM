@@ -19,6 +19,7 @@ const SectionBaoDa: React.FC = () => {
 
   const handleParentTabChange = (parentTab: string) => {
     setActiveParentTab(parentTab);
+    setVisibleProducts(10);
     // Reset the active child tab to the first option of the selected parent tab
     if (parentTab === "tai-nghe") {
       setActiveChildTab("airpods");
