@@ -1,172 +1,94 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import "./ComboIPhone15.scss";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Button, Form, Spin, message, Modal, Select } from "antd";
+import "./ComboIPhone15.scss";
 import images1 from "../../../../public/combo-01-15.png";
 import images2 from "../../../../public/combo-02-15.png";
 import images3 from "../../../../public/combo-03-15.png";
 import images4 from "../../../../public/combo-04-15.png";
-import { notification } from "antd";
-import type { NotificationArgsProps } from "antd";
-const Context = React.createContext({ name: "Default" });
-type NotificationPlacement = NotificationArgsProps["placement"];
-interface ProductCombo16 {
-  combo: string;
-  items: {
-    type: string;
-    items: {
-      nameproduct: string;
-      priceorigin: number;
-      comboprice: number;
-    }[];
-  }[];
-}
+import ModalCombo162 from "../ModalCombo/ModalCombo162";
+import ModalCombo153 from "../ModalCombo/ModalCombo153";
+import ModalCombo154 from "../ModalCombo/ModalCombo154";
+import ModalCombo151 from "../ModalCombo/ModalCombo151";
+import ModalCombo152 from "../ModalCombo/ModalCombo152";
+import { useProductCombo151 } from "../hook/ComboPK/Modal/ModalCombo151/ModalCombo151";
+import { useProductCombo151V2 } from "../hook/ComboPK/Modal/ModalCombo151/ModalCombo151";
+import { useProductCombo152 } from "../hook/ComboPK/Modal/ModalCombo152/ModalCombo152";
+import { useProductCombo152V2 } from "../hook/ComboPK/Modal/ModalCombo152/ModalCombo152";
+import { useProductCombo153 } from "../hook/ComboPK/Modal/ModalCombo153/ModalCombo153";
+import { useProductCombo153V2 } from "../hook/ComboPK/Modal/ModalCombo153/ModalCombo153";
+import { useProductCombo153V3 } from "../hook/ComboPK/Modal/ModalCombo153/ModalCombo153";
+import { useProductCombo154 } from "../hook/ComboPK/Modal/ModalCombo154/ModalCombo154";
+import { useProductCombo154V2 } from "../hook/ComboPK/Modal/ModalCombo154/ModalCombo154";
+import { useProductCombo154V3 } from "../hook/ComboPK/Modal/ModalCombo154/ModalCombo154";
+import { useProductCombo154V4 } from "../hook/ComboPK/Modal/ModalCombo154/ModalCombo154";
 
-type FieldType = {
-  username?: string;
-  phone?: string;
-  [key: string]: string | undefined;
-};
+// Import modals and hooks similar to ComboIPhone16 if needed
 
 const ComboIPhone15: React.FC = () => {
-  const [fetchedData, setFetchedData] = useState<ProductCombo16[]>([]);
-  const [selectedCombo, setSelectedCombo] = useState<ProductCombo16 | null>(
-    null
-  );
-  const [modalIsOpenTest, setModalIsOpenTest] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loading1, setLoading1] = useState(false);
-  const [form] = Form.useForm();
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [api, contextHolder] = notification.useNotification();
-  const openNotification = (placement: NotificationPlacement) => {
-    api.success({
-      message: `Cám ơn bạn đã đặt hàng`,
-      description: (
-        <Context.Consumer>
-          {({}) => <span>Chúng tôi sẽ liên hệ sớm nhất!!!</span>}
-        </Context.Consumer>
-      ),
-      placement,
-    });
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenV2, setIsModalOpenV2] = useState(false);
+  const [isModalOpenV3, setIsModalOpenV3] = useState(false);
+  const [isModalOpenV4, setIsModalOpenV4] = useState(false);
+  const [selectedCombo, setSelectedCombo] = useState(null);
+  const { data: dataCombo1v1 } = useProductCombo151();
+  const { data: dataCombo1v2 } = useProductCombo151V2();
+  const { data: dataCombo2v1 } = useProductCombo152();
+  const { data: dataCombo2v2 } = useProductCombo152V2();
+  const { data: dataCombo3v1 } = useProductCombo153();
+  const { data: dataCombo3v2 } = useProductCombo153V2();
+  const { data: dataCombo3v3 } = useProductCombo153V3();
+  const { data: dataCombo4v1 } = useProductCombo154();
+  const { data: dataCombo4v2 } = useProductCombo154V2();
+  const { data: dataCombo4v3 } = useProductCombo154V3();
+  const { data: dataCombo4v4 } = useProductCombo154V4();
 
-  const contextValue = useMemo(() => ({ name: "Ant Design" }), []);
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbysamsKFA9Pbr0czRuXVDWKpnCo5BM3HxutpKXLPY_jemM6GZTBCkR6_5oe-nlnK92pbw/exec?id=iphone15",
-        {
-          method: "GET",
-        }
-      );
+  // Define data fetching hooks similar to ComboIPhone16 if needed
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data: ProductCombo16[] = await response.json();
-      setFetchedData(data);
-    } catch (error) {
-      console.error("Fetch error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const handleClickTest = (combo: ProductCombo16) => {
-    setSelectedCombo(combo);
-    setModalIsOpenTest(true);
-    form.resetFields();
-    setTotalPrice(0);
-  };
-
-  const closeModalTest = () => {
-    setModalIsOpenTest(false);
-  };
-
-  const onFinish = async (values: FieldType) => {
-    setLoading1(true);
-
-    const selectedProducts = selectedCombo?.items
-      .map((item) => values[item.type])
-      .filter(Boolean);
-    const productString = selectedProducts?.join(", ");
-
-    const formData = {
-      username: values.username,
-      phone: values.phone,
-      selectedOptions: productString,
-      totalPrice: totalPrice,
-      comboName: selectedCombo?.combo,
-    };
-
-    console.log("Form data to be sent:", formData);
-
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbysamsKFA9Pbr0czRuXVDWKpnCo5BM3HxutpKXLPY_jemM6GZTBCkR6_5oe-nlnK92pbw/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      if (response.status === 200 || response.status === 302) {
-        console.log("Success:", response);
-        message.success("Đơn hàng đã được gửi thành công!");
-        closeModalTest();
-      } else {
-        throw new Error("Unexpected response status");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setLoading1(false);
-      setModalIsOpenTest(false);
-      openNotification("topRight");
-    }
-  };
-
-  const onValuesChange = (changedValues: any, allValues: FieldType) => {
-    if (selectedCombo) {
-      let newTotalPrice = 0;
-      selectedCombo.items.forEach((item) => {
-        const selectedProduct = item.items.find(
-          (subItem) => subItem.nameproduct === allValues[item.type]
-        );
-        if (selectedProduct) {
-          newTotalPrice += selectedProduct.comboprice;
-        }
-      });
-      setTotalPrice(newTotalPrice);
-    }
-  };
   const images = [images1, images2, images3, images4];
+  const combos = [
+    { combo: "COMBO SIÊU RẺ 1", persen: "50%", image: images1 },
+    { combo: "COMBO SIÊU RẺ 2", persen: "40%", image: images2 },
+    { combo: "COMBO SIÊU RẺ 3", persen: "30%", image: images3 },
+    { combo: "COMBO SIÊU RẺ 4", persen: "20%", image: images4 },
+  ];
+
+  const handleComboClick = (combo: any, index: any) => {
+    setSelectedCombo(combo);
+    if (index === 0) {
+      setIsModalOpen(true);
+      setIsModalOpenV2(false);
+    } else if (index === 1) {
+      setIsModalOpen(false);
+      setIsModalOpenV2(true);
+    } else if (index === 2) {
+      setIsModalOpen(false);
+      setIsModalOpenV3(true);
+      setIsModalOpenV2(false);
+    } else if (index === 3) {
+      setIsModalOpen(false);
+      setIsModalOpenV3(false);
+      setIsModalOpenV2(false);
+      setIsModalOpenV4(true);
+    } else {
+      setIsModalOpen(false);
+      setIsModalOpenV3(false);
+      setIsModalOpenV2(false);
+      setIsModalOpenV4(false);
+    }
+  };
+
   return (
-    <Context.Provider value={contextValue}>
-      {contextHolder}
+    <>
       <div className="banner-slide">
         <div className="container">
-          <h1 className="title-combo-15">COMBO PHỤ KIỆN IPHONE 15 SERIES</h1>
-          {loading && (
-            <div className="banner-slide-combo15">
-              {[
-                { combo: "COMBO SIÊU RẺ 1", persen: "50%", image: images1 },
-                { combo: "COMBO SIÊU RẺ 2", persen: "40%", image: images2 },
-                { combo: "COMBO SIÊU RẺ 3", persen: "30%", image: images3 },
-                { combo: "COMBO SIÊU RẺ 4", persen: "20%", image: images4 },
-              ].map((combo, index) => (
+          <div className="banner-slide-combo15">
+            {combos.map((combo, index) => (
+              <div
+                key={index}
+                className="banner-slide-combo-wrap"
+                onClick={() => handleComboClick(combo, index)}
+              >
                 <div key={index} className="banner-slide-combo15-wrap">
                   <div className="banner-slide-combo15-card">
                     <div className="banner-slide-combo15-button">
@@ -180,121 +102,51 @@ const ComboIPhone15: React.FC = () => {
                     <div className="banner-slide-combo15-price"></div>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-          <div className="banner-slide-combo15">
-            {fetchedData.map((combo, index) => (
-              <div
-                key={index}
-                className="banner-slide-combo15-wrap"
-                onClick={() => handleClickTest(combo)}
-              >
-                <div className="banner-slide-combo15-card">
-                  <div className="banner-slide-combo15-button">
-                    {combo.combo}
-                  </div>
-                  <Image
-                    src={images[index]}
-                    alt="banner-slide-combo15-image"
-                    className="banner-slide-combo15-image"
-                  />
-                  <div className="banner-slide-combo15-price"></div>
-                </div>
               </div>
             ))}
           </div>
-          <Modal
-            visible={modalIsOpenTest}
-            onCancel={closeModalTest}
-            footer={false}
-          >
-            {selectedCombo && (
-              <Form
-                form={form}
-                name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                onFinish={onFinish}
-                onValuesChange={onValuesChange}
-                autoComplete="off"
-              >
-                <h2 className="title-modal-combo">{selectedCombo.combo}</h2>
-                <Form.Item<FieldType>
-                  label="Họ và tên khách hàng"
-                  name="username"
-                  rules={[
-                    { required: true, message: "Vui lòng nhập họ và tên" },
-                  ]}
-                >
-                  <input className="input-modal-combo" />
-                </Form.Item>
-                <Form.Item<FieldType>
-                  label="Số điện thoại"
-                  name="phone"
-                  rules={[
-                    { required: true, message: "Vui lòng nhập số điện thoại" },
-                    {
-                      pattern: /^\d{10}$/,
-                      message: "Số điện thoại phải có 10 chữ số",
-                    },
-                  ]}
-                >
-                  <input className="input-modal-combo" />
-                </Form.Item>
-
-                <div className="modal-content">
-                  {selectedCombo.items.map((item, index) => (
-                    <div key={`form-item-wrapper-${index}`}>
-                      <h3>{item.type}:</h3>
-                      <Form.Item
-                        className="modal-select"
-                        name={item.type}
-                        // rules={[{ required: true, message: `Vui lòng chọn ${item.type}` }]}
-                      >
-                        <Select placeholder={`Chọn ${item.type}`}>
-                          {item.items.map((subItem, subIndex) => (
-                            <Select.Option
-                              key={`option-${index}-${subIndex}`}
-                              value={subItem.nameproduct}
-                            >
-                              <div className="option-content">
-                                <span className="option-name">
-                                  {subItem.nameproduct}
-                                </span>
-                                <span className="option-price">
-                                  {subItem.comboprice.toLocaleString()} VND
-                                </span>
-                              </div>
-                            </Select.Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                    </div>
-                  ))}
-                </div>
-                <div className="modal-price-wrap">
-                  <span>Tổng tiền: </span>
-                  <h3 className="modal-price">
-                    {totalPrice.toLocaleString()} VND
-                  </h3>
-                </div>
-                <Form.Item wrapperCol={{ span: 16 }} className="modal-btn-wrap">
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading1}
-                    className="modal-btn"
-                  >
-                    {loading1 ? "Đang đặt hàng..." : "Đặt hàng ngay"}
-                  </Button>
-                </Form.Item>
-              </Form>
-            )}
-          </Modal>
         </div>
       </div>
-    </Context.Provider>
+      {isModalOpen && (
+        <ModalCombo151
+          dataCombo1v1={dataCombo1v1}
+          dataCombo1v2={dataCombo1v2}
+          visible={isModalOpen}
+          selectedCombo={selectedCombo}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
+      {isModalOpenV2 && (
+        <ModalCombo152
+          dataCombo2v1={dataCombo2v1}
+          dataCombo2v2={dataCombo2v2}
+          visible={isModalOpenV2}
+          selectedCombo={selectedCombo}
+          onClose={() => setIsModalOpenV2(false)}
+        />
+      )}
+      {isModalOpenV3 && (
+        <ModalCombo153
+          dataCombo3v1={dataCombo3v1}
+          dataCombo3v2={dataCombo3v2}
+          dataCombo3v3={dataCombo3v3}
+          visible={isModalOpenV3}
+          selectedCombo={selectedCombo}
+          onClose={() => setIsModalOpenV3(false)}
+        />
+      )}
+      {isModalOpenV4 && (
+        <ModalCombo154
+          dataCombo4v1={dataCombo4v1}
+          dataCombo4v2={dataCombo4v2}
+          dataCombo4v3={dataCombo4v3}
+          dataCombo4v4={dataCombo4v4}
+          visible={isModalOpenV4}
+          selectedCombo={selectedCombo}
+          onClose={() => setIsModalOpenV4(false)}
+        />
+      )}
+    </>
   );
 };
 
