@@ -1,14 +1,15 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Button, Select } from "antd";
-import "./style.scss";
+
 function Index({
   visible,
   selectedCombo,
   onClose,
-  dataCombo1v1,
-  dataCombo1v2,
-  dataCombo1v3,
+  dataCombo3v1,
+  dataCombo3v2,
+  dataCombo3v3,
+  dataCombo3v4,
 }: any) {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
@@ -18,9 +19,9 @@ function Index({
   const calculateTotalPrice = (selectedItems: any) => {
     let total = 0;
     selectedItems.forEach((item: any) => {
-      const comboPriceAttribute = item.attributes.find(
-        (attr: any) => attr.label === "Giá Combo"
-      );
+      const comboPriceAttribute = dataCombo3v4.includes(item)
+        ? item.attributes.find((attr: any) => attr.label === "Giá Combo 2")
+        : item.attributes.find((attr: any) => attr.label === "Giá Combo");
       const comboPrice = comboPriceAttribute
         ? parseFloat(comboPriceAttribute.value)
         : 0;
@@ -44,14 +45,21 @@ function Index({
   const [selectedItemsOpLung, setSelectedItemsOpLung] = useState([]);
   const [selectedItemsCuongLuc, setSelectedItemsCuongLuc] = useState([]);
   const [selectedItemsCuSac, setSelectedItemsCuSac] = useState([]);
+  const [selectedItemsClCamera, setSelectedItemsClCamera] = useState([]);
 
   useEffect(() => {
     calculateTotalPrice([
       ...selectedItemsOpLung,
       ...selectedItemsCuongLuc,
       ...selectedItemsCuSac,
+      ...selectedItemsClCamera,
     ]);
-  }, [selectedItemsOpLung, selectedItemsCuongLuc, selectedItemsCuSac]);
+  }, [
+    selectedItemsOpLung,
+    selectedItemsCuongLuc,
+    selectedItemsCuSac,
+    selectedItemsClCamera,
+  ]);
 
   const onFinish = async (values: any) => {
     setLoading(true);
@@ -61,6 +69,7 @@ function Index({
       ...selectedItemsOpLung,
       ...selectedItemsCuongLuc,
       ...selectedItemsCuSac,
+      ...selectedItemsClCamera,
     ]
       .map((item: any) => item.name)
       .filter(Boolean);
@@ -71,7 +80,7 @@ function Index({
       phone: values.phone,
       selectedOptions: productString,
       totalPrice: totalPrice,
-      comboName: "Combo 1 16 Series",
+      comboName: "Combo 3 16 Series",
     };
 
     console.log("Form data to be sent:", formData);
@@ -147,12 +156,12 @@ function Index({
                   onChange={(value) =>
                     handleSelectChange(
                       value,
-                      dataCombo1v1,
+                      dataCombo3v1,
                       setSelectedItemsOpLung
                     )
                   }
                 >
-                  {dataCombo1v1?.map((item: any, index: any) => (
+                  {dataCombo3v1?.map((item: any, index: any) => (
                     <Select.Option
                       key={`option-${index}`}
                       value={item.url_key}
@@ -178,12 +187,43 @@ function Index({
                   onChange={(value) =>
                     handleSelectChange(
                       value,
-                      dataCombo1v2,
+                      dataCombo3v2,
                       setSelectedItemsCuongLuc
                     )
                   }
                 >
-                  {dataCombo1v2?.map((item: any, index: any) => (
+                  {dataCombo3v2?.map((item: any, index: any) => (
+                    <Select.Option
+                      key={`option-${index}`}
+                      value={item.url_key}
+                      className="modal-option-combo"
+                    >
+                      <div className="modal-name-combo">{item.name}</div>
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </div>
+            <div className="">
+              <h3 className="modal-title-combo">CL Camera:</h3>
+              <Form.Item
+                name="cl-camera"
+                rules={[{ required: true, message: "Vui lòng chọn sản phẩm" }]}
+                wrapperCol={{ span: 24 }}
+              >
+                <Select
+                  placeholder="Chọn sản phẩm"
+                  style={{ width: "100%" }}
+                  className="input-modal-combo"
+                  onChange={(value) =>
+                    handleSelectChange(
+                      value,
+                      dataCombo3v3,
+                      setSelectedItemsClCamera
+                    )
+                  }
+                >
+                  {dataCombo3v3?.map((item: any, index: any) => (
                     <Select.Option
                       key={`option-${index}`}
                       value={item.url_key}
@@ -209,12 +249,12 @@ function Index({
                   onChange={(value) =>
                     handleSelectChange(
                       value,
-                      dataCombo1v3,
+                      dataCombo3v4,
                       setSelectedItemsCuSac
                     )
                   }
                 >
-                  {dataCombo1v3?.map((item: any, index: any) => (
+                  {dataCombo3v4?.map((item: any, index: any) => (
                     <Select.Option
                       key={`option-${index}`}
                       value={item.url_key}

@@ -7,22 +7,76 @@ import images2 from "../../../../public/combo-02-16.png";
 import images3 from "../../../../public/combo-03-16.png";
 import images4 from "../../../../public/combo-04-16.png";
 import ModalCombo161 from "../ModalCombo/ModalCombo161";
+import ModalCombo162 from "../ModalCombo/ModalCombo162";
+import { useProductCombo161 } from "../hook/ComboPK/Modal/ModalCombo161/ModalCombo161";
+import { useProductCombo161V2 } from "../hook/ComboPK/Modal/ModalCombo161/ModalCombo161";
+import { useProductCombo161V3 } from "../hook/ComboPK/Modal/ModalCombo161/ModalCombo161";
+import { useProductCombo162 } from "../hook/ComboPK/Modal/ModalCombo162/ModalCombo162";
+import { useProductCombo162V2 } from "../hook/ComboPK/Modal/ModalCombo162/ModalCombo162";
+import { useProductCombo162V3 } from "../hook/ComboPK/Modal/ModalCombo162/ModalCombo162";
+import { useProductCombo163 } from "../hook/ComboPK/Modal/ModalCombo163/ModalCombo163";
+import { useProductCombo163V2 } from "../hook/ComboPK/Modal/ModalCombo163/ModalCombo163";
+import { useProductCombo163V3 } from "../hook/ComboPK/Modal/ModalCombo163/ModalCombo163";
+import { useProductCombo163V4 } from "../hook/ComboPK/Modal/ModalCombo163/ModalCombo163";
+import { useProductCombo164 } from "../hook/ComboPK/Modal/ModalCombo164/ModalCombo164";
+import { useProductCombo164V2 } from "../hook/ComboPK/Modal/ModalCombo164/ModalCombo164";
+import { useProductCombo164V3 } from "../hook/ComboPK/Modal/ModalCombo164/ModalCombo164";
+import { useProductCombo164V4 } from "../hook/ComboPK/Modal/ModalCombo164/ModalCombo164";
+import ModalCombo164 from "../ModalCombo/ModalCombo164";
+import ModalCombo163 from "../ModalCombo/ModalCombo163";
 
 const ComboIPhone16: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenV2, setIsModalOpenV2] = useState(false);
+  const [isModalOpenV3, setIsModalOpenV3] = useState(false);
+  const [isModalOpenV4, setIsModalOpenV4] = useState(false);
   const [selectedCombo, setSelectedCombo] = useState(null);
+  const { data: dataCombo1v1 } = useProductCombo161();
+  const { data: dataCombo1v2 } = useProductCombo161V2();
+  const { data: dataCombo1v3 } = useProductCombo161V3();
+  const { data: dataCombo2v1 } = useProductCombo162();
+  const { data: dataCombo2v2 } = useProductCombo162V2();
+  const { data: dataCombo2v3 } = useProductCombo162V3();
+  const { data: dataCombo3v1 } = useProductCombo163();
+  const { data: dataCombo3v2 } = useProductCombo163V2();
+  const { data: dataCombo3v3 } = useProductCombo163V3();
+  const { data: dataCombo3v4 } = useProductCombo163V4();
+  const { data: dataCombo4v1 } = useProductCombo164();
+  const { data: dataCombo4v2 } = useProductCombo164V2();
+  const { data: dataCombo4v3 } = useProductCombo164V3();
+  const { data: dataCombo4v4 } = useProductCombo164V4();
 
   const images = [images1, images2, images3, images4];
   const combos = [
-    { combo: "COMBO GIÁNG SINH 1", persen: "40%", image: images1 },
-    { combo: "COMBO GIÁNG SINH 2", persen: "60%", image: images2 },
-    { combo: "COMBO GIÁNG SINH 3", persen: "50%", image: images3 },
-    { combo: "COMBO GIÁNG SINH 4", persen: "40%", image: images4 },
+    { combo: "COMBO ĐÓN TẾT 1", persen: "40%", image: images1 },
+    { combo: "COMBO ĐÓN TẾT 2", persen: "60%", image: images2 },
+    { combo: "COMBO ĐÓN TẾT 3", persen: "50%", image: images3 },
+    { combo: "COMBO ĐÓN TẾT 4", persen: "40%", image: images4 },
   ];
 
-  const handleComboClick = (combo: any) => {
+  const handleComboClick = (combo: any, index: any) => {
     setSelectedCombo(combo);
-    setIsModalOpen(true);
+    if (index === 0) {
+      setIsModalOpen(true);
+      setIsModalOpenV2(false);
+    } else if (index === 1) {
+      setIsModalOpen(false);
+      setIsModalOpenV2(true);
+    } else if (index === 2) {
+      setIsModalOpen(false);
+      setIsModalOpenV3(true);
+      setIsModalOpenV2(false);
+    } else if (index === 3) {
+      setIsModalOpen(false);
+      setIsModalOpenV3(false);
+      setIsModalOpenV2(false);
+      setIsModalOpenV4(true);
+    } else {
+      setIsModalOpen(false);
+      setIsModalOpenV3(false);
+      setIsModalOpenV2(false);
+      setIsModalOpenV4(false);
+    }
   };
 
   return (
@@ -34,7 +88,7 @@ const ComboIPhone16: React.FC = () => {
               <div
                 key={index}
                 className="banner-slide-combo-wrap"
-                onClick={() => handleComboClick(combo)}
+                onClick={() => handleComboClick(combo, index)}
               >
                 <div className="banner-slide-combo-card">
                   <div className="banner-slide-combo-header">
@@ -59,9 +113,44 @@ const ComboIPhone16: React.FC = () => {
       </div>
       {isModalOpen && (
         <ModalCombo161
+          dataCombo1v1={dataCombo1v1}
+          dataCombo1v2={dataCombo1v2}
+          dataCombo1v3={dataCombo1v3}
           visible={isModalOpen}
           selectedCombo={selectedCombo}
           onClose={() => setIsModalOpen(false)}
+        />
+      )}
+      {isModalOpenV2 && (
+        <ModalCombo162
+          dataCombo2v1={dataCombo2v1}
+          dataCombo2v2={dataCombo2v2}
+          dataCombo2v3={dataCombo2v3}
+          visible={isModalOpenV2}
+          selectedCombo={selectedCombo}
+          onClose={() => setIsModalOpenV2(false)}
+        />
+      )}
+      {isModalOpenV3 && (
+        <ModalCombo163
+          dataCombo3v1={dataCombo3v1}
+          dataCombo3v2={dataCombo3v2}
+          dataCombo3v3={dataCombo3v3}
+          dataCombo3v4={dataCombo3v4}
+          visible={isModalOpenV3}
+          selectedCombo={selectedCombo}
+          onClose={() => setIsModalOpenV3(false)}
+        />
+      )}
+      {isModalOpenV4 && (
+        <ModalCombo164
+          dataCombo4v1={dataCombo4v1}
+          dataCombo4v2={dataCombo4v2}
+          dataCombo4v3={dataCombo4v3}
+          dataCombo4v4={dataCombo4v4}
+          visible={isModalOpenV4}
+          selectedCombo={selectedCombo}
+          onClose={() => setIsModalOpenV4(false)}
         />
       )}
     </>

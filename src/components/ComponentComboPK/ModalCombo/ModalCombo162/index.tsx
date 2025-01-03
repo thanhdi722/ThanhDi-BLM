@@ -1,14 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Button, Select } from "antd";
-import "./style.scss";
+
 function Index({
   visible,
   selectedCombo,
   onClose,
-  dataCombo1v1,
-  dataCombo1v2,
-  dataCombo1v3,
+  dataCombo2v1,
+  dataCombo2v2,
+  dataCombo2v3,
 }: any) {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
@@ -71,7 +71,7 @@ function Index({
       phone: values.phone,
       selectedOptions: productString,
       totalPrice: totalPrice,
-      comboName: "Combo 1 16 Series",
+      comboName: "Combo 2 16 Series",
     };
 
     console.log("Form data to be sent:", formData);
@@ -134,7 +134,7 @@ function Index({
             </Form.Item>
 
             <div className="">
-              <h3 className="modal-title-combo">Ốp lưng:</h3>
+              <h3 className="modal-title-combo">Cường Lực:</h3>
               <Form.Item
                 name="op-lung"
                 rules={[{ required: true, message: "Vui lòng chọn sản phẩm" }]}
@@ -147,43 +147,12 @@ function Index({
                   onChange={(value) =>
                     handleSelectChange(
                       value,
-                      dataCombo1v1,
+                      dataCombo2v1,
                       setSelectedItemsOpLung
                     )
                   }
                 >
-                  {dataCombo1v1?.map((item: any, index: any) => (
-                    <Select.Option
-                      key={`option-${index}`}
-                      value={item.url_key}
-                      className="modal-option-combo"
-                    >
-                      <div className="modal-name-combo">{item.name}</div>
-                    </Select.Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </div>
-            <div className="">
-              <h3 className="modal-title-combo">Cường Lực:</h3>
-              <Form.Item
-                name="cuong-luc"
-                rules={[{ required: true, message: "Vui lòng chọn sản phẩm" }]}
-                wrapperCol={{ span: 24 }}
-              >
-                <Select
-                  className="input-modal-combo"
-                  placeholder="Chọn sản phẩm"
-                  style={{ width: "100%" }}
-                  onChange={(value) =>
-                    handleSelectChange(
-                      value,
-                      dataCombo1v2,
-                      setSelectedItemsCuongLuc
-                    )
-                  }
-                >
-                  {dataCombo1v2?.map((item: any, index: any) => (
+                  {dataCombo2v1?.map((item: any, index: any) => (
                     <Select.Option
                       key={`option-${index}`}
                       value={item.url_key}
@@ -198,6 +167,37 @@ function Index({
             <div className="">
               <h3 className="modal-title-combo">Củ sạc:</h3>
               <Form.Item
+                name="cuong-luc"
+                rules={[{ required: true, message: "Vui lòng chọn sản phẩm" }]}
+                wrapperCol={{ span: 24 }}
+              >
+                <Select
+                  className="input-modal-combo"
+                  placeholder="Chọn sản phẩm"
+                  style={{ width: "100%" }}
+                  onChange={(value) =>
+                    handleSelectChange(
+                      value,
+                      dataCombo2v2,
+                      setSelectedItemsCuongLuc
+                    )
+                  }
+                >
+                  {dataCombo2v2?.map((item: any, index: any) => (
+                    <Select.Option
+                      key={`option-${index}`}
+                      value={item.url_key}
+                      className="modal-option-combo"
+                    >
+                      <div className="modal-name-combo">{item.name}</div>
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </div>
+            <div className="">
+              <h3 className="modal-title-combo">Pin dự phòng:</h3>
+              <Form.Item
                 name="cu-sac"
                 rules={[{ required: true, message: "Vui lòng chọn sản phẩm" }]}
                 wrapperCol={{ span: 24 }}
@@ -209,12 +209,12 @@ function Index({
                   onChange={(value) =>
                     handleSelectChange(
                       value,
-                      dataCombo1v3,
+                      dataCombo2v3,
                       setSelectedItemsCuSac
                     )
                   }
                 >
-                  {dataCombo1v3?.map((item: any, index: any) => (
+                  {dataCombo2v3?.map((item: any, index: any) => (
                     <Select.Option
                       key={`option-${index}`}
                       value={item.url_key}

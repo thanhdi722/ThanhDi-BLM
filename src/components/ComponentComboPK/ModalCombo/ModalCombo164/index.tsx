@@ -1,14 +1,15 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Button, Select } from "antd";
-import "./style.scss";
+
 function Index({
   visible,
   selectedCombo,
   onClose,
-  dataCombo1v1,
-  dataCombo1v2,
-  dataCombo1v3,
+  dataCombo4v1,
+  dataCombo4v2,
+  dataCombo4v3,
+  dataCombo4v4,
 }: any) {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
@@ -22,9 +23,10 @@ function Index({
         (attr: any) => attr.label === "Giá Combo"
       );
       const comboPrice = comboPriceAttribute
-        ? parseFloat(comboPriceAttribute.value)
+        ? parseFloat(comboPriceAttribute.value.replace(/,/g, ""))
         : 0;
-      total += comboPrice;
+
+      total = comboPrice + total;
     });
     setTotalPrice(total);
   };
@@ -34,33 +36,40 @@ function Index({
     dataSource: any,
     setSelectedItems: any
   ) => {
-    const selectedItems = dataSource.filter((item: any) =>
-      value.includes(item.url_key)
+    const selectedItems = dataSource.filter((item: any, index: any) =>
+      value.includes(item.name + index)
     );
     setSelectedItems(selectedItems);
     calculateTotalPrice([...selectedItems]);
   };
 
-  const [selectedItemsOpLung, setSelectedItemsOpLung] = useState([]);
+  const [selectedItemsOpLung4V1, setSelectedItemsOpLung4V1] = useState([]);
   const [selectedItemsCuongLuc, setSelectedItemsCuongLuc] = useState([]);
   const [selectedItemsCuSac, setSelectedItemsCuSac] = useState([]);
+  const [selectedItemsClCamera, setSelectedItemsClCamera] = useState([]);
 
   useEffect(() => {
     calculateTotalPrice([
-      ...selectedItemsOpLung,
+      ...selectedItemsOpLung4V1,
       ...selectedItemsCuongLuc,
       ...selectedItemsCuSac,
+      ...selectedItemsClCamera,
     ]);
-  }, [selectedItemsOpLung, selectedItemsCuongLuc, selectedItemsCuSac]);
+  }, [
+    selectedItemsOpLung4V1,
+    selectedItemsCuongLuc,
+    selectedItemsCuSac,
+    selectedItemsClCamera,
+  ]);
 
   const onFinish = async (values: any) => {
     setLoading(true);
 
-    // Combine all selected products into a single string
     const selectedProducts = [
-      ...selectedItemsOpLung,
+      ...selectedItemsOpLung4V1,
       ...selectedItemsCuongLuc,
       ...selectedItemsCuSac,
+      ...selectedItemsClCamera,
     ]
       .map((item: any) => item.name)
       .filter(Boolean);
@@ -71,10 +80,8 @@ function Index({
       phone: values.phone,
       selectedOptions: productString,
       totalPrice: totalPrice,
-      comboName: "Combo 1 16 Series",
+      comboName: "Combo 4 16 Series",
     };
-
-    console.log("Form data to be sent:", formData);
 
     try {
       const response = await fetch(
@@ -147,15 +154,15 @@ function Index({
                   onChange={(value) =>
                     handleSelectChange(
                       value,
-                      dataCombo1v1,
-                      setSelectedItemsOpLung
+                      dataCombo4v1,
+                      setSelectedItemsOpLung4V1
                     )
                   }
                 >
-                  {dataCombo1v1?.map((item: any, index: any) => (
+                  {dataCombo4v1?.map((item: any, index: any) => (
                     <Select.Option
                       key={`option-${index}`}
-                      value={item.url_key}
+                      value={item.name + index}
                       className="modal-option-combo"
                     >
                       <div className="modal-name-combo">{item.name}</div>
@@ -178,15 +185,46 @@ function Index({
                   onChange={(value) =>
                     handleSelectChange(
                       value,
-                      dataCombo1v2,
+                      dataCombo4v2,
                       setSelectedItemsCuongLuc
                     )
                   }
                 >
-                  {dataCombo1v2?.map((item: any, index: any) => (
+                  {dataCombo4v2?.map((item: any, index: any) => (
                     <Select.Option
                       key={`option-${index}`}
-                      value={item.url_key}
+                      value={item.name + index}
+                      className="modal-option-combo"
+                    >
+                      <div className="modal-name-combo">{item.name}</div>
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </div>
+            <div className="">
+              <h3 className="modal-title-combo">CL Camera:</h3>
+              <Form.Item
+                name="cl-camera"
+                rules={[{ required: true, message: "Vui lòng chọn sản phẩm" }]}
+                wrapperCol={{ span: 24 }}
+              >
+                <Select
+                  placeholder="Chọn sản phẩm"
+                  style={{ width: "100%" }}
+                  className="input-modal-combo"
+                  onChange={(value) =>
+                    handleSelectChange(
+                      value,
+                      dataCombo4v3,
+                      setSelectedItemsClCamera
+                    )
+                  }
+                >
+                  {dataCombo4v3?.map((item: any, index: any) => (
+                    <Select.Option
+                      key={`option-${index}`}
+                      value={item.name + index}
                       className="modal-option-combo"
                     >
                       <div className="modal-name-combo">{item.name}</div>
@@ -209,15 +247,15 @@ function Index({
                   onChange={(value) =>
                     handleSelectChange(
                       value,
-                      dataCombo1v3,
+                      dataCombo4v4,
                       setSelectedItemsCuSac
                     )
                   }
                 >
-                  {dataCombo1v3?.map((item: any, index: any) => (
+                  {dataCombo4v4?.map((item: any, index: any) => (
                     <Select.Option
                       key={`option-${index}`}
-                      value={item.url_key}
+                      value={item.name + index}
                       className="modal-option-combo"
                     >
                       <div className="modal-name-combo">{item.name}</div>
