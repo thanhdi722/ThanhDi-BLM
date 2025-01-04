@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Modal, Form, Button, Select } from "antd";
+import { Modal, Form, Button, Select, notification } from "antd";
 
 function Index({
   visible,
@@ -98,6 +98,10 @@ function Index({
       console.error("Error:", error);
     } finally {
       setLoading(false);
+      notification.success({
+        message: "Đặt hàng thành công",
+        description: "Chúng tôi sẽ liên hệ sớm nhất!",
+      });
       onClose();
     }
   };
@@ -165,7 +169,18 @@ function Index({
                       value={item.name + index}
                       className="modal-option-combo"
                     >
-                      <div className="modal-name-combo">{item.name}</div>
+                      <div className="modal-name-combo">
+                        {item.name}{" "}
+                        <span style={{ color: "red" }}>
+                          Giá:{" "}
+                          {parseFloat(
+                            item.attributes.find(
+                              (attr: any) => attr.label === "Giá Combo"
+                            )?.value || "0"
+                          ).toLocaleString("vi-VN")}{" "}
+                          VND
+                        </span>
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>
@@ -196,7 +211,18 @@ function Index({
                       value={item.name + index}
                       className="modal-option-combo"
                     >
-                      <div className="modal-name-combo">{item.name}</div>
+                      <div className="modal-name-combo">
+                        {item.name}{" "}
+                        <span style={{ color: "red" }}>
+                          Giá:{" "}
+                          {parseFloat(
+                            item.attributes.find(
+                              (attr: any) => attr.label === "Giá Combo"
+                            )?.value || "0"
+                          ).toLocaleString("vi-VN")}{" "}
+                          VND
+                        </span>
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>
@@ -227,7 +253,18 @@ function Index({
                       value={item.name + index}
                       className="modal-option-combo"
                     >
-                      <div className="modal-name-combo">{item.name}</div>
+                      <div className="modal-name-combo">
+                        {item.name}{" "}
+                        <span style={{ color: "red" }}>
+                          Giá:{" "}
+                          {parseFloat(
+                            item.attributes.find(
+                              (attr: any) => attr.label === "Giá Combo"
+                            )?.value || "0"
+                          ).toLocaleString("vi-VN")}{" "}
+                          VND
+                        </span>
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>
@@ -258,7 +295,18 @@ function Index({
                       value={item.name + index}
                       className="modal-option-combo"
                     >
-                      <div className="modal-name-combo">{item.name}</div>
+                      <div className="modal-name-combo">
+                        {item.name}{" "}
+                        <span style={{ color: "red" }}>
+                          Giá:{" "}
+                          {parseFloat(
+                            item.attributes.find(
+                              (attr: any) => attr.label === "Giá Combo"
+                            )?.value || "0"
+                          ).toLocaleString("vi-VN")}{" "}
+                          VND
+                        </span>
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>

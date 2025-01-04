@@ -114,46 +114,46 @@ const ComboIPhone15: React.FC = () => {
             ))}
           </div>
         </div>
+        {isModalOpen && (
+          <ModalCombo151
+            dataCombo1v1={dataCombo1v1}
+            dataCombo1v2={dataCombo1v2}
+            visible={isModalOpen}
+            selectedCombo={selectedCombo}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
+        {isModalOpenV2 && (
+          <ModalCombo152
+            dataCombo2v1={dataCombo2v1}
+            dataCombo2v2={dataCombo2v2}
+            visible={isModalOpenV2}
+            selectedCombo={selectedCombo}
+            onClose={() => setIsModalOpenV2(false)}
+          />
+        )}
+        {isModalOpenV3 && (
+          <ModalCombo153
+            dataCombo3v1={dataCombo3v1}
+            dataCombo3v2={dataCombo3v2}
+            dataCombo3v3={dataCombo3v3}
+            visible={isModalOpenV3}
+            selectedCombo={selectedCombo}
+            onClose={() => setIsModalOpenV3(false)}
+          />
+        )}
+        {isModalOpenV4 && (
+          <ModalCombo154
+            dataCombo4v1={dataCombo4v1}
+            dataCombo4v2={dataCombo4v2}
+            dataCombo4v3={dataCombo4v3}
+            dataCombo4v4={dataCombo4v4}
+            visible={isModalOpenV4}
+            selectedCombo={selectedCombo}
+            onClose={() => setIsModalOpenV4(false)}
+          />
+        )}
       </div>
-      {isModalOpen && (
-        <ModalCombo151
-          dataCombo1v1={dataCombo1v1}
-          dataCombo1v2={dataCombo1v2}
-          visible={isModalOpen}
-          selectedCombo={selectedCombo}
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
-      {isModalOpenV2 && (
-        <ModalCombo152
-          dataCombo2v1={dataCombo2v1}
-          dataCombo2v2={dataCombo2v2}
-          visible={isModalOpenV2}
-          selectedCombo={selectedCombo}
-          onClose={() => setIsModalOpenV2(false)}
-        />
-      )}
-      {isModalOpenV3 && (
-        <ModalCombo153
-          dataCombo3v1={dataCombo3v1}
-          dataCombo3v2={dataCombo3v2}
-          dataCombo3v3={dataCombo3v3}
-          visible={isModalOpenV3}
-          selectedCombo={selectedCombo}
-          onClose={() => setIsModalOpenV3(false)}
-        />
-      )}
-      {isModalOpenV4 && (
-        <ModalCombo154
-          dataCombo4v1={dataCombo4v1}
-          dataCombo4v2={dataCombo4v2}
-          dataCombo4v3={dataCombo4v3}
-          dataCombo4v4={dataCombo4v4}
-          visible={isModalOpenV4}
-          selectedCombo={selectedCombo}
-          onClose={() => setIsModalOpenV4(false)}
-        />
-      )}
     </>
   );
 };

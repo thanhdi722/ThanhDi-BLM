@@ -33,11 +33,6 @@ fragment ProductInterfaceField on ProductInterface {
 }
 fragment CustomField on ProductInterface {
 
-
-  attributes {
-   
-    value
-  }
 }
 fragment PriceRangeField on PriceRange {
   minimum_price {

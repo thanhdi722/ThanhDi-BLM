@@ -52,10 +52,6 @@ fragment CustomField on ProductInterface {
     __typename
   }
 
-  attributes {
-   
-    value
-  }
 }
 fragment PriceRangeField on PriceRange {
   minimum_price {

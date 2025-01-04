@@ -81,7 +81,6 @@ const SectionBaoDa: React.FC = () => {
             url_key={item.url_key}
             image={item.image}
             price_range={item.price_range}
-            price_original={item.attributes[0].value}
           />
         ));
     };

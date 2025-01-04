@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Modal, Form, Button, Select } from "antd";
+import { Modal, Form, Button, Select, notification } from "antd";
 import "./style.scss";
 function Index({
   visible,
@@ -11,9 +11,7 @@ function Index({
 }: any) {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
-
   const [totalPrice, setTotalPrice] = useState(0);
-
   const calculateTotalPrice = (selectedItems: any) => {
     let total = 0;
     selectedItems.forEach((item: any) => {
@@ -86,11 +84,17 @@ function Index({
       );
       const data = await response.json();
       console.log(data);
+
+      // Show success notification
     } catch (error) {
       console.error("Error:", error);
     } finally {
       setLoading(false);
       onClose();
+      notification.success({
+        message: "Đặt hàng thành công",
+        description: "Chúng tôi sẽ liên hệ sớm nhất!",
+      });
     }
   };
   return (
@@ -157,7 +161,18 @@ function Index({
                       value={item.url_key}
                       className="modal-option-combo"
                     >
-                      <div className="modal-name-combo">{item.name}</div>
+                      <div className="modal-name-combo">
+                        {item.name}{" "}
+                        <span style={{ color: "red" }}>
+                          Giá:{" "}
+                          {parseFloat(
+                            item.attributes.find(
+                              (attr: any) => attr.label === "Giá Combo"
+                            )?.value || "0"
+                          ).toLocaleString("vi-VN")}{" "}
+                          VND
+                        </span>
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>
@@ -188,7 +203,18 @@ function Index({
                       value={item.url_key}
                       className="modal-option-combo"
                     >
-                      <div className="modal-name-combo">{item.name}</div>
+                      <div className="modal-name-combo">
+                        {item.name}{" "}
+                        <span style={{ color: "red" }}>
+                          Giá:{" "}
+                          {parseFloat(
+                            item.attributes.find(
+                              (attr: any) => attr.label === "Giá Combo"
+                            )?.value || "0"
+                          ).toLocaleString("vi-VN")}{" "}
+                          VND
+                        </span>
+                      </div>
                     </Select.Option>
                   ))}
                 </Select>
