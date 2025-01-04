@@ -18,15 +18,6 @@ const query = `
     items {
       ...ProductInterfaceField
     }
-    
-    sort_fields {
-      default
-      options {
-        label
-        value
-      }
-    }
-   
     }
 }
 fragment ProductInterfaceField on ProductInterface {
@@ -41,16 +32,7 @@ fragment ProductInterfaceField on ProductInterface {
   ...CustomField
 }
 fragment CustomField on ProductInterface {
-  daily_sale {
-    end_date
-    entity_id
-    sale_price
-    sale_qty
-    saleable_qty
-    sold_qty
-    start_date
-    __typename
-  }
+
 
   attributes {
    

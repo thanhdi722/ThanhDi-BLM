@@ -18,8 +18,8 @@ import { useProductComboSacDuPhongSamsung } from "../hook/ComboPK/ComboSacDuPhon
 
 import CardSkeleton from "../CardSkeleton";
 const SectionBaoDa: React.FC = () => {
-  const [activeParentTab, setActiveParentTab] = useState<string>("Innostyle");
-  const [activeChildTab, setActiveChildTab] = useState<string>("Innostyle");
+  const [activeParentTab, setActiveParentTab] = useState<string>("Pisen");
+  const [activeChildTab, setActiveChildTab] = useState<string>("Pisen");
   const [visibleProducts, setVisibleProducts] = useState<number>(10);
 
   const handleParentTabChange = (parentTab: string) => {
@@ -194,12 +194,12 @@ const SectionBaoDa: React.FC = () => {
     fetchBannerHeader();
   }, []);
   return (
-    <div className="OldForNew-Section-leather-case" id="item-leather-case">
-      <div className="container OldForNew-Section-Container-leather-case">
+    <div className="OldForNew-Section-leather-case" id="item-backup-charger">
+      <div className="container product-combo-sac-du-phong">
         {dataTitle ? (
           dataTitle?.data?.Slider?.items[0]?.Banner?.items
             .filter((item: any) =>
-              item.name.includes("title bao da trang phụ kiện")
+              item.name.includes("title pin dự phòng trang phụ kiện")
             )
             .map((item: any, index: any) => (
               <div key={index}>
@@ -217,17 +217,18 @@ const SectionBaoDa: React.FC = () => {
         )}
         <div className="list-tab-parent">
           <button
-            className={activeParentTab === "Innostyle" ? "active" : ""}
-            onClick={() => handleParentTabChange("Innostyle")}
-          >
-            Innostyle
-          </button>
-          <button
             className={activeParentTab === "Pisen" ? "active" : ""}
             onClick={() => handleParentTabChange("Pisen")}
           >
             Pisen
           </button>
+          <button
+            className={activeParentTab === "Innostyle" ? "active" : ""}
+            onClick={() => handleParentTabChange("Innostyle")}
+          >
+            Innostyle
+          </button>
+
           <button
             className={activeParentTab === "MicroPack" ? "active" : ""}
             onClick={() => handleParentTabChange("MicroPack")}

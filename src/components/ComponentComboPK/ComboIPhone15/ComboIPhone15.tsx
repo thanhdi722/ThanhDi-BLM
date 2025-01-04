@@ -47,10 +47,10 @@ const ComboIPhone15: React.FC = () => {
 
   const images = [images1, images2, images3, images4];
   const combos = [
-    { combo: "COMBO SIÊU RẺ 1", persen: "50%", image: images1 },
-    { combo: "COMBO SIÊU RẺ 2", persen: "40%", image: images2 },
-    { combo: "COMBO SIÊU RẺ 3", persen: "30%", image: images3 },
-    { combo: "COMBO SIÊU RẺ 4", persen: "20%", image: images4 },
+    { combo: "COMBO SIÊU RẺ 1", persen: "50%", image: images1, price: 640000 },
+    { combo: "COMBO SIÊU RẺ 2", persen: "40%", image: images2, price: 880000 },
+    { combo: "COMBO SIÊU RẺ 3", persen: "30%", image: images3, price: 890000 },
+    { combo: "COMBO SIÊU RẺ 4", persen: "20%", image: images4, price: 1380000 },
   ];
 
   const handleComboClick = (combo: any, index: any) => {
@@ -82,6 +82,7 @@ const ComboIPhone15: React.FC = () => {
     <>
       <div className="banner-slide">
         <div className="container">
+          <h1 className="title-combo-15">COMBO PHỤ KIỆN IPHONE 15 SERIES</h1>
           <div className="banner-slide-combo15">
             {combos.map((combo, index) => (
               <div
@@ -99,7 +100,14 @@ const ComboIPhone15: React.FC = () => {
                       alt="banner-slide-combo15-image"
                       className="banner-slide-combo15-image"
                     />
-                    <div className="banner-slide-combo15-price"></div>
+                    <div className="banner-slide-combo15-price">
+                      <span className="combo-price-txt">
+                        {combo.price.toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

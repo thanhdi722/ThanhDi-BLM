@@ -154,12 +154,12 @@ const SectionBaoDa: React.FC = () => {
     fetchBannerHeader();
   }, []);
   return (
-    <div className="OldForNew-Section-leather-case" id="item-leather-case">
-      <div className="container OldForNew-Section-Container-leather-case">
+    <div className="OldForNew-Section-leather-case" id="item-laptop">
+      <div className="container product-combo-do-choi-phu-kien">
         {dataTitle ? (
           dataTitle?.data?.Slider?.items[0]?.Banner?.items
             .filter((item: any) =>
-              item.name.includes("title bao da trang phụ kiện")
+              item.name.includes("title đồ chơi công nghệ trang phụ kiện")
             )
             .map((item: any, index: any) => (
               <div key={index}>

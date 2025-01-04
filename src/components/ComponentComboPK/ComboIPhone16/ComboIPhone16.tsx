@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import "./ComboIPhone16.scss";
-import images1 from "../../../../public/combo-01-16.png";
-import images2 from "../../../../public/combo-02-16.png";
-import images3 from "../../../../public/combo-03-16.png";
-import images4 from "../../../../public/combo-04-16.png";
+import images1 from "../../../../public/combopk04012025.png";
+import images2 from "../../../../public/combopk04012025222.png";
+import images3 from "../../../../public/combopk04012025222333333.png";
+import images4 from "../../../../public/combopk040120252223333334444444444.png";
 import ModalCombo161 from "../ModalCombo/ModalCombo161";
 import ModalCombo162 from "../ModalCombo/ModalCombo162";
 import { useProductCombo161 } from "../hook/ComboPK/Modal/ModalCombo161/ModalCombo161";
@@ -48,10 +48,10 @@ const ComboIPhone16: React.FC = () => {
 
   const images = [images1, images2, images3, images4];
   const combos = [
-    { combo: "COMBO ĐÓN TẾT 1", persen: "40%", image: images1 },
-    { combo: "COMBO ĐÓN TẾT 2", persen: "60%", image: images2 },
-    { combo: "COMBO ĐÓN TẾT 3", persen: "50%", image: images3 },
-    { combo: "COMBO ĐÓN TẾT 4", persen: "40%", image: images4 },
+    { combo: "COMBO ĐÓN TẾT 1", persen: "40%", image: images1, price: 960000 },
+    { combo: "COMBO ĐÓN TẾT 2", persen: "60%", image: images2, price: 1160000 },
+    { combo: "COMBO ĐÓN TẾT 3", persen: "50%", image: images3, price: 1260000 },
+    { combo: "COMBO ĐÓN TẾT 4", persen: "40%", image: images4, price: 1460000 },
   ];
 
   const handleComboClick = (combo: any, index: any) => {
@@ -83,12 +83,14 @@ const ComboIPhone16: React.FC = () => {
     <>
       <div className="banner-slide">
         <div className="container">
+          <h1 className="title-combo-16">COMBO PHỤ KIỆN IPHONE 16 SERIES</h1>
           <div className="banner-slide-combo">
             {combos.map((combo, index) => (
               <div
                 key={index}
                 className="banner-slide-combo-wrap"
                 onClick={() => handleComboClick(combo, index)}
+                style={{ position: "relative" }}
               >
                 <div className="banner-slide-combo-card">
                   <div className="banner-slide-combo-header">
@@ -105,6 +107,14 @@ const ComboIPhone16: React.FC = () => {
                     className="banner-slide-combo-image"
                     loading="lazy"
                   />
+                </div>
+                <div>
+                  <span className="combo-price-txt">
+                    {combo.price.toLocaleString("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
+                  </span>
                 </div>
               </div>
             ))}

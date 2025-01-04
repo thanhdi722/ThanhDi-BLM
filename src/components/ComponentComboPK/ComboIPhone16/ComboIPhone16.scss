@@ -327,7 +327,18 @@
   font-size: 2rem;
   font-weight: 500;
 }
-
+.combo-price-txt {
+  color: #ff0000;
+  font-size: 2rem;
+  font-weight: 700;
+  position: absolute;
+  bottom: 10%;
+  right: 50%;
+  transform: translateX(50%);
+  @media screen and (max-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
 .modal-btn {
   margin-top: 1rem;
   padding: 2rem !important;
