@@ -1,5 +1,6 @@
-.product-list-warehouse-discharge {
-  background-color: #d5b487;
+.product-xa-kho {
+  z-index: 99;
+  position: relative;
   .tabs {
     display: flex;
     justify-content: center;
@@ -8,6 +9,35 @@
 
     @media screen and (max-width: 768px) {
       gap: 0.4rem;
+    }
+  }
+  .tab-buttons {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.2rem;
+    padding: 10px; // Add padding
+    white-space: nowrap;
+
+    button {
+      background-color: transparent;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border: 1px solid #333333;
+      border-radius: 10px;
+      color: #000000;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #f0f0f0; // Hover effect
+        color: #000;
+      }
+
+      &.active {
+        background-color: #d71536; // Active button background
+        color: white; // Active button text color
+      }
     }
   }
   .sub-tab-list {
@@ -39,33 +69,22 @@
         }
       }
     }
-    .tabs-grid {
+    .tabs {
       padding: 1.2rem 0;
       font-size: 1.2rem;
       display: flex;
       flex-wrap: wrap;
       width: 100%;
-      gap: 20px;
-      @media (max-width: 767px) {
-        gap: 10px;
-      }
 
-      .tab-access {
-        margin: 0;
-        padding: 1rem 0.2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 50px;
-        height: 100%;
-        transition: all 0.5s ease-in-out;
-        text-align: center;
+      .tab {
+        margin: 0 !important;
         background-color: #fff;
+        color: #333;
 
         &:hover {
-          background-color: red !important;
+          background-color: #ff7518 !important;
           color: #fff !important;
-          border-color: red !important;
+          border-color: #ff7518 !important;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
       }
@@ -85,7 +104,7 @@
       }
 
       &-item {
-        background: #f9f9f9;
+        background: #ffffff;
         border-radius: 0.8rem;
         padding: 1.2rem;
         display: flex;
@@ -111,21 +130,21 @@
           justify-content: space-between;
 
           .decor-product {
-            width: 4.4rem !important;
-            height: 4rem !important;
+            width: 2.4rem !important;
+            height: 3rem !important;
             position: absolute;
-            top: 1.4rem;
-            left: 1.4rem;
+            top: 0;
+            left: 0;
             transform: translate(-50%, -50%) !important;
             z-index: 3;
 
             @media screen and (max-width: 1024px) {
-              width: 60px !important;
-              height: 60px !important;
+              width: 2.2rem !important;
+              height: 3.6rem !important;
             }
             @media screen and (max-width: 768px) {
-              width: 40px !important;
-              height: 40px !important;
+              width: 1.6rem !important;
+              height: 2.2rem !important;
             }
             img {
               width: 100%;
@@ -197,7 +216,7 @@
           &-body {
             display: flex;
             align-items: start;
-            gap: 1.2rem;
+            gap: 0rem;
             flex-direction: column;
 
             &-tt {
@@ -207,7 +226,7 @@
             &-price {
               font-size: 1.6rem;
               color: #ef373e;
-              font-weight: 500;
+              font-weight: 700;
 
               @media screen and (max-width: 768px) {
                 font-size: 1.4rem;
@@ -230,10 +249,19 @@
         }
       }
     }
+    .ic-auth {
+      width: 60px;
+      height: 25px;
+      object-fit: unset !important;
+      @media (max-width: 767px) {
+        height: 20px;
+        width: 40px;
+      }
+    }
     .percent {
-      font-size: 1.2rem;
+      font-size: 1rem;
       border: 1px solid #ef373e;
-      padding: 1rem;
+      padding: 0.5rem;
       border-radius: 0.4rem;
       color: #ef373e;
     }

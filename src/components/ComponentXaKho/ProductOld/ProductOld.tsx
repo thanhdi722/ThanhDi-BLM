@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductOld.scss";
 import CardProduct from "../CardProductComboPK/CardProduct";
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import noProducts from "../../../../public/img-no-pro-matching.webp";
-// import imagesTitle from "../../../../public/warehouse-discharge/maylikenew.png";
+import imagesTitle from "../../../../public/warehouse-discharge/maylikenew.png";
 export interface Product {
   id: number;
   name: string;
@@ -26,7 +26,42 @@ export interface Product {
     };
   };
 }
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
 
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
+  };
+}
+
+interface SliderItem {
+  title: string;
+  identifier: string;
+  Banner: Banner;
+}
+
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
+}
+
+interface ApiResponse {
+  data: SliderData;
+}
 const query = `
 query getProducts(
   $search: String
@@ -122,7 +157,64 @@ const ProductListIphone: React.FC = () => {
   if (error) {
     return <div>Error loading data</div>;
   }
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
 
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }
+                `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "banner-page-xa-kho",
+                },
+              },
+            },
+          }),
+        }
+      );
+
+      const result = await response.json();
+      setDataTitle(result);
+    } catch (err) {}
+  };
+  useEffect(() => {
+    fetchBannerHeader();
+  }, []);
   return (
     <div
       className="container-iphone-ProductOld-old"
@@ -133,11 +225,25 @@ const ProductListIphone: React.FC = () => {
           className="OldForNew-Section-Container-leather-case-a1"
           id="item-leather-case"
         >
-          {/* <Image
-            src={imagesTitle}
-            alt=""
-            style={{ padding: "0px 0px 20px 0px" }}
-          /> */}
+          {dataTitle ? (
+            dataTitle?.data?.Slider?.items[0]?.Banner?.items
+              .filter((item) =>
+                item.name.includes("title sản phẩm máy 99 page xả kho")
+              )
+              .map((item, index) => (
+                <div key={index}>
+                  <img
+                    src={item.media || ""}
+                    alt={`privilege-${index + 1}`}
+                    style={{ padding: "0px 10px 20px 10px" }}
+                  />
+                </div>
+              ))
+          ) : (
+            <Spin>
+              <div style={{ width: 200, height: 200 }} />
+            </Spin>
+          )}
           <div className="header-table-combo-pk">
             {/* <div style={{ paddingBottom: "10px" }}>
               <h2 className="title-table-combo-pk">Phụ Kiện</h2>

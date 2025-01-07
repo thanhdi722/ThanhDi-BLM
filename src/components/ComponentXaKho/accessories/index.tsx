@@ -1,205 +1,327 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import FrameProduct from "../../../../public/sale-12/fpk2412.png";
+import { Skeleton, Spin } from "antd";
+import "./apple.scss";
+import Link from "next/link";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import DecorWomen from "../../../../public/halloween/decor-women-07.png";
-import Access20k from "../accessories-halloween/acess-20k/index";
-import Access110 from "../accessories-halloween/acess-110/index";
-import Access210 from "../accessories-halloween/acess-210/index";
-import Access310 from "../accessories-halloween/acess-310/index";
-import AccessTo210 from "../accessories-halloween/acess-to210/index";
-import Access290 from "../accessories-halloween/acess-290/index";
-import "./product.scss";
-import "swiper/css";
-import imagesTitle from "../../../../public/warehouse-discharge/PC_Phụ kiện xả lỗ từ 10k.png";
-const AccessoriesList: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<number>(0);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [disabledTabs, setDisabledTabs] = useState<number[]>([]);
+import { useProductSaleDataPKXaKho } from "../hook/dataPK";
 
-  const tabs = [
-    {
-      index: 0,
-      name: (
-        <span>
-          SAMSUNG <br />{" "}
-          <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
-            GIÁ TỪ 20K
-          </span>
-        </span>
-      ),
-      component: <Access20k />,
-    },
-    {
-      index: 1,
-      name: (
-        <span>
-          IPHONE 13 SERIES <br />{" "}
-          <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
-            GIÁ TỪ 110,000
-          </span>
-        </span>
-      ),
-      component: <Access110 />,
-    },
-    {
-      index: 2,
-      name: (
-        <span>
-          IPHONE 14 SERIES <br />{" "}
-          <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
-            GIÁ TỪ 210,000
-          </span>
-        </span>
-      ),
-      component: <Access210 />,
-    },
-    {
-      index: 3,
-      name: (
-        <span>
-          IPHONE 15 SERIES <br />{" "}
-          <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
-            GIÁ TỪ 310,000
-          </span>
-        </span>
-      ),
-      component: <Access310 />,
-    },
-    {
-      index: 4,
-      name: (
-        <span>
-          PIN DỰ PHÒNG <br />{" "}
-          <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
-            GIÁ TỪ 210.000
-          </span>
-        </span>
-      ),
-      component: <AccessTo210 />,
-    },
-    {
-      index: 5,
-      name: (
-        <span>
-          CÓC /CÁP SẠC <br />{" "}
-          <span style={{ fontSize: "1.2rem", fontWeight: "600" }}>
-            GIÁ TỪ 290.000
-          </span>
-        </span>
-      ),
-      component: <Access290 />,
-    },
-  ];
+import HostPrice2 from "../../../../public/gratitude/hot-price.png";
+import BestSeller from "../../../../public/new-year/best-seller.png";
+import Author from "../../../../public/apple/author.webp";
 
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
+
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
+  };
+}
+
+interface SliderItem {
+  title: string;
+  identifier: string;
+  Banner: Banner;
+}
+
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
+}
+
+interface ApiResponse {
+  data: SliderData;
+}
+
+const AppleList: React.FC = () => {
+  const { data } = useProductSaleDataPKXaKho();
+  const filteredDataPKXaKho = data?.filter(
+    (item: any) => item.title === "SP Phụ Kiện Xả Kho"
+  );
+
+  const [filteredData, setFilteredData] = useState<any[]>([]);
+  const [visibleCount, setVisibleCount] = useState<number>(10);
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                       
+                        Banner {
+                          __typename
+                          items {
+                           
+                            media
+                          
+                            name
+                           
+                          }
+                          
+                        }
+                      }
+                     
+                    }
+                  }
+                `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "banner-page-xa-kho",
+                },
+              },
+            },
+          }),
+        }
+      );
+
+      const result = await response.json();
+      setDataTitle(result);
+    } catch (err) {}
+  };
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    fetchBannerHeader();
   }, []);
 
-  return (
-    <div className="product-list-warehouse-discharge">
-      <div className="container">
-        <div
-          style={{
-            padding: "10px",
-            borderRadius: "10px",
-            backgroundColor: "#ffe150",
-          }}
-        >
-          <Image
-            src={imagesTitle}
-            alt=""
-            style={{ padding: "0px 0px 10px 0px" }}
-          />
-          <div className="upgrade-list">
-            {/* <div className="women-decor">
-            <Image
-              src={DecorWomen}
-              width={1400}
-              height={1200}
-              quality={100}
-              priority
-              alt="product-banner-07"
-              sizes="(max-width: 768px) 100vw, (min-width: 768px) 50vw, (min-width: 1200px) 33vw"
-            />
-          </div> */}
+  const visibleProducts = filteredData.slice(0, visibleCount);
 
-            {isMobile ? (
-              <Swiper spaceBetween={10} slidesPerView={2.8}>
-                {tabs.map((tab) => (
-                  <SwiperSlide key={tab.index} style={{ padding: "1.2rem 0" }}>
+  const loadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 10);
+  };
+
+  return (
+    <div className="product-xa-kho" style={{ backgroundColor: "#d5b487" }}>
+      <div>
+        <div className="upgrade-list">
+          <div className="container">
+            <div
+              style={{
+                padding: "10px",
+                borderRadius: "10px",
+                background:
+                  "linear-gradient(180deg, #ffe150, var(--bg-gradient-white, rgb(255, 228, 141)) 90%)",
+              }}
+            >
+              <div>
+                <div
+                  className="women-decor"
+                  style={{
+                    paddingBottom: "20px",
+                  }}
+                >
+                  {dataTitle ? (
+                    dataTitle?.data?.Slider?.items[0]?.Banner?.items
+                      .filter((item) =>
+                        item.name.includes(
+                          "title sản phẩm phụ kiện 90 page xả kho"
+                        )
+                      )
+                      .map((item, index) => (
+                        <div key={index}>
+                          <img
+                            src={item.media || ""}
+                            alt={`privilege-${index + 1}`}
+                          />
+                        </div>
+                      ))
+                  ) : (
+                    <Spin style={{ display: "flex", justifyContent: "center" }}>
+                      <div style={{ width: 200, height: 200 }} />
+                    </Spin>
+                  )}
+                </div>
+
+                {filteredDataPKXaKho && filteredDataPKXaKho.length > 0 ? (
+                  <div className="upgrade">
+                    {filteredDataPKXaKho?.[0]?.items
+                      .sort((a: any, b: any) => a.sale_price - b.sale_price)
+                      .slice(0, visibleCount)
+                      .map((product: any, index: number) => (
+                        <Link
+                          key={index}
+                          href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
+                          passHref
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ textDecoration: "none", color: "black" }}
+                        >
+                          <div className="upgrade-item">
+                            <div className="upgrade-item-header">
+                              {/* <span className="percent">Trả góp 0%</span> */}
+                              {/* {/(iphone|ipad|macbook|watch)/i.test(
+                                product?.product?.name
+                              ) && (
+                                <Image
+                                  className="ic-auth"
+                                  src={DecorWomen}
+                                  alt=""
+                                />
+                              )} */}
+                            </div>
+                            <div className="upgrade-item-img">
+                              <div className="img-content">
+                                <Image
+                                  src={product?.product?.image?.url}
+                                  width={1400}
+                                  height={1200}
+                                  quality={100}
+                                  alt={`product-${index}`}
+                                />
+                              </div>
+                              <div className="frame-product">
+                                <Image
+                                  src={FrameProduct}
+                                  width={500}
+                                  height={500}
+                                  quality={100}
+                                  alt="frame-product"
+                                />
+                              </div>
+                            </div>
+                            <div className="upgrade-item-content">
+                              <h4 className="upgrade-item-content-tt">
+                                {product?.product?.name}
+                              </h4>
+                              <div className="upgrade-item-content-body">
+                                <div className="upgrade-item-content-body-price">
+                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
+                                  VNĐ
+                                </div>
+                                <div className="upgrade-item-content-body-reduced">
+                                  <div className="price-reduced">
+                                    {Number(
+                                      product?.price_original
+                                    )?.toLocaleString("vi-VN")}{" "}
+                                    VNĐ
+                                  </div>
+                                  <div className="percent">
+                                    -
+                                    {Math.ceil(
+                                      100 -
+                                        (product.sale_price /
+                                          product.price_original) *
+                                          100
+                                    )}
+                                    %
+                                  </div>
+                                </div>
+                                {/* <div
+                                  style={{
+                                    backgroundColor: "rgba(215, 0, 24, .08)",
+                                    borderRadius: "0.4rem",
+                                    color: "#d70018",
+                                    padding: "0.8rem",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  <span
+                                    style={{
+                                      fontSize: "1.2rem",
+                                      textAlign: "center",
+                                    }}
+                                  >
+                                    Giá thu bằng giá bán - Trợ giá lên đến 100%
+                                  </span>
+                                </div> */}
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                  </div>
+                ) : (
+                  <div className="upgrade">
+                    {[...Array(10)].map((_, index) => (
+                      <div
+                        key={index}
+                        className="upgrade-item"
+                        style={{ padding: "10px" }}
+                      >
+                        <div className="">
+                          <Skeleton.Image
+                            active
+                            style={{
+                              width: "210px",
+                              height: "210px",
+                              marginBottom: "10px",
+                            }}
+                          />
+                        </div>
+                        <div className="upgrade-item-content">
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                              marginBottom: "8px",
+                            }}
+                          />
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                              marginBottom: "8px",
+                            }}
+                          />
+                          <Skeleton.Input
+                            active
+                            block
+                            style={{
+                              width: "100%",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {visibleCount < filteredDataPKXaKho?.[0]?.items?.length ? (
+                  <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
-                      onClick={() => setActiveTab(tab.index)}
-                      className={
-                        activeTab === tab.index
-                          ? "tab-access active"
-                          : "tab-access"
-                      }
+                      onClick={loadMore}
                       style={{
-                        width: "100%",
-                        color: activeTab === tab.index ? "#fff" : "#333",
-                        backgroundColor:
-                          activeTab === tab.index ? "red" : "#fff",
-                        borderRadius: "8px",
+                        backgroundColor: "#d71536",
+                        color: "white",
+                        border: "none",
+                        padding: "10px 20px",
+                        borderRadius: "5px",
                         cursor: "pointer",
-                        transition: "all 0.3s ease",
-                        boxShadow:
-                          activeTab === tab.index
-                            ? "0 4px 8px rgba(0, 0, 0, 0.1)"
-                            : "none",
-                        fontSize: "1.2rem",
-                        minHeight: "4rem",
                       }}
-                      disabled={disabledTabs.includes(tab.index)}
                     >
-                      {tab.name}
-                    </button>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            ) : (
-              <div className="tabs-grid">
-                {tabs.map((tab) => (
-                  <div key={tab.index} style={{ flex: 1 }}>
-                    <button
-                      onClick={() => setActiveTab(tab.index)}
-                      className={
-                        activeTab === tab.index
-                          ? "tab-access active"
-                          : "tab-access"
-                      }
-                      style={{
-                        width: "100%",
-                        color: activeTab === tab.index ? "#fff" : "#333",
-                        backgroundColor:
-                          activeTab === tab.index ? "red" : "#fff",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        transition: "all 0.3s ease",
-                        boxShadow:
-                          activeTab === tab.index
-                            ? "0 4px 8px rgba(0, 0, 0, 0.1)"
-                            : "none",
-                      }}
-                      disabled={disabledTabs.includes(tab.index)}
-                    >
-                      {tab.name}
+                      Xem thêm
                     </button>
                   </div>
-                ))}
+                ) : (
+                  <div style={{ height: "50px" }} />
+                )}
               </div>
-            )}
-
-            <div>{tabs[activeTab]?.component}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -207,4 +329,4 @@ const AccessoriesList: React.FC = () => {
   );
 };
 
-export default AccessoriesList;
+export default AppleList;

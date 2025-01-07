@@ -9,13 +9,49 @@ import imagesTitle from "../../../../public/warehouse-discharge/pk-no-img.png";
 interface ProductItem {
   name: string;
   price1: number;
+  masanpham: string;
 }
 
 interface Product {
   loaisp: string;
   item: ProductItem;
 }
+interface BannerItem {
+  banner_id: number;
+  caption: string;
+  link: string;
+  media: string;
+  media_alt: string;
+  name: string;
+  slider_id: number;
+}
 
+interface Banner {
+  __typename: string;
+  items: BannerItem[];
+  page_info: {
+    current_page: number;
+    page_size: number;
+    total_pages: number;
+  };
+}
+
+interface SliderItem {
+  title: string;
+  identifier: string;
+  Banner: Banner;
+}
+
+interface SliderData {
+  Slider: {
+    items: SliderItem[];
+    total_count: number;
+  };
+}
+
+interface ApiResponse {
+  data: SliderData;
+}
 function CardProductAccessory() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [activeTab, setActiveTab] = useState<string>("");
@@ -30,7 +66,7 @@ function CardProductAccessory() {
     const fetchData = async () => {
       setLoading(true);
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxuvoT7Q9AbBQ11hDEHoAnGZ7qjAYvNmzz6s6hou6QT4krSKYZnPOBk_5XsconFLUdCGQ/exec?id=dsspxakho"
+        "https://script.google.com/macros/s/AKfycbxuvoT7Q9AbBQ11hDEHoAnGZ7qjAYvNmzz6s6hou6QT4krSKYZnPOBk_5XsconFLUdCGQ/exec?id=dsspxakho&no-cors=true"
       );
       const data = await response.json();
       setFilteredProducts(data);
@@ -71,9 +107,66 @@ function CardProductAccessory() {
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
 
+  const fetchBannerHeader = async () => {
+    try {
+      const response = await fetch(
+        "https://beta-api.bachlongmobile.com/graphql",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: `
+                  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }
+                `,
+            variables: {
+              filter: {
+                identifier: {
+                  eq: "banner-page-xa-kho",
+                },
+              },
+            },
+          }),
+        }
+      );
+
+      const result = await response.json();
+      setDataTitle(result);
+    } catch (err) {}
+  };
+  useEffect(() => {
+    fetchBannerHeader();
+  }, []);
   return (
-    <div style={{ padding: "20px 0px", backgroundColor: "#D5B487" }}>
+    <div style={{ padding: "20px 0px" }} id="product-accessory">
       <div className="container">
         <div
           style={{
@@ -82,11 +175,25 @@ function CardProductAccessory() {
             borderRadius: "10px",
           }}
         >
-          <Image
-            src={imagesTitle}
-            alt=""
-            style={{ padding: "0px 0px 20px 0px" }}
-          />
+          {dataTitle ? (
+            dataTitle?.data?.Slider?.items[0]?.Banner?.items
+              .filter((item) =>
+                item.name.includes("title sản phẩm phụ kiện 10k page xả kho")
+              )
+              .map((item, index) => (
+                <div key={index}>
+                  <img
+                    src={item.media || ""}
+                    alt={`privilege-${index + 1}`}
+                    style={{ padding: "0px 10px 20px 10px" }}
+                  />
+                </div>
+              ))
+          ) : (
+            <Spin>
+              <div style={{ width: 200, height: 200 }} />
+            </Spin>
+          )}
           <div className="tab-btn-product-accessory">
             {uniqueLoaisp?.map((loaisp) => (
               <button

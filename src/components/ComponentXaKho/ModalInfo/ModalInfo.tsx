@@ -9,6 +9,7 @@ type NotificationPlacement = NotificationArgsProps["placement"];
 interface ProductItem {
   name: string;
   price1: number;
+  masanpham: string;
 }
 const Context = React.createContext({ name: "Default" });
 interface ModalFormProps {
@@ -51,6 +52,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
         productName: product?.name,
         price: product?.price1,
         email: formData.email,
+        code: product?.masanpham,
       };
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbyk9SIAxTIM--HkPzDuOYbWzplDnLC1n527jwOW4-0m-uHehJtjr_PcH8U1coh-4hs/exec?sheet=thongkhachhangxakho",
@@ -76,7 +78,7 @@ const ModalForm: React.FC<ModalFormProps> = ({
       onCancel();
     }
   };
-
+  console.log(product);
   return (
     <>
       <Context.Provider value={contextValue}>
