@@ -18,7 +18,7 @@ const categories = [
   { id: "item-mac", name: "Phụ Kiện" },
   { id: "item-toy", name: "Phụ Kiện 10k" },
 ];
-function page() {
+function Page() {
   const swiperRef = useRef<any>(null);
   const [isStickyVisible, setIsStickyVisible] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -231,4 +231,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
