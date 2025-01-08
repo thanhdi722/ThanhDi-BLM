@@ -145,33 +145,10 @@ async function fetchProductListDataAndroidNew(selectedVariable: any) {
   return data.data.products.items as Product[];
 }
 
-const ProductListIphone: React.FC = () => {
+const ProductListAndroidNew: React.FC = () => {
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
   const [mainTab, setMainTab] = useState("Apple");
   const [visibleCount, setVisibleCount] = useState(10);
-
-  // Use variables1 for Apple and variables2 for Android
-  const selectedVariable =
-    mainTab === "Apple"
-      ? variables1
-      : mainTab === "Android"
-      ? variables2
-      : variables3;
-
-  const { data, error, isLoading } = useQuery<Product[]>({
-    queryKey: ["productListDataAndroidNew", mainTab],
-    queryFn: () => fetchProductListDataAndroidNew(selectedVariable),
-    staleTime: 300000,
-  });
-
-  const loadMorePosts = () => {
-    setVisibleCount((prevCount) => prevCount + 10);
-  };
-
-  if (error) {
-    return <div>Error loading data</div>;
-  }
-  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
-
   const fetchBannerHeader = async () => {
     try {
       const response = await fetch(
@@ -225,9 +202,32 @@ const ProductListIphone: React.FC = () => {
       setDataTitle(result);
     } catch (err) {}
   };
+
   useEffect(() => {
     fetchBannerHeader();
   }, []);
+  // Use variables1 for Apple and variables2 for Android
+  const selectedVariable =
+    mainTab === "Apple"
+      ? variables1
+      : mainTab === "Android"
+      ? variables2
+      : variables3;
+
+  const { data, error, isLoading } = useQuery<Product[]>({
+    queryKey: ["productListDataAndroidNew", mainTab],
+    queryFn: () => fetchProductListDataAndroidNew(selectedVariable),
+    staleTime: 300000,
+  });
+
+  const loadMorePosts = () => {
+    setVisibleCount((prevCount) => prevCount + 10);
+  };
+
+  if (error) {
+    return <div>Error loading data</div>;
+  }
+
   return (
     <div
       className="container-iphone-ProductOld-android-new"
@@ -331,4 +331,4 @@ const ProductListIphone: React.FC = () => {
   );
 };
 
-export default ProductListIphone;
+export default ProductListAndroidNew;

@@ -1,0 +1,135 @@
+.gift-container {
+  position: fixed;
+  right: 0;
+  opacity: 0.5;
+  top: 0vh;
+  animation: wavyghost reverse 15s infinite linear;
+  width: 500px;
+  height: 500px;
+  z-index: 1;
+  pointer-events: none;
+
+  .gift-container,
+  .balloon,
+  .balloon:after,
+  .balloon:before,
+  .basket,
+  .basket:before,
+  .basket:after,
+  .rope,
+  .sun,
+  .clouds,
+  .clouds:before,
+  .clouds:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+  }
+
+  .balloon {
+    height: 300px;
+    width: 300px;
+    background: #ffbdd1;
+    border-radius: 50%;
+    top: -150px;
+    border: 10px solid #453f78;
+    animation: bob 2s ease-in-out infinite;
+  }
+
+  .balloon:before {
+    content: "";
+    position: absolute;
+    height: 300px;
+    width: 200px;
+    background: #f05d5e;
+    border-radius: 50%;
+    border: 10px solid #453f78;
+  }
+
+  .balloon:after {
+    content: "";
+    position: absolute;
+    height: 300px;
+    width: 60px;
+    background: #ffbdd1;
+    border-radius: 50%;
+    border: 10px solid #453f78;
+  }
+
+  .basket {
+    height: 75px;
+    width: 75px;
+    background: #453f78;
+    border-radius: 4px;
+    top: 350px;
+    animation: bob 2s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .basket:before {
+    content: "";
+    height: 15px;
+    width: 90px;
+    left: -8px;
+    top: -60px;
+    background: #453f78;
+    border-radius: 200px;
+    z-index: 1;
+  }
+
+  .basket:after {
+    content: "";
+  }
+
+  .rope {
+    height: 81px;
+    width: 10px;
+    background: #453f78;
+    top: 205px;
+    left: 85px;
+    animation: bob-rope 2s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .rope.right {
+    transform: rotate(25deg);
+    z-index: 1;
+  }
+
+  .rope.left {
+    transform: rotate(-25deg);
+    left: -85px;
+    z-index: 1;
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(-2deg);
+    }
+  }
+
+  @keyframes bob-rope {
+    0%,
+    100% {
+      top: 205px;
+    }
+    50% {
+      top: 180px;
+    }
+  }
+  @keyframes wavyghost {
+    0% {
+      transform: translate(20vw, 0vh);
+    }
+    100% {
+      transform: translate(-100vw, 0vh);
+    }
+  }
+}

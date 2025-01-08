@@ -123,24 +123,18 @@ function CardProductAccessory() {
                   query getSlider($filter: SliderFilterInput) {
                     Slider(filter: $filter) {
                       items {
-                        title
-                        identifier
+                        
                         Banner {
                           __typename
                           items {
-                            banner_id
-                            caption
+                           
                             link
                             media
                             media_alt
                             name
-                            slider_id
+                            
                           }
-                          page_info {
-                            current_page
-                            page_size
-                            total_pages
-                          }
+                         
                         }
                       }
                       total_count
@@ -166,12 +160,14 @@ function CardProductAccessory() {
     fetchBannerHeader();
   }, []);
   return (
-    <div style={{ padding: "20px 0px" }} id="product-accessory">
+    <div
+      style={{ padding: "20px 0px", zIndex: 2, position: "relative" }}
+      id="product-accessory"
+    >
       <div className="container">
         <div
           style={{
             padding: "10px",
-            backgroundColor: "#fffad4",
             borderRadius: "10px",
           }}
         >

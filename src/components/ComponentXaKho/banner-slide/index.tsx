@@ -70,51 +70,8 @@ interface ApiResponse {
 }
 
 const BannerSlide = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalIsOpenTest, setModalIsOpenTest] = useState(false);
-  const [modalData, setModalData] = useState<any>(null);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<{
-    [key: string]: string;
-  }>({});
 
-  const [customerData, setCustomerData] = useState<any[]>([]);
-
-  useEffect(() => {
-    const fetchCustomerData = async () => {
-      try {
-        const response = await fetch(
-          "https://script.googleusercontent.com/macros/echo?user_content_key=_r2Tnu3qTrt7FRaAe6XPptz6lD9UD8qOCA68N6XZoVQyQA3iXUg7WJwNgDdQsCWEuCsR_HO3pOMONNHgxublinyWF-UonaYjm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNI54tzkJFaj-2iqaolXYotR08AGyFDWn--IfZJqRMOkhO8zfrvzkwbu57uzLUW5qHdqhbqBsOC_67mC9p03Mhbyn1Z4YyOlLg&lib=MFcmlpet2YYsjuSSgQUXZZPGWYEKb6JDU",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            mode: "no-cors",
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        setCustomerData(data);
-      } catch (error) {
-        console.error("Error fetching customer data:", error);
-      }
-    };
-
-    fetchCustomerData();
-  }, []);
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("vi-VN", {
-      style: "currency",
-      currency: "VND",
-    }).format(price);
-  };
   interface ProductCombo16 {
     combo: string;
     persen: string;
@@ -177,13 +134,6 @@ const BannerSlide = () => {
       Strength.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const [selectedCombo, setSelectedCombo] = useState<ProductCombo16 | null>(
-    null
-  );
-  const handleClickTest = (combo: ProductCombo16) => {
-    setSelectedCombo(combo);
-    setModalIsOpenTest(true);
-  };
 
   const [data, setData] = useState<ApiResponse | null>(null);
 
@@ -201,27 +151,21 @@ const BannerSlide = () => {
                 query getSlider($filter: SliderFilterInput) {
                   Slider(filter: $filter) {
                     items {
-                      title
-                      identifier
+                     
                       Banner {
-                        __typename
+                      
                         items {
-                          banner_id
-                          caption
+                          
                           link
                           media
                           media_alt
                           name
-                          slider_id
+                          
                         }
-                        page_info {
-                          current_page
-                          page_size
-                          total_pages
-                        }
+                       
                       }
                     }
-                    total_count
+                   
                   }
                 }
               `,
@@ -249,7 +193,10 @@ const BannerSlide = () => {
   const sliderItems = data?.data?.Slider?.items[0]?.Banner?.items;
   console.log("sliderItems", sliderItems);
   return (
-    <div className="banner-slide-page-warehouse-discharge">
+    <div
+      className="banner-slide-page-warehouse-discharge"
+      style={{ zIndex: 2, position: "relative" }}
+    >
       <div className="container">
         <div
           className=""
@@ -289,7 +236,7 @@ const BannerSlide = () => {
                   ))}
                 </Carousel>
               </div>
-              <div className="OldForNew-Section1-imageSliderBanner">
+              <div className="OldForNew-Section1-imageSliderBanner slider-mb">
                 <Carousel
                   autoplay
                   autoplaySpeed={2000}

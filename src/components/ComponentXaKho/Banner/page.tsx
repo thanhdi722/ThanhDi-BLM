@@ -42,7 +42,7 @@ interface SliderData {
 interface ApiResponse {
   data: SliderData;
 }
-function page() {
+function Page() {
   const [data, setData] = useState<ApiResponse | null>(null);
 
   const fetchBannerHeader = async () => {
@@ -96,7 +96,7 @@ function page() {
   }, []);
 
   return (
-    <div>
+    <div style={{ zIndex: 2, position: "relative" }}>
       <div>
         {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
           <img
@@ -125,4 +125,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

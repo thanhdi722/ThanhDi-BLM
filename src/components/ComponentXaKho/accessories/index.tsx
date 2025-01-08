@@ -115,7 +115,7 @@ const AppleList: React.FC = () => {
   };
 
   return (
-    <div className="product-xa-kho" style={{ backgroundColor: "#d5b487" }}>
+    <div className="product-xa-kho">
       <div>
         <div className="upgrade-list">
           <div className="container">

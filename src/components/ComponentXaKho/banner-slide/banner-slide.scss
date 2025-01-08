@@ -1,5 +1,4 @@
 .banner-slide-page-warehouse-discharge {
-  position: relative;
   .banner-percent {
     border-radius: 0.4rem;
     padding-bottom: 2rem;
@@ -10,6 +9,11 @@
     flex-direction: column;
     gap: 1.2rem;
     width: 100%;
+  }
+  .slider-mb {
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
   .banner-slide-combo {
     display: grid;
@@ -456,5 +460,9 @@
   width: 32vw;
   @media (max-width: 1000px) {
     width: 45vw;
+  }
+  @media (max-width: 768px) {
+    width: 90vw;
+    margin-top: 20px;
   }
 }

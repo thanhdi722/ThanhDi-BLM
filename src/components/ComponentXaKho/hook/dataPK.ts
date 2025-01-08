@@ -75,3 +75,65 @@ export const useProductSaleDataPKXaKho = () => {
     staleTime: 5000,
   });
 };
+async function fetchProductSaleDataMAYXaKho() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        filter: {
+          sale_type: {
+            eq: "sp-may-xa-kho",
+          },
+        },
+        pageSize: 99,
+        currentPage: 1,
+      },
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.DailySales.items;
+}
+
+export const useProductSaleDataMAYXaKho = () => {
+  return useQuery({
+    queryKey: ["fetchProductSaleDataMAYXaKho"],
+    queryFn: fetchProductSaleDataMAYXaKho,
+    staleTime: 5000,
+  });
+};
+async function fetchProductSaleDataMAYSSXaKho() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        filter: {
+          sale_type: {
+            eq: "sp-pad-xa-kho",
+          },
+        },
+        pageSize: 99,
+        currentPage: 1,
+      },
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.DailySales.items;
+}
+
+export const useProductSaleDataMAYSSXaKho = () => {
+  return useQuery({
+    queryKey: ["fetchProductSaleDataMAYSSXaKho"],
+    queryFn: fetchProductSaleDataMAYSSXaKho,
+    staleTime: 5000,
+  });
+};
