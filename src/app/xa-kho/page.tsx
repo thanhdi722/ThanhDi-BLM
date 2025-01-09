@@ -14,7 +14,7 @@ import Gift from "../../components/ComponentXaKho/Gift/index";
 import "./style.scss";
 const categories = [
   { id: "item-iphone", name: "Điện Thoại" },
-  { id: "item-airpods", name: "Máy tính bảng / Laptop / Watch" },
+  { id: "item-airpods", name: "Non-Phone" },
   { id: "item-mac", name: "Phụ Kiện" },
   { id: "item-toy", name: "Phụ Kiện 10k" },
 ];

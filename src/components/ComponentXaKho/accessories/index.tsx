@@ -5,7 +5,12 @@ import { Skeleton, Spin } from "antd";
 import "./apple.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { useProductSaleDataPKXaKho } from "../hook/dataPK";
+import {
+  useProductSaleDataPKCocCapXaKho,
+  useProductSaleDataPKBaoDaXaKho,
+  useProductSaleDataPKXaKho,
+  useProductSaleDataPKDanManXaKho,
+} from "../hook/dataPK";
 
 import HostPrice2 from "../../../../public/gratitude/hot-price.png";
 import BestSeller from "../../../../public/new-year/best-seller.png";
@@ -53,7 +58,19 @@ const AppleList: React.FC = () => {
   const filteredDataPKXaKho = data?.filter(
     (item: any) => item.title === "SP Phụ Kiện Xả Kho"
   );
-
+  const { data: dataBaoDa } = useProductSaleDataPKBaoDaXaKho();
+  const filteredDataPKBaoDa = dataBaoDa?.filter(
+    (item: any) => item.title === "SP PK Bao Da Xả Kho"
+  );
+  const { data: dataCocCap } = useProductSaleDataPKCocCapXaKho();
+  const filteredDataPKCocCap = dataCocCap?.filter(
+    (item: any) => item.title === "SP PK Cốc Cáp"
+  );
+  const { data: dataDanMan } = useProductSaleDataPKDanManXaKho();
+  const filteredDataPKDanMan = dataDanMan?.filter(
+    (item: any) => item.title === "SP PK Dán Màn Xả Kho"
+  );
+  const [activeTab, setActiveTab] = useState<string>("dan-man");
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
@@ -113,7 +130,18 @@ const AppleList: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+  };
 
+  const currentData =
+    activeTab === "dan-man"
+      ? filteredDataPKDanMan
+      : activeTab === "bao-da"
+      ? filteredDataPKBaoDa
+      : activeTab === "coc-cap"
+      ? filteredDataPKCocCap
+      : filteredDataPKXaKho;
   return (
     <div className="product-xa-kho">
       <div>
@@ -155,10 +183,37 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-
-                {filteredDataPKXaKho && filteredDataPKXaKho.length > 0 ? (
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="tab-buttons">
+                    <button
+                      className={activeTab === "dan-man" ? "active" : ""}
+                      onClick={() => handleTabChange("dan-man")}
+                    >
+                      Dán Màn
+                    </button>
+                    <button
+                      className={activeTab === "bao-da" ? "active" : ""}
+                      onClick={() => handleTabChange("bao-da")}
+                    >
+                      Bao Da
+                    </button>
+                    <button
+                      className={activeTab === "coc-cap" ? "active" : ""}
+                      onClick={() => handleTabChange("coc-cap")}
+                    >
+                      Cốc Cáp
+                    </button>
+                    <button
+                      className={activeTab === "other" ? "active" : ""}
+                      onClick={() => handleTabChange("other")}
+                    >
+                      Khác
+                    </button>
+                  </div>
+                </div>
+                {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDataPKXaKho?.[0]?.items
+                    {currentData?.[0]?.items
                       .sort((a: any, b: any) => a.sale_price - b.sale_price)
                       .slice(0, visibleCount)
                       .map((product: any, index: number) => (
@@ -301,7 +356,7 @@ const AppleList: React.FC = () => {
                     ))}
                   </div>
                 )}
-                {visibleCount < filteredDataPKXaKho?.[0]?.items?.length ? (
+                {visibleCount < currentData?.[0]?.items?.length ? (
                   <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}

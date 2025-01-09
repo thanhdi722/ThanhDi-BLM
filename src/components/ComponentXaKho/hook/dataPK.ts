@@ -75,6 +75,93 @@ export const useProductSaleDataPKXaKho = () => {
     staleTime: 5000,
   });
 };
+async function fetchProductSaleDataPKDanManXaKho() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        filter: {
+          sale_type: {
+            eq: "sp-pk-cuong-luc-24-12",
+          },
+        },
+      },
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.DailySales.items;
+}
+
+export const useProductSaleDataPKDanManXaKho = () => {
+  return useQuery({
+    queryKey: ["fetchProductSaleDataPKDanManXaKho"],
+    queryFn: fetchProductSaleDataPKDanManXaKho,
+    staleTime: 5000,
+  });
+};
+async function fetchProductSaleDataPKBaoDaXaKho() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        filter: {
+          sale_type: {
+            eq: "sp-pk-bao-da-24-12",
+          },
+        },
+      },
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.DailySales.items;
+}
+
+export const useProductSaleDataPKBaoDaXaKho = () => {
+  return useQuery({
+    queryKey: ["fetchProductSaleDataPKBaoDaXaKho"],
+    queryFn: fetchProductSaleDataPKBaoDaXaKho,
+    staleTime: 5000,
+  });
+};
+async function fetchProductSaleDataPKCocCapXaKho() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        filter: {
+          sale_type: {
+            eq: "sp-coc-cap-sac-24-12",
+          },
+        },
+      },
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.DailySales.items;
+}
+
+export const useProductSaleDataPKCocCapXaKho = () => {
+  return useQuery({
+    queryKey: ["fetchProductSaleDataPKCocCapXaKho"],
+    queryFn: fetchProductSaleDataPKCocCapXaKho,
+    staleTime: 5000,
+  });
+};
 async function fetchProductSaleDataMAYXaKho() {
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",
@@ -106,6 +193,69 @@ export const useProductSaleDataMAYXaKho = () => {
     staleTime: 5000,
   });
 };
+async function fetchProductSaleDataMAYSAMSUNGXaKho() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        filter: {
+          sale_type: {
+            eq: "sp-dt-samsung",
+          },
+        },
+        pageSize: 99,
+        currentPage: 1,
+      },
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.DailySales.items;
+}
+
+export const useProductSaleDataMAYSAMSUNGXaKho = () => {
+  return useQuery({
+    queryKey: ["fetchProductSaleDataMAYSAMSUNGXaKho"],
+    queryFn: fetchProductSaleDataMAYSAMSUNGXaKho,
+    staleTime: 5000,
+  });
+};
+async function fetchProductSaleDataMAY99XaKho() {
+  const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        filter: {
+          sale_type: {
+            eq: "sp-samsung-99-12-12",
+          },
+        },
+        pageSize: 99,
+        currentPage: 1,
+      },
+    }),
+  });
+
+  const data = await response.json();
+  return data.data.DailySales.items;
+}
+
+export const useProductSaleDataMAY99XaKho = () => {
+  return useQuery({
+    queryKey: ["fetchProductSaleDataMAY99XaKho"],
+    queryFn: fetchProductSaleDataMAY99XaKho,
+    staleTime: 5000,
+  });
+};
+
 async function fetchProductSaleDataMAYSSXaKho() {
   const response = await fetch("https://beta-api.bachlongmobile.com/graphql", {
     method: "POST",

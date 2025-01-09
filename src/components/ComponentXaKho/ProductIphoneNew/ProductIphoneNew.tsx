@@ -8,7 +8,11 @@ import { Skeleton, Spin } from "antd";
 import "./ProductIphoneNew.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { useProductSaleDataMAYXaKho } from "../hook/dataPK";
+import {
+  useProductSaleDataMAYXaKho,
+  useProductSaleDataMAYSAMSUNGXaKho,
+  useProductSaleDataMAY99XaKho,
+} from "../hook/dataPK";
 import DecorWomen from "../../../../public/flase-sale/ap-author.webp";
 import HostPrice2 from "../../../../public/gratitude/hot-price.png";
 import BestSeller from "../../../../public/new-year/best-seller.png";
@@ -16,10 +20,19 @@ import Author from "../../../../public/apple/author.webp";
 
 const AppleList: React.FC = () => {
   const { data } = useProductSaleDataMAYXaKho();
-  const filteredDatassss = data?.filter(
+  const { data: dataSamsung } = useProductSaleDataMAYSAMSUNGXaKho();
+  const { data: data99 } = useProductSaleDataMAY99XaKho();
+  const filteredData = data?.filter(
     (item: any) => item.title === "Sp Máy Xả Kho"
   );
 
+  const filteredDataSamsung = dataSamsung?.filter(
+    (item: any) => item.title === "SP SAMSUNG Xả Kho"
+  );
+  const filteredData99 = data99?.filter(
+    (item: any) => item.title === "SP Máy 99 Xả kho"
+  );
+  const [activeTab, setActiveTab] = useState<string>("iPhone");
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [dataTitle, setDataTitle] = useState<any | null>(null);
   const fetchBannerHeader = async () => {
@@ -77,6 +90,16 @@ const AppleList: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
 
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const currentData =
+    activeTab === "iPhone"
+      ? filteredData
+      : activeTab === "Samsung"
+      ? filteredDataSamsung
+      : filteredData99;
   return (
     <div className="product-xa-kho">
       <div>
@@ -116,10 +139,31 @@ const AppleList: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-
-                {filteredDatassss && filteredDatassss.length > 0 ? (
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div className="tab-buttons">
+                    <button
+                      className={activeTab === "iPhone" ? "active" : ""}
+                      onClick={() => handleTabChange("iPhone")}
+                    >
+                      iPhone
+                    </button>
+                    <button
+                      className={activeTab === "Samsung" ? "active" : ""}
+                      onClick={() => handleTabChange("Samsung")}
+                    >
+                      Samsung
+                    </button>
+                    <button
+                      className={activeTab === "99" ? "active" : ""}
+                      onClick={() => handleTabChange("99")}
+                    >
+                      Máy 99%
+                    </button>
+                  </div>
+                </div>
+                {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
-                    {filteredDatassss?.[0]?.items
+                    {currentData?.[0]?.items
                       .sort((a: any, b: any) => a.sale_price - b.sale_price)
                       .slice(0, visibleCount)
                       .map((product: any, index: number) => (
@@ -133,16 +177,14 @@ const AppleList: React.FC = () => {
                         >
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
-                              {/* <span className="percent">Trả góp 0%</span> */}
-                              {/* {/(iphone|ipad|macbook|watch)/i.test(
-                              product?.product?.name
-                            ) && (
-                              <Image
-                                className="ic-auth"
-                                src={DecorWomen}
-                                alt=""
-                              />
-                            )} */}
+                              <span className="percent">Trả góp 0%</span>
+                              {activeTab === "iPhone" && (
+                                <Image
+                                  className="ic-auth"
+                                  src={DecorWomen}
+                                  alt=""
+                                />
+                              )}
                             </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
@@ -191,24 +233,28 @@ const AppleList: React.FC = () => {
                                     %
                                   </div>
                                 </div>
-                                {/* <div
-                                style={{
-                                  backgroundColor: "rgba(215, 0, 24, .08)",
-                                  borderRadius: "0.4rem",
-                                  color: "#d70018",
-                                  padding: "0.8rem",
-                                  textAlign: "center",
-                                }}
-                              >
-                                <span
-                                  style={{
-                                    fontSize: "1.2rem",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  Giá thu bằng giá bán - Trợ giá lên đến 100%
-                                </span>
-                              </div> */}
+                                {(activeTab === "iPhone" ||
+                                  activeTab === "Samsung") && (
+                                  <div
+                                    style={{
+                                      backgroundColor: "rgba(215, 0, 24, .08)",
+                                      borderRadius: "0.4rem",
+                                      color: "#d70018",
+                                      padding: "0.8rem",
+                                      textAlign: "center",
+                                    }}
+                                  >
+                                    <span
+                                      style={{
+                                        fontSize: "1.2rem",
+                                        textAlign: "center",
+                                      }}
+                                    >
+                                      Giá thu bằng giá bán - Trợ giá lên đến
+                                      100%
+                                    </span>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -262,7 +308,7 @@ const AppleList: React.FC = () => {
                     ))}
                   </div>
                 )}
-                {visibleCount < filteredDatassss?.[0]?.items?.length ? (
+                {visibleCount < currentData?.[0]?.items?.length ? (
                   <div style={{ textAlign: "center", margin: "10px 0px" }}>
                     <button
                       onClick={loadMore}
