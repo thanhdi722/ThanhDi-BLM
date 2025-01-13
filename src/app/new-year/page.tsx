@@ -12,10 +12,12 @@ import giftree2 from "../../../public/sale-12/giftree2.gif";
 import background from "../../../public/sale-12/5c3b4e476d3d0.webp";
 import Noel from "../../components/ComponentSaleNewYear/Noel/index";
 import Cloud from "../../components/ComponentSaleNewYear/cloud/cloud";
+import wheelSpin from "../../../public/sale-12/vongquaymayman.svg";
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
+import Link from "next/link";
 const categories = [
   { id: "item-iphone", name: "iPhone" },
   { id: "item-airpods", name: "Máy 99%" },
@@ -93,28 +95,19 @@ export default function Page() {
       }
     }
   }, [activeCategory]);
-  function letsSpin() {
-    var x = 1024;
-    var y = 9999;
-    var deg = Math.floor(Math.random() * (x - y)) + y;
 
-    const wheelSpin = document.getElementById("wheelSpin");
-    if (wheelSpin) {
-      wheelSpin.style.transform = "rotate(" + deg + "deg)";
-    }
-  }
   return (
-    <div className="page-sale-thang-12-12">
-      <Image
+    <div className="page-sale-chot-nam" style={{ background: "#b50009" }}>
+      {/* <Image
         src={background}
         alt=""
         style={{
-          position: "absolute",
-          zIndex: "-1",
-          height: "100%",
-          objectFit: "fill",
+          position: 'absolute',
+          zIndex: '-1',
+          height: '100%',
+          objectFit: 'fill',
         }}
-      />
+      /> */}
       {/* <Snowfall /> */}
       <Image
         src={giftree}
@@ -133,144 +126,158 @@ export default function Page() {
         }`}
       />
       <div style={{ position: "relative", overflow: "hidden" }}>
-        <div>
-          <Banner />
-        </div>
-
-        <div id="item-iphone">
-          <AppleList />
-        </div>
-
-        <div id="item-airpods">
-          <ProductPercent />
-        </div>
-
-        <div id="item-mac">
-          <LaptopList />
-        </div>
-
-        <div id="item-android">
-          <AndroidList />
-        </div>
-        <div id="item-toy">
-          <ToyList12 />
-        </div>
-        <div
-          className={`sticky-category ${
-            isStickyVisible ? "visible" : "hidden"
-          }`}
-        >
-          <div className="category-desktop">
-            {categories.map((category, index) => (
-              <div
-                key={index}
-                className={`category-item ${
-                  activeCategory === category.id ? "active" : "default"
-                }`}
-                onClick={() => handleClick(category.id)}
-              >
-                <span className="category-name">{category.name}</span>
-              </div>
-            ))}
+        <div style={{ zIndex: 1000 }}>
+          <div>
+            <Banner />
           </div>
-          <div className="category-mobile">
-            <Swiper
-              slideToClickedSlide={true}
-              spaceBetween={10}
-              watchSlidesProgress={true}
-              onSwiper={(swiperInstance) => {
-                swiperRef.current = swiperInstance; // Store swiper instance in ref
-              }}
-              onSlideChange={(swiperInstance) => {
-                setActiveCategory(categories[swiperInstance.activeIndex].id);
-                swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
-              }}
-              breakpoints={{
-                300: {
-                  slidesPerView: 3.5,
-                },
-                850: {
-                  slidesPerView: 5,
-                },
-              }}
-              slidesPerView="auto"
-              initialSlide={0}
-            >
+
+          <div id="item-iphone">
+            <AppleList />
+          </div>
+
+          <div id="item-airpods">
+            <ProductPercent />
+          </div>
+
+          <div id="item-mac">
+            <LaptopList />
+          </div>
+
+          <div id="item-android">
+            <AndroidList />
+          </div>
+          <div id="item-toy">
+            <ToyList12 />
+          </div>
+          <div
+            className={`sticky-category ${
+              isStickyVisible ? "visible" : "hidden"
+            }`}
+          >
+            <div className="category-desktop">
               {categories.map((category, index) => (
-                <SwiperSlide
+                <div
                   key={index}
-                  onClick={() => {
-                    setActiveCategory(category.id);
-                    swiperRef.current?.slideTo(index, 300, true); // Center the clicked slide
-                    handleClick(category.id);
-                  }}
+                  className={`category-item ${
+                    activeCategory === category.id ? "active" : "default"
+                  }`}
+                  onClick={() => handleClick(category.id)}
                 >
-                  <div
-                    className={`swiper-slide ${
-                      activeCategory === category.id ? "active" : "default"
-                    }`}
-                  >
-                    <span className="category-name">{category.name}</span>
-                  </div>
-                </SwiperSlide>
+                  <span className="category-name">{category.name}</span>
+                </div>
               ))}
-            </Swiper>
-          </div>
-        </div>
-        {/* <div
-          id="main"
-          className={`main-spin ${isStickyVisible ? "visible" : "hidden"}`}
-          style={{
-            zIndex: 1000,
-            position: "fixed",
-          }}
-        >
-          <div id="wheelSpin" className="wheel-spin">
-            <div>
-              <span className="span1-spin span-spin">
-                <p>😊</p>
-              </span>
-              <span className="span2-spin span-spin">
-                <p>😝</p>
-              </span>
-              <span className="span3-spin span-spin">
-                <p>😍</p>
-              </span>
-              <span className="span4-spin span-spin">
-                <p>😎</p>
-              </span>
-
-              <span className="span5-spin span-spin">
-                <p>🍩</p>
-              </span>
-              <span className="span6-spin span-spin">
-                <p>🍭</p>
-              </span>
-              <span className="span7-spin span-spin">
-                <p>🍰</p>
-              </span>
-              <span className="span8-spin span-spin ">
-                <p>🍬</p>
-              </span>
+            </div>
+            <div className="category-mobile">
+              <Swiper
+                slideToClickedSlide={true}
+                spaceBetween={10}
+                watchSlidesProgress={true}
+                onSwiper={(swiperInstance) => {
+                  swiperRef.current = swiperInstance; // Store swiper instance in ref
+                }}
+                onSlideChange={(swiperInstance) => {
+                  setActiveCategory(categories[swiperInstance.activeIndex].id);
+                  swiperInstance.slideTo(swiperInstance.activeIndex, 300, true); // Center the active slide when scrolling
+                }}
+                breakpoints={{
+                  300: {
+                    slidesPerView: 3.5,
+                  },
+                  850: {
+                    slidesPerView: 5,
+                  },
+                }}
+                slidesPerView="auto"
+                initialSlide={0}
+              >
+                {categories.map((category, index) => (
+                  <SwiperSlide
+                    key={index}
+                    onClick={() => {
+                      setActiveCategory(category.id);
+                      swiperRef.current?.slideTo(index, 300, true); // Center the clicked slide
+                      handleClick(category.id);
+                    }}
+                  >
+                    <div
+                      className={`swiper-slide ${
+                        activeCategory === category.id ? "active" : "default"
+                      }`}
+                    >
+                      <span className="category-name">{category.name}</span>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
+          <Link href="https://bachlongmobile.com/news/khuyen-mai/giang-sinh-ron-rang-quay-vong-may-man-nhan-qua-ngap-tran/">
+            <div
+              id="main"
+              className={`main-spin ${isStickyVisible ? "visible" : "hidden"}`}
+              style={{
+                zIndex: 1000,
+                position: "fixed",
+              }}
+            >
+              <Image
+                src={wheelSpin}
+                alt=""
+                width={200}
+                height={200}
+                id="wheelSpin"
+                className="wheel-spin"
+              />
 
-          <button className="spin-spin" onClick={letsSpin}>
-            SPIN
-          </button>
-        </div> */}
-        {/* <Noel /> */}
-        <Snowfall />
-        <Noel />
+              <button className="spin-spin">SPIN</button>
+            </div>
+          </Link>
+
+          {/* <Noel /> */}
+          <Snowfall />
+          <Noel />
+        </div>
         <div
-          style={{
-            zIndex: -1,
-          }}
+          style={{ zIndex: 0, pointerEvents: "none" }}
           className={`sticky-category ${
             isStickyVisible ? "visible" : "hidden"
           }`}
         >
-          <Cloud />
+          <div>
+            <div>
+              <div className="cloud-new-year one-new-year">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+
+              <div className="cloud-new-year two-new-year">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+
+              <div className="cloud-new-year three-new-year">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+
+              <div className="cloud-new-year four-new-year">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

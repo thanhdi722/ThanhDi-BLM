@@ -1,6 +1,79 @@
-.page-sale-thang-12-12 {
+.page-sale-chot-nam {
   overflow: hidden;
   position: relative;
+  .cloud-new-year {
+    position: fixed;
+    animation: clouds 8s linear infinite;
+    opacity: 70%;
+    background: rgba(238, 174, 202, 0.8);
+    z-index: 1000;
+  }
+
+  .one-new-year {
+    top: 5vmin;
+    animation-duration: 60s;
+    left: -15vw;
+    transform: scale(0.8);
+  }
+  .two-new-year {
+    top: 15vmin;
+    animation-duration: 60s;
+    animation-delay: 2s;
+    transform: scale(0.7);
+    left: -35vw;
+  }
+
+  .three-new-year {
+    top: 25vmin;
+    left: -35vw;
+    animation-duration: 60s;
+    animation-delay: 5s;
+    transform: scale(0.9);
+  }
+
+  .four-new-year {
+    top: 35vmin;
+    left: -50vw;
+    animation-duration: 60s;
+    animation-delay: 8s;
+    transform: scale(1);
+  }
+
+  .cloud-new-year div {
+    position: absolute;
+    background: inherit;
+    height: 20vmin;
+    width: 20vmin;
+    background: white;
+    border-radius: 100%;
+  }
+
+  .cloud-new-year div:nth-child(1) {
+    translate: 0vmin 5vmin;
+  }
+
+  .cloud-new-year div:nth-child(2) {
+    translate: 15vmin 9vmin;
+  }
+
+  .cloud-new-year div:nth-child(3) {
+    translate: 10vmin -6vmin;
+  }
+
+  .cloud-new-year div:nth-child(4) {
+    translate: 28vmin -3vmin;
+  }
+
+  .cloud-new-year div:nth-child(5) {
+    translate: 34vmin 8vmin;
+  }
+
+  @keyframes clouds {
+    100% {
+      translate: 150vw;
+    }
+  }
+
   .background-home-black-friday {
     position: absolute;
     top: 0;
@@ -121,14 +194,14 @@
         height: 100%;
         background-size: cover;
         background-repeat: no-repeat;
-        background-color: #d71536;
+        background-color: #ff4c6a;
         z-index: 1;
         border-radius: 0.6rem;
         opacity: 1;
       }
     }
     &.default {
-      background-color: #d71536;
+      background-color: #ff4c6a;
       opacity: 0.5;
     }
   }
@@ -281,13 +354,15 @@
     }
   }
   .wheel-spin {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    border-radius: 50%;
-    border: 5px solid #fff;
-    overflow: hidden;
-    transition: all ease 4s;
+    animation: spin360 5s linear infinite;
+  }
+  @keyframes spin360 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
   .span-spin {
     width: 50%;

@@ -1,99 +1,89 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Skeleton, Spin } from "antd";
-import "./product.scss";
-import FrameProduct from "../../../../public/sale-12/fai2412.png";
-import { useProductSaleDataIPHONE99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataIPHONE99";
-import { useProductSaleDataSAMSUNG99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataSAMSUNG99";
-import { useProductSaleDataWACTH99 } from "../../../app/hooks/productDailySale2412/useProductSaleDataWACTH99";
-import HostPrice2 from "../../../../public/gratitude/hot-price.png";
-import BestSeller from "../../../../public/new-year/best-seller.png";
-import Author from "../../../../public/apple/author.webp";
+'use client'
+import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Skeleton, Spin } from 'antd'
+import './product.scss'
+import FrameProduct from '../../../../public/sale-12/fai2412.png'
+import { useProductSaleDataIPHONE99 } from '../../../app/hooks/productDailySale2412/useProductSaleDataIPHONE99'
+import { useProductSaleDataSAMSUNG99 } from '../../../app/hooks/productDailySale2412/useProductSaleDataSAMSUNG99'
+import { useProductSaleDataWACTH99 } from '../../../app/hooks/productDailySale2412/useProductSaleDataWACTH99'
+
 export interface Product {
-  id: number;
-  name: string;
-  url_key: string;
+  id: number
+  name: string
+  url_key: string
   image: {
-    url: string;
-  };
-  attributes: any;
+    url: string
+  }
+  attributes: any
   price_range: {
     minimum_price: {
       final_price: {
-        value: number;
-        currency: string;
-      };
-    };
-  };
+        value: number
+        currency: string
+      }
+    }
+  }
 }
 interface BannerItem {
-  banner_id: number;
-  caption: string;
-  link: string;
-  media: string;
-  media_alt: string;
-  name: string;
-  slider_id: number;
+  banner_id: number
+  caption: string
+  link: string
+  media: string
+  media_alt: string
+  name: string
+  slider_id: number
 }
 
 interface Banner {
-  __typename: string;
-  items: BannerItem[];
+  __typename: string
+  items: BannerItem[]
   page_info: {
-    current_page: number;
-    page_size: number;
-    total_pages: number;
-  };
+    current_page: number
+    page_size: number
+    total_pages: number
+  }
 }
 
 interface SliderItem {
-  title: string;
-  identifier: string;
-  Banner: Banner;
+  title: string
+  identifier: string
+  Banner: Banner
 }
 
 interface SliderData {
   Slider: {
-    items: SliderItem[];
-    total_count: number;
-  };
+    items: SliderItem[]
+    total_count: number
+  }
 }
 
 interface ApiResponse {
-  data: SliderData;
+  data: SliderData
 }
 
 const ProductPercent: React.FC = () => {
-  const { data: dataIPHONE99 } = useProductSaleDataIPHONE99();
-  const filteredIPHONE99 = dataIPHONE99?.filter(
-    (item: any) => item.title === "SP IPHONE 99 24/12"
-  );
-  const { data: dataSAMSUNG99 } = useProductSaleDataSAMSUNG99();
-  const filteredSAMSUNG99 = dataSAMSUNG99?.filter(
-    (item: any) => item.title === "SP SAMSUNG 99 24/12"
-  );
-  const { data: dataWACTH99 } = useProductSaleDataWACTH99();
-  const filteredWACTH99 = dataWACTH99?.filter(
-    (item: any) => item.title === "SP MTB WATCH 99 24/12"
-  );
+  const { data: dataIPHONE99 } = useProductSaleDataIPHONE99()
+  const filteredIPHONE99 = dataIPHONE99?.filter((item: any) => item.title === 'SP IPHONE 99 24/12')
+  const { data: dataSAMSUNG99 } = useProductSaleDataSAMSUNG99()
+  const filteredSAMSUNG99 = dataSAMSUNG99?.filter((item: any) => item.title === 'SP SAMSUNG 99 24/12')
+  const { data: dataWACTH99 } = useProductSaleDataWACTH99()
+  const filteredWACTH99 = dataWACTH99?.filter((item: any) => item.title === 'SP MTB WATCH 99 24/12')
 
-  const [activeSubTab, setActiveSubTab] = useState<string>("iPhone");
-  const [filteredData, setFilteredData] = useState<Product[]>([]);
-  const [visibleCount, setVisibleCount] = useState<number>(10);
-  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null);
+  const [activeSubTab, setActiveSubTab] = useState<string>('iPhone')
+  const [filteredData, setFilteredData] = useState<Product[]>([])
+  const [visibleCount, setVisibleCount] = useState<number>(10)
+  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null)
   const fetchBannerHeader = async () => {
     try {
-      const response = await fetch(
-        "https://beta-api.bachlongmobile.com/graphql",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            query: `
+      const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
                   query getSlider($filter: SliderFilterInput) {
                     Slider(filter: $filter) {
                       items {
@@ -115,52 +105,51 @@ const ProductPercent: React.FC = () => {
                     }
                   }
                 `,
-            variables: {
-              filter: {
-                identifier: {
-                  eq: "don-giang-sinh-24-12",
-                },
+          variables: {
+            filter: {
+              identifier: {
+                eq: 'banner-flash-sale-cuoi-nam',
               },
             },
-          }),
-        }
-      );
+          },
+        }),
+      })
 
-      const result = await response.json();
-      setDataTitle(result);
+      const result = await response.json()
+      setDataTitle(result)
     } catch (err) {}
-  };
+  }
   useEffect(() => {
-    fetchBannerHeader();
-  }, []);
+    fetchBannerHeader()
+  }, [])
   const tabs = [
     {
-      name: "iPhone",
+      name: 'iPhone',
     },
     {
-      name: "Samsung",
+      name: 'Samsung',
     },
-  ];
+  ]
 
-  const visibleProducts = filteredData.slice(0, visibleCount);
+  const visibleProducts = filteredData.slice(0, visibleCount)
 
   const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 10);
-  };
+    setVisibleCount((prevCount) => prevCount + 10)
+  }
   const handleTabChange = (tab: string) => {
-    setActiveSubTab(tab);
-  };
+    setActiveSubTab(tab)
+  }
   const currentData =
-    activeSubTab === "iPhone"
+    activeSubTab === 'iPhone'
       ? filteredIPHONE99
-      : activeSubTab === "Samsung"
-      ? filteredSAMSUNG99
-      : filteredWACTH99;
+      : activeSubTab === 'Samsung'
+        ? filteredSAMSUNG99
+        : filteredWACTH99
   return (
     <div
       className="product-20-11"
       style={{
-        marginBottom: "20px",
+        marginBottom: '20px',
       }}
     >
       <div>
@@ -168,18 +157,13 @@ const ProductPercent: React.FC = () => {
           <div className="container">
             <div>
               <div>
-                <div className="women-decor" style={{ padding: "10px 0px" }}>
+                <div className="women-decor" style={{ padding: '10px 0px' }}>
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
-                      .filter((item) =>
-                        item.name.includes("title máy cũ đón giáng sinh 24/12")
-                      )
+                      .filter((item) => item.name.includes('title máy 99 flash sale cuối năm'))
                       .map((item, index) => (
                         <div key={index}>
-                          <img
-                            src={item.media || ""}
-                            alt={`privilege-${index + 1}`}
-                          />
+                          <img src={item.media || ''} alt={`privilege-${index + 1}`} />
                         </div>
                       ))
                   ) : (
@@ -188,135 +172,24 @@ const ProductPercent: React.FC = () => {
                     </Spin>
                   )}
                 </div>
-                <div className="upgrade-hot">
-                  {currentData?.[0]?.items
-                    .sort((a: any, b: any) => a.sale_price - b.sale_price)
-                    .slice(0, 2)
-                    .map((product: any, index: any) => (
-                      <Link
-                        key={index}
-                        href={`https://bachlongmobile.com/products/${product?.product?.url_key}`}
-                        passHref
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ textDecoration: "none", color: "black" }}
-                        className="hot-item"
-                      >
-                        <div className="upgrade-hot-item">
-                          <div className="upgrade-hot-item-wrap">
-                            <div className="upgrade-hot-item-header">
-                              <Image
-                                src={Author}
-                                width={60}
-                                height={20}
-                                quality={100}
-                                alt="author"
-                                className="author-product"
-                              />
-                              <span className="percent">Trả góp 0%</span>
-                            </div>
-                            <div className="upgrade-hot-item-img">
-                              <div className="img-content">
-                                <Image
-                                  src={product?.product?.image?.url}
-                                  width={1400}
-                                  height={1200}
-                                  quality={100}
-                                  alt={`product-${index}`}
-                                />
-                              </div>
-                              <div className="frame-product">
-                                <Image
-                                  src={FrameProduct}
-                                  width={500}
-                                  height={500}
-                                  quality={100}
-                                  alt="frame-product"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="upgrade-hot-item-content">
-                            <div>
-                              <div className="upgrade-hot-best-seller">
-                                <Image
-                                  src={BestSeller}
-                                  width={300}
-                                  height={90}
-                                  alt="best-seller"
-                                />
-                              </div>
-                              <h4 className="upgrade-hot-item-content-tt">
-                                {product?.product?.name}
-                              </h4>
-                            </div>
-                            <div style={{ position: "relative" }}>
-                              <div className="upgrade-hot-item-content-body">
-                                <div className="upgrade-hot-item-content-body-price">
-                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
-                                  VNĐ
-                                </div>
-                                <div className="upgrade-hot-item-content-body-reduced">
-                                  <div className="price-reduced">
-                                    {product?.price_original?.toLocaleString(
-                                      "vi-VN"
-                                    )}{" "}
-                                    VNĐ
-                                  </div>
 
-                                  {product?.price_original && (
-                                    <div className="percent">
-                                      -
-                                      {Math.ceil(
-                                        100 -
-                                          (product.sale_price /
-                                            product.price_original) *
-                                            100
-                                      )}
-                                      %
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="upgrade-wrap-footer">
-                                <div className="upgrade-hot-footer">
-                                  <span>Giá thu bằng giá bán</span>
-                                  <span>Trợ giá lên đến 100%</span>
-                                </div>
-                                <div className="upgrade-fire">
-                                  <Image
-                                    src={HostPrice2}
-                                    width={200}
-                                    height={100}
-                                    quality={100}
-                                    alt="hot-price"
-                                    className="hot-price"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                </div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <div className="tab-buttons">
                     <button
-                      className={activeSubTab === "iPhone" ? "active" : ""}
-                      onClick={() => handleTabChange("iPhone")}
+                      className={activeSubTab === 'iPhone' ? 'active' : ''}
+                      onClick={() => handleTabChange('iPhone')}
                     >
                       iPhone
                     </button>
                     <button
-                      className={activeSubTab === "Samsung" ? "active" : ""}
-                      onClick={() => handleTabChange("Samsung")}
+                      className={activeSubTab === 'Samsung' ? 'active' : ''}
+                      onClick={() => handleTabChange('Samsung')}
                     >
                       Samsung
                     </button>
                     <button
-                      className={activeSubTab === "WATCH" ? "active" : ""}
-                      onClick={() => handleTabChange("WATCH")}
+                      className={activeSubTab === 'WATCH' ? 'active' : ''}
+                      onClick={() => handleTabChange('WATCH')}
                     >
                       Watch / Tablet
                     </button>
@@ -327,12 +200,10 @@ const ProductPercent: React.FC = () => {
                     {currentData?.[0]?.items
                       .sort(
                         (a: any, b: any) =>
-                          a.product?.price_range?.minimum_price?.final_price
-                            ?.value -
-                          b.product?.price_range?.minimum_price?.final_price
-                            ?.value
+                          a.product?.price_range?.minimum_price?.final_price?.value -
+                          b.product?.price_range?.minimum_price?.final_price?.value
                       )
-                      .slice(2, visibleCount)
+                      .slice(0, visibleCount)
                       .map((product: any, index: number) => (
                         <Link
                           key={index}
@@ -340,7 +211,7 @@ const ProductPercent: React.FC = () => {
                           passHref
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ textDecoration: 'none', color: 'black' }}
                         >
                           <div className="upgrade-item">
                             <div className="upgrade-item-header">
@@ -375,29 +246,23 @@ const ProductPercent: React.FC = () => {
                               </div>
                             </div>
                             <div className="upgrade-item-content">
-                              <h4 className="upgrade-item-content-tt">
-                                {product?.product?.name}
-                              </h4>
+                              <h4 className="upgrade-item-content-tt">{product?.product?.name}</h4>
                               <div className="upgrade-item-content-body">
                                 <div className="upgrade-item-content-body-price">
                                   {product?.product?.price_range?.minimum_price?.final_price?.value?.toLocaleString(
-                                    "vi-VN"
-                                  )}{" "}
+                                    'vi-VN'
+                                  )}{' '}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
-                                    {Number(
-                                      product?.price_original
-                                    )?.toLocaleString("vi-VN")}{" "}
-                                    VNĐ
+                                    {Number(product?.price_original)?.toLocaleString('vi-VN')} VNĐ
                                   </div>
                                   <div className="percent">
                                     -
                                     {Math.ceil(
                                       100 -
-                                        (product.product?.price_range
-                                          ?.minimum_price?.final_price?.value /
+                                        (product.product?.price_range?.minimum_price?.final_price?.value /
                                           product.price_original) *
                                           100
                                     )}
@@ -431,18 +296,14 @@ const ProductPercent: React.FC = () => {
                 ) : (
                   <div className="upgrade">
                     {[...Array(10)].map((_, index) => (
-                      <div
-                        key={index}
-                        className="upgrade-item"
-                        style={{ padding: "10px" }}
-                      >
+                      <div key={index} className="upgrade-item" style={{ padding: '10px' }}>
                         <div className="">
                           <Skeleton.Image
                             active
                             style={{
-                              width: "210px",
-                              height: "210px",
-                              marginBottom: "10px",
+                              width: '210px',
+                              height: '210px',
+                              marginBottom: '10px',
                             }}
                           />
                         </div>
@@ -451,23 +312,23 @@ const ProductPercent: React.FC = () => {
                             active
                             block
                             style={{
-                              width: "100%",
-                              marginBottom: "8px",
+                              width: '100%',
+                              marginBottom: '8px',
                             }}
                           />
                           <Skeleton.Input
                             active
                             block
                             style={{
-                              width: "100%",
-                              marginBottom: "8px",
+                              width: '100%',
+                              marginBottom: '8px',
                             }}
                           />
                           <Skeleton.Input
                             active
                             block
                             style={{
-                              width: "100%",
+                              width: '100%',
                             }}
                           />
                         </div>
@@ -476,23 +337,23 @@ const ProductPercent: React.FC = () => {
                   </div>
                 )}
                 {visibleCount < currentData?.[0]?.items?.length ? (
-                  <div style={{ textAlign: "center", margin: "10px 0px" }}>
+                  <div style={{ textAlign: 'center', margin: '10px 0px' }}>
                     <button
                       onClick={loadMore}
                       style={{
-                        backgroundColor: "#d71536",
-                        color: "white",
-                        border: "none",
-                        padding: "10px 20px",
-                        borderRadius: "5px",
-                        cursor: "pointer",
+                        backgroundColor: '#d71536',
+                        color: 'white',
+                        border: 'none',
+                        padding: '10px 20px',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
                       }}
                     >
                       Xem thêm
                     </button>
                   </div>
                 ) : (
-                  <div style={{ height: "50px" }} />
+                  <div style={{ height: '50px' }} />
                 )}
               </div>
             </div>
@@ -500,7 +361,7 @@ const ProductPercent: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductPercent;
+export default ProductPercent

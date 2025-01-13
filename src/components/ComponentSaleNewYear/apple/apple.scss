@@ -26,7 +26,7 @@
       transition: background-color 0.3s;
       border: 1px solid #333333;
       border-radius: 10px;
-      color: #000000;
+      color: #fff;
       font-weight: 600;
 
       &:hover {
@@ -93,13 +93,13 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 1.2rem;
-      @media screen and (max-width: "1200px") {
+      @media screen and (max-width: '1200px') {
         grid-template-columns: repeat(4, 1fr);
       }
-      @media screen and (max-width: "850px") {
+      @media screen and (max-width: '850px') {
         grid-template-columns: repeat(3, 1fr);
       }
-      @media screen and (max-width: "768px") {
+      @media screen and (max-width: '768px') {
         grid-template-columns: repeat(2, 1fr);
       }
 
