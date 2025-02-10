@@ -17,6 +17,7 @@ import Rules15 from "./ip14old/index";
 import Rules16 from "./ip15old/index";
 import Rules17 from "./ip11old/index";
 import Rules18 from "./ipad/index";
+import SamsungS25 from "./samsungs25/index";
 export default function page() {
   return (
     <div>
@@ -38,6 +39,7 @@ export default function page() {
       <Rules16 />
       <Rules17 />
       <Rules18 />
+      <SamsungS25 />
     </div>
   );
 }
