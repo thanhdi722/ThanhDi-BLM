@@ -350,7 +350,7 @@
   transform: translate(-50%, -50%);
   margin: 0;
   text-decoration: none;
-  color: #fbe017;
+  color: #fb1717;
   &:before,
   &:after {
     display: block;
@@ -363,13 +363,13 @@
     opacity: 0.8;
   }
   &:after {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     z-index: -2;
     animation: glitch-left-2 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
       both infinite;
   }
   &:before {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     z-index: -1;
     animation: glitch-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
       infinite;
@@ -452,6 +452,65 @@
   font-size: 1.8rem;
   position: relative;
   color: white;
+  div {
+    background-image: url("../../../../public/valetine/tim.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: ringBell 3s infinite;
+    @keyframes ringBell {
+      0% {
+        transform: rotate(0deg);
+      }
+    
+      3% {
+        transform: rotate(30deg);
+      }
+    
+      5% {
+        transform: rotate(-25deg);
+      }
+    
+      7.5% {
+        transform: rotate(20deg);
+      }
+    
+      10.3% {
+        transform: rotate(-10deg);
+      }
+    
+      13.3% {
+        transform: rotate(5deg);
+      }
+    
+      16% {
+        transform: rotate(-2deg);
+      }
+    
+      20% {
+        transform: rotate(0deg);
+      }
+    
+      100% {
+        transform: rotate(0deg);
+      }
+    
+    }
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+  }
+  
+
 }
 
 .title-deal-24-12 {
@@ -472,7 +531,7 @@
   display: flex;
   gap: 0.35em;
   justify-content: space-between;
-  max-width: 330px;
+  max-width: 440px;
   margin: 0 auto;
 }
 .newYear-deal-24-12 {

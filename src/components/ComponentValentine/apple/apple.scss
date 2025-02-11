@@ -19,19 +19,19 @@
     white-space: nowrap;
 
     button {
-      background-color: transparent;
+      background-color: #f0f0f0;
       border: none;
       padding: 10px 20px;
       cursor: pointer;
       transition: background-color 0.3s;
       border: 1px solid #333333;
       border-radius: 10px;
-      color: #fff;
+      color: #000;
       font-weight: 600;
 
       &:hover {
-        background-color: #f0f0f0; // Hover effect
-        color: #000;
+        background-color: #d71536; // Hover effect
+        color: white;
       }
 
       &.active {
