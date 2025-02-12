@@ -15,6 +15,8 @@ import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
 import Author from '../../../../public/apple/author.webp'
+import iconGift from '../../../../public/valetine/gift-3.gif'
+import iconGift2 from '../../../../public/valetine/gift-4.gif'
 export interface Product {
   id: number
   name: string
@@ -250,11 +252,13 @@ const AppleList: React.FC = () => {
 
   return (
     <div
-      className="product-20-11"
+      className="page-valentine"
       style={{
         marginBottom: '20px',
       }}
     >
+      <Image className="icon-gift-1" src={iconGift} alt="icon-ipad" />
+      <Image className="icon-gift-2" src={iconGift2} alt="icon-ipad" />
       <div>
         <div className="upgrade-list">
           <div className="container">
