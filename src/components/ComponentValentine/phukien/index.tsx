@@ -317,12 +317,12 @@ const AppleList: React.FC = () => {
                           style={{ textDecoration: 'none', color: 'black' }}
                         >
                           <div className="upgrade-item">
-                            <div className="upgrade-item-header">
+                            {/* <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
                               {(activeTab === 'iPhone' || activeTab === 'NONP') && (
                                 <Image className="ic-auth" src={DecorWomen} alt="" />
                               )}
-                            </div>
+                            </div> */}
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image

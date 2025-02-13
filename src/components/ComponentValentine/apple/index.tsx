@@ -8,8 +8,8 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductSaleDataIP } from '../../../app/hooks/productDailySale2412/useProductSaleDataIP'
-import { useProductSaleDataNONP } from '../../../app/hooks/productDailySale2412/useProductSaleDataNONP'
+import { useProductIphoneValentine } from '../../../app/hooks/vanlentine/productIPhone'
+import { useProductNonPhoneValentine } from '../../../app/hooks/vanlentine/productNonPhone'
 import { useProductSaleDataPKApple } from '../../../app/hooks/productDailySale2412/useProductSaleDataPKApple'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
@@ -172,15 +172,10 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductSaleDataIP()
-  console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'SP iPhone 24/12')
-  const { data: dataNONP } = useProductSaleDataNONP()
-  console.log('data check apple ', dataNONP)
-  const filteredDatassssNONP = dataNONP?.filter((item: any) => item.title === 'SP NON PHONE 24/12')
-  const { data: dataPKApple } = useProductSaleDataPKApple()
-  console.log('data check apple ', dataPKApple)
-  const filteredDatassssPKApple = dataPKApple?.filter((item: any) => item.title === 'SP PK APPLE 24/12')
+  const { data } = useProductIphoneValentine()
+  const filteredDatassss = data?.filter((item: any) => item.title === 'iphone-valentine')
+  const { data: dataNONP } = useProductNonPhoneValentine()
+  const filteredDatassssNONP = dataNONP?.filter((item: any) => item.title === 'non-phone-valentine')
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -248,7 +243,7 @@ const AppleList: React.FC = () => {
       ? filteredDatassss
       : activeTab === 'NONP'
         ? filteredDatassssNONP
-        : filteredDatassssPKApple
+        : null
 
   return (
     <div
@@ -294,12 +289,7 @@ const AppleList: React.FC = () => {
                     >
                       NON-PHONE
                     </button>
-                    <button
-                      className={activeTab === 'PKAPPLE' ? 'active' : ''}
-                      onClick={() => handleTabChange('PKAPPLE')}
-                    >
-                      Phụ kiện Apple
-                    </button>
+                  
                   </div>
                 </div>
                 {currentData && currentData.length > 0 ? (

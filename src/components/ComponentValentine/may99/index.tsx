@@ -8,13 +8,15 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductSaleDataIP } from '../../../app/hooks/productDailySale2412/useProductSaleDataIP'
+import { useProductMay99 } from '../../../app/hooks/vanlentine/productMay99'
 import { useProductSaleDataNONP } from '../../../app/hooks/productDailySale2412/useProductSaleDataNONP'
 import { useProductSaleDataPKApple } from '../../../app/hooks/productDailySale2412/useProductSaleDataPKApple'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
 import Author from '../../../../public/apple/author.webp'
+import iconGift from '../../../../public/valetine/gift.gif'
+import iconGift2 from '../../../../public/valetine/gift-2.gif'
 export interface Product {
   id: number
   name: string
@@ -170,15 +172,9 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductSaleDataIP()
+  const { data } = useProductMay99()
   console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'SP iPhone 24/12')
-  const { data: dataNONP } = useProductSaleDataNONP()
-  console.log('data check apple ', dataNONP)
-  const filteredDatassssNONP = dataNONP?.filter((item: any) => item.title === 'SP NON PHONE 24/12')
-  const { data: dataPKApple } = useProductSaleDataPKApple()
-  console.log('data check apple ', dataPKApple)
-  const filteredDatassssPKApple = dataPKApple?.filter((item: any) => item.title === 'SP PK APPLE 24/12')
+  const filteredDatassss = data?.filter((item: any) => item.title === 'may99-valentine')
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -244,19 +240,20 @@ const AppleList: React.FC = () => {
   const currentData =
     activeTab === 'iPhone'
       ? filteredDatassss
-      : activeTab === 'NONP'
-        ? filteredDatassssNONP
-        : filteredDatassssPKApple
+        : null
 
   return (
     <div
-      className="product-20-11"
+      className="page-valentine"
       style={{
         marginBottom: '20px',
       }}
     >
+         <Image className="icon-gift-1" src={iconGift} alt="icon-ipad" />
+         <Image className="icon-gift-2" src={iconGift2} alt="icon-ipad" />
       <div>
         <div className="upgrade-list">
+       
           <div className="container">
             <div>
               <div>
@@ -276,7 +273,7 @@ const AppleList: React.FC = () => {
                   )}
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <div className="tab-buttons">
                     <button
                       className={activeTab === 'iPhone' ? 'active' : ''}
@@ -297,7 +294,7 @@ const AppleList: React.FC = () => {
                       Phụ kiện Apple
                     </button>
                   </div>
-                </div>
+                </div> */}
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
                     {currentData?.[0]?.items
@@ -317,9 +314,9 @@ const AppleList: React.FC = () => {
                           style={{ textDecoration: 'none', color: 'black' }}
                         >
                           <div className="upgrade-item">
-                            <div className="upgrade-item-header">
+                          <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
-                              {(activeTab === 'iPhone' || activeTab === 'NONP') && (
+                              {product?.product?.name.includes('iPhone') && (
                                 <Image className="ic-auth" src={DecorWomen} alt="" />
                               )}
                             </div>
