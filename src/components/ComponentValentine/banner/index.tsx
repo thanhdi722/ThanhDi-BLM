@@ -7,7 +7,7 @@ import Link from "next/link";
 import SkeletonImage from "antd/es/skeleton/Image";
 
 function HeaderHalloween() {
-  const [endDate, setEndDate] = useState(new Date("2025-02-14T21:30:00"));
+  const [endDate, setEndDate] = useState(new Date("2025-02-16T21:30:00"));
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ]);
