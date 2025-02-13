@@ -8,9 +8,7 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductSaleDataIP } from '../../../app/hooks/productDailySale2412/useProductSaleDataIP'
-import { useProductSaleDataNONP } from '../../../app/hooks/productDailySale2412/useProductSaleDataNONP'
-import { useProductSaleDataPKApple } from '../../../app/hooks/productDailySale2412/useProductSaleDataPKApple'
+import { useProductPhuKienKhac, useProductPhuKienPinDuPhong, useProductPhuKienTaiNghe, useProductPhuKienCocCapSac } from '../../../app/hooks/vanlentine/productPhuKien'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
@@ -170,15 +168,18 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductSaleDataIP()
+  const { data } = useProductPhuKienCocCapSac()
   console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'SP iPhone 24/12')
-  const { data: dataNONP } = useProductSaleDataNONP()
-  console.log('data check apple ', dataNONP)
-  const filteredDatassssNONP = dataNONP?.filter((item: any) => item.title === 'SP NON PHONE 24/12')
-  const { data: dataPKApple } = useProductSaleDataPKApple()
-  console.log('data check apple ', dataPKApple)
-  const filteredDatassssPKApple = dataPKApple?.filter((item: any) => item.title === 'SP PK APPLE 24/12')
+  const filteredDatassss = data?.filter((item: any) => item.title === 'coc-cap-sac-valentine')
+  const { data: dataPinDuPhong } = useProductPhuKienPinDuPhong()
+  const filteredDatassssNONP = dataPinDuPhong?.filter((item: any) => item.title === 'pin-du-phong-valentine')
+  const { data: dataTaiNghe } = useProductPhuKienTaiNghe()
+  console.log('data check apple ', dataTaiNghe)
+  const filteredDatassssTaiNghe = dataTaiNghe?.filter((item: any) => item.title === 'tai-nghe-valentine')
+  const { data: dataKhac } = useProductPhuKienKhac()
+  console.log('data check apple ', dataKhac)
+  const filteredDatassssKhac = dataKhac?.filter((item: any) => item.title === 'khac-valentine')
+
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -246,7 +247,9 @@ const AppleList: React.FC = () => {
       ? filteredDatassss
       : activeTab === 'NONP'
         ? filteredDatassssNONP
-        : filteredDatassssPKApple
+        : activeTab === 'PKAPPLE'
+          ? filteredDatassssTaiNghe
+          : filteredDatassssKhac
 
   return (
     <div
@@ -282,19 +285,25 @@ const AppleList: React.FC = () => {
                       className={activeTab === 'iPhone' ? 'active' : ''}
                       onClick={() => handleTabChange('iPhone')}
                     >
-                      iPhone
+                      Cốc cắp sạc
                     </button>
                     <button
                       className={activeTab === 'NONP' ? 'active' : ''}
                       onClick={() => handleTabChange('NONP')}
                     >
-                      NON-PHONE
+                      Pin dự phòng
                     </button>
                     <button
                       className={activeTab === 'PKAPPLE' ? 'active' : ''}
                       onClick={() => handleTabChange('PKAPPLE')}
                     >
-                      Phụ kiện Apple
+                      Tai nghe
+                    </button>
+                    <button
+                      className={activeTab === 'Khac' ? 'active' : ''}
+                      onClick={() => handleTabChange('Khac')}
+                    >
+                      Khác
                     </button>
                   </div>
                 </div>
