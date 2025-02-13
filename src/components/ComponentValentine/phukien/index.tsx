@@ -285,7 +285,7 @@ const AppleList: React.FC = () => {
                       className={activeTab === 'iPhone' ? 'active' : ''}
                       onClick={() => handleTabChange('iPhone')}
                     >
-                      Cốc cắp sạc
+                      Cốc cáp sạc
                     </button>
                     <button
                       className={activeTab === 'NONP' ? 'active' : ''}
