@@ -13,7 +13,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import "./style.scss"
-
+import Snowfall from "../../components/ComponentValentine/snow/Snowfall";
 function ValentineDay() {
   const categories = [
     { id: 'item-iphone', name: 'iPhone' },
@@ -91,6 +91,7 @@ function ValentineDay() {
   return (
     <div className="valentine-day" style={{ background: "#ffe0e6" }}>
       <Banner />
+      <Snowfall />
       <div id="item-iphone">
          <Product1/>
       </div>
