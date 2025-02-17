@@ -13,7 +13,7 @@ import ProductTree from '../../../../public/new-year/product-tree.png'
 import ProductBg from '../../../../public/new-year/product-bg.png'
 import BestSeller from '../../../../public/new-year/best-seller.gif'
 import Author from '../../../../public/apple/author.webp'
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 export interface Product {
   id: number
@@ -244,7 +244,7 @@ const ProductIpad: React.FC = () => {
     staleTime: 300000,
   })
 
-  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null)
+  const [dataTitle, setDataTitle] = useState<any | null>(null)
   const fetchBannerHeader = async () => {
     try {
       const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
@@ -363,8 +363,8 @@ const ProductIpad: React.FC = () => {
           <div className="upgrade-hot-wrap">
             {dataTitle ? (
               dataTitle?.data?.Slider?.items[0]?.Banner?.items
-                .filter((item) => item.media_alt.includes('title-ipad-don-tet'))
-                .map((item, index) => (
+                .filter((item: any) => item.media_alt.includes('title-ipad-don-tet'))
+                .map((item: any, index: number) => (
                   <div key={index}>
                     <img src={item.media || ''} alt={`privilege-${index + 1}`} className="product-banner" />
                   </div>

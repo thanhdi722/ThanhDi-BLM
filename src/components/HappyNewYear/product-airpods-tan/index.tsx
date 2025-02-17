@@ -208,7 +208,7 @@ const ProductAirPods: React.FC = () => {
     staleTime: 300000,
   })
 
-  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null)
+  const [dataTitle, setDataTitle] = useState<any | null>(null)
   const fetchBannerHeader = async () => {
     try {
       const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
@@ -307,8 +307,8 @@ const ProductAirPods: React.FC = () => {
           <div className="upgrade-hot-wrap">
             {dataTitle ? (
               dataTitle?.data?.Slider?.items[0]?.Banner?.items
-                .filter((item) => item.media_alt.includes('title-airpods-don-tet-2'))
-                .map((item, index) => (
+                .filter((item: any) => item.media_alt.includes('title-airpods-don-tet-2'))
+                .map((item: any, index: number) => (
                   <div key={index} className="custom-banner-title">
                     <img src={item.media || ''} alt={`privilege-${index + 1}`} className="product-banner" />
                   </div>

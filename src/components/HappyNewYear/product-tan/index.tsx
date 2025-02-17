@@ -256,7 +256,7 @@ const ProductList: React.FC = () => {
     staleTime: 300000, // Thời gian dữ liệu cũ
   })
 
-  const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null) // State để lưu dữ liệu tiêu đề
+  const [dataTitle, setDataTitle] = useState<any | null>(null) // State để lưu dữ liệu tiêu đề
   // Hàm fetchBannerHeader để lấy dữ liệu banner
   const fetchBannerHeader = async () => {
     try {
@@ -439,8 +439,8 @@ const ProductList: React.FC = () => {
         <div className="upgrade-hot-wrap">
           {dataTitle ? (
             dataTitle?.data?.Slider?.items[0]?.Banner?.items
-              .filter((item) => item.media_alt.includes('title-iphone-don-tet-2'))
-              .map((item, index) => (
+              .filter((item: any) => item.media_alt.includes('title-iphone-don-tet-2'))
+              .map((item: any, index: number) => (
                 <div key={index} className="custom-banner-title">
                   <img src={item.media || ''} alt={`privilege-${index + 1}`} className="product-banner" />
                 </div>
