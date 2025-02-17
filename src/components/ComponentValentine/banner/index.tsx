@@ -4,13 +4,52 @@ import Image from "next/image";
 import "./style.scss";
 import { Skeleton, Spin } from "antd";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import SkeletonImage from "antd/es/skeleton/Image";
+import { useQuery } from "@tanstack/react-query";
 
 function HeaderHalloween() {
-  const [endDate, setEndDate] = useState(new Date("2025-02-16T21:30:00"));
+  const [endDate, setEndDate] = useState(new Date("2027-02-16T21:30:00"));
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ]);
+  const query = `
+  query getSlider($filter: SliderFilterInput) {
+                    Slider(filter: $filter) {
+                      items {
+                        title
+                        identifier
+                        Banner {
+                          __typename
+                          items {
+                            banner_id
+                            caption
+                            link
+                            media
+                            media_alt
+                            name
+                            slider_id
+                          }
+                          page_info {
+                            current_page
+                            page_size
+                            total_pages
+                          }
+                        }
+                      }
+                      total_count
+                    }
+                  }`
+
+const variables = {
+  filter: {
+    identifier: {
+      eq: 'khai-xuan-phu-quy',
+    },
+  },
+}
+
   const [isEventOver, setIsEventOver] = useState(false);
   interface BannerItem {
     banner_id: number;
@@ -74,7 +113,27 @@ function HeaderHalloween() {
     return () => clearInterval(interval);
   }, [endDate]);
   const [data, setData] = useState<ApiResponse | null>(null);
-
+  async function fetchBannerData() {
+    const response = await fetch('https://beta-api.bachlongmobile.com/graphql', {
+      method: 'POST',
+  
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
+    })
+  
+    const data = await response.json()
+    return data.data.Slider.items
+  }
+  const { data: dataBanner, isLoading } = useQuery({
+    queryKey: ['fetchBannerData'],
+    queryFn: fetchBannerData,
+    staleTime: 300000,
+  })
   const fetchBannerHeader = async () => {
     try {
       const response = await fetch(
@@ -104,7 +163,7 @@ function HeaderHalloween() {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-flash-sale-cuoi-nam",
+                  eq: "banner-flash-sale-valentine",
                 },
               },
             },
@@ -199,7 +258,7 @@ function HeaderHalloween() {
             </h2>
           </div>
         )}
-        <div
+        {/* <div
           style={{
             padding: "10px",
             // background: "linear-gradient(0deg, #0002ff, #7490ff)",
@@ -219,7 +278,7 @@ function HeaderHalloween() {
           <div className="HeaderHalloween-promotion-list-privilege">
             {data?.data?.Slider?.items[0]?.Banner?.items
               .filter((item) =>
-                item.name.includes("ưu đãi flash sale cuối năm")
+                item.name.includes("uu-dai-valentine")
               )
               .map((item, index) => (
                 <div
@@ -250,6 +309,109 @@ function HeaderHalloween() {
                   )}
                 </div>
               ))}
+          </div>
+        </div> */}
+         <div className="container">
+          <div
+            style={{
+              padding: '10px',
+              background: 'white',
+              borderRadius: '16px',
+              marginTop: '20px',
+              border: '2px solid #ff3793',
+            }}
+          >
+            {/* <h2 className="HeaderHalloween-promotion-header" style={{ fontWeight: 400 }}>
+              {
+                data?.[0]?.Banner?.items.filter((item: any) => item.media_alt.includes('uu-dai-dac-quyen'))
+                  .length
+              }{' '}
+              đặc quyền mua hàng tại Bạch Long Mobile
+            </h2> */}
+            <Image
+              className="background-8"
+              src={
+                dataBanner?.[0]?.Banner?.items.filter((item: any) =>
+                  item.media_alt.includes('banner-uu-dai-khai-xuan-phu-quy')
+                )[0].media
+              }
+              alt="banner-tan"
+              width={1920}
+              height={900}
+            />
+            <div className="promotion-desktop">
+              <div className="HeaderHalloween-promotion-list-privilege-v2">
+                {dataBanner?.[0]?.Banner?.items
+                  .filter((item: any) => item.media_alt.includes('uu-dai-dac-quyen'))
+                  .map((item: any, index: any) => (
+                    <div key={index} className="privilege-img" style={{ cursor: 'pointer' }}>
+                      {item.link ? (
+                        <a href={item.link} target="_blank" rel="noopener noreferrer">
+                          <Image
+                            src={item.media || ''}
+                            alt={`privilege-${index + 1}`}
+                            width={1200}
+                            height={1000}
+                          />
+                        </a>
+                      ) : (
+                        <Image
+                          src={item.media || ''}
+                          alt={`privilege-${index + 1}`}
+                          width={1200}
+                          height={1000}
+                        />
+                      )}
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div className="promotion-mobile">
+              <Swiper
+                spaceBetween={10}
+                slidesPerView={5.5}
+                breakpoints={{
+                  440: {
+                    slidesPerView: 4.5,
+                    spaceBetween: 15,
+                  },
+                  1024: {
+                    slidesPerView: 5.5,
+                    spaceBetween: 20,
+                  },
+                }}
+              >
+                {dataBanner?.[0]?.Banner?.items
+                  .filter((item: any) => item.media_alt.includes('uu-dai-dac-quyen'))
+                  .map((item: any, index: any) => (
+                    <SwiperSlide key={index}>
+                      {item.link ? (
+                        <Link href={item.link} target="_blank" rel="noopener noreferrer">
+                          <Image
+                            src={item.media || ''}
+                            alt={`privilege-${index + 1}`}
+                            width={1200}
+                            height={1000}
+                          />
+                        </Link>
+                      ) : (
+                        <div
+                          onClick={() =>
+                            document.getElementById('item-rules')?.scrollIntoView({ behavior: 'smooth' })
+                          }
+                        >
+                          <Image
+                            src={item.media || ''}
+                            alt={`privilege-${index + 1}`}
+                            width={1200}
+                            height={1000}
+                          />
+                        </div>
+                      )}
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+            </div>
           </div>
         </div>
       </div>

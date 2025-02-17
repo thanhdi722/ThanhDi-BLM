@@ -1,0 +1,122 @@
+.event-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; // Cho phép xuống hàng khi màn hình nhỏ
+  gap: 20px;
+  width: 100%;
+
+  .event-month {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background: linear-gradient(to bottom, #ff0000, #a70000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .event-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+}
+
+.event-card {
+  color: #ff3793;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  width: calc(20% - 20px); // Mặc định: 4 card trên 1 hàng
+  max-width: 250px;
+  border: 2px solid #ff3793;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.event-card:hover {
+  background-color: rgb(255, 223, 223);
+  transform: translateY(-5px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.event-icon {
+  font-size: 24px;
+  //   margin-bottom: 10px;
+}
+
+.calendar::before {
+  content: '📅';
+}
+
+.heart::before {
+  content: '❤️';
+}
+
+.gift::before {
+  content: '🎁';
+}
+
+.stethoscope::before {
+  content: '🩺';
+}
+
+.trophy::before {
+  content: url('../../../../public/trophy.png');
+}
+
+.event-card h3 {
+  margin: 10px 0;
+  font-size: 12px;
+  font-weight: bold;
+  // height: 50px;
+}
+
+.event-card p {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 96, 96, 0.3);
+  margin: 0;
+  font-size: 14px;
+}
+
+/* 📱 Mobile (dưới 600px) - Hiển thị 2 card trên một hàng */
+@media (max-width: 600px) {
+  .event-card {
+    width: calc(50% - 20px); // 2 card trên một hàng
+    max-width: none;
+  }
+  .event-card h3 {
+    margin: 6px 0;
+    font-size: 14px;
+    font-weight: bold;
+    height: 45px;
+  }
+}
+
+/* 📱 Tablet (601px - 900px) - Hiển thị 3 card trên một hàng */
+@media (min-width: 601px) and (max-width: 900px) {
+  .event-card {
+    width: calc(33.33% - 20px); // 3 card trên một hàng
+  }
+}
+
+/* 💻 Desktop (trên 901px) - Hiển thị 4 card trên một hàng */
+@media (min-width: 901px) {
+  .event-card {
+    width: calc(20% - 20px); // 4 card trên một hàng
+  }
+}

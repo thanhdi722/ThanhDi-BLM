@@ -1,11 +1,13 @@
-.page-valentine-day {
+@import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Meow+Script&family=Playwrite+CO+Guides&display=swap');
+.page-sale-thang-12 {
   position: relative;
-  .HeaderCombo-bannerPC {
-    display: block;
-    @media (max-width: 767px) {
-      display: none;
-    }
-  }
+
+  // background-image: url('../../../../public/new-year/bg-page.webp');
+  background-color: #f81f22;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
   .promotion-desktop {
     display: block;
     @media screen and (max-width: 1200px) {
@@ -18,44 +20,282 @@
       display: block;
     }
   }
-  .HeaderHalloween-promotion-list-privilege-v2 {
-    // position: absolute;
-    // top: 85%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 1.2rem;
-    justify-content: center;
-    align-items: center;
-    // width: 50%;
 
-    @media screen and (max-width: 1200px) {
-      gap: 0rem;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      display: grid;
+  .time-wrap {
+    position: relative;
+
+    @media screen and (max-width: 1024px) {
+      padding-top: 0;
     }
-    img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      object-fit: contain;
+
+    .cloud-banner-wrap {
+      position: relative;
       width: 100%;
+      padding: 2.4rem;
+
+      .gold-banner-right {
+        object-fit: contain;
+        height: 180px;
+
+        @media (min-width: 768px) {
+          height: 200px;
+          bottom: 5rem;
+        }
+
+        @media (min-width: 1024px) {
+          height: 250px;
+          bottom: 7.5rem;
+        }
+
+        z-index: 0;
+        position: absolute;
+        right: 0rem;
+        bottom: 2.5rem;
+        width: fit-content;
+        display: none;
+
+        @media (min-width: 1280px) {
+          display: inline;
+        }
+      }
+      .gold-banner-left {
+        object-fit: contain;
+        height: 180px;
+
+        @media (min-width: 768px) {
+          height: 200px;
+          bottom: 5rem;
+        }
+
+        @media (min-width: 1024px) {
+          height: 250px;
+          bottom: 7.5rem;
+        }
+
+        z-index: 0;
+        position: absolute;
+        left: 0;
+        bottom: 2.5rem;
+        width: fit-content;
+        display: none;
+
+        @media (min-width: 1280px) {
+          display: inline;
+        }
+      }
+
+      .cloud-main {
+        object-fit: contain;
+        width: 100%;
+        height: 300px;
+
+        @media (min-width: 768px) {
+          height: 320px;
+        }
+
+        @media (min-width: 1024px) {
+          height: 360px;
+        }
+
+        position: absolute;
+        bottom: -2rem;
+        left: 0;
+        z-index: 20;
+
+        animation: cloud1 5.5s ease-in-out infinite;
+
+        @keyframes cloud1 {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+      }
+      .wrap-timer {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+        .time-tt {
+          font-size: 1.8rem;
+        }
+      }
+      .cloud-main-02 {
+        object-fit: contain;
+        width: 100%;
+        height: 300px;
+
+        @media (min-width: 768px) {
+          height: 320px;
+        }
+
+        @media (min-width: 1024px) {
+          height: 360px;
+        }
+
+        position: absolute;
+        top: -10rem;
+        left: -15%;
+        z-index: 0;
+      }
+      .cloud-main-03 {
+        object-fit: contain;
+        width: 100%;
+        height: 300px;
+
+        @media (min-width: 768px) {
+          height: 320px;
+        }
+
+        @media (min-width: 1024px) {
+          height: 360px;
+        }
+
+        position: absolute;
+        top: -10rem;
+        right: -15%;
+        z-index: 0;
+      }
+      .cloud-left {
+        object-fit: contain;
+        width: 100%;
+        height: 300px;
+
+        @media (min-width: 768px) {
+          height: 320px;
+          bottom: -3.5rem;
+        }
+
+        @media (min-width: 1024px) {
+          height: 360px;
+        }
+
+        position: absolute;
+        left: -50%;
+        transform: translateX(-50%);
+        z-index: 0;
+        display: none;
+
+        @media (min-width: 1280px) {
+          display: inline;
+        }
+
+        animation: cloud2 6s ease-in-out infinite;
+
+        @keyframes cloud2 {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+      }
+      .cloud-right {
+        object-fit: contain;
+        width: 100%;
+        height: 300px;
+
+        @media (min-width: 768px) {
+          height: 320px;
+          bottom: -2.5rem;
+        }
+
+        @media (min-width: 1024px) {
+          height: 360px;
+        }
+
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 0;
+        display: none;
+
+        @media (min-width: 1280px) {
+          display: inline;
+        }
+
+        animation: cloud3 4.5s ease-in-out infinite;
+
+        @keyframes cloud3 {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+      }
     }
   }
-  .privilege-img {
-    display: inline-block;
+
+  .timer {
+    width: 50rem;
+    height: 100%;
     position: relative;
-    overflow: unset !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .timer-banner {
+    position: relative;
+    rotate: 10deg;
 
-    img {
-      transition: transform 0.5s ease-in-out;
+    .time-banner-item {
+      object-fit: contain;
+      width: fit-content;
+      height: 100px;
+
+      @media (min-width: 768px) {
+        height: 120px;
+      }
+
+      @media (min-width: 1024px) {
+        height: 120px;
+      }
+
+      position: relative;
+      z-index: 20;
+
+      animation: shake 1.5s ease-in-out infinite;
     }
+    .txt-time {
+      position: absolute;
+      top: 53%;
+      left: 45%;
+      transform: translate(-25%, -0%);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1;
+      z-index: 30;
+      rotate: -15deg;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      align-items: center;
+      text-align: center;
 
-    &:hover img {
-      transform: scale(1.1);
+      font-family: 'Delius Swash Caps', serif;
+      font-weight: 400;
+      font-style: normal;
+
+      animation: shake 1.5s ease-in-out infinite;
+    }
+  }
+  .HeaderCombo-bannerPC {
+    display: block;
+    @media (max-width: 767px) {
+      display: none;
     }
   }
   .HeaderCombo-bannerMB {
@@ -94,7 +334,9 @@
 
   .banner-HeaderHalloween.shine-banner {
     background-repeat: no-repeat;
-    background-position: -120px -120px, 0 0;
+    background-position:
+      -120px -120px,
+      0 0;
 
     background-image: -webkit-linear-gradient(
       top left,
@@ -125,8 +367,12 @@
       rgba(255, 255, 255, 0) 50%
     );
 
-    -moz-background-size: 250% 250%, 100% 100%;
-    background-size: 250% 250%, 100% 100%;
+    -moz-background-size:
+      250% 250%,
+      100% 100%;
+    background-size:
+      250% 250%,
+      100% 100%;
 
     -webkit-transition: background-position 0s ease;
     -moz-transition: background-position 0s ease;
@@ -135,7 +381,9 @@
   }
 
   .banner-HeaderHalloween.shine-banner:hover {
-    background-position: 0 0, 0 0;
+    background-position:
+      0 0,
+      0 0;
 
     -webkit-transition-duration: 0.5s;
     -moz-transition-duration: 0.5s;
@@ -176,7 +424,7 @@
     }
 
     .Halloween-button:before {
-      content: "";
+      content: '';
       position: absolute;
       left: -30px;
       top: 50%;
@@ -185,7 +433,7 @@
     }
 
     .Halloween-button:after {
-      content: "";
+      content: '';
       position: absolute;
       right: -30px;
       top: 50%;
@@ -373,9 +621,9 @@
     }
   }
   .privilege-img {
-    overflow: hidden;
     display: inline-block;
     position: relative;
+    overflow: unset !important;
 
     img {
       transition: transform 0.5s ease-in-out;
@@ -394,7 +642,7 @@
   text-align: center;
   width: 100%;
   line-height: 1;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   position: relative;
   top: 50%;
@@ -402,29 +650,17 @@
   transform: translate(-50%, -50%);
   margin: 0;
   text-decoration: none;
-  color: #fb1717;
+  color: #fff;
   &:before,
   &:after {
     display: block;
-    content: "8 đặc quyền mua hàng tại Bạch Long Mobile";
+    content: '8 đặc quyền mua hàng tại Bạch Long Mobile';
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     opacity: 0.8;
-  }
-  &:after {
-    color: rgb(0, 0, 0);
-    z-index: -2;
-    animation: glitch-left-2 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
-      both infinite;
-  }
-  &:before {
-    color: rgb(0, 0, 0);
-    z-index: -1;
-    animation: glitch-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
-      infinite;
   }
   @media screen and (max-width: 768px) {
     font-size: 20px;
@@ -503,73 +739,14 @@
   padding: 0;
   font-size: 1.8rem;
   position: relative;
-  color: white;
-  div {
-    background-image: url("../../../../public/valetine/tim.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100px;
-    height: 100px;
-    position: relative;
-    animation: ringBell 3s infinite;
-    @keyframes ringBell {
-      0% {
-        transform: rotate(0deg);
-      }
-    
-      3% {
-        transform: rotate(30deg);
-      }
-    
-      5% {
-        transform: rotate(-25deg);
-      }
-    
-      7.5% {
-        transform: rotate(20deg);
-      }
-    
-      10.3% {
-        transform: rotate(-10deg);
-      }
-    
-      13.3% {
-        transform: rotate(5deg);
-      }
-    
-      16% {
-        transform: rotate(-2deg);
-      }
-    
-      20% {
-        transform: rotate(0deg);
-      }
-    
-      100% {
-        transform: rotate(0deg);
-      }
-    
-    }
-    p {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-    }
-  }
-  
-
+  color: #fff;
 }
 
 .title-deal-24-12 {
   font-size: 1.5rem;
   &:before,
   &:after {
-    content: " ***** ";
+    content: ' ***** ';
     font-size: 0.75rem;
     letter-spacing: 0.25em;
     color: #92d436;
@@ -583,7 +760,7 @@
   display: flex;
   gap: 0.35em;
   justify-content: space-between;
-  max-width: 440px;
+  max-width: 330px;
   margin: 0 auto;
 }
 .newYear-deal-24-12 {
@@ -593,19 +770,17 @@
   letter-spacing: 0.02em;
   padding: 10px 0px;
   font-weight: bold;
-  background: repeating-linear-gradient(
-    45deg,
-    #d80e13,
-    #d80e13 10px,
-    #ffffff 10px,
-    #ffffff 20px
-  );
+  background: repeating-linear-gradient(45deg, #d80e13, #d80e13 10px, #ffffff 10px, #ffffff 20px);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.24), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.24),
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
   @media screen and (max-width: 1200px) {
     font-size: calc(5rem);
@@ -624,8 +799,30 @@
   font-family: var(--font-script);
 }
 
-.header-deal-cuoi-nam {
+.header-deal-24-12 {
   position: relative;
   text-align: center;
   margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
 }

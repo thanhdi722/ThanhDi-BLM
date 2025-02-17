@@ -1,0 +1,184 @@
+// @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Gloria+Hallelujah&display=swap');
+.timeline-new-year {
+	background: linear-gradient(to right, #bb0a0a, #c0140b, #b9400b, #c4540e, #bd2710);
+	padding: 0 !important;
+	position: relative;
+	.cloud-new-year {
+		position: absolute;
+		top: -10%;
+		left: 0;
+		height: 100%;
+	}
+	.HeaderHalloween-time-line-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 2.4rem 0;
+		position: relative;
+
+		.new-year-button {
+			padding: 12px 24px;
+			font-size: 16px;
+			font-weight: bold;
+			background-color: #ef373e;
+			color: white;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			border: 2px #fff solid;
+			text-transform: uppercase;
+			position: relative;
+			z-index: 10;
+
+			&:hover {
+				background-color: rgb(214, 172, 55);
+				box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+			}
+
+			&:active {
+				transform: scale(0.95);
+			}
+
+			&:focus {
+				outline: none;
+				box-shadow: 0 0 0 3px rgba(255, 223, 0, 0.5); /* festive gold glow */
+			}
+		}
+	}
+
+	.HeaderHalloween-time-line-card {
+		max-width: 100%;
+		width: 12.5rem;
+		height: 8.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-image: url('../../../../public/new-year/table-time-line.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		position: relative;
+		z-index: 10;
+
+		@media screen and (max-width: 1200px) {
+			// height: 10rem;
+			// width: 14.5rem;
+		}
+		@media screen and (max-width: 678px) {
+			width: 10rem;
+			height: 7rem;
+		}
+		@media screen and (max-width: 576px) {
+			width: 8.5rem;
+			height: 6rem;
+		}
+	}
+
+	.HeaderHalloween-time-line-card-container {
+		margin-bottom: 2.4rem;
+		position: relative;
+		width: 50%;
+		@media screen and (max-width: 1200px) {
+			width: 60%;
+		}
+		@media screen and (max-width: 850px) {
+			width: 80%;
+		}
+		@media screen and (max-width: 576px) {
+			width: 100%;
+		}
+	}
+
+	.content-card {
+		padding: 0 !important;
+		display: block;
+		margin-left: 0 !important;
+		margin-bottom: 0 !important;
+		position: absolute;
+		top: 15%;
+		@media screen and (max-width: 1200px) {
+			top: 15%;
+		}
+		@media screen and (max-width: 576px) {
+			margin-left: 0;
+		}
+	}
+
+	.HeaderHalloween-time-line-count {
+		font-size: 3rem;
+		font-weight: bold;
+		color: #000;
+		text-align: center;
+		margin-top: 0 !important;
+		@media screen and (max-width: 1200px) {
+			font-size: 3rem;
+		}
+		@media screen and (max-width: 576px) {
+			font-size: 2rem;
+		}
+	}
+	.HeaderHalloween-time-line-card-key {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		justify-items: center;
+		gap: 20px;
+		position: absolute;
+		top: 45%;
+		left: 0;
+		width: 100%;
+		padding: 0 1.5rem;
+		@media screen and (max-width: 1200px) {
+			top: 40%;
+			gap: 10px;
+		}
+		@media (max-width: 768px) {
+			gap: 0px;
+		}
+	}
+	.HeaderHalloween-time-line-subtext,
+	.HeaderHalloween-time-line-subtext-small {
+		margin-top: 0 !important;
+		text-align: center;
+		font-weight: 500;
+		font-size: 18px !important;
+		color: #000;
+		@media screen and (max-width: 1200px) {
+			font-size: 1.4rem;
+		}
+		@media screen and (max-width: 768px) {
+			font-size: 1.2rem;
+		}
+		@media screen and (max-width: 576px) {
+			font-size: 1rem;
+		}
+	}
+
+	.HeaderHalloween-time-line-buttons {
+		margin-top: 2rem;
+		display: flex;
+		gap: 1rem;
+	}
+
+	.HeaderHalloween-time-line-btn {
+		background-color: #fde68a;
+		color: #78350f;
+		border-color: #78350f;
+		&:hover {
+			background-color: #fcd34d;
+		}
+	}
+}
+
+@keyframes gentleFlame {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
