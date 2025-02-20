@@ -2,17 +2,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Banner from "../../components/ComponentSaleT2/banner/index";
 import Image from "next/image";
-import ProductList from "../../components/ComponentSaleT2/product/index";
-import AppleList from "../../components/ComponentSaleT2/apple/index";
-import ProductPercent from "../../components/ComponentSaleT2/99percent/index";
-import AndroidList from "../../components/ComponentSaleT2/android/index";
-import LaptopList from "../../components/ComponentSaleT2/laptop/index";
-import ToyList from "../../components/ComponentSaleT2/toy/index";
-import IpadList from "../../components/ComponentSaleT2/ipad/index";
-import WatchList from "../../components/ComponentSaleT2/watch/index";
-import img from "../../../public/black-friday/bacground.webp";
+import Product1 from "../../components/ComponentSaleT2/apple";
+import Product2 from "../../components/ComponentSaleT2/may99";
+import Product3 from "../../components/ComponentSaleT2/samsung";
+import Product4 from "../../components/ComponentSaleT2/android";
+import Product5 from "../../components/ComponentSaleT2/phukien";
 import wheelSpin from "../../../public/sale-12/vongquaymayman.svg";
-import imgRocket from "../../../public/black-friday/bongbong.webp";
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -20,12 +15,11 @@ import Link from "next/link";
 const categories = [
   // { id: "item-hot", name: "Giá sốc" },
   { id: "item-toy-new", name: "Deal sốc" },
-  { id: "item-iphone", name: "iPhone" },
-  { id: "item-ipad", name: "iPad/Macbook" },
-  { id: "item-airpods", name: "Máy 99%" },
-
-  { id: "item-mac", name: "Samsung" },
-  { id: "item-android", name: "Oppo/Xiaomi/Laptop" },
+  { id: 'item-iphone', name: 'iPhone' },
+  { id: 'item-may99', name: 'Máy 99%' },
+  { id: 'item-samsung', name: 'Samsung' },
+  { id: 'item-android', name: 'Android' },
+  { id: 'item-phukien', name: 'Phụ Kiện' },
 ];
 export default function Page() {
   const swiperRef = useRef<any>(null);
@@ -109,7 +103,7 @@ export default function Page() {
       style={{
         backgroundColor: "#F7D4AE",
       }}
-    >
+    > 
       
       <div style={{ position: "relative", overflow: "hidden" }}>
         {/* <Image className="background-home-black-friday" src={img} alt="" />
@@ -122,28 +116,24 @@ export default function Page() {
         {/* <div id="item-hot">
           <ProductList />
         </div> */}
-        <div id="item-toy-new">
+        {/* <div id="item-toy-new">
           <ToyList />
-        </div>
-        <div id="item-iphone">
-          <AppleList />
-        </div>
-        <div id="item-ipad">
-          <IpadList />
-        </div>
-        <div id="item-airpods">
-          <ProductPercent />
-        </div>
-
-        <div id="item-mac">
-          <LaptopList />
-        </div>
-        {/* <div id="item-watch">
-          <WatchList />
         </div> */}
-        <div id="item-android">
-          <AndroidList />
-        </div>
+        <div id="item-iphone">
+         <Product1/>
+      </div>
+      <div id="item-may99"> 
+        <Product2/>
+      </div>
+      <div id="item-samsung"> 
+        <Product3/>
+      </div>
+      <div id="item-android"> 
+        <Product4/>
+      </div>
+      <div id="item-phukien"> 
+        <Product5/>
+      </div>
 
         <div
           className={`sticky-category ${

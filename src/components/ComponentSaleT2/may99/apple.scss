@@ -1,7 +1,22 @@
-.product-list-halloween {
-  padding: 4.8rem 0;
-  @media screen and (max-width: 768px) {
-    padding: 2.4rem 0;
+.page-flash-sale-t2{
+  z-index: 99;
+  position: relative;
+  .icon-gift-1 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+  .icon-gift-2 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    opacity: 0.5;
+    transform: translateY(-50%);
   }
   .tabs {
     display: flex;
@@ -13,6 +28,35 @@
       gap: 0.4rem;
     }
   }
+  .tab-buttons {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.2rem;
+    padding: 10px; // Add padding
+    white-space: nowrap;
+
+    button {
+      background-color: #f0f0f0;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border: 1px solid #333333;
+      border-radius: 10px;
+      color: #000;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #d71536; // Hover effect
+        color: white;
+      }
+
+      &.active {
+        background-color: #d71536; // Active button background
+        color: white; // Active button text color
+      }
+    }
+  }
   .sub-tab-list {
     display: flex;
     flex-wrap: wrap;
@@ -21,17 +65,10 @@
   .upgrade-list {
     .women-decor {
       position: relative;
-      width: 70%;
-      height: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      @media screen and (max-width: 768px) {
-        width: 100%;
-      }
       img {
         width: 100%;
-        object-fit: contain;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
       }
       .women-text {
         position: absolute;
@@ -58,19 +95,28 @@
 
       .tab {
         margin: 0 !important;
+        background-color: #fff;
+        color: #333;
+
+        &:hover {
+          background-color: #ff7518 !important;
+          color: #fff !important;
+          border-color: #ff7518 !important;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
       }
     }
     .upgrade {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 1.2rem;
-      @media screen and (max-width: "1200px") {
+      @media screen and (max-width: '1200px') {
         grid-template-columns: repeat(4, 1fr);
       }
-      @media screen and (max-width: "850px") {
+      @media screen and (max-width: '850px') {
         grid-template-columns: repeat(3, 1fr);
       }
-      @media screen and (max-width: "768px") {
+      @media screen and (max-width: '768px') {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -101,21 +147,21 @@
           justify-content: space-between;
 
           .decor-product {
-            width: 4.4rem !important;
-            height: 4rem !important;
+            width: 2.4rem !important;
+            height: 3rem !important;
             position: absolute;
-            top: 1.4rem;
-            left: 1.4rem;
+            top: 0;
+            left: 0;
             transform: translate(-50%, -50%) !important;
             z-index: 3;
 
             @media screen and (max-width: 1024px) {
-              width: 60px !important;
-              height: 60px !important;
+              width: 2.2rem !important;
+              height: 3.6rem !important;
             }
             @media screen and (max-width: 768px) {
-              width: 40px !important;
-              height: 40px !important;
+              width: 1.6rem !important;
+              height: 2.2rem !important;
             }
             img {
               width: 100%;
@@ -187,7 +233,7 @@
           &-body {
             display: flex;
             align-items: start;
-            gap: 1.2rem;
+            gap: 0rem;
             flex-direction: column;
 
             &-tt {
@@ -197,7 +243,7 @@
             &-price {
               font-size: 1.6rem;
               color: #ef373e;
-              font-weight: 500;
+              font-weight: 700;
 
               @media screen and (max-width: 768px) {
                 font-size: 1.4rem;
@@ -220,10 +266,19 @@
         }
       }
     }
+    .ic-auth {
+      width: 60px;
+      height: 25px;
+      object-fit: unset !important;
+      @media (max-width: 767px) {
+        height: 20px;
+        width: 40px;
+      }
+    }
     .percent {
-      font-size: 1.2rem;
+      font-size: 1rem;
       border: 1px solid #ef373e;
-      padding: 0.2rem;
+      padding: 0.5rem;
       border-radius: 0.4rem;
       color: #ef373e;
     }
@@ -238,7 +293,6 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      text-align: center !important;
     }
   }
 

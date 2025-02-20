@@ -8,14 +8,12 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductAndroidValentine } from '../../../app/hooks/vanlentine/productAndroid'
-
+import { useProductPhuKienKhac, useProductPhuKienPinDuPhong, useProductPhuKienTaiNghe, useProductPhuKienCocCapSac } from '../../../app/hooks/vanlentine/productPhuKien'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
 import Author from '../../../../public/apple/author.webp'
-import iconGift from '../../../../public/valetine/gift-7.gif'
-import iconGift2 from '../../../../public/valetine/gift-8.gif'
+import AnimationPlane from '../animation-plane'
 export interface Product {
   id: number
   name: string
@@ -171,9 +169,18 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductAndroidValentine()
+  const { data } = useProductPhuKienCocCapSac()
   console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'android-valentine')
+  const filteredDatassss = data?.filter((item: any) => item.title === 'coc-cap-sac-valentine')
+  const { data: dataPinDuPhong } = useProductPhuKienPinDuPhong()
+  const filteredDatassssNONP = dataPinDuPhong?.filter((item: any) => item.title === 'pin-du-phong-valentine')
+  const { data: dataTaiNghe } = useProductPhuKienTaiNghe()
+  console.log('data check apple ', dataTaiNghe)
+  const filteredDatassssTaiNghe = dataTaiNghe?.filter((item: any) => item.title === 'tai-nghe-valentine')
+  const { data: dataKhac } = useProductPhuKienKhac()
+  console.log('data check apple ', dataKhac)
+  const filteredDatassssKhac = dataKhac?.filter((item: any) => item.title === 'khac-valentine')
+
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -239,16 +246,19 @@ const AppleList: React.FC = () => {
   const currentData =
     activeTab === 'iPhone'
       ? filteredDatassss
-      : null
+      : activeTab === 'NONP'
+        ? filteredDatassssNONP
+        : activeTab === 'PKAPPLE'
+          ? filteredDatassssTaiNghe
+          : filteredDatassssKhac
 
   return (
     <div
       className="page-flash-sale-t2"
       style={{
-        marginBottom: '20px',
+        paddingBottom: '60px',
       }}
     >
-      
       <div >
         <div className="upgrade-list">
           <div className="container">
@@ -270,28 +280,34 @@ const AppleList: React.FC = () => {
                   )}
                 </div>
 
-                {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <div className="tab-buttons">
                     <button
                       className={activeTab === 'iPhone' ? 'active' : ''}
                       onClick={() => handleTabChange('iPhone')}
                     >
-                      iPhone
+                      Cốc cáp sạc
                     </button>
                     <button
                       className={activeTab === 'NONP' ? 'active' : ''}
                       onClick={() => handleTabChange('NONP')}
                     >
-                      NON-PHONE
+                      Pin dự phòng
                     </button>
                     <button
                       className={activeTab === 'PKAPPLE' ? 'active' : ''}
                       onClick={() => handleTabChange('PKAPPLE')}
                     >
-                      Phụ kiện Apple
+                      Tai nghe
+                    </button>
+                    <button
+                      className={activeTab === 'Khac' ? 'active' : ''}
+                      onClick={() => handleTabChange('Khac')}
+                    >
+                      Khác
                     </button>
                   </div>
-                </div> */}
+                </div>
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
                     {currentData?.[0]?.items
@@ -311,12 +327,12 @@ const AppleList: React.FC = () => {
                           style={{ textDecoration: 'none', color: 'black' }}
                         >
                           <div className="upgrade-item">
-                          <div className="upgrade-item-header">
+                            {/* <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
-                              {product?.product?.name.includes('iPhone') && (
+                              {(activeTab === 'iPhone' || activeTab === 'NONP') && (
                                 <Image className="ic-auth" src={DecorWomen} alt="" />
                               )}
-                            </div>
+                            </div> */}
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
@@ -463,6 +479,7 @@ const AppleList: React.FC = () => {
           </div>
         </div>
       </div>
+      <AnimationPlane/>
     </div>
   )
 }

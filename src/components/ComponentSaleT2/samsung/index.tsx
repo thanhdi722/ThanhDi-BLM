@@ -8,14 +8,13 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductAndroidValentine } from '../../../app/hooks/vanlentine/productAndroid'
-
+import { useProductSamsungValentine } from '../../../app/hooks/vanlentine/productSamsung'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
 import Author from '../../../../public/apple/author.webp'
-import iconGift from '../../../../public/valetine/gift-7.gif'
-import iconGift2 from '../../../../public/valetine/gift-8.gif'
+import iconGift from '../../../../public/valetine/gift-5.gif'
+import iconGift2 from '../../../../public/valetine/gift-6.gif'
 export interface Product {
   id: number
   name: string
@@ -171,12 +170,12 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductAndroidValentine()
-  console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'android-valentine')
+  const { data } = useProductSamsungValentine()
+  const filteredDatassss = data?.filter((item: any) => item.title === 'samsung-valentine')
+ 
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
-  const [visibleCount, setVisibleCount] = useState<number>(10)
+  const [visibleCount, setVisibleCount] = useState<number>(5)
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null)
   const fetchBannerHeader = async () => {
     try {
@@ -311,9 +310,9 @@ const AppleList: React.FC = () => {
                           style={{ textDecoration: 'none', color: 'black' }}
                         >
                           <div className="upgrade-item">
-                          <div className="upgrade-item-header">
+                            <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
-                              {product?.product?.name.includes('iPhone') && (
+                              {product?.product?.name.includes('iphone') && (
                                 <Image className="ic-auth" src={DecorWomen} alt="" />
                               )}
                             </div>

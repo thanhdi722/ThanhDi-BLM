@@ -8,14 +8,15 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductAndroidValentine } from '../../../app/hooks/vanlentine/productAndroid'
-
+import { useProductMay99 } from '../../../app/hooks/vanlentine/productMay99'
+import { useProductSaleDataNONP } from '../../../app/hooks/productDailySale2412/useProductSaleDataNONP'
+import { useProductSaleDataPKApple } from '../../../app/hooks/productDailySale2412/useProductSaleDataPKApple'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
 import Author from '../../../../public/apple/author.webp'
-import iconGift from '../../../../public/valetine/gift-7.gif'
-import iconGift2 from '../../../../public/valetine/gift-8.gif'
+import iconGift from '../../../../public/valetine/gift.gif'
+import iconGift2 from '../../../../public/valetine/gift-2.gif'
 export interface Product {
   id: number
   name: string
@@ -171,9 +172,9 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductAndroidValentine()
+  const { data } = useProductMay99()
   console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'android-valentine')
+  const filteredDatassss = data?.filter((item: any) => item.title === 'may99-valentine')
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -239,7 +240,7 @@ const AppleList: React.FC = () => {
   const currentData =
     activeTab === 'iPhone'
       ? filteredDatassss
-      : null
+        : null
 
   return (
     <div
@@ -248,11 +249,12 @@ const AppleList: React.FC = () => {
         marginBottom: '20px',
       }}
     >
-      
+        
       <div >
         <div className="upgrade-list">
+       
           <div className="container">
-            <div className='border-item'>
+            <div className='border-item'> 
               <div>
                 <div className="women-decor">
                   {dataTitle ? (

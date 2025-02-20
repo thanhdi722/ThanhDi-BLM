@@ -1,4 +1,4 @@
-.product-flash-sale-t2 {
+.page-flash-sale-t2 {
   z-index: 99;
   position: relative;
   @keyframes neon-border {
@@ -25,7 +25,6 @@
     animation: neon-border 3s infinite alternate;
     padding: 10px 10px;
   }
-  
   .tabs {
     display: flex;
     justify-content: center;
@@ -34,6 +33,35 @@
 
     @media screen and (max-width: 768px) {
       gap: 0.4rem;
+    }
+  }
+  .tab-buttons {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.2rem;
+    padding: 10px; // Add padding
+    white-space: nowrap;
+
+    button {
+      background-color: #f0f0f0;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border: 1px solid #333333;
+      border-radius: 10px;
+      color: #000;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #d71536; // Hover effect
+        color: white;
+      }
+
+      &.active {
+        background-color: #d71536; // Active button background
+        color: white; // Active button text color
+      }
     }
   }
   .sub-tab-list {
@@ -89,13 +117,13 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 1.2rem;
-      @media screen and (max-width: "1200px") {
+      @media screen and (max-width: '1200px') {
         grid-template-columns: repeat(4, 1fr);
       }
-      @media screen and (max-width: "850px") {
+      @media screen and (max-width: '850px') {
         grid-template-columns: repeat(3, 1fr);
       }
-      @media screen and (max-width: "768px") {
+      @media screen and (max-width: '768px') {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -222,7 +250,7 @@
             &-price {
               font-size: 1.6rem;
               color: #ef373e;
-              font-weight: 500;
+              font-weight: 700;
 
               @media screen and (max-width: 768px) {
                 font-size: 1.4rem;

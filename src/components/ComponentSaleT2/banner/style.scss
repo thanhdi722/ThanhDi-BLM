@@ -1,9 +1,61 @@
-.page-sale-thang-12 {
+.page-flash-sale-t2 {
   position: relative;
   .HeaderCombo-bannerPC {
     display: block;
     @media (max-width: 767px) {
       display: none;
+    }
+  }
+  .promotion-desktop {
+    display: block;
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+  .promotion-mobile {
+    display: none;
+    @media screen and (max-width: 1200px) {
+      display: block;
+    }
+  }
+  .HeaderHalloween-promotion-list-privilege-v2 {
+    // position: absolute;
+    // top: 85%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    // width: 50%;
+
+    @media screen and (max-width: 1200px) {
+      gap: 0rem;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      display: grid;
+    }
+    img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+  .privilege-img {
+    display: inline-block;
+    position: relative;
+    overflow: unset !important;
+
+    img {
+      transition: transform 0.5s ease-in-out;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
     }
   }
   .HeaderCombo-bannerMB {
@@ -94,7 +146,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem 0;
+    padding: 2rem 0;
 
     @media screen and (max-width: 1200px) {
       padding: 2.4rem 0;
@@ -148,38 +200,39 @@
   }
 
   .HeaderHalloween-time-line-card {
-    width: 15rem;
-    height: 9rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../../../../public/sale-12/viber_image_2024-11-27_13-16-38-251.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    z-index: 10;
+    // width: 18rem;
+    // height: 9rem;
+    // display: flex;
+    background-color: #fde68a;
+    border-radius: 5px;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // background-image: url("../../../../public/sale-12/viber_image_2024-11-27_13-16-38-251.png");
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // position: relative;
+    // z-index: 10;
 
     @media screen and (max-width: 1200px) {
       width: 15rem;
       height: 9rem;
     }
     @media screen and (max-width: 768px) {
-      width: 12rem;
+      width: 13rem;
       height: 7rem;
     }
     @media screen and (max-width: 576px) {
-      width: 8rem;
+      width: 10rem;
       height: 5rem;
     }
   }
 
   .HeaderHalloween-time-line-card-container {
-    margin-bottom: 2.4rem;
   }
 
   .content-card {
-    padding: 10px;
+    padding: 5px;
     display: block;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -190,9 +243,9 @@
   }
 
   .HeaderHalloween-time-line-count {
-    font-size: 3rem; // text-6xl
+    font-size: 2rem; // text-6xl
     font-weight: bold;
-    color: #ffff; // amber-100
+    color: #2425ff; // amber-100
     text-align: center;
     @media screen and (max-width: 1200px) {
       font-size: 2rem;
@@ -201,12 +254,27 @@
       font-size: 1.6rem;
     }
     @media screen and (max-width: 576px) {
-      margin-top: 2rem;
+      margin-top: 0rem;
+    }
+  }
+  .HeaderHalloween-time-line-count-key {
+    font-size: 2rem; // text-6xl
+    font-weight: bold;
+    color: #fff; // amber-100
+    text-align: center;
+    @media screen and (max-width: 1200px) {
+      font-size: 2rem;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 1.6rem;
+    }
+    @media screen and (max-width: 576px) {
+      margin-top: 0rem;
     }
   }
   .HeaderHalloween-time-line-card-key {
     display: flex;
-    gap: 10px;
+    gap: 2px;
 
     @media (max-width: 768px) {
       gap: 5px;
@@ -270,7 +338,7 @@
   .HeaderHalloween-promotion-header {
     text-align: center;
     font-size: 3.2rem;
-    color: red;
+    color: #ffff00;
     text-transform: uppercase;
     font-weight: 600;
     @media screen and (max-width: 1200px) {
@@ -287,13 +355,13 @@
     align-items: center;
     width: 100%;
     justify-content: center;
-    gap: 10px;
+    gap: 0px;
     position: relative;
     z-index: 1;
 
     @media screen and (max-width: 1200px) {
       gap: 0rem;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       display: grid;
     }
     img {
@@ -304,4 +372,260 @@
       width: 100%;
     }
   }
+  .privilege-img {
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+
+    img {
+      transition: transform 0.5s ease-in-out;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
+  }
+}
+.glitch-24-12 {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  line-height: 1;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  text-decoration: none;
+  color: #fb1717;
+  &:before,
+  &:after {
+    display: block;
+    content: "8 đặc quyền mua hàng tại Bạch Long Mobile";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+  }
+  &:after {
+    color: rgb(0, 0, 0);
+    z-index: -2;
+    animation: glitch-left-2 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
+      both infinite;
+  }
+  &:before {
+    color: rgb(0, 0, 0);
+    z-index: -1;
+    animation: glitch-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+      infinite;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+@keyframes glitch-small {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(1px, 1px);
+  }
+  66% {
+    transform: translate(-1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-medium {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-left {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-1px, 1px);
+  }
+  66% {
+    transform: translate(1px, -1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes glitch-left-2 {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-1px, -1px);
+  }
+  66% {
+    transform: translate(1px, 1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+.title-deal-24-12,
+.countdown-deal-24-12 {
+  font-family: var(--font-sans-serif);
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  margin: 0 0 1.5em;
+  padding: 0;
+  font-size: 1.8rem;
+  position: relative;
+  color: white;
+  div {
+    background-image: url("../../../../public/valetine/tim.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: ringBell 3s infinite;
+    @keyframes ringBell {
+      0% {
+        transform: rotate(0deg);
+      }
+    
+      3% {
+        transform: rotate(30deg);
+      }
+    
+      5% {
+        transform: rotate(-25deg);
+      }
+    
+      7.5% {
+        transform: rotate(20deg);
+      }
+    
+      10.3% {
+        transform: rotate(-10deg);
+      }
+    
+      13.3% {
+        transform: rotate(5deg);
+      }
+    
+      16% {
+        transform: rotate(-2deg);
+      }
+    
+      20% {
+        transform: rotate(0deg);
+      }
+    
+      100% {
+        transform: rotate(0deg);
+      }
+    
+    }
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+  }
+  
+
+}
+
+.title-deal-24-12 {
+  font-size: 1.5rem;
+  &:before,
+  &:after {
+    content: " ***** ";
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: #92d436;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.countdown-deal-24-12 {
+  display: flex;
+  gap: 0.35em;
+  justify-content: space-between;
+  max-width: 440px;
+  margin: 0 auto;
+}
+.newYear-deal-24-12 {
+  font-family: var(--font-script);
+  font-size: calc(5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  padding: 10px 0px;
+  font-weight: bold;
+  background: repeating-linear-gradient(
+    45deg,
+    #d80e13,
+    #d80e13 10px,
+    #ffffff 10px,
+    #ffffff 20px
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.24), 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  @media screen and (max-width: 1200px) {
+    font-size: calc(5rem);
+  }
+  @media (max-width: 768px) {
+    font-size: calc(3rem);
+  }
+}
+.font-sans-serif-deal-24-12 {
+  font-family: var(--font-sans-serif);
+  font-weight: 200;
+  font-size: 0.75em;
+}
+
+.font-script-deal-24-12 {
+  font-family: var(--font-script);
+}
+
+.header-deal-cuoi-nam {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
 }
