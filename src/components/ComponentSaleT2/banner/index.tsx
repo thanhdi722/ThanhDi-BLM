@@ -14,7 +14,7 @@ import { Spin } from "antd";
 import Link from "next/link";
 
 function HeaderHalloween() {
-  const [endDate, setEndDate] = useState(new Date("2024-12-08T21:30:00"));
+  const [endDate, setEndDate] = useState(new Date("2025-02-29T21:30:00"));
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ]);

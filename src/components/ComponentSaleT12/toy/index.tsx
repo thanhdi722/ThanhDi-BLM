@@ -217,7 +217,7 @@ interface ApiResponse {
 
 const AppleList: React.FC = () => {
   const { data } = useProductSaleData();
-  console.log("data sssss", data);
+
   const filteredDatassss = data?.filter(
     (item: any) => item.title === "SP PK Flash Sale Tuần"
   );
@@ -288,7 +288,7 @@ const AppleList: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
-  console.log("filteredDatassss", filteredDatassss);
+
   return (
     <div
       className="product-20-11"

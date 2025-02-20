@@ -19,6 +19,7 @@ import "swiper/css";
 import Link from "next/link";
 const categories = [
   // { id: "item-hot", name: "Giá sốc" },
+  { id: "item-toy-new", name: "Deal sốc" },
   { id: "item-iphone", name: "iPhone" },
   { id: "item-ipad", name: "iPad/Macbook" },
   { id: "item-airpods", name: "Máy 99%" },
@@ -121,7 +122,9 @@ export default function Page() {
         {/* <div id="item-hot">
           <ProductList />
         </div> */}
-       
+        <div id="item-toy-new">
+          <ToyList />
+        </div>
         <div id="item-iphone">
           <AppleList />
         </div>

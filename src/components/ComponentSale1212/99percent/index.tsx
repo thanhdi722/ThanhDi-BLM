@@ -231,7 +231,7 @@ async function fetchProductListDataApple() {
 
 const ProductPercent: React.FC = () => {
   const { data } = useProductSaleDataDaily99();
-  console.log("data sssss", data);
+
   const filteredDatassss = data?.filter(
     (item: any) => item.title === "Flash Sale Máy 99 12-12"
   );

@@ -343,7 +343,7 @@ const AndroidList: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
-  console.log("filteredDatas", filteredData);
+
   return (
     <div
       className="product-20-11"

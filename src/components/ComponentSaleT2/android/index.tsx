@@ -10,6 +10,7 @@ import DecorWomen from "../../../../public/flase-sale/PC_Android.png";
 import FrameProduct from "../../../../public/2011/f500k.png";
 import { useProductSaleData } from "../../../app/hooks/useProductSaleData";
 import DecorProduct22 from "../../../../public/black-friday/card.png";
+import AnimationPlane from "../animation-plane";
 export interface Product {
   id: number;
   name: string;
@@ -343,12 +344,12 @@ const AndroidList: React.FC = () => {
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 10);
   };
-  console.log("filteredDatas", filteredData);
+
   return (
     <div
       className="product-flash-sale-t2"
       style={{
-        marginBottom: "20px",
+        paddingBottom: "40px",
       }}
     >
       <div id="item-watch">
@@ -599,6 +600,7 @@ const AndroidList: React.FC = () => {
           </div>
         </div>
       </div>
+      <AnimationPlane />
     </div>
   );
 };

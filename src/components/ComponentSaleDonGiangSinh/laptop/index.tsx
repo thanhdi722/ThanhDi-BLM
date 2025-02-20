@@ -164,7 +164,7 @@ const LaptopList: React.FC = () => {
       : activeTab === "TAINGHE"
       ? filteredDatassssSamSungTAINGHE
       : [];
-  console.log("filteredDatassssSamSungDT", filteredDatassssSamSungWATCH);
+
   return (
     <div
       className="product-20-11"
