@@ -102,7 +102,7 @@ export default function Page() {
     <div
       className="page-sale-thang-12"
       style={{
-        backgroundColor: "#F7D4AE",
+        backgroundColor: "#fff298",
       }}
     > 
       
@@ -198,7 +198,7 @@ export default function Page() {
             </Swiper>
           </div>
         </div>
-        <Link href="https://bachlongmobile.com/news/khuyen-mai/vong-quay-may-man-nam-moi-sum-vay-loc-vang-dong-day/">
+        {/* <Link href="https://bachlongmobile.com/news/khuyen-mai/vong-quay-may-man-nam-moi-sum-vay-loc-vang-dong-day/">
             <div
               id="main"
               className={`main-spin ${isStickyVisible ? "visible" : "hidden"}`}
@@ -218,7 +218,7 @@ export default function Page() {
 
               <button className="spin-spin">SPIN</button>
             </div>
-          </Link>
+          </Link> */}
       </div>
     </div>
   );

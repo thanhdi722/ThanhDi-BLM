@@ -1,9 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import FrameProduct from '../../../../public/sale-12/fip2412.png'
-import FrameProduct1 from '../../../../public/sale-12/fai22412.png'
-import FrameProduct2 from '../../../../public/sale-12/fpk2412.png'
-import FrameProduct3 from '../../../../public/sale-12/fai2412.png'
+import FrameProduct from '../../../../public/sale-thang-2/frame-tang-airpods.png'
 import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
@@ -329,23 +326,17 @@ const AppleList: React.FC = () => {
                                   alt={`product-${index}`}
                                 />
                               </div>
-                              <div className="frame-product">
-                                <Image
-                                  src={
-                                    activeTab === 'iPhone'
-                                      ? product?.product?.name.includes('16')
-                                        ? FrameProduct
-                                        : FrameProduct1
-                                      : activeTab === 'NONP'
-                                        ? FrameProduct3
-                                        : FrameProduct2
-                                  }
-                                  width={500}
-                                  height={500}
-                                  quality={100}
-                                  alt="frame-product"
-                                />
-                              </div>
+                              {product?.product?.name.toLowerCase().includes('iphone') && (
+                                <div className="frame-product">
+                                  <Image
+                                    src={FrameProduct}
+                                    width={500}
+                                    height={500}
+                                    quality={100}
+                                    alt="frame-product"
+                                  />
+                                </div>
+                              )}
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">{product?.product?.name}</h4>

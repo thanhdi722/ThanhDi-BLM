@@ -1,18 +1,11 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import FrameProduct from '../../../../public/sale-12/fip2412.png'
-import FrameProduct1 from '../../../../public/sale-12/fai22412.png'
-import FrameProduct2 from '../../../../public/sale-12/fpk2412.png'
-import FrameProduct3 from '../../../../public/sale-12/fai2412.png'
+import FrameProduct from '../../../../public/sale-thang-2/frame-tang-1.png'
 import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useProductPhuKienKhac, useProductPhuKienPinDuPhong, useProductPhuKienTaiNghe, useProductPhuKienCocCapSac } from '../../../app/hooks/vanlentine/productPhuKien'
-import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
-import HostPrice2 from '../../../../public/gratitude/hot-price.png'
-import BestSeller from '../../../../public/new-year/best-seller.png'
-import Author from '../../../../public/apple/author.webp'
 import AnimationPlane from '../animation-plane'
 export interface Product {
   id: number
@@ -345,15 +338,7 @@ const AppleList: React.FC = () => {
                               </div>
                               <div className="frame-product">
                                 <Image
-                                  src={
-                                    activeTab === 'iPhone'
-                                      ? product?.product?.name.includes('16')
-                                        ? FrameProduct
-                                        : FrameProduct1
-                                      : activeTab === 'NONP'
-                                        ? FrameProduct3
-                                        : FrameProduct2
-                                  }
+                                  src={FrameProduct}
                                   width={500}
                                   height={500}
                                   quality={100}

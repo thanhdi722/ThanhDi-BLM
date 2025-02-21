@@ -1,5 +1,99 @@
 .page-flash-sale-t2 {
   position: relative;
+  .timer {
+    width: 100vw;
+    height: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    background-color: #fc5503;
+    color: #fff;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    span {
+      background-color: rgb(255, 179, 37);
+      padding: 8px;
+      width: 30px;
+      height: 30px;
+      color: #fc5503;
+      border-radius: 10px;
+    }
+  }
+
+  .timer-banner {
+    position: relative;
+
+    // rotate: 10deg;
+
+    .time-banner-item {
+      object-fit: contain;
+      width: fit-content;
+      height: 100px;
+
+      @media (min-width: 768px) {
+        height: 100px;
+      }
+
+      @media (min-width: 1024px) {
+        height: 100px;
+      }
+
+      position: relative;
+      z-index: 20;
+
+      animation: shake 1.5s ease-in-out infinite;
+    }
+    .txt-time {
+      position: absolute;
+      top: 40%;
+      left: 40%;
+      transform: translate(-25%, -0%);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1;
+      z-index: 30;
+      rotate: -15deg;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      align-items: center;
+      text-align: center;
+
+      font-family: 'Delius Swash Caps', serif;
+      font-weight: 400;
+      font-style: normal;
+
+      animation: shake 1.5s ease-in-out infinite;
+    }
+  }
+  .wrap-timer {
+    position: relative;
+    // width: 530px;
+    // padding: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    gap: 2rem;
+    .time-tt {
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
+      background: linear-gradient(to bottom, #bb5310, #fef290);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 10px;
+      font-size: 2.5rem;
+    }
+  }
   .HeaderCombo-bannerPC {
     display: block;
     @media (max-width: 767px) {

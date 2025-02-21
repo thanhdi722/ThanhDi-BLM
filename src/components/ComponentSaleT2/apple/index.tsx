@@ -1,22 +1,14 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import FrameProduct from '../../../../public/sale-12/fip2412.png'
-import FrameProduct1 from '../../../../public/sale-12/fai22412.png'
-import FrameProduct2 from '../../../../public/sale-12/fpk2412.png'
-import FrameProduct3 from '../../../../public/sale-12/fai2412.png'
+import FrameProduct from '../../../../public/sale-thang-2/frame-x2.png'
 import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useProductIphoneValentine } from '../../../app/hooks/vanlentine/productIPhone'
 import { useProductNonPhoneValentine } from '../../../app/hooks/vanlentine/productNonPhone'
-import { useProductSaleDataPKApple } from '../../../app/hooks/productDailySale2412/useProductSaleDataPKApple'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
-import HostPrice2 from '../../../../public/gratitude/hot-price.png'
-import BestSeller from '../../../../public/new-year/best-seller.png'
-import Author from '../../../../public/apple/author.webp'
-import iconGift from '../../../../public/valetine/gift-3.gif'
-import iconGift2 from '../../../../public/valetine/gift-4.gif'
+
 export interface Product {
   id: number
   name: string
@@ -326,23 +318,17 @@ const AppleList: React.FC = () => {
                                   alt={`product-${index}`}
                                 />
                               </div>
-                              <div className="frame-product">
-                                <Image
-                                  src={
-                                    activeTab === 'iPhone'
-                                      ? product?.product?.name.includes('16')
-                                        ? FrameProduct
-                                        : FrameProduct1
-                                      : activeTab === 'NONP'
-                                        ? FrameProduct3
-                                        : FrameProduct2
-                                  }
-                                  width={500}
-                                  height={500}
-                                  quality={100}
-                                  alt="frame-product"
-                                />
-                              </div>
+                              {activeTab === 'iPhone' && (
+                                <div className="frame-product">
+                                  <Image
+                                    src={FrameProduct}
+                                    width={500}
+                                    height={500}
+                                    quality={100}
+                                    alt="frame-product"
+                                  />
+                                </div>
+                              )}
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">{product?.product?.name}</h4>

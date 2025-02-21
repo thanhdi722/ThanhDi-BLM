@@ -45,7 +45,7 @@ function HeaderHalloween() {
 const variables = {
   filter: {
     identifier: {
-      eq: 'khai-xuan-phu-quy',
+      eq: 'banner-tuan-le-vang',
     },
   },
 }
@@ -163,7 +163,7 @@ const variables = {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-flash-sale-valentine",
+                  eq: "banner-tuan-le-vang",
                 },
               },
             },
@@ -218,6 +218,7 @@ const variables = {
         className="banner-HeaderHalloween shine-banner"
         style={{ position: "relative", overflow: "hidden" }}
       ></div>
+      
       <div className="container">
         {isEventOver ? (
           <div className="HeaderHalloween-time-line">
@@ -237,26 +238,53 @@ const variables = {
             </p>
           </div>
         ) : (
-          <div className="header-deal-cuoi-nam">
-            {/* <h1>
-             
-              <div className="title-deal-24-12">thời gian còn lại</div>
-            </h1> */}
-            <h2 className="countdown-deal-24-12">
-              <div id="countdown-days">
-                <p>{timeArray[0].days} Ngày</p>
-              </div>
-              <div id="countdown-hours">
-                <p>{timeArray[0].hours} Giờ</p>
-              </div>
-              <div id="countdown-minutes">
-                <p>{timeArray[0].minutes} Phút</p>
-              </div>
-              <div id="countdown-seconds">
-                <p>{timeArray[0].seconds} Giây</p>
-              </div>
-            </h2>
-          </div>
+          // <div className="header-deal-cuoi-nam">
+            
+          //   <h2 className="countdown-deal-24-12">
+          //     <div id="countdown-days">
+          //       <p>{timeArray[0].days} Ngày</p>
+          //     </div>
+          //     <div id="countdown-hours">
+          //       <p>{timeArray[0].hours} Giờ</p>
+          //     </div>
+          //     <div id="countdown-minutes">
+          //       <p>{timeArray[0].minutes} Phút</p>
+          //     </div>
+          //     <div id="countdown-seconds">
+          //       <p>{timeArray[0].seconds} Giây</p>
+          //     </div>
+          //   </h2>
+          // </div>
+          <div className="wrap-timer">
+
+             <div className="timer">
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <div className="flex gap-4 text-white" key={index}>
+                      {index === 0 && (
+                        <p className="" id="countdown-days">
+                          <span>{String(timeArray[0].days).padStart(2, '0')}</span> ngày
+                        </p>
+                      )}
+                      {index === 1 && (
+                        <p className="" id="countdown-hours">
+                          <span>{String(timeArray[0].hours).padStart(2, '0')}</span> giờ
+                        </p>
+                      )}
+                      {index === 2 && (
+                        <p className="" id="countdown-minutes">
+                          <span>{String(timeArray[0].minutes).padStart(2, '0')}</span> phút
+                        </p>
+                      )}
+                      {index === 3 && (
+                        <p className="" id="countdown-seconds">
+                          <span>{String(timeArray[0].seconds).padStart(2, '0')}</span> giây
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+            </div>
+         
         )}
         {/* <div
           style={{
@@ -318,7 +346,7 @@ const variables = {
               background: 'white',
               borderRadius: '16px',
               marginTop: '20px',
-              border: '2px solid #ff3793',
+              border: '2px solid #f68f3e',
             }}
           >
             {/* <h2 className="HeaderHalloween-promotion-header" style={{ fontWeight: 400 }}>
@@ -332,7 +360,7 @@ const variables = {
               className="background-8"
               src={
                 dataBanner?.[0]?.Banner?.items.filter((item: any) =>
-                  item.media_alt.includes('banner-uu-dai-khai-xuan-phu-quy')
+                  item.media_alt.includes('banner-tuan-le-vang-8-uu-dai')
                 )[0].media
               }
               alt="banner-tan"
@@ -342,7 +370,7 @@ const variables = {
             <div className="promotion-desktop">
               <div className="HeaderHalloween-promotion-list-privilege-v2">
                 {dataBanner?.[0]?.Banner?.items
-                  .filter((item: any) => item.media_alt.includes('uu-dai-dac-quyen'))
+                  .filter((item: any) => item.media_alt.includes('banner-tuan-le-vang-uu-dai'))
                   .map((item: any, index: any) => (
                     <div key={index} className="privilege-img" style={{ cursor: 'pointer' }}>
                       {item.link ? (
