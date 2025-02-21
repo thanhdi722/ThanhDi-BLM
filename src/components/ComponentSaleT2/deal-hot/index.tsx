@@ -8,12 +8,15 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductPhuKienKhac, useProductPhuKienPinDuPhong, useProductPhuKienTaiNghe, useProductPhuKienCocCapSac } from '../../../app/hooks/vanlentine/productPhuKien'
+import { useProductHotphoneValentine } from '../../../app/hooks/vanlentine/productHotPhone'
+import { useProductHotKhacValentine } from '../../../app/hooks/vanlentine/productHot'
+import { useProductSaleDataPKApple } from '../../../app/hooks/productDailySale2412/useProductSaleDataPKApple'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
 import Author from '../../../../public/apple/author.webp'
-import AnimationPlane from '../animation-plane'
+import iconGift from '../../../../public/valetine/gift-3.gif'
+import iconGift2 from '../../../../public/valetine/gift-4.gif'
 export interface Product {
   id: number
   name: string
@@ -169,18 +172,10 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductPhuKienCocCapSac()
-  console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'coc-cap-sac-valentine')
-  const { data: dataPinDuPhong } = useProductPhuKienPinDuPhong()
-  const filteredDatassssNONP = dataPinDuPhong?.filter((item: any) => item.title === 'pin-du-phong-valentine')
-  const { data: dataTaiNghe } = useProductPhuKienTaiNghe()
-  console.log('data check apple ', dataTaiNghe)
-  const filteredDatassssTaiNghe = dataTaiNghe?.filter((item: any) => item.title === 'tai-nghe-valentine')
-  const { data: dataKhac } = useProductPhuKienKhac()
-  console.log('data check apple ', dataKhac)
-  const filteredDatassssKhac = dataKhac?.filter((item: any) => item.title === 'khac-valentine')
-
+  const { data } = useProductHotphoneValentine()
+  const filteredDatassss = data?.filter((item: any) => item.title === 'deal-hot-valentine')
+  const { data: dataNONP } = useProductHotKhacValentine()
+  const filteredDatassssNONP = dataNONP?.filter((item: any) => item.title === 'khac-valentine')
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -248,17 +243,16 @@ const AppleList: React.FC = () => {
       ? filteredDatassss
       : activeTab === 'NONP'
         ? filteredDatassssNONP
-        : activeTab === 'PKAPPLE'
-          ? filteredDatassssTaiNghe
-          : filteredDatassssKhac
+        : null
 
   return (
     <div
       className="page-flash-sale-t2"
       style={{
-        paddingBottom: '60px',
+        marginBottom: '20px',
       }}
     >
+      
       <div >
         <div className="upgrade-list">
           <div className="container">
@@ -286,26 +280,15 @@ const AppleList: React.FC = () => {
                       className={activeTab === 'iPhone' ? 'active' : ''}
                       onClick={() => handleTabChange('iPhone')}
                     >
-                      Cốc cáp sạc
+                     Sản phẩm máy
                     </button>
                     <button
                       className={activeTab === 'NONP' ? 'active' : ''}
                       onClick={() => handleTabChange('NONP')}
                     >
-                      Pin dự phòng
+                     Phụ Kiện
                     </button>
-                    <button
-                      className={activeTab === 'PKAPPLE' ? 'active' : ''}
-                      onClick={() => handleTabChange('PKAPPLE')}
-                    >
-                      Tai nghe
-                    </button>
-                    <button
-                      className={activeTab === 'Khac' ? 'active' : ''}
-                      onClick={() => handleTabChange('Khac')}
-                    >
-                      Khác
-                    </button>
+                  
                   </div>
                 </div>
                 {currentData && currentData.length > 0 ? (
@@ -327,12 +310,12 @@ const AppleList: React.FC = () => {
                           style={{ textDecoration: 'none', color: 'black' }}
                         >
                           <div className="upgrade-item">
-                            {/* <div className="upgrade-item-header">
+                            <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
                               {(activeTab === 'iPhone' || activeTab === 'NONP') && (
                                 <Image className="ic-auth" src={DecorWomen} alt="" />
                               )}
-                            </div> */}
+                            </div>
                             <div className="upgrade-item-img">
                               <div className="img-content">
                                 <Image
@@ -364,29 +347,30 @@ const AppleList: React.FC = () => {
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">{product?.product?.name}</h4>
                               <div className="upgrade-item-content-body">
-                                <div className="upgrade-item-content-body-price">
-                                  {product?.product?.price_range?.minimum_price?.final_price?.value?.toLocaleString(
-                                    'vi-VN'
-                                  )}{' '}
+                              <div className="upgrade-item-content-body-price">
+                                  {product?.sale_price?.toLocaleString("vi-VN")}{" "}
                                   VNĐ
                                 </div>
                                 <div className="upgrade-item-content-body-reduced">
                                   <div className="price-reduced">
-                                    {Number(product?.price_original)?.toLocaleString('vi-VN')} VNĐ
+                                    {Number(
+                                      product?.price_original
+                                    )?.toLocaleString("vi-VN")}{" "}
+                                    VNĐ
                                   </div>
                                   <div className="percent">
                                     -
                                     {Math.ceil(
                                       100 -
-                                        (product.product?.price_range?.minimum_price?.final_price?.value /
+                                        (product.sale_price /
                                           product.price_original) *
                                           100
                                     )}
                                     %
                                   </div>
                                 </div>
-                                {activeTab === 'iPhone' ||
-                                  (activeTab === 'NONP' && (
+                                {activeTab === 'iPhone' 
+                                  && (
                                     <div
                                       style={{
                                         backgroundColor: 'rgba(215, 0, 24, .08)',
@@ -405,7 +389,7 @@ const AppleList: React.FC = () => {
                                         Giá thu bằng giá bán - Trợ giá lên đến 100%
                                       </span>
                                     </div>
-                                  ))}
+                                  )}
                               </div>
                             </div>
                           </div>
@@ -479,10 +463,6 @@ const AppleList: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className='animation-pc'>
-        <AnimationPlane/>
-      </div>
-      
     </div>
   )
 }

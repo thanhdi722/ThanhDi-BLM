@@ -7,6 +7,7 @@ import Product2 from "../../components/ComponentSaleT2/may99";
 import Product3 from "../../components/ComponentSaleT2/samsung";
 import Product4 from "../../components/ComponentSaleT2/android";
 import Product5 from "../../components/ComponentSaleT2/phukien";
+import ProductHot from "../../components/ComponentSaleT2/deal-hot"
 import wheelSpin from "../../../public/sale-12/vongquaymayman.svg";
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -116,9 +117,9 @@ export default function Page() {
         {/* <div id="item-hot">
           <ProductList />
         </div> */}
-        {/* <div id="item-toy-new">
-          <ToyList />
-        </div> */}
+        <div id="item-toy-new">
+          <ProductHot />
+        </div>
         <div id="item-iphone">
          <Product1/>
       </div>

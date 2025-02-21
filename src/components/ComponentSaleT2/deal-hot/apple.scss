@@ -1,6 +1,30 @@
 .page-flash-sale-t2 {
   z-index: 99;
   position: relative;
+  @keyframes neon-border {
+    0% {
+      box-shadow: 0 0 5px #ff5713, 0 0 5px #ff5713, 0 0 10px #ff5713;
+    }
+    25% {
+      box-shadow: 0 0 10px #ff5713, 0 0 10px #ff5713, 0 0 15px #ff5713;
+    }
+    50% {
+      box-shadow: 0 0 15px #ff5713, 0 0 15px #ff5713, 0 0 20px #ff5713;
+    }
+    75% {
+      box-shadow: 0 0 10px #ff5713, 0 0 10px #ff5713, 0 0 15px #ff5713;
+    }
+    100% {
+      box-shadow: 0 0 5px #ff5713, 0 0 5px #ff5713, 0 0 10px #ff5713;
+    }
+  }
+  
+  .border-item {
+    border: 5px solid #ff5713; /* Màu viền vàng neon */
+    border-radius: 20px;
+    animation: neon-border 3s infinite alternate;
+    padding: 10px 10px;
+  }
   .tabs {
     display: flex;
     justify-content: center;
@@ -284,10 +308,5 @@
     justify-content: center;
     align-items: center;
     padding: 20rem;
-  }
-  .animation-pc{
-    @media (max-width: 767px) {
-      display: none;
-    }
   }
 }
