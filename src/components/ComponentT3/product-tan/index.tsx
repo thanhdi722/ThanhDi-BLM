@@ -297,7 +297,7 @@ const ProductList: React.FC = () => {
           variables: {
             filter: {
               identifier: {
-                eq: 'title-khai-xuan-phu-quy', // Lọc slider theo identifier
+                eq: 'banner-thang-3', // Lọc slider theo identifier
               },
             },
           },
@@ -429,7 +429,7 @@ const ProductList: React.FC = () => {
       <div
         className="container"
         style={{
-          backgroundColor: '#ffa33a',
+          backgroundColor: '#fede27',
           padding: '10px',
           borderRadius: '10px',
           position: 'relative',
@@ -439,7 +439,7 @@ const ProductList: React.FC = () => {
         <div className="upgrade-hot-wrap">
           {dataTitle ? (
             dataTitle?.data?.Slider?.items[0]?.Banner?.items
-              .filter((item: any) => item.media_alt.includes('title-iphone-don-tet-2'))
+              .filter((item: any) => item.media_alt.includes('title-banner-thang-3-iphone'))
               .map((item: any, index: number) => (
                 <div key={index} className="custom-banner-title">
                   <img src={item.media || ''} alt={`privilege-${index + 1}`} className="product-banner" />

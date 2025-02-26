@@ -248,7 +248,7 @@ const ProductAirPods: React.FC = () => {
           variables: {
             filter: {
               identifier: {
-                eq: 'title-khai-xuan-phu-quy',
+                eq: 'banner-thang-3',
               },
             },
           },
@@ -302,12 +302,12 @@ const ProductAirPods: React.FC = () => {
       <div className="upgrade-list">
         <div
           className="container"
-          style={{ backgroundColor: '#ffa33a', padding: '10px', borderRadius: '10px', marginTop: '50px' }}
+          style={{ backgroundColor: '#fede27', padding: '10px', borderRadius: '10px', marginTop: '50px' }}
         >
           <div className="upgrade-hot-wrap">
             {dataTitle ? (
               dataTitle?.data?.Slider?.items[0]?.Banner?.items
-                .filter((item: any) => item.media_alt.includes('title-airpods-don-tet-2'))
+                .filter((item: any) => item.media_alt.includes('title-banner-thang-3-airpods'))
                 .map((item: any, index: number) => (
                   <div key={index} className="custom-banner-title">
                     <img src={item.media || ''} alt={`privilege-${index + 1}`} className="product-banner" />

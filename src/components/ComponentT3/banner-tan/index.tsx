@@ -118,7 +118,7 @@ async function fetchBannerData() {
 function HeaderHalloween({ onScrollToRules }: PromotionProps) {
   const [isModalOpenContent, setIsModalOpenContent] = useState(false)
   const handleCancelContent = () => setIsModalOpenContent(false)
-  const [endDate, setEndDate] = useState(new Date('2025-03-04T21:30:00'))
+  const [endDate, setEndDate] = useState(new Date('2025-03-31T21:30:00'))
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ])
@@ -300,8 +300,51 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
             </div>
           ) : (
             <>
-             
-              <div className='cards-t3'>
+              <div className="wrap-timer">
+                {/* <h2 className="time-tt text-center">- - - - Chương trình áp dụng - - - -</h2> */}
+                <div className="timer">
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <div className="flex gap-4 text-white" key={index}>
+                      {index === 0 && (
+                        <p className="" id="countdown-days">
+                          <span>{String(timeArray[0].days).padStart(2, '0')}</span> ngày
+                        </p>
+                      )}
+                      {index === 1 && (
+                        <p className="" id="countdown-hours">
+                          <span>{String(timeArray[0].hours).padStart(2, '0')}</span> giờ
+                        </p>
+                      )}
+                      {index === 2 && (
+                        <p className="" id="countdown-minutes">
+                          <span>{String(timeArray[0].minutes).padStart(2, '0')}</span> phút
+                        </p>
+                      )}
+                      {index === 3 && (
+                        <p className="" id="countdown-seconds">
+                          <span>{String(timeArray[0].seconds).padStart(2, '0')}</span> giây
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  className="rounded-md border-2 border-yellow-500 bg-red-500 text-white hover:bg-red-600"
+                  onClick={() => setIsModalOpenContent(true)}
+                  style={{
+                    backgroundColor: '#ff9205',
+                    border: '1px solid #yellow',
+                    color: '#fff',
+                    padding: '10px 20px',
+                    borderRadius: '10px',
+                    fontWeight: '600',
+                  }}
+                >
+                  Xem thể lệ
+                </button>
+              </div>
+              {/* <div className='cards-t3'>
                 <div className='card-t3 days' ref={daysRef}>
                   <div className='flip-card-t3'>
                     <div className='top-half-t3'>{String(timeArray[0].days).padStart(2, '0')}</div>
@@ -333,28 +376,12 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
                   </div>
                   <p>Giấy</p>
                 </div>
-              </div>
+              </div> */}
             </>
           )}
           
         </div>
-        <button
-                  className="rounded-md border-2 border-yellow-500 bg-red-500 text-white hover:bg-red-600"
-                  onClick={() => setIsModalOpenContent(true)}
-                  style={{
-                    backgroundColor: '#ffa33a',
-                    border: '1px solid #yellow',
-                    color: '#fff',
-                    padding: '10px 20px',
-                    borderRadius: '10px',
-                    fontWeight: '600',
-                    display:"flex",
-                    margin:"10px auto",
-                    justifyContent:"center"
-                  }}
-                >
-                  Xem thể lệ
-                </button>
+        
         {/* <EventCards /> */}
         <div className="container">
           <div
@@ -377,7 +404,7 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
               className="background-8"
               src={
                 data?.[0]?.Banner?.items.filter((item: any) =>
-                  item.media_alt.includes('banner-thang-3')
+                  item.media_alt.includes('banner-thang-3-banner-dat-quyen')
                 )[0].media
               }
               alt="banner-tan"

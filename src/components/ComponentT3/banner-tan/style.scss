@@ -22,7 +22,7 @@
   position: relative;
 
   // background-image: url('../../../../public/new-year/bg-page.webp');
-  background-color: #ffe69b;
+  background-color: #ffe999;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -379,12 +379,14 @@
     display: flex;
     gap: 1.2rem;
     align-items: center;
-    background-color: #fd2b7c;
+    background-color: #ff9205;
     justify-content: center;
     font-size: 2rem;
+    color:#ffffff;
     font-weight: 800;
     span {
-      background-color: rgb(255, 177, 177);
+      color:#d27800;
+      background-color: #fff2c1;
       padding: 8px;
       width: 30px;
       height: 30px;
