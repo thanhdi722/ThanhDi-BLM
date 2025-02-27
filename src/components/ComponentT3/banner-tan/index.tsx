@@ -411,7 +411,7 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
               width={1920}
               height={900}
             />
-            <div className="promotion-desktop">
+            <div className="">
               <div className="HeaderHalloween-promotion-list-privilege-v2">
                 {data?.[0]?.Banner?.items
                   .filter((item: any) => item.media_alt.includes('uu-dai-dac-quyen'))
@@ -438,7 +438,7 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
                   ))}
               </div>
             </div>
-            <div className="promotion-mobile">
+            {/* <div className="promotion-mobile">
               <Swiper
                 spaceBetween={10}
                 slidesPerView={5.5}
@@ -483,7 +483,7 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
                     </SwiperSlide>
                   ))}
               </Swiper>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -7,11 +7,11 @@ import { Spin } from 'antd'
 import './product-mac.scss'
 import ProductBanner from '../../../../public/gratitude/product-banner-04.png'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
-import FrameProduct from '../../../../public/new-year/frame-all.png'
+import FrameProduct from '../../../../public/apple/frame-ipe.png'
 import ProductBg from '../../../../public/new-year/product-bg.png'
 import ProductDecor from '../../../../public/new-year/product-decor.png'
 import ProductTree from '../../../../public/new-year/product-tree.png'
-import BestSeller from '../../../../public/new-year/best-seller.gif'
+import BestSeller from '../../../../public/apple/gif-giam-manh.gif'
 import Author from '../../../../public/apple/author.webp'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -270,7 +270,19 @@ const ProductMac: React.FC = () => {
   useEffect(() => {
     // Filter products based on the active tab
     const filtered = data?.filter((product) => product.name.includes(activeTab))
-    setFilteredData(filtered || [])
+
+    // Sort products by discount percentage
+    const sortedFiltered = filtered?.sort((a, b) => {
+      const aDiscount = a.attributes[0]?.value
+        ? Math.ceil(((a.attributes[0].value - a.price_range.minimum_price.final_price.value) / a.attributes[0].value) * 100)
+        : 0;
+      const bDiscount = b.attributes[0]?.value
+        ? Math.ceil(((b.attributes[0].value - b.price_range.minimum_price.final_price.value) / b.attributes[0].value) * 100)
+        : 0;
+      return bDiscount - aDiscount; // Sort in descending order
+    });
+
+    setFilteredData(sortedFiltered || [])
 
     // Adjust visible count based on window size
     const handleResize = () => {

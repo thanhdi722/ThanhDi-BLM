@@ -5,14 +5,8 @@ import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { Spin } from 'antd'
 import './product-ipad.scss'
-import ProductBanner from '../../../../public/gratitude/product-banner-02.png'
-import HostPrice2 from '../../../../public/gratitude/hot-price.png'
-import FrameProduct from '../../../../public/new-year/frame-all.png'
-import ProductDecor from '../../../../public/new-year/product-decor.png'
-import ProductTree from '../../../../public/new-year/product-tree.png'
-import ProductBg from '../../../../public/new-year/product-bg.png'
-
-import BestSeller from '../../../../public/new-year/best-seller.gif'
+import FrameProduct from '../../../../public/apple/frame-ipe.png'
+import BestSeller from '../../../../public/apple/gif-giam-manh.gif'
 import Author from '../../../../public/apple/author.webp'
 
 
@@ -339,7 +333,18 @@ const ProductIpad: React.FC = () => {
     return <div>Error loading data</div>
   }
 
-  const visibleProducts = filteredData.slice(0, visibleCount)
+  // Move the sortByDiscount function declaration above its usage
+  const sortByDiscount = (data: Product[]) => {
+    return data.sort((a, b) => {
+      const aDiscount = a.attributes[0]?.value ? 
+        ((a.attributes[0].value - a.price_range.minimum_price.final_price.value) / a.attributes[0].value) * 100 : 0;
+      const bDiscount = b.attributes[0]?.value ? 
+        ((b.attributes[0].value - b.price_range.minimum_price.final_price.value) / b.attributes[0].value) * 100 : 0;
+      return bDiscount - aDiscount; // Sort descending
+    });
+  }
+
+  const visibleProducts = sortByDiscount(filteredData).slice(0, visibleCount)
 
   const hostData: any = data
   const filterFlashSaleItems = (data: Product[] | undefined) => {
@@ -351,7 +356,8 @@ const ProductIpad: React.FC = () => {
       })
     })
   }
-  const flashSaleItems = filterFlashSaleItems(hostData).slice(0, 2)
+
+  const flashSaleItems = sortByDiscount(filterFlashSaleItems(hostData)).slice(0, 2)
 
   const loadMore = () => {
     setVisibleCount((prevCount) => prevCount + 5)

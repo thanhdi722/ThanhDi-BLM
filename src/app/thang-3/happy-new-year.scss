@@ -147,8 +147,8 @@ $background: #faf6f6;
     overflow: hidden;
     padding: 12px 24px;
     border-radius: 9999px;
-    background-color: #f97c6e;
-    color: #fde047;
+    background-color: #ff2a13;
+    color: #ffffff;
     font-weight: bold;
     font-size: 1.125rem;
     transition: all 0.3s ease-in-out;
@@ -160,7 +160,7 @@ $background: #faf6f6;
     z-index: 20;
 
     &:hover {
-      background-color: #b91c1c;
+      background-color: #ff0000;
       transform: scale(1.05);
       box-shadow:
         0 10px 15px -3px rgba(0, 0, 0, 0.1),

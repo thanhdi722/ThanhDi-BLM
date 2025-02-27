@@ -4,17 +4,9 @@ import { useQuery } from '@tanstack/react-query' // Import hook useQuery từ th
 import Link from 'next/link' // Import component Link từ Next.js
 import { Spin } from 'antd' // Import component Spin từ thư viện antd
 import { Swiper, SwiperSlide } from 'swiper/react' // Import các component Swiper và SwiperSlide từ thư viện swiper/react
-import ProductBanner from '../../../../public/gratitude/product-banner-01.png' // Import hình ảnh ProductBanner
 import Author from '../../../../public/apple/author.webp' // Import hình ảnh Author
-import HostPrice from '../../../../public/gratitude/fire.gif' // Import hình ảnh HostPrice
-import HostPrice2 from '../../../../public/gratitude/hot-price.png' // Import hình ảnh HostPrice2
-import FrameProduct from '../../../../public/new-year/frame-all.png' // Import hình ảnh FrameProduct
-import ProductDecor from '../../../../public/new-year/product-decor.png' // Import hình ảnh ProductDecor
-import ProductBg from '../../../../public/new-year/product-bg.png' // Import hình ảnh ProductBg
-import ProductTree from '../../../../public/new-year/product-tree.png' // Import hình ảnh ProductTree
-import BestSeller from '../../../../public/new-year/best-seller.gif' // Import hình ảnh BestSeller
-import FireworkDecor from '../../../../public/new-year/firework-decor.gif' // Import hình ảnh FireworkDecor
-import FireworkDecorLeft from '../../../../public/new-year/firework-decor-left.gif' // Import hình ảnh FireworkDecorLeft
+import FrameProduct from '../../../../public/apple/frame-ipe.png' // Import hình ảnh FrameProduct
+import BestSeller from '../../../../public/apple/gif-giam-manh.gif'
 import './product-new-year.scss' // Import file CSS
 
 // Định nghĩa interface Product
@@ -366,7 +358,22 @@ const ProductList: React.FC = () => {
 
       return matchesTab && matchesSubTab
     })
-    setFilteredData(filtered || [])
+
+    // Sort products by discount percentage
+    const sortedFiltered = filtered?.sort((a, b) => {
+      const getDiscountPercent = (product: Product) => {
+        const originalPrice = product.attributes[0]?.value;
+        const finalPrice = product.price_range.minimum_price.final_price.value;
+        if (!originalPrice) return 0;
+        return ((originalPrice - finalPrice) / originalPrice) * 100;
+      };
+
+      const discountA = getDiscountPercent(a);
+      const discountB = getDiscountPercent(b);
+      return discountB - discountA;
+    });
+
+    setFilteredData(sortedFiltered || [])
 
     const handleResize = () => {
       setIsMobile(window.innerWidth < 992)
@@ -450,105 +457,6 @@ const ProductList: React.FC = () => {
               <div style={{ width: 200, height: 200 }} />
             </Spin>
           )}
-          {/* <div className="upgrade-hot">
-            {flashSaleItems.map((product, index) => (
-              <Link
-                key={index}
-                href={`https://bachlongmobile.com/products/${product.url_key}`}
-                passHref
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none', color: 'black' }}
-                className="hot-item"
-              >
-                <div className="upgrade-hot-item">
-                 
-                  <div className="upgrade-hot-item-wrap">
-                    <div className="upgrade-hot-item-header">
-                      <Image
-                        src={Author}
-                        width={60}
-                        height={20}
-                        quality={100}
-                        alt="author"
-                        className="author"
-                      />
-                      <span className="percent">Trả góp 0%</span>
-                    </div>
-                    <div className="upgrade-hot-item-img">
-                      <div className="img-content">
-                        <Image
-                          src={product.image.url}
-                          width={1400}
-                          height={1200}
-                          quality={100}
-                          alt={`product-${index}`}
-                        />
-                      </div>
-                      <div className="frame-product">
-                        <Image
-                          src={FrameProduct}
-                          width={500}
-                          height={500}
-                          quality={100}
-                          alt="frame-product"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="upgrade-hot-item-content">
-                   
-                    <Image
-                      src={BestSeller}
-                      width={300}
-                      height={90}
-                      alt="best-seller"
-                      style={{ position: 'relative', zIndex: 20 }}
-                    />
-                    
-                    <div>
-                      <h4 className="upgrade-hot-item-content-tt">{product.name}</h4>
-                    </div>
-                    <div className="upgrade-hot-item-content-body">
-                      <div className="upgrade-hot-item-content-body-price">
-                        {product.price_range.minimum_price.final_price.value.toLocaleString('vi-VN')}{' '}
-                        {product.price_range.minimum_price.final_price.currency}
-                      </div>
-                      <div className="upgrade-hot-item-content-body-reduced">
-                        <div className="price-reduced">
-                          {product.attributes && product.attributes[0]?.value
-                            ? Number(product.attributes[0].value).toLocaleString('vi-VN')
-                            : ''}{' '}
-                          {product.attributes[0].value &&
-                            product.price_range.minimum_price.final_price.currency}
-                        </div>
-
-                        {product.attributes[0].value && (
-                          <div className="percent">
-                            -
-                            {Math.ceil(
-                              ((product.attributes[0].value -
-                                product.price_range.minimum_price.final_price.value) /
-                                product.attributes[0].value) *
-                                100
-                            )}
-                            %
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                    <div className="upgrade-wrap-footer">
-                      <div className="upgrade-hot-footer">
-                        <span>Giá thu bằng giá bán</span>
-                        <span>Trợ giá lên đến 100%</span>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div> */}
           <div className="upgrade-list">
             <div className="tabs">
               {isMobile ? (

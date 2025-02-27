@@ -5,9 +5,9 @@ import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { Spin } from 'antd'
 import ProductBanner from '../../../../public/gratitude/product-banner-05.png'
-import FrameProduct from '../../../../public/new-year/frame-11.png'
+import FrameProduct from '../../../../public/apple/frame-tang-1.png'
 import ProductDecor from '../../../../public/new-year/product-decor.png'
-import BestSeller from '../../../../public/new-year/best-seller.gif'
+import BestSeller from '../../../../public/apple/gif-giam-manh.gif'
 import Author from '../../../../public/apple/author.webp'
 
 import ProductBg from '../../../../public/new-year/product-bg.png'
@@ -279,7 +279,22 @@ const ProductAirPods: React.FC = () => {
     return <div>Error loading data</div>
   }
 
-  const visibleProducts = filteredData.slice(0, visibleCount)
+  const visibleProducts = filteredData
+    .slice(0, visibleCount)
+    .sort((a, b) => {
+      const discountA = a.attributes[0]?.value;
+      const discountB = b.attributes[0]?.value;
+
+      const discountAValue = discountA
+        ? Math.ceil(((discountA - a.price_range.minimum_price.final_price.value) / discountA) * 100)
+        : 0;
+
+      const discountBValue = discountB
+        ? Math.ceil(((discountB - b.price_range.minimum_price.final_price.value) / discountB) * 100)
+        : 0;
+
+      return discountBValue - discountAValue;
+    });
 
   const hostData: any = data
   const filterFlashSaleItems = (data: Product[] | undefined) => {

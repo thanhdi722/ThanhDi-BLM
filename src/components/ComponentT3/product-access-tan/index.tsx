@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Spin } from 'antd'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import FrameProduct from '../../../../public/new-year/frame-pk.png'
+import FrameProduct from '../../../../public/apple/frame-tang-1.png'
 import ProductDecor from '../../../../public/new-year/product-decor.png'
 import ProductBanner from '../../../../public/gratitude/product-banner-06.png'
 import './product-access.scss'
@@ -267,10 +267,30 @@ const ProductAccess: React.FC = () => {
 
   useEffect(() => {
     if (activeTab === 'All') {
-      setFilteredData(data || [])
+      const sortedData = [...(data || [])].sort((a, b) => {
+        const getDiscountPercent = (product: Product) => {
+          const originalPrice = product.attributes?.[0]?.value;
+          const finalPrice = product.price_range.minimum_price.final_price.value;
+          if (!originalPrice) return 0;
+          return ((originalPrice - finalPrice) / originalPrice) * 100;
+        };
+        return getDiscountPercent(b) - getDiscountPercent(a);
+      });
+      setFilteredData(sortedData);
     } else {
-      const filtered = data?.filter((product) => product.name.toLowerCase().includes(activeTab.toLowerCase()))
-      setFilteredData(filtered || [])
+      const filtered = data?.filter((product) => 
+        product.name.toLowerCase().includes(activeTab.toLowerCase())
+      );
+      const sortedFiltered = [...(filtered || [])].sort((a, b) => {
+        const getDiscountPercent = (product: Product) => {
+          const originalPrice = product.attributes?.[0]?.value;
+          const finalPrice = product.price_range.minimum_price.final_price.value;
+          if (!originalPrice) return 0;
+          return ((originalPrice - finalPrice) / originalPrice) * 100;
+        };
+        return getDiscountPercent(b) - getDiscountPercent(a);
+      });
+      setFilteredData(sortedFiltered);
     }
 
     const handleResize = () => {
