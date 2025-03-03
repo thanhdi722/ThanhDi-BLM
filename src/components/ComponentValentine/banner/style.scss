@@ -505,7 +505,7 @@
   position: relative;
   color: white;
   div {
-    background-image: url("../../../../public/valetine/tim.png");
+    background-image: url("../../../../public/valetine/gift-time-line.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -553,7 +553,7 @@
     }
     p {
       position: absolute;
-      top: 50%;
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 1.4rem;
@@ -584,7 +584,7 @@
   gap: 0.35em;
   justify-content: space-between;
   max-width: 440px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 .newYear-deal-24-12 {
   font-family: var(--font-script);
