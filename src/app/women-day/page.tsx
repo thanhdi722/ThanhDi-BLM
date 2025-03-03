@@ -1,19 +1,19 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react";
-import Banner from "../../components/ComponentValentine/banner";
-import Product1 from "../../components/ComponentValentine/apple";
-import Product2 from "../../components/ComponentValentine/may99";
-import Product3 from "../../components/ComponentValentine/samsung";
-import Product4 from "../../components/ComponentValentine/android";
-import Product5 from "../../components/ComponentValentine/phukien";
+import Banner from "../../components/ComponentWomenDay/banner";
+import Product1 from "../../components/ComponentWomenDay/apple";
+import Product2 from "../../components/ComponentWomenDay/may99";
+import Product3 from "../../components/ComponentWomenDay/samsung";
+import Product4 from "../../components/ComponentWomenDay/android";
+import Product5 from "../../components/ComponentWomenDay/phukien";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import "./style.scss"
-import Snowfall from "../../components/ComponentValentine/snow/Snowfall";
+import Snowfall from "../../components/ComponentWomenDay/snow/Snowfall";
 function ValentineDay() {
   const categories = [
     { id: 'item-iphone', name: 'iPhone' },
