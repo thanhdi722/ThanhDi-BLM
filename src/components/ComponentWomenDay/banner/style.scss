@@ -1,4 +1,4 @@
-.page-valentine-day {
+.page-women-day {
   position: relative;
   .HeaderCombo-bannerPC {
     display: block;
@@ -505,7 +505,7 @@
   position: relative;
   color: white;
   div {
-    background-image: url("../../../../public/valetine/tim.png");
+    background-image: url("../../../../public/valetine/gift-time-line.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -553,7 +553,7 @@
     }
     p {
       position: absolute;
-      top: 50%;
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 1.4rem;
@@ -627,5 +627,5 @@
 .header-deal-cuoi-nam {
   position: relative;
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px 0px;
 }

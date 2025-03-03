@@ -10,7 +10,7 @@ import SkeletonImage from "antd/es/skeleton/Image";
 import { useQuery } from "@tanstack/react-query";
 
 function HeaderHalloween() {
-  const [endDate, setEndDate] = useState(new Date("2025-02-16T21:30:00"));
+  const [endDate, setEndDate] = useState(new Date("2025-03-16T21:30:00"));
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ]);
@@ -182,7 +182,7 @@ const variables = {
   }, []);
 
   return (
-    <div className="page-valentine-day">
+    <div className="page-women-day">
       <div>
         {data?.data?.Slider?.items[0]?.Banner?.items[0]?.media ? (
           <Image
