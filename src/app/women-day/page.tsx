@@ -16,11 +16,11 @@ import "./style.scss"
 import Snowfall from "../../components/ComponentWomenDay/snow/Snowfall";
 function ValentineDay() {
   const categories = [
-    { id: 'item-iphone', name: 'iPhone' },
-    { id: 'item-may99', name: 'Máy 99%' },
-    { id: 'item-samsung', name: 'Samsung' },
-    { id: 'item-android', name: 'Android' },
-    { id: 'item-phukien', name: 'Phụ Kiện' },
+    { id: 'item-iphone', name: 'Voucher' },
+    { id: 'item-may99', name: 'Sản phẩm máy' },
+    { id: 'item-samsung', name: 'Phụ Kiện' },
+    { id: 'item-android', name: 'Giảm 200k' },
+    { id: 'item-phukien', name: 'Giảm 800k' },
   ]
   const swiperRef = useRef<any>(null)
   const [isStickyVisible, setIsStickyVisible] = useState(false)

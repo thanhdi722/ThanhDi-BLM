@@ -174,8 +174,7 @@ interface ApiResponse {
 const AppleList: React.FC = () => {
   const { data } = useProductIphoneValentine()
   const filteredDatassss = data?.filter((item: any) => item.title === 'iphone-valentine')
-  const { data: dataNONP } = useProductNonPhoneValentine()
-  const filteredDatassssNONP = dataNONP?.filter((item: any) => item.title === 'non-phone-valentine')
+  
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -239,7 +238,7 @@ const AppleList: React.FC = () => {
   }
 
   const currentData =
-    activeTab === 'iPhone' ? filteredDatassss : activeTab === 'NONP' ? filteredDatassssNONP : null
+    activeTab === 'iPhone' ? filteredDatassss : null
 
   return (
     <div
@@ -271,22 +270,7 @@ const AppleList: React.FC = () => {
                   )}
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <div className="tab-buttons">
-                    <button
-                      className={activeTab === 'iPhone' ? 'active' : ''}
-                      onClick={() => handleTabChange('iPhone')}
-                    >
-                      iPhone
-                    </button>
-                    <button
-                      className={activeTab === 'NONP' ? 'active' : ''}
-                      onClick={() => handleTabChange('NONP')}
-                    >
-                      NON-PHONE
-                    </button>
-                  </div>
-                </div>
+                
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
                     {currentData?.[0]?.items
