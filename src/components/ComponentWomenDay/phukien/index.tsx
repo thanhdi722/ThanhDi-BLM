@@ -8,7 +8,7 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductPhuKienKhac, useProductPhuKienPinDuPhong, useProductPhuKienTaiNghe, useProductPhuKienCocCapSac } from '../../../app/hooks/vanlentine/productPhuKien'
+import {  useProductPhuKienCocCapSac } from '../../../app/hooks/vanlentine/productPhuKien'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
@@ -170,13 +170,6 @@ interface ApiResponse {
 const AppleList: React.FC = () => {
   const { data } = useProductPhuKienCocCapSac()
   const filteredDatassss = data?.filter((item: any) => item.title === 'coc-cap-sac-valentine')
-  const { data: dataPinDuPhong } = useProductPhuKienPinDuPhong()
-  const filteredDatassssNONP = dataPinDuPhong?.filter((item: any) => item.title === 'pin-du-phong-valentine')
-  const { data: dataTaiNghe } = useProductPhuKienTaiNghe()
-  const filteredDatassssTaiNghe = dataTaiNghe?.filter((item: any) => item.title === 'tai-nghe-valentine')
-  const { data: dataKhac } = useProductPhuKienKhac()
-  const filteredDatassssKhac = dataKhac?.filter((item: any) => item.title === 'khac-valentine')
-
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -242,11 +235,7 @@ const AppleList: React.FC = () => {
   const currentData =
     activeTab === 'iPhone'
       ? filteredDatassss
-      : activeTab === 'NONP'
-        ? filteredDatassssNONP
-        : activeTab === 'PKAPPLE'
-          ? filteredDatassssTaiNghe
-          : filteredDatassssKhac
+      : null
 
   return (
     <div
@@ -276,7 +265,7 @@ const AppleList: React.FC = () => {
                   )}
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <div className="tab-buttons">
                     <button
                       className={activeTab === 'iPhone' ? 'active' : ''}
@@ -303,7 +292,7 @@ const AppleList: React.FC = () => {
                       Khác
                     </button>
                   </div>
-                </div>
+                </div> */}
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
                     {currentData?.[0]?.items

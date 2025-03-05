@@ -8,7 +8,7 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductAndroidValentine } from '../../../app/hooks/vanlentine/productAndroid'
+import { useProductPhuKienTaiNghe } from '../../../app/hooks/vanlentine/productPhuKien'
 
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
@@ -171,9 +171,8 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductAndroidValentine()
-  console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'android-valentine')
+  const { data } = useProductPhuKienTaiNghe()
+  const filteredDatassss = data?.filter((item: any) => item.title === 'tai-nghe-valentine')
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)

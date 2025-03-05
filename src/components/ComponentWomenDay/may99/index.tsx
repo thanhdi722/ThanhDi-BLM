@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import FrameProduct from '../../../../public/new-year/frame-ipods.png'
+import FrameProduct from '../../../../public/sale-12/fip2412.png'
 import FrameProduct1 from '../../../../public/sale-12/fai22412.png'
 import FrameProduct2 from '../../../../public/sale-12/fpk2412.png'
 import FrameProduct3 from '../../../../public/sale-12/fai2412.png'
@@ -9,8 +9,9 @@ import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useProductMay99 } from '../../../app/hooks/vanlentine/productMay99'
-import { useProductSaleDataNONP } from '../../../app/hooks/productDailySale2412/useProductSaleDataNONP'
-import { useProductSaleDataPKApple } from '../../../app/hooks/productDailySale2412/useProductSaleDataPKApple'
+import { useProductHotphoneValentine } from '../../../app/hooks/vanlentine/productHotPhone'
+import { useProductAndroidValentine } from '../../../app/hooks/vanlentine/productAndroid'
+import { useProductNonPhoneValentine } from '../../../app/hooks/vanlentine/productNonPhone'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
@@ -173,8 +174,13 @@ interface ApiResponse {
 
 const AppleList: React.FC = () => {
   const { data } = useProductMay99()
-  console.log('data check apple ', data)
   const filteredDatassss = data?.filter((item: any) => item.title === 'may99-valentine')
+  const { data: dataNONP } = useProductNonPhoneValentine()
+  const filteredDatassssNONP = dataNONP?.filter((item: any) => item.title === 'non-phone-valentine')
+  const { data: dataAndroid } = useProductAndroidValentine()
+  const filteredDatassssAndroid = dataAndroid?.filter((item: any) => item.title === 'android-valentine')
+  const { data: dataIphone } = useProductHotphoneValentine()
+  const filteredDatassssIP = dataIphone?.filter((item: any) => item.title === 'deal-hot-valentine')
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
   const [visibleCount, setVisibleCount] = useState<number>(10)
@@ -212,7 +218,7 @@ const AppleList: React.FC = () => {
           variables: {
             filter: {
               identifier: {
-                eq: 'banner-flash-sale-valentine',
+                eq: 'banner-flash-sale-cuoi-nam',
               },
             },
           },
@@ -237,7 +243,14 @@ const AppleList: React.FC = () => {
     setActiveTab(tab)
   }
 
-  const currentData = activeTab === 'iPhone' ? filteredDatassss : null
+  const currentData =
+  activeTab === 'iPhone'
+    ? filteredDatassssIP
+    : activeTab === 'NONP'
+      ? filteredDatassssNONP: activeTab === 'android'
+      ? filteredDatassssAndroid: activeTab === 'may99'
+      ? filteredDatassss
+      : null
 
   return (
     <div
@@ -246,17 +259,18 @@ const AppleList: React.FC = () => {
         marginBottom: '20px',
       }}
     >
-      <Image className="icon-gift-1" src={iconGift} alt="icon-ipad" />
-      <Image className="icon-gift-2" src={iconGift2} alt="icon-ipad" />
+         <Image className="icon-gift-1" src={iconGift} alt="icon-ipad" />
+         <Image className="icon-gift-2" src={iconGift2} alt="icon-ipad" />
       <div>
         <div className="upgrade-list">
+       
           <div className="container">
             <div>
               <div>
                 <div className="women-decor">
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
-                      .filter((item) => item.name.includes('title-valentine-may99'))
+                      .filter((item) => item.name.includes('title apple flash sale cuối năm'))
                       .map((item, index) => (
                         <div key={index}>
                           <img src={item.media || ''} alt={`privilege-${index + 1}`} />
@@ -269,7 +283,7 @@ const AppleList: React.FC = () => {
                   )}
                 </div>
 
-                {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <div className="tab-buttons">
                     <button
                       className={activeTab === 'iPhone' ? 'active' : ''}
@@ -284,13 +298,19 @@ const AppleList: React.FC = () => {
                       NON-PHONE
                     </button>
                     <button
-                      className={activeTab === 'PKAPPLE' ? 'active' : ''}
-                      onClick={() => handleTabChange('PKAPPLE')}
+                      className={activeTab === 'android' ? 'active' : ''}
+                      onClick={() => handleTabChange('android')}
                     >
-                      Phụ kiện Apple
+                      Android
+                    </button>
+                    <button
+                      className={activeTab === 'may99' ? 'active' : ''}
+                      onClick={() => handleTabChange('may99')}
+                    >
+                      Máy 99%
                     </button>
                   </div>
-                </div> */}
+                </div>
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
                     {currentData?.[0]?.items
@@ -310,7 +330,7 @@ const AppleList: React.FC = () => {
                           style={{ textDecoration: 'none', color: 'black' }}
                         >
                           <div className="upgrade-item">
-                            <div className="upgrade-item-header">
+                          <div className="upgrade-item-header">
                               <span className="percent">Trả góp 0%</span>
                               {product?.product?.name.includes('iPhone') && (
                                 <Image className="ic-auth" src={DecorWomen} alt="" />
@@ -326,17 +346,23 @@ const AppleList: React.FC = () => {
                                   alt={`product-${index}`}
                                 />
                               </div>
-                              {product?.product?.name.toLowerCase().includes('iphone') && (
-                                <div className="frame-product">
-                                  <Image
-                                    src={FrameProduct}
-                                    width={500}
-                                    height={500}
-                                    quality={100}
-                                    alt="frame-product"
-                                  />
-                                </div>
-                              )}
+                              <div className="frame-product">
+                                <Image
+                                  src={
+                                    activeTab === 'iPhone'
+                                      ? product?.product?.name.includes('16')
+                                        ? FrameProduct
+                                        : FrameProduct1
+                                      : activeTab === 'NONP'
+                                        ? FrameProduct3
+                                        : FrameProduct2
+                                  }
+                                  width={500}
+                                  height={500}
+                                  quality={100}
+                                  alt="frame-product"
+                                />
+                              </div>
                             </div>
                             <div className="upgrade-item-content">
                               <h4 className="upgrade-item-content-tt">{product?.product?.name}</h4>
@@ -362,7 +388,8 @@ const AppleList: React.FC = () => {
                                     %
                                   </div>
                                 </div>
-                              
+                                {activeTab === 'iPhone' ||
+                                  (activeTab === 'NONP' && (
                                     <div
                                       style={{
                                         backgroundColor: 'rgba(215, 0, 24, .08)',
@@ -381,7 +408,7 @@ const AppleList: React.FC = () => {
                                         Giá thu bằng giá bán - Trợ giá lên đến 100%
                                       </span>
                                     </div>
-                                 
+                                  ))}
                               </div>
                             </div>
                           </div>

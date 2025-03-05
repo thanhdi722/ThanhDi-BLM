@@ -8,7 +8,7 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductSamsungValentine } from '../../../app/hooks/vanlentine/productSamsung'
+import { useProductHotKhacValentine } from '../../../app/hooks/vanlentine/productHot'
 import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
 import HostPrice2 from '../../../../public/gratitude/hot-price.png'
 import BestSeller from '../../../../public/new-year/best-seller.png'
@@ -170,12 +170,12 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductSamsungValentine()
-  const filteredDatassss = data?.filter((item: any) => item.title === 'samsung-valentine')
+  const { data } = useProductHotKhacValentine()
+  const filteredDatassss = data?.filter((item: any) => item.title === 'khac-valentine')
  
   const [activeTab, setActiveTab] = useState<string>('iPhone')
   const [filteredData, setFilteredData] = useState<Product[]>([])
-  const [visibleCount, setVisibleCount] = useState<number>(5)
+  const [visibleCount, setVisibleCount] = useState<number>(10)
   const [dataTitle, setDataTitle] = useState<ApiResponse | null>(null)
   const fetchBannerHeader = async () => {
     try {
