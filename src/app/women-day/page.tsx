@@ -17,10 +17,11 @@ import Snowfall from "../../components/ComponentWomenDay/snow/Snowfall";
 function ValentineDay() {
   const categories = [
     { id: 'item-iphone', name: 'Voucher' },
+    { id: 'item-phukien', name: 'Giảm 800k' },
+    { id: 'item-android', name: 'Giảm 200k' },
     { id: 'item-may99', name: 'Sản phẩm máy' },
     { id: 'item-samsung', name: 'Phụ Kiện' },
-    { id: 'item-android', name: 'Giảm 200k' },
-    { id: 'item-phukien', name: 'Giảm 800k' },
+ 
   ]
   const swiperRef = useRef<any>(null)
   const [isStickyVisible, setIsStickyVisible] = useState(false)
@@ -89,11 +90,17 @@ function ValentineDay() {
     }
   }, [activeCategory])
   return (
-    <div className="women-day" style={{ background: "#ffe0e6" }}>
+    <div className="women-day" style={{ background: "rgb(252 203 215)" }}>
       <Banner />
       <Snowfall />
       <div id="item-iphone">
          <Product1/>
+      </div>
+      <div id="item-phukien"> 
+        <Product5/>
+      </div>
+      <div id="item-android"> 
+        <Product4/>
       </div>
       <div id="item-may99"> 
         <Product2/>
@@ -101,12 +108,8 @@ function ValentineDay() {
       <div id="item-samsung"> 
         <Product3/>
       </div>
-      <div id="item-android"> 
-        <Product4/>
-      </div>
-      <div id="item-phukien"> 
-        <Product5/>
-      </div>
+     
+     
       <div className={`sticky-category ${isStickyVisible ? 'visible' : 'hidden'}`}>
             <div className="category-desktop">
               {categories.map((category, index) => (

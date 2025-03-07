@@ -210,7 +210,7 @@ const AppleList: React.FC = () => {
           variables: {
             filter: {
               identifier: {
-                eq: 'banner-flash-sale-valentine',
+                eq: 'banner-women-day',
               },
             },
           },
@@ -257,7 +257,7 @@ const AppleList: React.FC = () => {
                 <div className="women-decor">
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
-                      .filter((item) => item.name.includes('title-valentine-android'))
+                      .filter((item) => item.name.includes('banner-women-day-title-3'))
                       .map((item, index) => (
                         <div key={index}>
                           <img src={item.media || ''} alt={`privilege-${index + 1}`} />
