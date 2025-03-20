@@ -209,7 +209,7 @@ export default function Page() {
               </Swiper>
             </div>
           </div>
-          <Link href="https://bachlongmobile.com/news/khuyen-mai/giang-sinh-ron-rang-quay-vong-may-man-nhan-qua-ngap-tran/">
+          <Link href="https://bachlongmobile.com/news/khuyen-mai/chao-thang-3-trao-qua-tang-gui-yeu-thuong/">
             <div
               id="main"
               className={`main-spin ${isStickyVisible ? "visible" : "hidden"}`}

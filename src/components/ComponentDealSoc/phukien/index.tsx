@@ -8,11 +8,7 @@ import { Skeleton, Spin } from 'antd'
 import './apple.scss'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useProductPhuKienKhac, useProductPhuKienPinDuPhong, useProductPhuKienTaiNghe, useProductPhuKienCocCapSac } from '../../../app/hooks/vanlentine/productPhuKien'
-import DecorWomen from '../../../../public/flase-sale/ap-author.webp'
-import HostPrice2 from '../../../../public/gratitude/hot-price.png'
-import BestSeller from '../../../../public/new-year/best-seller.png'
-import Author from '../../../../public/apple/author.webp'
+import { useProductPhuKienKhac } from '../../../app/hooks/vanlentine/productPhuKien'
 export interface Product {
   id: number
   name: string
@@ -168,16 +164,7 @@ interface ApiResponse {
 }
 
 const AppleList: React.FC = () => {
-  const { data } = useProductPhuKienCocCapSac()
-  console.log('data check apple ', data)
-  const filteredDatassss = data?.filter((item: any) => item.title === 'coc-cap-sac-valentine')
-  const { data: dataPinDuPhong } = useProductPhuKienPinDuPhong()
-  const filteredDatassssNONP = dataPinDuPhong?.filter((item: any) => item.title === 'pin-du-phong-valentine')
-  const { data: dataTaiNghe } = useProductPhuKienTaiNghe()
-  console.log('data check apple ', dataTaiNghe)
-  const filteredDatassssTaiNghe = dataTaiNghe?.filter((item: any) => item.title === 'tai-nghe-valentine')
   const { data: dataKhac } = useProductPhuKienKhac()
-  console.log('data check apple ', dataKhac)
   const filteredDatassssKhac = dataKhac?.filter((item: any) => item.title === 'khac-valentine')
 
   const [activeTab, setActiveTab] = useState<string>('iPhone')
@@ -217,7 +204,7 @@ const AppleList: React.FC = () => {
           variables: {
             filter: {
               identifier: {
-                eq: 'banner-flash-sale-cuoi-nam',
+                eq: 'banner-deal-dau-thang',
               },
             },
           },
@@ -244,12 +231,8 @@ const AppleList: React.FC = () => {
 
   const currentData =
     activeTab === 'iPhone'
-      ? filteredDatassss
-      : activeTab === 'NONP'
-        ? filteredDatassssNONP
-        : activeTab === 'PKAPPLE'
-          ? filteredDatassssTaiNghe
-          : filteredDatassssKhac
+      ? 
+         filteredDatassssKhac : null
 
   return (
     <div
@@ -266,7 +249,7 @@ const AppleList: React.FC = () => {
                 <div className="women-decor">
                   {dataTitle ? (
                     dataTitle?.data?.Slider?.items[0]?.Banner?.items
-                      .filter((item) => item.name.includes('title apple flash sale cuối năm'))
+                      .filter((item) => item.name.includes('banner-deal-dau-thang-title-5'))
                       .map((item, index) => (
                         <div key={index}>
                           <img src={item.media || ''} alt={`privilege-${index + 1}`} />
@@ -279,34 +262,7 @@ const AppleList: React.FC = () => {
                   )}
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <div className="tab-buttons">
-                    <button
-                      className={activeTab === 'iPhone' ? 'active' : ''}
-                      onClick={() => handleTabChange('iPhone')}
-                    >
-                      Cốc cáp sạc
-                    </button>
-                    <button
-                      className={activeTab === 'NONP' ? 'active' : ''}
-                      onClick={() => handleTabChange('NONP')}
-                    >
-                      Pin dự phòng
-                    </button>
-                    <button
-                      className={activeTab === 'PKAPPLE' ? 'active' : ''}
-                      onClick={() => handleTabChange('PKAPPLE')}
-                    >
-                      Tai nghe
-                    </button>
-                    <button
-                      className={activeTab === 'Khac' ? 'active' : ''}
-                      onClick={() => handleTabChange('Khac')}
-                    >
-                      Khác
-                    </button>
-                  </div>
-                </div>
+               
                 {currentData && currentData.length > 0 ? (
                   <div className="upgrade">
                     {currentData?.[0]?.items

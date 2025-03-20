@@ -45,7 +45,7 @@ function HeaderHalloween() {
 const variables = {
   filter: {
     identifier: {
-      eq: 'khai-xuan-phu-quy',
+      eq: 'banner-deal-dau-thang',
     },
   },
 }
@@ -163,7 +163,7 @@ const variables = {
             variables: {
               filter: {
                 identifier: {
-                  eq: "banner-flash-sale-valentine",
+                  eq: "banner-deal-dau-thang",
                 },
               },
             },
@@ -332,7 +332,7 @@ const variables = {
               className="background-8"
               src={
                 dataBanner?.[0]?.Banner?.items.filter((item: any) =>
-                  item.media_alt.includes('banner-uu-dai-khai-xuan-phu-quy')
+                  item.media_alt.includes('banner-deal-dau-thang-banner-dat-quyen')
                 )[0].media
               }
               alt="banner-tan"
@@ -342,7 +342,7 @@ const variables = {
             <div className="promotion-desktop">
               <div className="HeaderHalloween-promotion-list-privilege-v2">
                 {dataBanner?.[0]?.Banner?.items
-                  .filter((item: any) => item.media_alt.includes('uu-dai-dac-quyen'))
+                  .filter((item: any) => item.media_alt.includes('banner-deal-dau-thang-banner-dat-quyen-'))
                   .map((item: any, index: any) => (
                     <div key={index} className="privilege-img" style={{ cursor: 'pointer' }}>
                       {item.link ? (
