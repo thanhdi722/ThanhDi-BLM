@@ -1,0 +1,38 @@
+.content {
+	&__title {
+		color: #fff;
+		font-size: 48px;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.5em;
+		text-shadow: 0 2px 4px desaturate(darken(#fbd54a, 60%), 40%);
+	}
+}
+
+.shape-overlay {
+	position: absolute;
+	top: -100%;
+	left: 0;
+	right: 0;
+	width: 100vw;
+	height: 15rem;
+	pointer-events: none;
+
+	path {
+		width: 100%;
+
+		&:nth-child(1) {
+			fill: #683717;
+		}
+
+		&:nth-child(2) {
+			fill: desaturate(darken(#683717, 10%), 20%);
+		}
+		&:nth-child(3) {
+			fill: desaturate(darken(#683717, 20%), 40%);
+		}
+		&:nth-child(4) {
+			fill: transparent;
+		}
+	}
+}

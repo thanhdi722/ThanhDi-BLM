@@ -1,0 +1,434 @@
+$contour: #000;
+$white: #FFF;
+$gray: #aaa;
+$gray-dark: #777;
+$orange-dark: #EF841C;
+$orange-light: #FECD66;
+
+$sky-dark: #b4ebf0;
+$sky-light: #d2fefd;
+
+.component-tank {
+    .tank {
+      animation: movement 10s infinite linear;
+        /* background: $ground-base; */
+        bottom: 10vh;
+        height: 300px;
+        left: 50%;
+        position: absolute;
+        transition: 0.4s;
+        transform: translateX(-50%);
+        width: 450px;
+        
+        
+        
+    }
+      
+      $track-bg: #443F39;
+      $track-border: #352C25;
+      $wheel-glow: #98A0A2;
+      $wheel-dark: #6D6E72;
+      
+      .track {
+        background: $track-bg;
+        border-radius: 100px 100px 250px 250px;
+        bottom: 2%;
+        height: 30%;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 75%;
+        box-shadow: 
+          0 0 0 6px $contour,
+          0 0 0 20px $track-border,
+          0 0 0 26px $contour;
+      }
+      
+      .wheel {
+        background: $track-bg;
+        border-radius: 50%;
+        height: 2px;
+        overflow: hidden;
+        position: absolute;
+        width: 2px;
+        box-shadow: 
+          0 0 0 10px $track-bg,
+          0 0 0 16px $contour,
+          0 0 0 40px $wheel-dark,
+          0 0 0 46px $contour;
+        
+        &:nth-of-type(1) {
+          bottom: 65%;
+          left: 11%;
+        }
+        
+        &:nth-of-type(2) {
+          bottom: 30%;
+          left: 35%;
+        }
+        
+        &:nth-of-type(3) {
+          bottom: 30%;
+          right: 35%;
+        }
+        
+        &:nth-of-type(4) {
+          bottom: 65%;
+          right: 11%;
+        }
+      }
+      
+      /*.glow {
+        background: $wheel-glow;
+        height: 50px;
+        position: absolute;
+        width: 50px;
+      }*/
+      
+      $body-base: #5A5D30;
+      $body-glow: #83845C;
+      
+      .body {
+        background: $body-base;
+        /* border: 6px solid $contour; */
+        border-radius: 5px 50px;
+        bottom: 10%;
+        height: 30%;
+        left: 20%;
+        position: absolute;
+        width: 58%;
+        box-shadow: 
+         10px -15px 0 10px $body-glow,
+         10px -15px 0 16px $contour,
+      }
+      
+      .turret {
+        background: $body-glow;
+        border-radius: 5px 50px 5px 10px;
+        bottom: 50%;
+        color: yellow;
+        height: 10%;
+        left: 30%;
+        position: absolute;
+        width: 30%;
+        box-shadow: 
+         -10px 30px 0 30px $body-base,
+         -10px 30px 0 36px $contour;
+          
+        &:before {
+            bottom: 3px;
+            color: white;
+            content: 'VIỆT NAM';
+            font-size: 20px;
+            left: 14px;
+            white-space: nowrap;
+            position: absolute;
+            text-shadow:
+              2px 0px 10px $contour;
+          }
+          &::after {
+            content: '';
+            background-image: url('../../../../public/valetine/vietnam.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: -130px;
+            left: -60%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+        }
+        &:after {
+        
+        }
+        
+        .gun {
+          background: $body-glow;
+          border-radius: 5px 5px 10px 5px;
+          bottom: 40%;
+          height: 30px;
+          left: 50%;
+          position: absolute;
+          transform: rotate(-25deg);
+          width: 200px;
+          z-index: -1;
+          box-shadow: 
+            30px 10px 0 10px $body-base,
+            30px 10px 0 16px $contour;
+          
+          &:before {
+            background: $body-glow;
+            border-radius: 10px;
+            content: '';
+            bottom: 0px;
+            height: 30px;
+            left: 200px;
+            position: absolute;
+            transform: rotate(90deg);
+            width: 70px;
+            box-shadow: 
+              6px 10px 0 10px $body-base,
+              6px 10px 0 16px $contour;
+          }
+        }
+        
+        .bullet {
+          animation: shot 2s infinite;
+          animation-delay: 3s;
+          background: $gray;
+          /* border: 5px solid $contour; */
+          border-radius: 0 50% 50% 0;
+          height: 20px;
+          left: 150px;
+          position: absolute;
+          top: 10px;
+          transform: rotate(-25deg);
+          width: 70px;
+          z-index: -2;
+          box-shadow: 
+            0 10px 0 10px $gray-dark,
+            0 10px 0 16px $contour;
+        }
+        
+        .explosion {
+          animation: exp 2s infinite;
+          animation-delay: 3s;
+          background: $orange-dark;
+          border-radius: 50%;
+          height: 20px;
+          left: 320px;
+          position: absolute;
+          opacity: 0;
+          top: -55px;
+          transform: rotate(-25deg);
+          width: 20px;
+          z-index: -3;
+          box-shadow: 
+            0 10px 0 15px $orange-dark,
+            0 10px 0 18px $contour,
+            10px -10px 0 10px $orange-light,
+            10px -10px 0 13px $contour,
+            10px 30px 0 20px $orange-light,
+            10px 30px 0 23px $contour,
+            30px 10px 0 18px $orange-dark,
+            30px 10px 0 21px $contour,
+            30px 40px 0 13px $orange-light,
+            30px 40px 0 16px $contour,
+            0 -20px 0 13px $orange-dark,
+            0 -20px 0 16px $contour,
+            30px -10px 0 17px $orange-light,
+            30px -10px 0 20px $contour;
+        }
+      }
+      
+      .wind {
+        bottom: 100px;
+        left: -50px;
+        position: absolute;
+        
+       div {
+         animation: wind 0.5s infinite linear;
+         background: $white;
+         border: 6px solid $contour;
+         height: 15px;
+         opacity: 0; 
+         position: absolute;
+         transition: .4s;
+         width: 50px;
+          
+          &:nth-child(1) {
+            animation-delay: .33s;
+            bottom: -50px;
+            left: 0;
+          }
+        
+          &:nth-child(2) {
+            animation-delay: .0s;
+            bottom: 0;
+            left: 100px;
+          }
+        
+          &:nth-child(3) {
+            animation-delay: .17s;
+            bottom: 50px;
+            left: 100px;
+          }
+        
+          &:nth-child(4) {
+            bottom: -50px;
+          }
+        
+          &:nth-child(5) {
+            animation-delay: .4s;
+            bottom: -25px;
+          }
+        }
+      }
+      
+      $ground-base: #824735;
+      $ground-sec: #835241;
+      $rock-base: #9A5641;
+      $rock-border: #612106;
+      $rock-light: #C66634;
+      
+      .ground {
+        background: $ground-base;
+        bottom: 0;
+        position: absolute;
+        height: 10vh;
+        width: 100vw;
+        
+        .rocks {    
+          background: $rock-light;
+          border-radius: 50%;
+          display: inline-block;
+          position: relative;
+          height: 7px;
+          left: 0px;
+          margin-right: 140px;
+          transform: rotate(-25deg);
+          top: -10px;
+          width: 13px;
+          box-shadow: 
+          38px 25px 0 0 $rock-light,
+          35px 25px 0 4px $rock-base,
+          35px 25px 0 7px $rock-border,
+          -2px 4px 0 7px $rock-base,
+          -2px 4px 0 10px $rock-border,
+          28px 8px 0 2px $rock-light,
+          25px 10px 0 8px $rock-base,
+          25px 10px 0 11px $rock-border,
+          98px 44px 0 2px $rock-light,
+          95px 48px 0 8px $rock-base,
+          95px 48px 0 11px $rock-border,
+          78px 30px 0 0 $rock-light,
+          75px 35px 0 6px $rock-base,
+          75px 35px 0 9px $rock-border,;
+        
+          &:before {
+            background: $rock-light;
+            border-radius: 50%;
+            content: '';
+            height: 5px;
+            left: 10px;
+            position: absolute;
+            transform: rotate(45deg);
+            top: 20px;
+            width: 10px;
+            box-shadow:
+            0 2px 0 4px $rock-base,
+            0 2px 0 7px $rock-border,
+            40px -28px 0 3px $rock-light,
+            40px -25px 0 9px $rock-base,
+            40px -25px 0 12px $rock-border,
+            105px -48px 0 2px $rock-light,
+            105px -45px 0 7px $rock-base,
+            105px -45px 0 10px $rock-border,
+            70px -28px 0 2px $rock-light,
+            70px -25px 0 8px $rock-base,
+            70px -25px 0 11px $rock-border;
+          }
+          
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+      
+     
+      @keyframes movement {
+        0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
+          height: 300px;
+        }
+        
+        5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
+          height: 320px;
+        }
+        
+        0% {
+          left: -500px;
+        }
+        
+        100% {
+          left: 3000px;
+        }
+      }
+      @keyframes wind {
+        0% {
+          opacity: 0;
+          left: 0;
+        }
+        
+        20%, 80% {
+          opacity: 1;
+        }
+        
+        100% {
+          left: -250px;
+          opacity: 0;
+        }
+      }
+      
+      @keyframes shot {
+        100% {
+          left: 2000px;
+          top: -900px;
+        }
+      }
+      
+      @keyframes exp {
+        0%, 10%, 30%, 100% {
+          opacity: 0;
+        }
+        
+        20% {
+          opacity: 1;
+        }
+      }
+      .door {
+        position: absolute;
+        bottom: 5vh;
+        left: 60vw;
+        width: 100px;
+        height: 200px;
+        background-color: #8B4513; /* Màu gỗ nâu */
+        border: 5px solid #000;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        transform-origin: bottom left;
+        animation: doorCollapse 10s linear infinite;
+        z-index: 1;
+      }
+      
+      @keyframes doorCollapse {
+        0%, 47% {
+          transform: rotate(0deg);
+        }
+        60% {
+          transform: rotate(90deg);
+          opacity: 1;
+        }
+        90% {
+          transform: rotate(90deg);
+          opacity: 0;
+        }
+      }
+      .gate {
+        position: absolute;
+        bottom: 10vh;
+        left: 70vw;
+        animation: doorCollapse 10s linear infinite;
+        width: 200px;
+        transform-origin: bottom center; /* neo từ dưới chính giữa */
+        transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        z-index: 2;
+      }
+      
+      .gate img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      
+      
+}
+
