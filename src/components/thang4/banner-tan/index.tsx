@@ -118,7 +118,7 @@ async function fetchBannerData() {
 function HeaderHalloween({ onScrollToRules }: PromotionProps) {
   const [isModalOpenContent, setIsModalOpenContent] = useState(false)
   const handleCancelContent = () => setIsModalOpenContent(false)
-  const [endDate, setEndDate] = useState(new Date('2025-03-04T21:30:00'))
+  const [endDate, setEndDate] = useState(new Date('2025-04-30T21:30:00'))
   const [timeArray, setTimeArray] = useState([
     { date: endDate.toDateString(), days: 0, hours: 0, minutes: 0, seconds: 0 },
   ])
@@ -179,7 +179,7 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
     staleTime: 300000,
   })
   return (
-    <div className="page-sale-thang-2">
+    <div className="page-sale-thang-4">
       <div>
         <div className="banner-desktop">
           {isLoading ? (
@@ -272,7 +272,7 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
                   className="rounded-md border-2 border-yellow-500 bg-red-500 text-white hover:bg-red-600"
                   onClick={() => setIsModalOpenContent(true)}
                   style={{
-                    backgroundColor: '#fd2b7c',
+                    backgroundColor: 'rgb(255 30 30)',
                     border: '1px solid #yellow',
                     color: '#fff',
                     padding: '10px 20px',
@@ -304,7 +304,7 @@ function HeaderHalloween({ onScrollToRules }: PromotionProps) {
               background: 'white',
               borderRadius: '16px',
               marginTop: '20px',
-              border: '2px solid #ff3793',
+              border: '2px solid rgb(255 30 30)',
             }}
           >
             {/* <h2 className="HeaderHalloween-promotion-header" style={{ fontWeight: 400 }}>

@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Meow+Script&family=Playwrite+CO+Guides&display=swap');
-.page-sale-thang-2 {
+.page-sale-thang-4 {
   position: relative;
 
   // background-image: url('../../../../public/new-year/bg-page.webp');
-  background-color: #ffecf2;
+  background-color: #fffcdd;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -269,15 +269,17 @@
     display: flex;
     gap: 1.2rem;
     align-items: center;
-    background-color: #fd2b7c;
+    background: linear-gradient(rgb(255 0 115), rgb(255 30 30));
     justify-content: center;
     font-size: 2rem;
     font-weight: 800;
+    color: #fff;
     span {
       background-color: rgb(255, 177, 177);
       padding: 8px;
       width: 30px;
       height: 30px;
+      color: #fff;
       border-radius: 10px;
     }
   }

@@ -4,19 +4,11 @@ import { useQuery } from '@tanstack/react-query' // Import hook useQuery từ th
 import Link from 'next/link' // Import component Link từ Next.js
 import { Spin } from 'antd' // Import component Spin từ thư viện antd
 import { Swiper, SwiperSlide } from 'swiper/react' // Import các component Swiper và SwiperSlide từ thư viện swiper/react
-import ProductBanner from '../../../../public/gratitude/product-banner-01.png' // Import hình ảnh ProductBanner
 import Author from '../../../../public/apple/author.webp' // Import hình ảnh Author
-import HostPrice from '../../../../public/gratitude/fire.gif' // Import hình ảnh HostPrice
-import HostPrice2 from '../../../../public/gratitude/hot-price.png' // Import hình ảnh HostPrice2
 import FrameProduct from '../../../../public/new-year/frame-all.png' // Import hình ảnh FrameProduct
-import ProductDecor from '../../../../public/new-year/product-decor.png' // Import hình ảnh ProductDecor
-import ProductBg from '../../../../public/new-year/product-bg.png' // Import hình ảnh ProductBg
-import ProductTree from '../../../../public/new-year/product-tree.png' // Import hình ảnh ProductTree
 import BestSeller from '../../../../public/new-year/best-seller.gif' // Import hình ảnh BestSeller
-import FireworkDecor from '../../../../public/new-year/firework-decor.gif' // Import hình ảnh FireworkDecor
-import FireworkDecorLeft from '../../../../public/new-year/firework-decor-left.gif' // Import hình ảnh FireworkDecorLeft
 import './product-new-year.scss' // Import file CSS
-
+import Airplane from '../animation-plane'
 // Định nghĩa interface Product
 export interface Product {
   id: number // ID của sản phẩm
@@ -411,25 +403,12 @@ const ProductList: React.FC = () => {
     setVisibleCount((prevCount) => prevCount + 5)
   }
   return (
-    <div className="product-new-year-month-2">
-      {/* <Image
-        src={FireworkDecor}
-        width={500}
-        height={500}
-        alt="firework-decor"
-        className="firework-decor-left"
-      />
-      <Image
-        src={FireworkDecorLeft}
-        width={500}
-        height={500}
-        alt="firework-decor"
-        className="firework-decor"
-      /> */}
+    <div className="product-new-year-month-4">
+     <Airplane />
       <div
         className="container"
         style={{
-          backgroundColor: '#ff7eb8',
+          background: 'linear-gradient(rgb(255 0 115), rgb(255 30 30))',
           padding: '10px',
           borderRadius: '10px',
           position: 'relative',

@@ -116,7 +116,7 @@ const KhaiXuanPhuQuy = () => {
   }, [activeCategory])
 
   return (
-    <div className="page-new-year-month-2">
+    <div className="page-new-year-month-4">
       {/* Thành phần Snowfall */}
       {/* <Snowfall /> */}
       {/* Hình ảnh túi tiền */}

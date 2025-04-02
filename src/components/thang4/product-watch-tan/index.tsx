@@ -322,11 +322,11 @@ const ProductWatch: React.FC = () => {
   }
 
   return (
-    <div className="product-new-year-month-2">
+    <div className="product-new-year-month-4">
       <div className="upgrade-list">
         <div
           className="container"
-          style={{ backgroundColor: '#ff7eb8', padding: '10px', borderRadius: '10px', marginTop: '50px' }}
+          style={{  background: 'linear-gradient(rgb(255 0 115), rgb(255 30 30))', padding: '10px', borderRadius: '10px', marginTop: '50px' }}
         >
           <div className="upgrade-hot-wrap">
             {dataTitle ? (

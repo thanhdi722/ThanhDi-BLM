@@ -122,7 +122,7 @@ const Category = () => {
   }
 
   return (
-    <div className="category-wrapper-month-2">
+    <div className="category-wrapper-month-4">
       {/* <Image src={Unicorn2} width={500} height={500} alt="unicorn1" className="unicorn-left" />
       <Image src={Unicorn1} width={500} height={500} alt="unicorn1" className="unicorn-right" /> */}
       <div className="container">

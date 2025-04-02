@@ -11,7 +11,7 @@ import FrameProduct from '../../../../public/new-year/frame-all.png'
 import ProductDecor from '../../../../public/new-year/product-decor.png'
 import ProductTree from '../../../../public/new-year/product-tree.png'
 import ProductBg from '../../../../public/new-year/product-bg.png'
-
+import iconGift from '../../../../public/firework-decor-left.gif'
 import BestSeller from '../../../../public/new-year/best-seller.gif'
 import Author from '../../../../public/apple/author.webp'
 
@@ -358,11 +358,13 @@ const ProductIpad: React.FC = () => {
   }
 
   return (
-    <div className="product-new-year-month-2">
+    <div className="product-new-year-month-4">
+      <Image className="icon-gift-1" src={iconGift} alt="icon-ipad" />
+      <Image className="icon-gift-2" src={iconGift} alt="icon-ipad" />
       <div className="upgrade-list">
         <div
           className="container"
-          style={{ backgroundColor: '#ff7eb8', padding: '10px', borderRadius: '10px', marginTop: '50px' }}
+          style={{background: 'linear-gradient(rgb(255 0 115), rgb(255 30 30))', padding: '10px', borderRadius: '10px', marginTop: '50px' }}
         >
           <div className="upgrade-hot-wrap">
             {dataTitle ? (

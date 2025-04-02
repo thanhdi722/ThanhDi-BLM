@@ -1,0 +1,31 @@
+.component-airplane {
+    position: relative;
+    // overflow: hidden;
+
+    .airplane-fly {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        animation: plainfly 10s linear infinite;
+    }
+}
+
+@keyframes plainfly {
+    0% {
+        left: -10%;
+        transform: scale(0.4);
+    }
+    50% {
+        left: 110%;
+        transform: scale(1);
+    }
+    51% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        left: -10%;
+        transform: scale(1.4) rotateY(180deg);
+    }
+}
+
+
